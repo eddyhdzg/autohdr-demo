@@ -3,7 +3,8 @@
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 import { siteConfig } from "@/lib/config";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -24,6 +25,7 @@ import {
   AccordionTrigger,
 } from "@workspace/ui/components/accordion";
 import { Icons } from "../icons";
+import { copySvgToClipboard } from "@/lib/brand-utils";
 
 function HamburgerButton({
   isOpen,
@@ -327,9 +329,13 @@ function MobileNav({
 }
 
 export function Navbar() {
+  const router = useRouter();
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showContextMenu, setShowContextMenu] = useState(false);
+  const [contextMenuPos, setContextMenuPos] = useState({ x: 0, y: 0 });
+  const contextMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -361,6 +367,36 @@ export function Navbar() {
     };
   }, [isMobileMenuOpen]);
 
+  function handleLogoContextMenu(e: React.MouseEvent) {
+    e.preventDefault();
+    setContextMenuPos({ x: e.clientX, y: e.clientY });
+    setShowContextMenu(true);
+  }
+
+  useEffect(() => {
+    if (!showContextMenu) return;
+
+    function handleClickOutside(e: MouseEvent) {
+      if (
+        contextMenuRef.current &&
+        !contextMenuRef.current.contains(e.target as Node)
+      ) {
+        setShowContextMenu(false);
+      }
+    }
+
+    function handleEscape(e: KeyboardEvent) {
+      if (e.key === "Escape") setShowContextMenu(false);
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleEscape);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [showContextMenu]);
+
   return (
     <motion.header
       initial={{ y: 0 }}
@@ -373,9 +409,59 @@ export function Navbar() {
           variant="ghost"
           render={<Link href="/" />}
           className="flex items-center gap-2.5 px-0 py-0 h-auto has-[>svg]:px-0"
+          onContextMenu={handleLogoContextMenu}
         >
           <Icons.logo className="w-28 h-6" />
         </Button>
+
+        {showContextMenu && (
+          <div
+            ref={contextMenuRef}
+            role="menu"
+            aria-label="Logo options"
+            className="fixed z-[100] border border-border bg-popover shadow-md py-1 min-w-[200px]"
+            style={{ top: contextMenuPos.y, left: contextMenuPos.x }}
+          >
+            <button
+              type="button"
+              role="menuitem"
+              className="w-full text-left px-3 py-2 text-sm hover:bg-accent transition-colors cursor-pointer"
+              onClick={() => {
+                window.open("/", "_blank");
+                setShowContextMenu(false);
+              }}
+            >
+              Open Link in New Tab
+            </button>
+            <button
+              type="button"
+              role="menuitem"
+              className="w-full text-left px-3 py-2 text-sm hover:bg-accent transition-colors cursor-pointer"
+              onClick={async () => {
+                try {
+                  await copySvgToClipboard("/brand/logo-black.svg");
+                } catch {
+                  // Clipboard API may fail silently
+                } finally {
+                  setShowContextMenu(false);
+                }
+              }}
+            >
+              Copy Logo as SVG
+            </button>
+            <button
+              type="button"
+              role="menuitem"
+              className="w-full text-left px-3 py-2 text-sm hover:bg-accent transition-colors cursor-pointer"
+              onClick={() => {
+                router.push("/brand");
+                setShowContextMenu(false);
+              }}
+            >
+              Go to Brand Kit
+            </button>
+          </div>
+        )}
 
         <DesktopNav />
 
