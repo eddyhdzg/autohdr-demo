@@ -20,7 +20,7 @@ export function PlanSearchCard({ rootRef, status, showDialog, showTyping, popove
     return (
         <div
             ref={rootRef || undefined}
-            className="w-full rounded-2xl h-36 px-6 py-6 flex flex-col justify-between border border-border relative"
+            className="w-full rounded-lg h-36 px-6 py-6 flex flex-col justify-between border border-border relative"
         >
             <ConnectionStatusIndicator status={status} />
 
@@ -42,7 +42,7 @@ export function PlanSearchCard({ rootRef, status, showDialog, showTyping, popove
                         <IntegrationsPopover open={showDialog} position={popoverPosition} />
                         <button
                             className={cn(
-                                "flex items-center gap-2 w-fit h-9 px-2 rounded-3xl border border-transparent transition-colors",
+                                "flex items-center gap-2 w-fit h-9 px-2 rounded-lg border border-transparent transition-colors",
                                 showDialog && "bg-muted border border-border"
                             )}
                         >
@@ -52,7 +52,7 @@ export function PlanSearchCard({ rootRef, status, showDialog, showTyping, popove
                     </div>
                 </div>
 
-                <Button variant="default" size="icon" className="rounded-full">
+                <Button variant="default" size="icon" className="rounded-lg">
                     <ChevronUp className="size-5" />
                 </Button>
             </div>

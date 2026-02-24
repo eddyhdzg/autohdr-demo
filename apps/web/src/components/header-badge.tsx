@@ -9,7 +9,7 @@ type HeaderBadgeProps = {
 
 export function HeaderBadge({ icon, text, className }: HeaderBadgeProps) {
     return (
-        <div className={cn("flex items-center gap-2 px-4 py-1.5 rounded-full shadow-badge bg-card max-w-full overflow-hidden", className)}>
+        <div className={cn("flex items-center gap-2 px-4 py-1.5 rounded-lg shadow-badge bg-card max-w-full overflow-hidden", className)}>
             <span className="shrink-0 w-4 h-4">{icon}</span>
             <span className="text-sm font-medium text-foreground truncate">
                 {text}

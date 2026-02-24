@@ -22,7 +22,7 @@ export function IntegrationBlock({ popoverPosition = "top" }: { popoverPosition?
             ref={blockRef}
             className="relative min-h-[400px] md:min-h-[500px] flex items-center justify-center p-6 md:p-12 overflow-visible"
         >
-            <div className="w-full max-w-lg rounded-2xl h-36 px-6 py-6 flex flex-col justify-between border border-border relative bg-card">
+            <div className="w-full max-w-lg rounded-lg h-36 px-6 py-6 flex flex-col justify-between border border-border relative bg-card">
                 <p className="text-sm font-medium">Plan, search</p>
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
@@ -36,7 +36,7 @@ export function IntegrationBlock({ popoverPosition = "top" }: { popoverPosition?
                             <IntegrationsPopover open={showDialog} position={popoverPosition} />
                             <button
                                 className={cn(
-                                    "flex items-center gap-2 w-fit h-9 px-2 rounded-3xl border border-transparent transition-colors",
+                                    "flex items-center gap-2 w-fit h-9 px-2 rounded-lg border border-transparent transition-colors",
                                     showDialog && "bg-muted border-border"
                                 )}
                             >
@@ -45,7 +45,7 @@ export function IntegrationBlock({ popoverPosition = "top" }: { popoverPosition?
                             </button>
                         </div>
                     </div>
-                    <Button variant="default" size="icon" className="rounded-full">
+                    <Button variant="default" size="icon" className="rounded-lg">
                         <ChevronUp className="size-5" />
                     </Button>
                 </div>
