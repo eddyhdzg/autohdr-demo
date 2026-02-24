@@ -37,8 +37,7 @@ function useSwitchContext(): SwitchContextValue {
 }
 
 export function SwitchContainer({ value, onValueChange, className, children }: SwitchContainerProps) {
-    const hasRoundedXl = className?.includes('rounded-xl');
-    const borderRadiusClass = hasRoundedXl ? 'rounded-xl' : 'rounded-full';
+    const borderRadiusClass = 'rounded-lg';
 
     return (
         <div
@@ -56,7 +55,7 @@ export function SwitchContainer({ value, onValueChange, className, children }: S
 }
 
 export function SwitchItem({ value, label, disabled, badge, children }: SwitchItemProps) {
-    const { value: activeValue, onValueChange, borderRadius = 'rounded-full' } = useSwitchContext();
+    const { value: activeValue, onValueChange, borderRadius = 'rounded-lg' } = useSwitchContext();
     const isActive = activeValue === value;
 
     return (
@@ -95,7 +94,7 @@ export function SwitchItem({ value, label, disabled, badge, children }: SwitchIt
                 {badge && (
                     <span
                         className={cn(
-                            'ml-2 text-xs font-semibold text-secondary bg-card  border border-border py-0.5 w-[calc(100%+1rem)] px-1 rounded-full',
+                            'ml-2 text-xs font-semibold text-secondary bg-card  border border-border py-0.5 w-[calc(100%+1rem)] px-1 rounded-lg',
                             badge.className
                         )}
                     >

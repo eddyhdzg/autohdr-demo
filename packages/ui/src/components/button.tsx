@@ -1,5 +1,4 @@
 import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "../lib/utils"
@@ -40,18 +39,26 @@ function Button({
   className,
   variant,
   size,
-  asChild = false,
+  render,
   ...props
 }: React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
-    asChild?: boolean
+    render?: React.ReactElement
   }) {
-  const Comp = asChild ? Slot : "button"
+  const classes = cn(buttonVariants({ variant, size, className }))
+
+  if (render) {
+    return React.cloneElement(render as React.ReactElement<Record<string, unknown>>, {
+      ...props,
+      className: cn(classes, (render.props as Record<string, unknown>).className as string),
+      "data-slot": "button",
+    })
+  }
 
   return (
-    <Comp
+    <button
       data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={classes}
       {...props}
     />
   )

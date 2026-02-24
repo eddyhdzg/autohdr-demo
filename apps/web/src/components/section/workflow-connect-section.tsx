@@ -31,12 +31,10 @@ export function WorkflowConnectSection() {
                         <Button
                             variant="secondary"
                             className="w-fit border border-border"
-                            asChild
+                            render={<a href={workflowConnectConfig.ctaButton.href} />}
                         >
-                            <a href={workflowConnectConfig.ctaButton.href}>
-                                {workflowConnectConfig.ctaButton.text}
-                                <Icons.arrowRight className="size-4 text-foreground" />
-                            </a>
+                            {workflowConnectConfig.ctaButton.text}
+                            <Icons.arrowRight className="size-4 text-foreground" />
                         </Button>
                     </div>
 

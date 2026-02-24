@@ -23,7 +23,7 @@ export function FAQSection() {
                     </div>
 
                     <div className="col-span-4 w-full p-8 md:p-12">
-                        <Accordion type="single" collapsible className="w-full">
+                        <Accordion className="w-full">
                             {faqSection.faQitems.map((faq, index) => (
                                 <AccordionItem
                                     key={faq.id}

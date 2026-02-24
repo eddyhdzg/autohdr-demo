@@ -46,7 +46,7 @@ export function PricingSection() {
                                 onValueChange={(value) =>
                                     setBillingPeriod(value as BillingPeriod)
                                 }
-                                className="rounded-xl"
+                                className="rounded-lg"
                             >
                                 <SwitchItem value="monthly" label="Monthly" />
                                 <SwitchItem
@@ -109,18 +109,16 @@ export function PricingSection() {
                                             </div>
                                             <Button
                                                 size="lg"
-                                                asChild
+                                                render={<a href={plan.href} />}
                                                 variant="outline"
                                                 className={cn(
-                                                    "w-full cursor-pointer rounded-full transition-all duration-300 ease-in-out",
+                                                    "w-full cursor-pointer rounded-lg transition-all duration-300 ease-in-out",
                                                     plan.name === "Startup"
                                                         ? "bg-primary text-primary-foreground hover:bg-primary/80 hover:scale-[1.02]"
                                                         : "bg-foreground text-primary-foreground hover:bg-foreground/80 hover:scale-[1.02]",
                                                 )}
                                             >
-                                                <a href={plan.href}>
-                                                    {plan.buttonText}
-                                                </a>
+                                                {plan.buttonText}
                                             </Button>
                                         </div>
                                         <hr className="border-dashed border-border" />
@@ -189,19 +187,14 @@ export function PricingSection() {
                                             {freePlan.description}
                                         </p>
                                         <Button
-                                            asChild
+                                            render={<a href={freePlan.href} />}
                                             variant="outline"
                                             className={cn(
-                                                "w-full rounded-full border border-border bg-card text-secondary-foreground transition-all duration-300 ease-in-out hover:bg-accent hover:scale-[1.02]",
+                                                "w-full rounded-lg border border-border bg-card text-secondary-foreground transition-all duration-300 ease-in-out hover:bg-accent hover:scale-[1.02]",
                                                 freePlan.buttonColor,
                                             )}
                                         >
-                                            <a
-                                                href={freePlan.href}
-                                                className="w-full text-secondary-foreground"
-                                            >
-                                                {freePlan.buttonText}
-                                            </a>
+                                            {freePlan.buttonText}
                                         </Button>
                                     </div>
                                     <div className="col-span-2 flex w-full flex-col items-start justify-start gap-4 p-6 md:p-8">

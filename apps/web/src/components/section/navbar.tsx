@@ -72,7 +72,7 @@ function DesktopNav() {
           <NavigationMenuItem key={link.id}>
             {link.submenu ? (
               <>
-                <NavigationMenuTrigger className="border border-transparent text-foreground rounded-full h-8 w-fit px-2 pl-3 data-[state=open]:bg-accent/50 data-[state=open]:border-border bg-transparent">
+                <NavigationMenuTrigger className="border border-transparent text-foreground rounded-lg h-8 w-fit px-2 pl-3 data-[open]:bg-accent/50 data-[open]:border-border bg-transparent">
                   {link.name}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="p-0!">
@@ -81,7 +81,7 @@ function DesktopNav() {
                       {link.submenu.map((item) => (
                         <div
                           key={item.id}
-                          className="flex flex-col gap-4 rounded-2xl border bg-muted p-4 hover:bg-accent/50 transition-colors"
+                          className="flex flex-col gap-4 rounded-lg border bg-muted p-4 hover:bg-accent/50 transition-colors"
                         >
                           <div className="flex h-10 w-10 items-center justify-center border border-border rounded-lg bg-background">
                             {item.icon}
@@ -95,7 +95,7 @@ function DesktopNav() {
                             </p>
                           </div>
                           {item.image && (
-                            <div className="flex-1 rounded-xl border bg-card p-5">
+                            <div className="flex-1 rounded-lg border bg-card p-5">
                               <div className="relative h-full min-h-[200px] w-full overflow-hidden rounded-md">
                                 <Image
                                   src={item.image.trim()}
@@ -109,7 +109,7 @@ function DesktopNav() {
                         </div>
                       ))}
                     </div>
-                    <div className="flex items-center justify-center border-border mx-2 mb-2 bg-muted px-10 py-6 rounded-3xl border">
+                    <div className="flex items-center justify-center border-border mx-2 mb-2 bg-muted px-10 py-6 rounded-lg border">
                       <p className="text-base text-muted-foreground">
                         Looking for a custom solution?{" "}
                         <Link
@@ -126,15 +126,10 @@ function DesktopNav() {
               </>
             ) : (
               <NavigationMenuLink
-                asChild
-                className="border border-transparent hover:border-border text-foreground rounded-full h-8 w-fit px-2 bg-transparent"
+                render={<Link href={link.href} />}
+                className="border border-transparent hover:border-border text-foreground rounded-lg h-8 w-fit px-2 bg-transparent group inline-flex items-center justify-center bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none"
               >
-                <Link
-                  href={link.href}
-                  className="group inline-flex h-8 w-fit items-center justify-center rounded-full bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none"
-                >
-                  {link.name}
-                </Link>
+                {link.name}
               </NavigationMenuLink>
             )}
           </NavigationMenuItem>
@@ -198,8 +193,6 @@ function MobileNav({
                     >
                       {link.submenu ? (
                         <Accordion
-                          type="single"
-                          collapsible
                           className="w-full"
                         >
                           <AccordionItem
@@ -209,7 +202,7 @@ function MobileNav({
                             <AccordionTrigger className="text-xl font-medium uppercase py-3 hover:no-underline px-0">
                               {link.name}
                             </AccordionTrigger>
-                            <AccordionContent className="data-[state=closed]:animate-none! data-[state=open]:animate-none! overflow-hidden text-sm">
+                            <AccordionContent className="overflow-hidden text-sm">
                               <ul className="grid grid-cols-1 gap-6 overflow-hidden pt-4">
                                 {link.submenu.map((item, itemIndex) => (
                                   <motion.li

@@ -13,7 +13,7 @@ export function DemoSection() {
                 collapseDelay={5000}
                 linePosition="bottom"
                 featureItems={items}
-                lineColor="bg-sky-500"
+                lineColor="bg-teal-500"
             />
         </section>
     );
