@@ -1,41 +1,50 @@
 import { siteConfig } from "@/lib/config";
-import { cn } from "@workspace/ui/lib/utils";
 import { Button } from "@workspace/ui/components/button";
 import { CornerPlus } from "@workspace/ui/components/corner-plus";
-import { HeaderBadge } from "@/components/header-badge";
+import { Sparkles } from "lucide-react";
 
 export function HeroSection() {
     const { hero } = siteConfig;
 
     return (
-
         <section
             id="hero"
-            className="relative flex flex-col items-center justify-center px-4 py-16 md:py-24"
+            className="relative px-4 py-16 md:py-24"
         >
-            <CornerPlus position="bottom-left"  className="text-muted-foreground/50"/>
-            <CornerPlus position="bottom-right" className="text-muted-foreground/50"/>
-            <div className="absolute inset-0 -z-1 h-full w-full bg-radial-[at_45%_85%] from-[#2DD4BF]/40 via-[#0F766E]/4 mask-[linear-gradient(to_bottom,transparent,black_100%)]" />
-            <div className="absolute inset-0 -z-1 h-full w-full bg-radial-[at_45%_68%] from-[#2DD4BF]/68 via-[#0F766E]/3 mask-[linear-gradient(to_bottom,transparent,black_100%)] blur-[50px]" />
-            <div className="relative z-10 flex flex-col items-center justify-center text-center space-y-6 max-w-4xl mx-auto">
-                <HeaderBadge icon={hero.badgeIcon} text={hero.badge} className="max-[350px]:hidden" />
+            <CornerPlus position="bottom-left" className="text-muted-foreground/50" />
+            <CornerPlus position="bottom-right" className="text-muted-foreground/50" />
+            <div className="flex flex-col items-center text-center md:items-start md:text-left space-y-6 max-w-3xl">
+                <Button
+                    render={<a href={hero.cta.primary.href} />}
+                    variant="outline"
+                    size="sm"
+                >
+                    <Sparkles />
+                    {hero.badge}
+                </Button>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tighter text-balance">
                     {hero.title}
                 </h1>
-                <p className="text-secondary-foreground/70 text-center text-balance text-lg max-w-2xl mx-auto">
+                <p className="text-secondary-foreground/70 text-lg max-w-2xl">
                     {hero.description}
                 </p>
-                <Button
-                    render={<a href={hero.cta.primary.href} />}
-                    size="lg"
-                    className={cn(
-                        "px-8 py-6 text-base font-medium text-primary-foreground",
-                        "bg-linear-to-b from-teal-500 to-teal-600",
-                                                "ring-2 ring-teal-600 hover:from-teal-600 hover:to-teal-700",
-                    )}
-                >
-                    {hero.cta.primary.text}
-                </Button>
+                <div className="flex items-center gap-3">
+                    <Button
+                        render={<a href={hero.cta.secondary.href} />}
+                        variant="outline"
+                        size="lg"
+                        className="px-8 py-6 text-base font-medium"
+                    >
+                        {hero.cta.secondary.text}
+                    </Button>
+                    <Button
+                        render={<a href={hero.cta.primary.href} />}
+                        size="lg"
+                        className="px-8 py-6 text-base font-medium"
+                    >
+                        {hero.cta.primary.text}
+                    </Button>
+                </div>
             </div>
         </section>
     );

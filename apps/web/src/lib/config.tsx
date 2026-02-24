@@ -57,14 +57,17 @@ export const siteConfig = {
         ],
     },
     hero: {
-        badgeIcon: <Icons.stackedIcons className="size-4" />,
-        badge: "Introducing intelligent code generation",
-        title: "Ship production code 10x faster with AI",
+        badge: "Start for FREE \u2022 No credit card needed",
+        title: "AI Photo Editing for Real Estate",
         description:
-            "Your AI coding partner writes, reviews, and refactors code instantly. Build features in minutes, not hours.",
+            "Powering 1 in 5 real estate listings in the U.S.",
         cta: {
             primary: {
-                text: "Start for free",
+                text: "Get Started",
+                href: "#",
+            },
+            secondary: {
+                text: "Book a Demo",
                 href: "#",
             },
         },
@@ -787,7 +790,7 @@ export const siteConfig = {
                 { id: 14, title: "Changelog", url: "#" },
                 { id: 15, title: "Privacy", url: "#" },
                 { id: 16, title: "Careers", url: "#" },
-                { id: 17, title: "Brand", url: "#" },
+                { id: 17, title: "Brand", url: "/brand" },
                 { id: 18, title: "Contact", url: "#" },
                 { id: 19, title: "Legal", url: "#" },
             ],
