@@ -174,7 +174,7 @@ function ConnectorSVG({ className, flip = false }: { className?: string; flip?: 
 
 function WorkflowCard({ step }: { step: WorkflowStep }) {
     return (
-        <div className="bg-card w-fit rounded-lg shadow-badge">
+        <div className="bg-card w-fit rounded-none border border-border">
             <div className="flex items-start justify-between gap-4">
                 <div className="flex items-start gap-3 flex-1">
 

@@ -107,7 +107,7 @@ export function TerminalBrowserPreviewBlock() {
             >
                 <CloningStatusIndicator status={status} />
                 <TerminalWindow
-                    command="npx codeforge clone repo"
+                    command="npx autohdr clone repo"
                     output={[
                         "Cloning repository...",
                         "Resolving deltas: 100% (1234/1234), done.",
@@ -139,7 +139,7 @@ const TerminalWindow = memo(function TerminalWindow({
     output: string[];
 }) {
     return (
-        <div className="w-full max-w-lg bg-card rounded-lg border border-border relative overflow-hidden">
+        <div className="w-full max-w-lg bg-card rounded-none border border-border relative overflow-hidden">
             <div className="bg-muted px-4 py-3 flex items-center gap-2 border-b border-border">
                 <div className="flex gap-2">
                     <div className="w-3 h-3 rounded-full bg-red-500" />
@@ -192,7 +192,7 @@ const BrowserPreview = memo(function BrowserPreview({
             animate="visible"
             exit="hidden"
             transition={{ ...springTransition, delay: 0.2 }}
-            className="absolute left-1/2 -translate-x-1/2 bottom-8 w-full max-w-xs md:max-w-md bg-card rounded-lg border border-border overflow-hidden z-20"
+            className="absolute left-1/2 -translate-x-1/2 bottom-8 w-full max-w-xs md:max-w-md bg-card rounded-none border border-border overflow-hidden z-20"
         >
             <div className="bg-muted px-3 py-2 md:px-4 md:py-2.5 flex items-center gap-2 border-b border-border">
                 <div className="flex gap-1.5 md:gap-2">
@@ -211,7 +211,7 @@ const BrowserPreview = memo(function BrowserPreview({
                     <div className="flex items-center justify-center gap-2 md:gap-3 pt-1 md:pt-2">
                         <Button
                             className={cn(
-                                "text-xs font-medium px-4 py-2 rounded-lg",
+                                "text-xs font-medium px-4 py-2 rounded-none",
                                 "bg-primary hover:bg-primary/90 text-primary-foreground"
                             )}
                         >
@@ -260,9 +260,9 @@ function CloningStatusIndicator({ status }: { status: CloningStatus }) {
                     <Button
                         size="sm"
                         className={cn(
-                            "flex w-fit h-10 items-center gap-2 rounded-lg pl-2 pr-4! text-sm font-medium",
+                            "flex w-fit h-10 items-center gap-2 rounded-none pl-2 pr-4! text-sm font-medium",
                             "bg-card text-card-foreground border border-border",
-                            "shadow-lg hover:bg-accent"
+                            "hover:bg-accent"
                         )}
                     >
                         <div className="size-4 flex items-center justify-center shrink-0">

@@ -182,7 +182,7 @@ const CodeEditor = memo(function CodeEditor({
     isApplied: boolean;
 }) {
     return (
-        <div className="w-full bg-card rounded-lg border border-border relative overflow-hidden">
+        <div className="w-full bg-card rounded-none border border-border relative overflow-hidden">
             <div className="bg-muted px-4 py-3 flex items-center justify-between border-b border-border">
                 <div className="flex items-center gap-2">
                     <div className="flex gap-2">
@@ -293,7 +293,7 @@ const ApplyButton = memo(function ApplyButton({ text, isClicked }: { text: strin
                 scale: { duration: 0.2, ease: "easeInOut" },
                 opacity: { duration: 0.2 },
             }}
-            className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 rounded-lg bg-linear-to-b from-[#E5E7EB]/40 dark:from-[#404040]/40 to-[#E5E7EB] dark:to-[#404040] text-secondary-foreground border border-card-foreground/20 h-12 w-fit px-6 text-sm font-medium backdrop-blur-2xl shadow-[0px_39px_16px_rgba(0,0,0,0.01),0px_22px_13px_rgba(0,0,0,0.05),0px_10px_10px_rgba(0,0,0,0.09),0px_2px_5px_rgba(0,0,0,0.1)] whitespace-nowrap"
+            className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 rounded-none bg-linear-to-b from-[#E5E7EB]/40 dark:from-[#404040]/40 to-[#E5E7EB] dark:to-[#404040] text-secondary-foreground border border-card-foreground/20 h-12 w-fit px-6 text-sm font-medium backdrop-blur-2xl whitespace-nowrap"
         >
             {text}
         </motion.button>

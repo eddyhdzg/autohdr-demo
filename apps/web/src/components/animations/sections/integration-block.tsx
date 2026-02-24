@@ -22,21 +22,21 @@ export function IntegrationBlock({ popoverPosition = "top" }: { popoverPosition?
             ref={blockRef}
             className="relative min-h-[400px] md:min-h-[500px] flex items-center justify-center p-6 md:p-12 overflow-visible"
         >
-            <div className="w-full max-w-lg rounded-lg h-36 px-6 py-6 flex flex-col justify-between border border-border relative bg-card">
+            <div className="w-full max-w-lg rounded-none h-36 px-6 py-6 flex flex-col justify-between border border-border relative bg-card">
                 <p className="text-sm font-medium">Plan, search</p>
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
-                        <button className="p-2 hover:bg-muted rounded-lg transition-colors">
+                        <button className="p-2 hover:bg-muted rounded-none transition-colors">
                             <Plus className="size-5" />
                         </button>
-                        <button className="p-2 hover:bg-muted rounded-lg transition-colors">
+                        <button className="p-2 hover:bg-muted rounded-none transition-colors">
                             <Globe className="size-5" />
                         </button>
                         <div className="relative">
                             <IntegrationsPopover open={showDialog} position={popoverPosition} />
                             <button
                                 className={cn(
-                                    "flex items-center gap-2 w-fit h-9 px-2 rounded-lg border border-transparent transition-colors",
+                                    "flex items-center gap-2 w-fit h-9 px-2 rounded-none border border-transparent transition-colors",
                                     showDialog && "bg-muted border-border"
                                 )}
                             >
@@ -45,7 +45,7 @@ export function IntegrationBlock({ popoverPosition = "top" }: { popoverPosition?
                             </button>
                         </div>
                     </div>
-                    <Button variant="default" size="icon" className="rounded-lg">
+                    <Button variant="default" size="icon">
                         <ChevronUp className="size-5" />
                     </Button>
                 </div>

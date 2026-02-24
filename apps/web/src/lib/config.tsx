@@ -23,22 +23,20 @@ export const Highlight = ({
 export const BLUR_FADE_DELAY = 0.15;
 
 export const siteConfig = {
-    name: "Codeforge",
-    description: "AI-powered code generation and review.",
+    name: "AutoHDR",
+    description: "AI-powered HDR image processing.",
     cta: "Get Started",
     url: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
     keywords: [
-        "AI Code Generation",
-        "AI Code Review",
-        "AI Code Refactoring",
-        "AI Code Optimization",
+        "HDR Image Processing",
+        "AI HDR",
+        "Automatic HDR",
+        "HDR Photo Enhancement",
     ],
     links: {
-        email: "support@codeforge.ai",
-        twitter: "https://twitter.com/codeforgeai",
-        discord: "https://discord.gg/codeforgeai",
-        github: "https://github.com/codeforgeai",
-        instagram: "https://instagram.com/codeforgeai",
+        email: "delivery@autohdr.com",
+        instagram: "https://www.instagram.com/auto.hdr/",
+        tiktok: "https://www.tiktok.com/@auto.hdr",
     },
     nav: {
         links: [
@@ -317,7 +315,7 @@ export const siteConfig = {
             text: "Scale",
         },
         title: (<>Your AI partner for {" "}<Highlight>every commit</Highlight></>),
-        description: "CodeForge writes boilerplate, refactors legacy code, and reviews every line so you can focus on architecture and innovation",
+        description: "AutoHDR processes your images, enhances dynamic range, and delivers stunning HDR results so you can focus on creating",
         sections: {
             title: "AI meets your workflow in seconds",
             description: "Start coding with AI by cloning any GitHub repository. Review smart suggestions and apply code changes with a single click.",
@@ -751,7 +749,7 @@ export const siteConfig = {
     },
     ctaSection: {
         id: "cta",
-        title: "Ship your next feature 10x faster with CodeForge",
+        title: "Transform your photos with AutoHDR",
         backgroundImage: "/agent-cta-background.png",
         button: {
             text: "Start for free",

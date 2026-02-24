@@ -95,7 +95,7 @@ export const Feature = ({
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={MEDIA_TRANSITION}
-                    className="min-h-[400px] w-full rounded-lg border border-border bg-muted p-1"
+                    className="min-h-[400px] w-full rounded-none border border-border bg-muted p-1"
                 />
             );
         }
@@ -110,7 +110,7 @@ export const Feature = ({
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={MEDIA_TRANSITION}
-                    className="h-full w-full min-h-[400px] rounded-lg border border-border object-cover p-1"
+                    className="h-full w-full min-h-[400px] rounded-none border border-border object-cover p-1"
                 />
             );
         }
@@ -124,7 +124,7 @@ export const Feature = ({
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={MEDIA_TRANSITION}
-                    className="min-h-[400px] h-full w-full rounded-lg object-cover"
+                    className="min-h-[400px] h-full w-full rounded-none object-cover"
                     autoPlay
                     loop
                     muted
@@ -140,7 +140,7 @@ export const Feature = ({
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={MEDIA_TRANSITION}
-                className="min-h-[400px] w-full rounded-lg border border-border bg-muted p-1"
+                className="min-h-[400px] w-full rounded-none border border-border bg-muted p-1"
             />
         );
     };

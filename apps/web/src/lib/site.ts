@@ -1,10 +1,10 @@
 export const siteConfig = {
-    name: "Codeforge",
-    url: "https://codeforge-magicui.vercel.app",
-    description: "AI-powered code generation and review.",
+    name: "AutoHDR",
+    url: "https://www.autohdr.com/",
+    description: "AI-powered HDR image processing.",
     links: {
-        twitter: "https://x.com/dillionverma",
-        github: "https://github.com/dillionverma",
+        instagram: "https://www.instagram.com/auto.hdr/",
+        tiktok: "https://www.tiktok.com/@auto.hdr",
     },
 };
 
