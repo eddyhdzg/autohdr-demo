@@ -166,6 +166,10 @@
     @apply border-border outline-ring/50;
   }
 
+  *:focus-visible {
+    outline-style: solid;
+  }
+
   body {
     @apply bg-background text-foreground;
   }

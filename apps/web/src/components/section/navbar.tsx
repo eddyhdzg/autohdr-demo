@@ -33,9 +33,11 @@ function HamburgerButton({
   onClick: () => void;
 }) {
   return (
-    <button
+    <Button
+      variant="outline"
+      size="icon"
       onClick={onClick}
-      className="md:hidden relative z-50 flex size-8 items-center justify-center rounded-full border border-border bg-background transition-colors hover:bg-accent"
+      className="md:hidden relative z-50 size-8"
       aria-label="Toggle menu"
     >
       <div className="relative size-5 flex items-center justify-center">
@@ -60,7 +62,7 @@ function HamburgerButton({
           transition={{ duration: 0.25, ease: "easeInOut" }}
         />
       </div>
-    </button>
+    </Button>
   );
 }
 
@@ -72,7 +74,7 @@ function DesktopNav() {
           <NavigationMenuItem key={link.id}>
             {link.submenu ? (
               <>
-                <NavigationMenuTrigger className="border border-transparent text-foreground rounded-lg h-8 w-fit px-2 pl-3 data-[open]:bg-accent/50 data-[open]:border-border bg-transparent">
+                <NavigationMenuTrigger className="border border-transparent text-foreground rounded-none h-8 w-fit px-2 pl-3 data-[open]:bg-accent/50 data-[open]:border-border bg-transparent">
                   {link.name}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="p-0!">
@@ -81,9 +83,9 @@ function DesktopNav() {
                       {link.submenu.map((item) => (
                         <div
                           key={item.id}
-                          className="flex flex-col gap-4 rounded-lg border bg-muted p-4 hover:bg-accent/50 transition-colors"
+                          className="flex flex-col gap-4 rounded-none border bg-muted p-4 hover:bg-accent/50 transition-colors"
                         >
-                          <div className="flex h-10 w-10 items-center justify-center border border-border rounded-lg bg-background">
+                          <div className="flex h-10 w-10 items-center justify-center border border-border rounded-none bg-background">
                             {item.icon}
                           </div>
                           <div className="space-y-3">
@@ -95,8 +97,8 @@ function DesktopNav() {
                             </p>
                           </div>
                           {item.image && (
-                            <div className="flex-1 rounded-lg border bg-card p-5">
-                              <div className="relative h-full min-h-[200px] w-full overflow-hidden rounded-md">
+                            <div className="flex-1 rounded-none border bg-card p-5">
+                              <div className="relative h-full min-h-[200px] w-full overflow-hidden rounded-none">
                                 <Image
                                   src={item.image.trim()}
                                   alt={item.name}
@@ -109,7 +111,7 @@ function DesktopNav() {
                         </div>
                       ))}
                     </div>
-                    <div className="flex items-center justify-center border-border mx-2 mb-2 bg-muted px-10 py-6 rounded-lg border">
+                    <div className="flex items-center justify-center border-border mx-2 mb-2 bg-muted px-10 py-6 rounded-none border">
                       <p className="text-base text-muted-foreground">
                         Looking for a custom solution?{" "}
                         <Link
@@ -127,7 +129,7 @@ function DesktopNav() {
             ) : (
               <NavigationMenuLink
                 render={<Link href={link.href} />}
-                className="border border-transparent hover:border-border text-foreground rounded-lg h-8 w-fit px-2 bg-transparent group inline-flex items-center justify-center bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none"
+                className="border border-transparent hover:border-border text-foreground rounded-none h-8 w-fit px-2 bg-transparent group inline-flex items-center justify-center bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none"
               >
                 {link.name}
               </NavigationMenuLink>
@@ -135,7 +137,7 @@ function DesktopNav() {
           </NavigationMenuItem>
         ))}
       </NavigationMenuList>
-      <NavigationMenuViewport className="shadow-2xl border border-border" />
+      <NavigationMenuViewport className="border border-border" />
     </NavigationMenu>
   );
 }
@@ -165,7 +167,7 @@ function MobileNav({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-16 left-0 right-0 bottom-0 z-50 w-full bg-background shadow-2xl md:hidden overflow-y-auto"
+            className="fixed top-16 left-0 right-0 bottom-0 z-50 w-full bg-background md:hidden overflow-y-auto"
           >
             <div className="flex h-full flex-col">
               <nav className="flex-1 px-6 py-8 pb-32">
@@ -229,7 +231,7 @@ function MobileNav({
                                       onClick={onClose}
                                       className="flex items-start gap-3 transition-colors"
                                     >
-                                      <div className="flex h-8 w-8 shrink-0 items-center justify-center bg-muted border border-border rounded-lg">
+                                      <div className="flex h-8 w-8 shrink-0 items-center justify-center bg-muted border border-border rounded-none">
                                         {item.icon}
                                       </div>
                                       <div className="flex-1 space-y-1">
@@ -280,7 +282,7 @@ function MobileNav({
                 >
                   <Button
                     onClick={onClose}
-                    className="w-full rounded-lg bg-primary px-5 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+                    className="w-full px-5 py-3 text-sm font-medium"
                   >
                     {siteConfig.cta}
                   </Button>
@@ -366,19 +368,20 @@ export function Navbar() {
       transition={{ duration: 0.3, ease: "easeInOut" }}
       className="fixed top-0 left-0 right-0 z-50 border-b bg-background"
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        <Link
-          href="/"
-          className="flex items-center gap-2.5 text-lg font-semibold"
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 lg:px-0">
+        <Button
+          variant="ghost"
+          render={<Link href="/" />}
+          className="flex items-center gap-2.5 px-0 py-0 h-auto has-[>svg]:px-0"
         >
-          <Icons.logo className="w-32 h-8" />
-        </Link>
+          <Icons.logo className="w-28 h-6" />
+        </Button>
 
         <DesktopNav />
 
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <Button className="hidden md:flex rounded-lg bg-primary px-5 text-sm font-medium text-primary-foreground hover:bg-primary/90">
+          <Button className="hidden md:flex px-5 text-sm font-medium">
             {siteConfig.cta}
           </Button>
           <HamburgerButton

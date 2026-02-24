@@ -20,7 +20,7 @@ export function PlanSearchCard({ rootRef, status, showDialog, showTyping, popove
     return (
         <div
             ref={rootRef || undefined}
-            className="w-full rounded-lg h-36 px-6 py-6 flex flex-col justify-between border border-border relative"
+            className="w-full rounded-none h-36 px-6 py-6 flex flex-col justify-between border border-border relative"
         >
             <ConnectionStatusIndicator status={status} />
 
@@ -31,10 +31,10 @@ export function PlanSearchCard({ rootRef, status, showDialog, showTyping, popove
             )}
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                    <button className="p-2 hover:bg-muted rounded-lg transition-colors">
+                    <button className="p-2 hover:bg-muted rounded-none transition-colors">
                         <Plus className="size-5" />
                     </button>
-                    <button className="p-2 hover:bg-muted rounded-lg transition-colors">
+                    <button className="p-2 hover:bg-muted rounded-none transition-colors">
                         <Globe className="size-5" />
                     </button>
 
@@ -42,7 +42,7 @@ export function PlanSearchCard({ rootRef, status, showDialog, showTyping, popove
                         <IntegrationsPopover open={showDialog} position={popoverPosition} />
                         <button
                             className={cn(
-                                "flex items-center gap-2 w-fit h-9 px-2 rounded-lg border border-transparent transition-colors",
+                                "flex items-center gap-2 w-fit h-9 px-2 rounded-none border border-transparent transition-colors",
                                 showDialog && "bg-muted border border-border"
                             )}
                         >
@@ -52,7 +52,7 @@ export function PlanSearchCard({ rootRef, status, showDialog, showTyping, popove
                     </div>
                 </div>
 
-                <Button variant="default" size="icon" className="rounded-lg">
+                <Button variant="default" size="icon">
                     <ChevronUp className="size-5" />
                 </Button>
             </div>

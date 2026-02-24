@@ -29,9 +29,9 @@ export function CTASection() {
                         render={<a href={ctaSection.button.href} />}
                         size="lg"
                         className={cn(
-                            "rounded-lg px-8 py-6 text-base font-medium text-primary-foreground",
+                            "px-8 py-6 text-base font-medium text-primary-foreground",
                             "bg-linear-to-b from-teal-500 to-teal-600",
-                            "shadow-[0px_1px_2px_0px_#00000016,0px_2px_4px_0px_#00000006,inset_0px_0px_1.5px_#0D9488,inset_0px_2.5px_0px_#ffffff16,inset_0px_0px_2.5px_#ffffff08] ring-2 ring-teal-600 hover:from-teal-600 hover:to-teal-700",
+                            "ring-2 ring-teal-600 hover:from-teal-600 hover:to-teal-700",
                         )}
                     >
                         {ctaSection.button.text}

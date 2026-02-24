@@ -46,7 +46,6 @@ export function PricingSection() {
                                 onValueChange={(value) =>
                                     setBillingPeriod(value as BillingPeriod)
                                 }
-                                className="rounded-lg"
                             >
                                 <SwitchItem value="monthly" label="Monthly" />
                                 <SwitchItem
@@ -88,7 +87,7 @@ export function PricingSection() {
                                                 <h4 className="flex items-center gap-2 text-xl font-medium">
                                                     {plan.name}
                                                     {plan.isPopular && (
-                                                        <span className="rounded-md border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+                                                        <span className="rounded-none border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
                                                             Popular
                                                         </span>
                                                     )}
@@ -112,7 +111,7 @@ export function PricingSection() {
                                                 render={<a href={plan.href} />}
                                                 variant="outline"
                                                 className={cn(
-                                                    "w-full cursor-pointer rounded-lg transition-all duration-300 ease-in-out",
+                                                    "w-full cursor-pointer rounded-none transition-all duration-300 ease-in-out",
                                                     plan.name === "Startup"
                                                         ? "bg-primary text-primary-foreground hover:bg-primary/80 hover:scale-[1.02]"
                                                         : "bg-foreground text-primary-foreground hover:bg-foreground/80 hover:scale-[1.02]",
@@ -190,7 +189,7 @@ export function PricingSection() {
                                             render={<a href={freePlan.href} />}
                                             variant="outline"
                                             className={cn(
-                                                "w-full rounded-lg border border-border bg-card text-secondary-foreground transition-all duration-300 ease-in-out hover:bg-accent hover:scale-[1.02]",
+                                                "w-full rounded-none border border-border bg-card text-secondary-foreground transition-all duration-300 ease-in-out hover:bg-accent hover:scale-[1.02]",
                                                 freePlan.buttonColor,
                                             )}
                                         >
