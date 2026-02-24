@@ -64,8 +64,8 @@ interface DotPatternProps extends React.SVGProps<SVGSVGElement> {
 export function DotPattern({
   width = 16,
   height = 16,
-  x = 0,
-  y = 0,
+  x: _x = 0,
+  y: _y = 0,
   cx = 1,
   cy = 1,
   cr = 1,
@@ -99,11 +99,14 @@ export function DotPattern({
     (_, i) => {
       const col = i % Math.ceil(dimensions.width / width)
       const row = Math.floor(i / Math.ceil(dimensions.width / width))
+      // Deterministic pseudo-random based on index to avoid impure Math.random() during render
+      const seed1 = ((i * 9301 + 49297) % 233280) / 233280
+      const seed2 = ((i * 1103 + 13849) % 65536) / 65536
       return {
         x: col * width + cx,
         y: row * height + cy,
-        delay: Math.random() * 5,
-        duration: Math.random() * 3 + 2,
+        delay: seed1 * 5,
+        duration: seed2 * 3 + 2,
       }
     }
   )
@@ -124,7 +127,7 @@ export function DotPattern({
           <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
         </radialGradient>
       </defs>
-      {dots.map((dot, index) => (
+      {dots.map((dot) => (
         <motion.circle
           key={`${dot.x}-${dot.y}`}
           cx={dot.x}
