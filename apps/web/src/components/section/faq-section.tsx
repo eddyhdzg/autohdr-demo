@@ -16,7 +16,7 @@ export function FAQSection() {
             <CornerPlus position="top-right" className="text-muted-foreground/50" />
             <div className="mx-auto">
                 <div className="grid md:grid-cols-6 md:divide-x divide-border">
-                    <div className="col-span-2 flex flex-col gap-4 p-8 md:p-12">
+                    <div className="md:col-span-2 flex flex-col gap-4 p-8 md:p-12">
                         <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tighter text-left text-balance">
                             {faqSection.title}
                         </h2>
@@ -25,7 +25,7 @@ export function FAQSection() {
                         </p>
                     </div>
 
-                    <div className="col-span-4 w-full p-8 md:p-12">
+                    <div className="md:col-span-4 w-full p-8 md:p-12">
                         <Accordion className="w-full">
                             {faqSection.faQitems.map((faq, index) => (
                                 <AccordionItem

@@ -7,11 +7,11 @@ export function BrandSymbolSection() {
     <section className="relative">
       <CornerPlus position="top-left" className="text-muted-foreground/50" />
       <CornerPlus position="top-right" className="text-muted-foreground/50" />
-      <div className="p-6 md:p-8">
-        <h2 className="text-3xl md:text-4xl font-medium tracking-tighter">
+      <div className="p-8 md:p-12">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tighter text-balance">
           Symbol
         </h2>
-        <p className="text-muted-foreground mt-2">
+        <p className="text-muted-foreground font-medium text-sm md:text-base text-balance mt-2">
           The AutoHDR symbol is the isometric mark used as a standalone icon.
         </p>
       </div>

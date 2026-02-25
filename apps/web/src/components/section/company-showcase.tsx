@@ -23,11 +23,11 @@ export function CompanyShowcase() {
         >
             <CornerPlus position="top-left" className="text-muted-foreground/50" />
             <CornerPlus position="top-right" className="text-muted-foreground/50" />
-            <div className="grid w-full max-w-7xl grid-cols-1 gap-px bg-border lg:grid-cols-6">
-                <p className="col-span-2 lg:row-span-2 inline-flex min-h-20 items-center justify-center text-center text-2xl font-semibold text-foreground bg-background">
+            <div className="grid w-full max-w-7xl grid-cols-1 divide-y divide-border lg:divide-y-0 lg:gap-px lg:bg-border lg:grid-cols-6">
+                <p className="lg:col-span-2 lg:row-span-2 inline-flex min-h-20 items-center justify-center text-center text-2xl font-semibold text-foreground bg-background">
                     Integrations
                 </p>
-                <div className="col-span-4 grid grid-cols-2 gap-px md:grid-cols-3">
+                <div className="lg:col-span-4 grid grid-cols-2 gap-px bg-border md:grid-cols-3">
                     {companyShowcase.companyLogos.map((logo, idx) => (
                         <div key={logo.id} className="bg-background">
                             <BlurFade
