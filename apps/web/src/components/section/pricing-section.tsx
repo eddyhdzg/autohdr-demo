@@ -176,7 +176,7 @@ export function PricingSection() {
             </div>
 
             {/* 3 Pricing Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border">
+            <div className="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-border">
                 {/* Free */}
                 <div
                     className={cn(
@@ -291,7 +291,8 @@ export function PricingSection() {
                             size="lg"
                             render={<a href={proPlan.href} />}
                             variant={isProSelected ? "default" : "outline"}
-                            className="w-full"
+                            aria-disabled={!isProSelected}
+                            className={cn("w-full", !isProSelected && "pointer-events-none")}
                         >
                             {isYearly ? "Get Yearly" : "Get Monthly"}
                         </Button>
@@ -373,7 +374,8 @@ export function PricingSection() {
                             variant={
                                 isEnterpriseSelected ? "default" : "outline"
                             }
-                            className="w-full"
+                            aria-disabled={!isEnterpriseSelected}
+                            className={cn("w-full", !isEnterpriseSelected && "pointer-events-none")}
                         >
                             {enterprisePlan.buttonText}
                         </Button>
