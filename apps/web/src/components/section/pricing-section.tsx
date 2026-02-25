@@ -77,7 +77,7 @@ export function PricingSection() {
             {/* Header + Toggle + Slider */}
             <div className="border-b w-full p-8 md:p-16">
                 <div className="max-w-xl mx-auto flex flex-col items-center justify-center gap-6 text-center">
-                    <h3 className="text-3xl font-medium tracking-tighter md:text-4xl">
+                    <h3 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tighter text-balance">
                         {pricing.title}
                     </h3>
                     <p className="text-lg text-muted-foreground text-balance">
