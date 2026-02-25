@@ -366,7 +366,7 @@ export function Navbar() {
 
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <Button className="hidden md:flex px-5 text-sm font-medium">
+          <Button size="sm" className="hidden md:flex px-5 text-sm font-medium">
             {siteConfig.cta}
           </Button>
           <HamburgerButton
