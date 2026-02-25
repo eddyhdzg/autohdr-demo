@@ -382,43 +382,43 @@ export const siteConfig = {
     faqSection: {
         title: "Frequently Asked Questions",
         description:
-            "Answers to common questions about SkyAgent and its features. If you have any other questions, please don't hesitate to contact us.",
+            "Answers to common questions about AutoHDR and its features. If you have any other questions, please don't hesitate to contact us.",
         faQitems: [
             {
                 id: 1,
-                question: "What is an AI Agent?",
+                question: "What is AutoHDR?",
                 answer:
-                    "An AI Agent is an intelligent software program that can perform tasks autonomously, learn from interactions, and make decisions to help achieve specific goals. It combines artificial intelligence and machine learning to provide personalized assistance and automation.",
+                    "AutoHDR is an AI-powered photo editing service for real estate. Upload your photos and receive professionally enhanced images with HDR, sky replacement, object removal, and more.",
             },
             {
                 id: 2,
-                question: "How does SkyAgent work?",
+                question: "What services does AutoHDR offer?",
                 answer:
-                    "SkyAgent works by analyzing your requirements, leveraging advanced AI algorithms to understand context, and executing tasks based on your instructions. It can integrate with your workflow, learn from feedback, and continuously improve its performance.",
+                    "HDR editing, flambient editing, day-to-dusk conversion, grass greening, object removal, virtual staging, and TV blackout.",
             },
             {
                 id: 3,
-                question: "How secure is my data?",
+                question: "How fast is the turnaround?",
                 answer:
-                    "We implement enterprise-grade security measures including end-to-end encryption, secure data centers, and regular security audits. Your data is protected according to industry best practices and compliance standards.",
+                    "Most photos are delivered within minutes. Free tier has 24-hour delivery, while Pro and Enterprise plans include priority processing.",
             },
             {
                 id: 4,
-                question: "Can I integrate my existing tools?",
+                question: "How does pricing work?",
                 answer:
-                    "Yes, SkyAgent is designed to be highly compatible with popular tools and platforms. We offer APIs and pre-built integrations for seamless connection with your existing workflow tools and systems.",
+                    "You only pay for what you download. Start with 10 free photos per month, then scale up with volume-based pricing starting at $0.57/photo.",
             },
             {
                 id: 5,
-                question: "Is there a free trial available?",
+                question: "Can I integrate AutoHDR with my workflow?",
                 answer:
-                    "Yes, we offer a 14-day free trial that gives you full access to all features. No credit card is required to start your trial, and you can upgrade or cancel at any time.",
+                    "Yes, AutoHDR integrates with popular platforms like Spiro, HD PhotoHub, Tonomo, Aryeo, and Dropbox for seamless delivery.",
             },
             {
                 id: 6,
-                question: "How does SkyAgent save me time?",
+                question: "Is there a free plan?",
                 answer:
-                    "SkyAgent automates repetitive tasks, streamlines workflows, and provides quick solutions to common challenges. This automation and efficiency can save hours of manual work, allowing you to focus on more strategic activities.",
+                    "Yes, get up to 10 free photos per month with standard HDR processing. No credit card required.",
             },
         ],
     },
@@ -426,11 +426,17 @@ export const siteConfig = {
         id: "contact",
         title: "Transform your photos with AutoHDR",
         backgroundImage: "/agent-cta-background.png",
-        button: {
-            text: "Start for free",
-            href: "#",
+        cta: {
+            primary: {
+                text: "Get Started",
+                href: "#",
+            },
+            secondary: {
+                text: "Book a Demo",
+                href: "#",
+            },
         },
-        subtext: "Enhance your images with AI-powered HDR processing. Get studio-quality results in seconds, completely free.",
+        subtext: "Enhance your real estate photos with AutoHDR. Studio-quality results in seconds, start for free.",
     },
     footerLinks: [
         {
