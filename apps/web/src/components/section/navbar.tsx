@@ -352,7 +352,7 @@ export function Navbar() {
       transition={{ duration: 0.3, ease: "easeInOut" }}
       className="fixed top-0 left-0 right-0 z-50 border-b bg-background"
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 lg:px-0">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 xl:px-0">
         <Button
           variant="ghost"
           render={<Link href="/" />}

@@ -51,7 +51,7 @@ export function Footer() {
                 ))}
             </div>
 
-            <div className="border-t border-border py-4">
+            <div className="border-y border-border py-4">
                 <p className="text-sm text-muted-foreground text-center">
                     © {new Date().getFullYear()} {name}. All rights reserved.
                 </p>

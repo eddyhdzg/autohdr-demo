@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { cn } from "@workspace/ui/lib/utils";
+import { Button } from "@workspace/ui/components/button";
 import {
   downloadFile,
   copySvgToClipboard,
@@ -16,30 +17,6 @@ type BrandAssetCardProps = {
   pngPath: string;
   alt: string;
 };
-
-function ActionButton({
-  onClick,
-  children,
-}: {
-  onClick: () => void;
-  children: React.ReactNode;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={cn(
-        "px-2.5 py-1.5 text-xs font-medium cursor-pointer",
-        "bg-white/90 text-black",
-        "border border-white/20",
-        "hover:bg-white transition-colors",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-      )}
-    >
-      {children}
-    </button>
-  );
-}
 
 export function BrandAssetCard({
   label,
@@ -101,8 +78,11 @@ export function BrandAssetCard({
         <div
           className={cn(
             "absolute inset-x-0 bottom-0",
-            "flex items-center justify-center gap-2 p-3",
-            "bg-gradient-to-t from-black/60 to-transparent",
+            "grid grid-cols-2 gap-1.5 p-3",
+            "md:flex md:items-center md:justify-center md:gap-2",
+            variant === "dark"
+              ? "bg-gradient-to-t from-black/60 to-transparent"
+              : "bg-gradient-to-t from-white/60 to-transparent",
             "transition-all duration-200",
             "md:opacity-0 md:translate-y-2",
             "md:group-hover:opacity-100 md:group-hover:translate-y-0",
@@ -110,17 +90,46 @@ export function BrandAssetCard({
           )}
         >
           {feedback ? (
-            <span className="text-xs font-medium text-white">{feedback}</span>
+            <span className={cn(
+              "col-span-2 text-xs font-medium text-center",
+              variant === "dark" ? "text-white" : "text-black"
+            )}>
+              {feedback}
+            </span>
           ) : (
             <>
-              <ActionButton onClick={() => downloadFile(svgPath)}>
+              <Button
+                variant={variant === "dark" ? "on-dark" : "on-light"}
+                size="sm"
+                className="text-xs w-full md:w-auto"
+                onClick={() => downloadFile(svgPath)}
+              >
                 Download SVG
-              </ActionButton>
-              <ActionButton onClick={() => downloadFile(pngPath)}>
+              </Button>
+              <Button
+                variant={variant === "dark" ? "on-dark" : "on-light"}
+                size="sm"
+                className="text-xs w-full md:w-auto"
+                onClick={() => downloadFile(pngPath)}
+              >
                 Download PNG
-              </ActionButton>
-              <ActionButton onClick={handleCopySvg}>Copy SVG</ActionButton>
-              <ActionButton onClick={handleCopyPng}>Copy PNG</ActionButton>
+              </Button>
+              <Button
+                variant={variant === "dark" ? "on-dark" : "on-light"}
+                size="sm"
+                className="text-xs w-full md:w-auto"
+                onClick={handleCopySvg}
+              >
+                Copy SVG
+              </Button>
+              <Button
+                variant={variant === "dark" ? "on-dark" : "on-light"}
+                size="sm"
+                className="text-xs w-full md:w-auto"
+                onClick={handleCopyPng}
+              >
+                Copy PNG
+              </Button>
             </>
           )}
         </div>
