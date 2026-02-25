@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { Button } from "@workspace/ui/components/button";
-import { CornerPlus } from "@workspace/ui/components/corner-plus";
 import { Download } from "lucide-react";
 import { brandConfig } from "@/lib/brand-config";
 
@@ -9,14 +8,6 @@ export function BrandHeroSection() {
 
   return (
     <section className="relative flex flex-col items-center justify-center px-4 py-16 md:py-24">
-      <CornerPlus
-        position="bottom-left"
-        className="text-muted-foreground/50"
-      />
-      <CornerPlus
-        position="bottom-right"
-        className="text-muted-foreground/50"
-      />
       <div className="relative z-10 flex flex-col items-center justify-center text-center space-y-6 max-w-4xl mx-auto">
         <Image
           src="/brand/symbol.svg"

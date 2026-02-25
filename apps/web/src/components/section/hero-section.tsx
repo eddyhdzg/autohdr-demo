@@ -1,6 +1,5 @@
 import { siteConfig } from "@/lib/config";
 import { Button } from "@workspace/ui/components/button";
-import { CornerPlus } from "@workspace/ui/components/corner-plus";
 import { Sparkles } from "lucide-react";
 
 export function HeroSection() {
@@ -11,8 +10,6 @@ export function HeroSection() {
             id="hero"
             className="relative px-4 py-16 md:py-24"
         >
-            <CornerPlus position="bottom-left" className="text-muted-foreground/50" />
-            <CornerPlus position="bottom-right" className="text-muted-foreground/50" />
             <div className="flex flex-col items-center text-center md:items-start md:text-left space-y-6 max-w-3xl">
                 <Button
                     render={<a href={hero.cta.primary.href} />}

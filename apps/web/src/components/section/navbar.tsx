@@ -129,6 +129,7 @@ function MobileNav({
                     <>
                       <Accordion
                         defaultValue={[0]}
+                        multiple
                         className="w-full"
                       >
                         {sections.map((section, index) => (
