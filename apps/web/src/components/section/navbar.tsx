@@ -19,6 +19,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@workspace/ui/components/accordion";
+import { ExternalLink, Copy, Palette } from "lucide-react";
 import { Icons } from "../icons";
 import { copySvgToClipboard } from "@/lib/brand-utils";
 
@@ -360,55 +361,6 @@ export function Navbar() {
           <Icons.logo className="w-28 h-6" />
         </Button>
 
-        {showContextMenu && (
-          <div
-            ref={contextMenuRef}
-            role="menu"
-            aria-label="Logo options"
-            className="fixed z-[100] border border-border bg-popover shadow-md py-1 w-fit"
-            style={{ top: contextMenuPos.y, left: contextMenuPos.x }}
-          >
-            <button
-              type="button"
-              role="menuitem"
-              className="w-full text-left px-3 py-2 text-sm hover:bg-accent transition-colors cursor-pointer"
-              onClick={() => {
-                window.open("/", "_blank");
-                setShowContextMenu(false);
-              }}
-            >
-              Open Link in New Tab
-            </button>
-            <button
-              type="button"
-              role="menuitem"
-              className="w-full text-left px-3 py-2 text-sm hover:bg-accent transition-colors cursor-pointer"
-              onClick={async () => {
-                try {
-                  await copySvgToClipboard("/brand/logo-black.svg");
-                } catch {
-                  // Clipboard API may fail silently
-                } finally {
-                  setShowContextMenu(false);
-                }
-              }}
-            >
-              Copy Logo as SVG
-            </button>
-            <button
-              type="button"
-              role="menuitem"
-              className="w-full text-left px-3 py-2 text-sm hover:bg-accent transition-colors cursor-pointer"
-              onClick={() => {
-                router.push("/brand");
-                setShowContextMenu(false);
-              }}
-            >
-              Go to Brand Kit
-            </button>
-          </div>
-        )}
-
         <DesktopNav />
 
         <div className="flex items-center gap-2">
@@ -427,6 +379,58 @@ export function Navbar() {
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
       />
+
+      {showContextMenu && (
+        <div
+          ref={contextMenuRef}
+          role="menu"
+          aria-label="Logo options"
+          className="fixed z-[100] border border-border bg-popover shadow-md py-1"
+          style={{ top: contextMenuPos.y, left: contextMenuPos.x }}
+        >
+          <button
+            type="button"
+            role="menuitem"
+            className="flex w-full items-center gap-2 text-left px-3 py-2 text-sm whitespace-nowrap hover:bg-accent transition-colors cursor-pointer"
+            onClick={() => {
+              window.open("/", "_blank");
+              setShowContextMenu(false);
+            }}
+          >
+            <ExternalLink className="size-4 text-muted-foreground" />
+            Open Link in New Tab
+          </button>
+          <button
+            type="button"
+            role="menuitem"
+            className="flex w-full items-center gap-2 text-left px-3 py-2 text-sm whitespace-nowrap hover:bg-accent transition-colors cursor-pointer"
+            onClick={async () => {
+              try {
+                await copySvgToClipboard("/brand/logo-black.svg");
+              } catch {
+                // Clipboard API may fail silently
+              } finally {
+                setShowContextMenu(false);
+              }
+            }}
+          >
+            <Copy className="size-4 text-muted-foreground" />
+            Copy Logo as SVG
+          </button>
+          <button
+            type="button"
+            role="menuitem"
+            className="flex w-full items-center gap-2 text-left px-3 py-2 text-sm whitespace-nowrap hover:bg-accent transition-colors cursor-pointer"
+            onClick={() => {
+              router.push("/brand");
+              setShowContextMenu(false);
+            }}
+          >
+            <Palette className="size-4 text-muted-foreground" />
+            Go to Brand Kit
+          </button>
+        </div>
+      )}
     </motion.header>
   );
 }
