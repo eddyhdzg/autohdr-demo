@@ -5,6 +5,7 @@ import { useInView } from "motion/react";
 
 import { siteConfig } from "@/lib/config";
 import { BlurFade } from "@workspace/ui/components/blur-fade";
+import { CornerPlus } from "@workspace/ui/components/corner-plus";
 
 const INITIAL_DELAY = 0.05;
 const DELAY_INCREMENT = 0.05;
@@ -20,6 +21,8 @@ export function CompanyShowcase() {
             id="integrations"
             className="relative flex w-full items-center justify-center"
         >
+            <CornerPlus position="top-left" className="text-muted-foreground/50" />
+            <CornerPlus position="top-right" className="text-muted-foreground/50" />
             <div className="grid w-full max-w-7xl grid-cols-1 items-center divide-y divide-border lg:grid-cols-6 lg:divide-y-0">
                 <p className="col-span-2 inline-flex min-h-20 items-center justify-center text-center text-2xl font-semibold text-foreground">
                     Integrations

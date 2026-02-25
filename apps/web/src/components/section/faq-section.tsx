@@ -4,6 +4,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@workspace/ui/components/accordion";
+import { CornerPlus } from "@workspace/ui/components/corner-plus";
 import { siteConfig } from "@/lib/config";
 
 export function FAQSection() {
@@ -11,6 +12,8 @@ export function FAQSection() {
 
     return (
         <section id="faqs" className="w-full relative">
+            <CornerPlus position="top-left" className="text-muted-foreground/50" />
+            <CornerPlus position="top-right" className="text-muted-foreground/50" />
             <div className="mx-auto">
                 <div className="grid md:grid-cols-6 lg:divide-x divide-border">
                     <div className="col-span-2 flex flex-col gap-4 p-8 md:p-12">

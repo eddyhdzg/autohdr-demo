@@ -31,8 +31,8 @@ export function BrandNamingSection() {
 
   return (
     <section className="relative">
-      <CornerPlus position="bottom-left" className="text-muted-foreground/50" />
-      <CornerPlus position="bottom-right" className="text-muted-foreground/50" />
+      <CornerPlus position="top-left" className="text-muted-foreground/50" />
+      <CornerPlus position="top-right" className="text-muted-foreground/50" />
       <div className="p-6 md:p-8">
         <h2 className="text-3xl md:text-4xl font-medium tracking-tighter">
           Naming
