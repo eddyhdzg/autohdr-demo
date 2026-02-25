@@ -10,7 +10,7 @@ export function FAQSection() {
     const { faqSection } = siteConfig;
 
     return (
-        <section id="faq" className="w-full relative">
+        <section id="faqs" className="w-full relative">
             <div className="mx-auto">
                 <div className="grid md:grid-cols-6 lg:divide-x divide-border">
                     <div className="col-span-2 flex flex-col gap-4 p-8 md:p-12">

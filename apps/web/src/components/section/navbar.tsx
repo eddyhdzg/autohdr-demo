@@ -1,7 +1,5 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -11,12 +9,9 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@workspace/ui/components/button";
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
 } from "@workspace/ui/components/navigation-menu";
 import {
   Accordion,
@@ -74,64 +69,14 @@ function DesktopNav() {
       <NavigationMenuList className="gap-1">
         {siteConfig.nav.links.map((link) => (
           <NavigationMenuItem key={link.id}>
-            {link.submenu ? (
-              <>
-                <NavigationMenuTrigger className="border border-transparent text-foreground rounded-none h-8 w-fit px-2 pl-3 data-[open]:bg-accent/50 data-[open]:border-border bg-transparent">
-                  {link.name}
-                </NavigationMenuTrigger>
-                <NavigationMenuContent className="p-0!">
-                  <div className="flex flex-col">
-                    <div className="grid w-[1100px] grid-cols-3 gap-2 p-2">
-                      {link.submenu.map((item) => (
-                        <div
-                          key={item.id}
-                          className="flex flex-col gap-4 rounded-none border bg-muted p-4 hover:bg-accent/50 transition-colors"
-                        >
-                          <div className="flex h-10 w-10 items-center justify-center border border-border rounded-none bg-background">
-                            {item.icon}
-                          </div>
-                          <div className="space-y-3">
-                            <h3 className="text-xl font-semibold">
-                              {item.name}
-                            </h3>
-                            <p className="text-base leading-relaxed text-muted-foreground">
-                              {item.description}
-                            </p>
-                          </div>
-                          {item.image && (
-                            <div className="flex-1 rounded-none border bg-card p-5">
-                              <div className="relative h-full min-h-[200px] w-full overflow-hidden rounded-none">
-                                <Image
-                                  src={item.image.trim()}
-                                  alt={item.name}
-                                  fill
-                                  className="object-cover"
-                                />
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                    <div className="flex items-center justify-center border-border mx-2 mb-2 bg-muted px-10 py-6 rounded-none border">
-                      <p className="text-base text-muted-foreground">
-                        Looking for a custom solution?{" "}
-                        <Link
-                          href="/contact"
-                          className="inline-flex items-center gap-1.5 font-medium text-primary hover:underline"
-                        >
-                          Let&apos;s talk
-                          <ArrowRight className="h-4 w-4" />
-                        </Link>
-                      </p>
-                    </div>
-                  </div>
-                </NavigationMenuContent>
-              </>
+            {link.disabled ? (
+              <span className="border border-transparent text-muted-foreground/50 cursor-not-allowed rounded-none h-8 w-fit inline-flex items-center justify-center px-4 py-2 text-sm font-medium">
+                {link.name}
+              </span>
             ) : (
               <NavigationMenuLink
                 render={<Link href={link.href} />}
-                className="border border-transparent hover:border-border text-foreground rounded-none h-8 w-fit px-2 bg-transparent group inline-flex items-center justify-center bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none"
+                className="border border-transparent hover:border-border text-foreground rounded-none h-8 w-fit px-2 bg-transparent group inline-flex items-center justify-center px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none"
               >
                 {link.name}
               </NavigationMenuLink>
@@ -139,7 +84,6 @@ function DesktopNav() {
           </NavigationMenuItem>
         ))}
       </NavigationMenuList>
-      <NavigationMenuViewport className="border border-border" />
     </NavigationMenu>
   );
 }
@@ -172,97 +116,129 @@ function MobileNav({
             className="fixed top-16 left-0 right-0 bottom-0 z-50 w-full bg-background md:hidden overflow-y-auto"
           >
             <div className="flex h-full flex-col">
-              <nav className="flex-1 px-6 py-8 pb-32">
-                <div className="grid grid-cols-1 gap-4">
-                  {siteConfig.nav.links.map((link, index) => (
-                    <motion.div
-                      key={link.id}
-                      initial={{
-                        opacity: 0,
-                        y: -30,
-                        filter: "blur(10px)",
-                        clipPath: "inset(100% 0% 0% 0%)",
-                      }}
-                      animate={{
-                        opacity: 1,
-                        y: 0,
-                        filter: "blur(0px)",
-                        clipPath: "inset(0% 0% 0% 0%)",
-                      }}
-                      transition={{
-                        delay: index * 0.1,
-                        duration: 0.6,
-                        ease: [0.16, 1, 0.3, 1],
-                      }}
-                    >
-                      {link.submenu ? (
-                        <Accordion
-                          className="w-full"
-                        >
-                          <AccordionItem
-                            value={`item-${link.id}`}
-                            className="border-none"
+              <nav className="flex-1 px-6 py-4 pb-32">
+                {(() => {
+                  const sections = siteConfig.footerLinks.filter(
+                    (s) => s.title !== "Social"
+                  );
+                  const social = siteConfig.footerLinks.find(
+                    (s) => s.title === "Social"
+                  );
+                  return (
+                    <>
+                      <Accordion
+                        defaultValue={[0]}
+                        className="w-full"
+                      >
+                        {sections.map((section, index) => (
+                          <motion.div
+                            key={section.title}
+                            initial={{
+                              opacity: 0,
+                              y: -30,
+                              filter: "blur(10px)",
+                              clipPath: "inset(100% 0% 0% 0%)",
+                            }}
+                            animate={{
+                              opacity: 1,
+                              y: 0,
+                              filter: "blur(0px)",
+                              clipPath: "inset(0% 0% 0% 0%)",
+                            }}
+                            transition={{
+                              delay: index * 0.1,
+                              duration: 0.6,
+                              ease: [0.16, 1, 0.3, 1],
+                            }}
                           >
-                            <AccordionTrigger className="text-xl font-medium uppercase py-3 hover:no-underline px-0">
-                              {link.name}
-                            </AccordionTrigger>
-                            <AccordionContent className="overflow-hidden text-sm">
-                              <ul className="grid grid-cols-1 gap-6 overflow-hidden pt-4">
-                                {link.submenu.map((item, itemIndex) => (
-                                  <motion.li
-                                    key={item.id}
-                                    className=""
-                                    initial={{
-                                      opacity: 0,
-                                      y: -20,
-                                      filter: "blur(8px)",
-                                    }}
-                                    animate={{
-                                      opacity: 1,
-                                      y: 0,
-                                      filter: "blur(0px)",
-                                    }}
-                                    transition={{
-                                      delay: itemIndex * 0.08,
-                                      duration: 0.4,
-                                      ease: [0.16, 1, 0.3, 1],
-                                    }}
-                                  >
-                                    <Link
-                                      href={item.href}
-                                      onClick={onClose}
-                                      className="flex items-start gap-3 transition-colors"
-                                    >
-                                      <div className="flex h-8 w-8 shrink-0 items-center justify-center bg-muted border border-border rounded-none">
-                                        {item.icon}
-                                      </div>
-                                      <div className="flex-1 space-y-1">
-                                        <h3 className="text-sm font-medium text-foreground">
-                                          {item.name}
-                                        </h3>
-                                        <p className="text-xs text-muted-foreground">
-                                          {item.description}
-                                        </p>
-                                      </div>
-                                    </Link>
-                                  </motion.li>
-                                ))}
-                              </ul>
-                            </AccordionContent>
-                          </AccordionItem>
-                        </Accordion>
-                      ) : (
-                        <Link
-                          href={link.href}
-                          onClick={onClose}
-                          className="block px-0 py-3 text-xl font-medium uppercase transition-colors hover:text-accent-foreground"
+                            <AccordionItem
+                              value={index}
+                              className="border-b border-border"
+                            >
+                              <AccordionTrigger className="text-sm font-semibold uppercase hover:no-underline">
+                                {section.title}
+                              </AccordionTrigger>
+                              <AccordionContent>
+                                <ul className="flex flex-col gap-3">
+                                  {section.links.map((link) => (
+                                    <li key={link.id}>
+                                      {link.disabled ? (
+                                        <span className="text-sm text-muted-foreground/50 cursor-not-allowed">
+                                          {link.title}
+                                        </span>
+                                      ) : link.external ? (
+                                        <a
+                                          href={link.url}
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          onClick={onClose}
+                                          className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                                        >
+                                          {link.title}
+                                        </a>
+                                      ) : (
+                                        <Link
+                                          href={link.url}
+                                          onClick={onClose}
+                                          className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                                        >
+                                          {link.title}
+                                        </Link>
+                                      )}
+                                    </li>
+                                  ))}
+                                </ul>
+                              </AccordionContent>
+                            </AccordionItem>
+                          </motion.div>
+                        ))}
+                      </Accordion>
+
+                      {social && (
+                        <motion.div
+                          initial={{
+                            opacity: 0,
+                            y: -30,
+                            filter: "blur(10px)",
+                            clipPath: "inset(100% 0% 0% 0%)",
+                          }}
+                          animate={{
+                            opacity: 1,
+                            y: 0,
+                            filter: "blur(0px)",
+                            clipPath: "inset(0% 0% 0% 0%)",
+                          }}
+                          transition={{
+                            delay: sections.length * 0.1,
+                            duration: 0.6,
+                            ease: [0.16, 1, 0.3, 1],
+                          }}
+                          className="py-4"
                         >
-                          {link.name}
-                        </Link>
+                          <p className="text-sm font-semibold uppercase mb-3">
+                            {social.title}
+                          </p>
+                          <ul className="flex flex-col gap-3">
+                            {social.links.map((link) => (
+                              <li key={link.id}>
+                                <a
+                                  href={link.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  onClick={onClose}
+                                  className="text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1.5"
+                                >
+                                  {link.icon}
+                                  {link.title}
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        </motion.div>
                       )}
-                    </motion.div>
-                  ))}
-                </div>
+                    </>
+                  );
+                })()}
               </nav>
               <div className="sticky bottom-0 w-full p-6 bg-background border-t border-border">
                 <motion.div
@@ -288,36 +264,6 @@ function MobileNav({
                   >
                     {siteConfig.cta}
                   </Button>
-                </motion.div>
-                <motion.div
-                  initial={{
-                    opacity: 0,
-                    y: 30,
-                    filter: "blur(10px)",
-                  }}
-                  animate={{
-                    opacity: 1,
-                    y: 0,
-                    filter: "blur(0px)",
-                  }}
-                  transition={{
-                    delay: 0.2,
-                    duration: 0.6,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                  className="mt-4 w-full px-0 py-3 text-center"
-                >
-                  <p className="text-sm text-muted-foreground">
-                    Looking for a custom solution?{" "}
-                    <Link
-                      href="/contact"
-                      onClick={onClose}
-                      className="inline-flex items-center gap-1 font-medium text-primary hover:underline"
-                    >
-                      Let&apos;s talk
-                      <ArrowRight className="h-3.5 w-3.5" />
-                    </Link>
-                  </p>
                 </motion.div>
               </div>
             </div>
@@ -419,7 +365,7 @@ export function Navbar() {
             ref={contextMenuRef}
             role="menu"
             aria-label="Logo options"
-            className="fixed z-[100] border border-border bg-popover shadow-md py-1 min-w-[200px]"
+            className="fixed z-[100] border border-border bg-popover shadow-md py-1 w-fit"
             style={{ top: contextMenuPos.y, left: contextMenuPos.x }}
           >
             <button
