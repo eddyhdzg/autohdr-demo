@@ -22,6 +22,20 @@ export const Highlight = ({
 
 export const BLUR_FADE_DELAY = 0.15;
 
+interface FooterLink {
+    id: number;
+    title: string;
+    url: string;
+    disabled?: boolean;
+    external?: boolean;
+    icon?: React.ReactNode;
+}
+
+interface FooterSection {
+    title: string;
+    links: FooterLink[];
+}
+
 export const siteConfig = {
     name: "AutoHDR",
     description: "AI-powered HDR image processing.",
@@ -35,25 +49,16 @@ export const siteConfig = {
     ],
     links: {
         email: "delivery@autohdr.com",
+        linkedin: "https://www.linkedin.com/company/autohdr/",
         instagram: "https://www.instagram.com/auto.hdr/",
         tiktok: "https://www.tiktok.com/@auto.hdr",
     },
     nav: {
         links: [
-            {
-                id: 1,
-                name: "Products",
-                href: "#",
-                submenu: [
-                    { id: 1, icon: <Icons.code className="size-4 text-muted-foreground" />, name: "Code Generation", href: "#code-generation", description: "AI-powered code generation", image: "/instant-integration.png" },
-                    { id: 2, icon: <Icons.code className="size-4 text-muted-foreground" />, name: "Code Review", href: "#code-review", description: "Automated code review", image: "/instant-integration.png   " },
-                    { id: 3, icon: <Icons.code className="size-4 text-muted-foreground" />, name: "Code Refactoring", href: "#refactoring", description: "Smart code refactoring", image: "/instant-integration.png" },
-                ]
-            },
-            { id: 2, name: "features", href: "#" },
-            { id: 3, name: "pricing", href: "#" },
-            { id: 4, name: "Docs", href: "#" },
-            { id: 5, name: "Company", href: "#" },
+            { id: 1, name: "Studio", href: "/studio", disabled: true },
+            { id: 2, name: "Pricing", href: "/#pricing" },
+            { id: 3, name: "Contact", href: "/#contact" },
+            { id: 4, name: "FAQs", href: "/#faqs" },
         ],
     },
     hero: {
@@ -751,52 +756,57 @@ export const siteConfig = {
         ],
     },
     ctaSection: {
-        id: "cta",
+        id: "contact",
         title: "Transform your photos with AutoHDR",
         backgroundImage: "/agent-cta-background.png",
         button: {
             text: "Start for free",
             href: "#",
         },
-        subtext: "Stop writing boilerplate. Let AI handle the repetitive work. Start coding smarter today, completely free.",
+        subtext: "Enhance your images with AI-powered HDR processing. Get studio-quality results in seconds, completely free.",
     },
     footerLinks: [
         {
-            title: "Product",
+            title: "Pages",
             links: [
-                { id: 1, title: "Features", url: "#features" },
-                { id: 2, title: "Pricing", url: "#pricing" },
-                { id: 3, title: "Integrations", url: "#" },
-                { id: 4, title: "Playground", url: "#" },
-                { id: 5, title: "Multi-Agent Workflows", url: "#" },
+                { id: 1, title: "Home", url: "/" },
+                { id: 2, title: "Studio", url: "/studio", disabled: true },
+                { id: 3, title: "Pricing", url: "/#pricing" },
+                { id: 4, title: "Contact", url: "/#contact" },
+                { id: 5, title: "FAQs", url: "/#faqs" },
             ],
         },
         {
             title: "Resources",
             links: [
-                { id: 6, title: "Terms of user", url: "#" },
-                { id: 7, title: "API Reference", url: "#" },
-                { id: 8, title: "Documentation", url: "#" },
-                { id: 9, title: "Community", url: "#" },
-                { id: 10, title: "Support", url: "#" },
+                { id: 6, title: "Docs", url: "https://knowledge.autohdr.com/", external: true },
+                { id: 7, title: "Support", url: "/support", disabled: true },
+                { id: 8, title: "Changelog", url: "/changelog", disabled: true },
             ],
         },
         {
             title: "Company",
             links: [
-                { id: 11, title: "About us", url: "#" },
-                { id: 12, title: "Our team", url: "#" },
-                { id: 13, title: "Blog", url: "#" },
-                { id: 14, title: "Changelog", url: "#" },
-                { id: 15, title: "Privacy", url: "#" },
-                { id: 16, title: "Careers", url: "#" },
-                { id: 17, title: "Brand", url: "/brand" },
-                { id: 18, title: "Contact", url: "#" },
-                { id: 19, title: "Legal", url: "#" },
+                { id: 9, title: "Blog", url: "/blog", disabled: true },
+                { id: 10, title: "About Us", url: "/about", disabled: true },
+                { id: 11, title: "Our Team", url: "/team", disabled: true },
+                { id: 12, title: "Brand", url: "/brand" },
+                { id: 13, title: "Terms", url: "/terms", disabled: true },
+                { id: 14, title: "Privacy", url: "/privacy", disabled: true },
+                { id: 15, title: "Request a Feature", url: "#", disabled: true },
+                { id: 16, title: "Contact Sales", url: "#", disabled: true },
+                { id: 17, title: "Partnerships", url: "#", disabled: true },
             ],
         },
-
-    ],
+        {
+            title: "Social",
+            links: [
+                { id: 18, title: "LinkedIn", url: "https://www.linkedin.com/company/autohdr/", external: true, icon: <Icons.linkedin className="size-4" /> },
+                { id: 19, title: "Instagram", url: "https://www.instagram.com/auto.hdr/", external: true, icon: <Icons.instagram className="size-4" /> },
+                { id: 20, title: "TikTok", url: "https://www.tiktok.com/@auto.hdr", external: true, icon: <Icons.tiktok className="size-4" /> },
+            ],
+        },
+    ] as FooterSection[],
 
 
 };
