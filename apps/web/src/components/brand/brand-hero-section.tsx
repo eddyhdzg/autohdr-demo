@@ -25,7 +25,7 @@ export function BrandHeroSection() {
         <Button
           render={<a href={hero.downloadAllHref} download />}
           size="lg"
-          className="px-8 py-6 text-base font-medium"
+          className="px-8 text-base"
         >
           <Download className="size-4" />
           Download all assets
