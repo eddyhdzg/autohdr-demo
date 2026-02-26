@@ -6,11 +6,11 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/docs",
-        destination: "https://autohdr.mintlify.dev/docs",
+        destination: "https://hubble-cc00cf1e.mintlify.dev/docs",
       },
       {
         source: "/docs/:match*",
-        destination: "https://autohdr.mintlify.dev/docs/:match*",
+        destination: "https://hubble-cc00cf1e.mintlify.dev/docs/:match*",
       },
     ];
   },
