@@ -186,33 +186,33 @@ export const siteConfig = {
         faQitems: [
             {
                 id: 1,
-                question: "What is AutoHDR?",
+                question: "What is AutoHDR and how does it work?",
                 answer:
-                    "AutoHDR is an AI-powered photo editing service for real estate. Upload your photos and receive professionally enhanced images with HDR, sky replacement, object removal, and more.",
+                    "With 30-minute turnaround times, AutoHDR provides a faster, more reliable, and scalable alternative to human editors.",
             },
             {
                 id: 2,
-                question: "How fast is the turnaround?",
+                question: "How does AutoHDR compare to traditional human editing?",
                 answer:
-                    "Most photos are delivered within minutes. Free tier has 24-hour delivery, while Pro and Enterprise plans include priority processing.",
+                    "Speed: 30 minutes vs. 8-12 hours. Consistency: AI ensures uniform, high-quality edits every time. Affordability: pricing is lower than most human editors. Reliability: AI runs 24/7 with hundreds of GPUs. Flexibility: you only pay for what you download.",
             },
             {
                 id: 3,
-                question: "How does pricing work?",
+                question: "How much does AutoHDR cost?",
                 answer:
-                    "You only pay for what you download. Start with 10 free photos per month, then scale up with volume-based pricing starting at $0.57/photo.",
+                    "$0.40-$0.57 per edit, depending on volume. Significantly cheaper than most human editors charging $0.70-$1.00+ per edit.",
             },
             {
                 id: 4,
-                question: "Can I integrate AutoHDR with my workflow?",
+                question: "Do you offer a free trial?",
                 answer:
-                    "Yes, AutoHDR integrates with popular platforms like Spiro, HD PhotoHub, Tonomo, Aryeo, and Dropbox for seamless delivery.",
+                    "Yes! 10 free downloads per month, no credit card required.",
             },
             {
                 id: 5,
-                question: "Is there a free plan?",
+                question: "Does AutoHDR integrate with real estate booking platforms?",
                 answer:
-                    "Yes, get up to 10 free photos per month with standard HDR processing. No credit card required.",
+                    "Yes! We have fully automated workflows possible for all platforms.",
             },
         ],
     },
