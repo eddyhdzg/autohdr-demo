@@ -119,7 +119,7 @@ export const siteConfig = {
             { photos: 0, monthly: 0, perPhoto: 0, yearlyMonthly: 0, yearlyPerPhoto: 0, tier: "" },
             { photos: 50, monthly: 28.50, perPhoto: 0.57, yearlyMonthly: 22.80, yearlyPerPhoto: 0.46, tier: "Basic" },
             { photos: 500, monthly: 265.00, perPhoto: 0.53, yearlyMonthly: 225.25, yearlyPerPhoto: 0.45, tier: "Standard" },
-            { photos: 1000, monthly: 500.00, perPhoto: 0.50, yearlyMonthly: 440.00, yearlyPerPhoto: 0.44, tier: "Professional" },
+            { photos: 1000, monthly: 500.00, perPhoto: 0.50, yearlyMonthly: 440.00, yearlyPerPhoto: 0.44, tier: "Pro" },
             { photos: 2000, monthly: 960.00, perPhoto: 0.48, yearlyMonthly: 864.00, yearlyPerPhoto: 0.43, tier: "" },
             { photos: 5000, monthly: 2250.00, perPhoto: 0.45, yearlyMonthly: 2025.00, yearlyPerPhoto: 0.41, tier: "" },
             { photos: 10000, monthly: 4000.00, perPhoto: 0.40, yearlyMonthly: 3600.00, yearlyPerPhoto: 0.36, tier: "" },
