@@ -1,7 +1,5 @@
-import { BRAND, DOCS_URL as DEFAULT_DOCS_URL, SOCIALS } from "@workspace/consts";
+import { BRAND, DOCS_URL, SOCIALS } from "@workspace/consts";
 import { Icons } from "@/components/icons";
-
-const DOCS_URL = process.env.NEXT_PUBLIC_DOCS_URL || DEFAULT_DOCS_URL;
 
 export const BLUR_FADE_DELAY = 0.15;
 
@@ -182,10 +180,9 @@ export const siteConfig = {
         title: "Frequently Asked Questions",
         description:
             "Answers to common questions about AutoHDR and its features. If you have any other questions, please don't hesitate to contact us.",
-        faqLink: {
-            text: "See all FAQs",
-            href: `${DOCS_URL}/faq`,
-        },
+        faqLink: DOCS_URL
+            ? { text: "See all FAQs", href: `${DOCS_URL}/faq` }
+            : null,
         faQitems: [
             {
                 id: 1,
@@ -249,7 +246,7 @@ export const siteConfig = {
         {
             title: "Resources",
             links: [
-                { id: 6, title: "Docs", url: DOCS_URL, external: true },
+                ...(DOCS_URL ? [{ id: 6, title: "Docs", url: DOCS_URL, external: true }] : []),
                 { id: 7, title: "Support", url: "/support", disabled: true },
                 { id: 8, title: "Changelog", url: "/changelog", disabled: true },
             ],

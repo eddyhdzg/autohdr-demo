@@ -11,4 +11,4 @@ export const SOCIALS = {
   linkedin: "https://www.linkedin.com/company/autohdr/",
 } as const;
 
-export const DOCS_URL = "http://localhost:3001";
+export const DOCS_URL = process.env.NEXT_PUBLIC_DOCS_URL || "";
