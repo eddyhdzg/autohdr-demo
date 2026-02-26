@@ -1,7 +1,5 @@
-import { SectionHeader } from "@/components/section-header";
-import { SocialProofTestimonials } from "@/components/animations/testimonial-scroll";
+import { TestimonialCarousel } from "@/components/animations/testimonial-scroll";
 import { siteConfig } from "@/lib/config";
-import { HeaderBadge } from "../header-badge";
 
 export function TestimonialSection() {
     const { testimonialSection } = siteConfig;
@@ -11,20 +9,17 @@ export function TestimonialSection() {
             id="testimonials"
             className="flex flex-col items-center justify-center w-full"
         >
-            <SectionHeader>
-                <div className="flex flex-col items-center justify-center">
-                    <HeaderBadge icon={testimonialSection.badge.icon} text={testimonialSection.badge.text} />
-                    <div className="flex flex-col items-center justify-center gap-4 mt-4">
-                        <h2 className="text-3xl md:text-4xl lg:text-6xl font-medium tracking-tighter text-center text-balance">
-                            {testimonialSection.title}
-                        </h2>
-                        <p className="text-muted-foreground md:text-lg text-center text-balance mx-auto">
-                            {testimonialSection.description}
-                        </p>
-                    </div>
+            <div className="w-full h-full p-6 md:px-24 md:pt-24 md:pb-8">
+                <div className="max-w-lg mx-auto flex flex-col items-center justify-center gap-4">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tighter text-center text-balance">
+                        {testimonialSection.title}
+                    </h2>
+                    <p className="text-muted-foreground text-center text-balance mx-auto text-sm md:text-base font-medium">
+                        {testimonialSection.description}
+                    </p>
                 </div>
-            </SectionHeader>
-            <SocialProofTestimonials testimonials={testimonialSection.testimonials} />
+            </div>
+            <TestimonialCarousel testimonials={testimonialSection.testimonials} />
         </section>
     );
 }
