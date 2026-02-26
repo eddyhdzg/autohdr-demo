@@ -1,4 +1,7 @@
+import { BRAND, DOCS_URL as DEFAULT_DOCS_URL, SOCIALS } from "@workspace/consts";
 import { Icons } from "@/components/icons";
+
+const DOCS_URL = process.env.NEXT_PUBLIC_DOCS_URL || DEFAULT_DOCS_URL;
 
 export const BLUR_FADE_DELAY = 0.15;
 
@@ -17,8 +20,8 @@ interface FooterSection {
 }
 
 export const siteConfig = {
-    name: "AutoHDR",
-    description: "AI-powered HDR image processing.",
+    name: BRAND.name,
+    description: BRAND.description,
     cta: "Get Started",
     url: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
     keywords: [
@@ -28,10 +31,10 @@ export const siteConfig = {
         "HDR Photo Enhancement",
     ],
     links: {
-        email: "delivery@autohdr.com",
-        linkedin: "https://www.linkedin.com/company/autohdr/",
-        instagram: "https://www.instagram.com/auto.hdr/",
-        tiktok: "https://www.tiktok.com/@auto.hdr",
+        email: BRAND.email,
+        linkedin: SOCIALS.linkedin,
+        instagram: SOCIALS.instagram,
+        tiktok: SOCIALS.tiktok,
     },
     nav: {
         links: [
@@ -179,6 +182,10 @@ export const siteConfig = {
         title: "Frequently Asked Questions",
         description:
             "Answers to common questions about AutoHDR and its features. If you have any other questions, please don't hesitate to contact us.",
+        faqLink: {
+            text: "See all FAQs",
+            href: `${DOCS_URL}/faq`,
+        },
         faQitems: [
             {
                 id: 1,
@@ -188,30 +195,24 @@ export const siteConfig = {
             },
             {
                 id: 2,
-                question: "What services does AutoHDR offer?",
-                answer:
-                    "HDR editing, flambient editing, day-to-dusk conversion, grass greening, object removal, virtual staging, and TV blackout.",
-            },
-            {
-                id: 3,
                 question: "How fast is the turnaround?",
                 answer:
                     "Most photos are delivered within minutes. Free tier has 24-hour delivery, while Pro and Enterprise plans include priority processing.",
             },
             {
-                id: 4,
+                id: 3,
                 question: "How does pricing work?",
                 answer:
                     "You only pay for what you download. Start with 10 free photos per month, then scale up with volume-based pricing starting at $0.57/photo.",
             },
             {
-                id: 5,
+                id: 4,
                 question: "Can I integrate AutoHDR with my workflow?",
                 answer:
                     "Yes, AutoHDR integrates with popular platforms like Spiro, HD PhotoHub, Tonomo, Aryeo, and Dropbox for seamless delivery.",
             },
             {
-                id: 6,
+                id: 5,
                 question: "Is there a free plan?",
                 answer:
                     "Yes, get up to 10 free photos per month with standard HDR processing. No credit card required.",
@@ -248,7 +249,7 @@ export const siteConfig = {
         {
             title: "Resources",
             links: [
-                { id: 6, title: "Docs", url: "https://knowledge.autohdr.com/", external: true },
+                { id: 6, title: "Docs", url: DOCS_URL, external: true },
                 { id: 7, title: "Support", url: "/support", disabled: true },
                 { id: 8, title: "Changelog", url: "/changelog", disabled: true },
             ],
@@ -270,9 +271,9 @@ export const siteConfig = {
         {
             title: "Social",
             links: [
-                { id: 18, title: "Instagram", url: "https://www.instagram.com/auto.hdr/", external: true, icon: <Icons.instagram className="size-4" /> },
-                { id: 19, title: "TikTok", url: "https://www.tiktok.com/@auto.hdr", external: true, icon: <Icons.tiktok className="size-4" /> },
-                { id: 20, title: "LinkedIn", url: "https://www.linkedin.com/company/autohdr/", external: true, icon: <Icons.linkedin className="size-4" /> },
+                { id: 18, title: "Instagram", url: SOCIALS.instagram, external: true, icon: <Icons.instagram className="size-4" /> },
+                { id: 19, title: "TikTok", url: SOCIALS.tiktok, external: true, icon: <Icons.tiktok className="size-4" /> },
+                { id: 20, title: "LinkedIn", url: SOCIALS.linkedin, external: true, icon: <Icons.linkedin className="size-4" /> },
             ],
         },
     ] as FooterSection[],
