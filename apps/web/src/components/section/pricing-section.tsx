@@ -86,11 +86,12 @@ export function PricingSection() {
                     <div className="relative flex items-center gap-3">
                         <span
                             className={cn(
-                                "text-sm font-medium transition-colors",
+                                "text-sm font-medium transition-colors cursor-pointer",
                                 !isYearly
                                     ? "text-foreground"
                                     : "text-muted-foreground"
                             )}
+                            onClick={() => setIsYearly(false)}
                         >
                             Monthly
                         </span>
@@ -100,11 +101,12 @@ export function PricingSection() {
                         />
                         <span
                             className={cn(
-                                "text-sm font-medium transition-colors",
+                                "text-sm font-medium transition-colors cursor-pointer",
                                 isYearly
                                     ? "text-foreground"
                                     : "text-muted-foreground"
                             )}
+                            onClick={() => setIsYearly(true)}
                         >
                             Yearly
                         </span>
@@ -116,7 +118,7 @@ export function PricingSection() {
                     {/* Slider */}
                     <div className="w-full max-w-md space-y-3">
                         <div className="flex items-center justify-between text-sm">
-                            <span className="text-muted-foreground">
+                            <span className="text-foreground">
                                 How many photos per month?
                             </span>
                             <span className="font-medium tabular-nums">
@@ -196,9 +198,16 @@ export function PricingSection() {
                                 /month
                             </span>
                         </div>
+                        <p className="text-sm text-muted-foreground mt-1">
+                            10 photos / month for free
+                        </p>
                     </div>
                     <hr className="border-border mb-6" />
-                    <FeatureList features={["Up to 10 photos / month"]} />
+                    <FeatureList features={[
+                        "Buy extra credits at $0.80 each",
+                        "Unlimited uploads",
+                        "Only pay for downloads",
+                    ]} />
                     <div className="mt-auto pt-8">
                         <Button
                             size="lg"
@@ -221,16 +230,11 @@ export function PricingSection() {
                     )}
                 >
                     <div className="flex items-center justify-between">
-                        <h4 className="text-lg font-semibold">Pro</h4>
+                        <h4 className="text-lg font-semibold">{proTier.tier}</h4>
                         <span className="border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary uppercase tracking-wide">
                             Most Popular
                         </span>
                     </div>
-                    {proTier.tier && (
-                        <p className="text-sm text-muted-foreground mt-1">
-                            {proTier.tier}
-                        </p>
-                    )}
                     <div className="mt-4 mb-6">
                         {/* Price */}
                         <div className="flex items-baseline gap-0.5">
@@ -285,7 +289,12 @@ export function PricingSection() {
                         </div>
                     </div>
                     <hr className="border-border mb-6" />
-                    <FeatureList features={proTier.features} />
+                    <FeatureList features={[
+                        `Buy extra credits at $${proPerPhoto.toFixed(2)} each`,
+                        "Unlimited uploads",
+                        "Only pay for downloads",
+                        ...proTier.features,
+                    ]} />
                     <div className="mt-auto pt-8">
                         <Button
                             size="lg"
@@ -366,7 +375,12 @@ export function PricingSection() {
                         </div>
                     </div>
                     <hr className="border-border mb-6" />
-                    <FeatureList features={enterpriseTier.features} />
+                    <FeatureList features={[
+                        `Buy extra credits at $${entPerPhoto.toFixed(2)} each`,
+                        "Unlimited uploads",
+                        "Only pay for downloads",
+                        ...enterpriseTier.features,
+                    ]} />
                     <div className="mt-auto pt-8">
                         <Button
                             size="lg"
@@ -390,7 +404,7 @@ function FeatureList({
     features,
     prefix,
 }: {
-    features: readonly string[];
+    features: string[] | readonly string[];
     prefix?: string;
 }) {
     return (

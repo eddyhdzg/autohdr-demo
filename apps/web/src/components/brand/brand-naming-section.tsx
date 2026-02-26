@@ -7,19 +7,19 @@ function NamingExample({
   variant,
 }: {
   label: string;
-  variant: "correct" | "incorrect";
+  variant: "correct" | "incorrect" | "warning";
 }) {
   return (
     <div className="flex items-center gap-3">
       <span
         className={cn(
           "text-xs font-medium px-2 py-0.5 shrink-0",
-          variant === "correct"
-            ? "bg-success/10 text-success"
-            : "bg-destructive/10 text-destructive"
+          variant === "correct" && "bg-success/10 text-success",
+          variant === "warning" && "bg-warning/10 text-warning",
+          variant === "incorrect" && "bg-destructive/10 text-destructive"
         )}
       >
-        {variant === "correct" ? "Correct" : "Incorrect"}
+        {variant === "incorrect" ? "Incorrect" : "Correct"}
       </span>
       <span className="font-mono text-sm">{label}</span>
     </div>
@@ -58,7 +58,7 @@ export function BrandNamingSection() {
           </h3>
           <div className="flex flex-col gap-3">
             {naming.constrained.map((name) => (
-              <NamingExample key={name} label={name} variant="correct" />
+              <NamingExample key={name} label={name} variant="warning" />
             ))}
           </div>
         </div>
