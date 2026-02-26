@@ -6,7 +6,7 @@ import {
 } from "@workspace/ui/components/accordion";
 import { Button } from "@workspace/ui/components/button";
 import { CornerPlus } from "@workspace/ui/components/corner-plus";
-import { ArrowRight } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { siteConfig } from "@/lib/config";
 
 export function FAQSection() {
@@ -58,7 +58,7 @@ export function FAQSection() {
                                     size="sm"
                                 >
                                     {faqSection.faqLink.text}
-                                    <ArrowRight className="ml-2 size-4" />
+                                    <ExternalLink className="ml-2 size-3.5" />
                                 </Button>
                             </div>
                         )}

@@ -180,9 +180,10 @@ export const siteConfig = {
         title: "Frequently Asked Questions",
         description:
             "Answers to common questions about AutoHDR and its features. If you have any other questions, please don't hesitate to contact us.",
-        faqLink: DOCS_URL
-            ? { text: "See all FAQs", href: `${DOCS_URL}/faq` }
-            : null,
+        faqLink: {
+            text: "See all FAQs",
+            href: `${DOCS_URL}/faq`,
+        },
         faQitems: [
             {
                 id: 1,
@@ -246,7 +247,7 @@ export const siteConfig = {
         {
             title: "Resources",
             links: [
-                ...(DOCS_URL ? [{ id: 6, title: "Docs", url: DOCS_URL, external: true }] : []),
+                { id: 6, title: "Docs", url: DOCS_URL, external: true },
                 { id: 7, title: "Support", url: "/support", disabled: true },
                 { id: 8, title: "Changelog", url: "/changelog", disabled: true },
             ],
