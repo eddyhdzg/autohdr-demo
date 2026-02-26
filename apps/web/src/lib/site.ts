@@ -1,10 +1,12 @@
+import { BRAND, SOCIALS } from "@workspace/consts";
+
 export const siteConfig = {
-    name: "AutoHDR",
-    url: "https://www.autohdr.com/",
-    description: "AI-powered HDR image processing.",
+    name: BRAND.name,
+    url: BRAND.url,
+    description: BRAND.description,
     links: {
-        instagram: "https://www.instagram.com/auto.hdr/",
-        tiktok: "https://www.tiktok.com/@auto.hdr",
+        instagram: SOCIALS.instagram,
+        tiktok: SOCIALS.tiktok,
     },
 };
 

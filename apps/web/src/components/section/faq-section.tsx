@@ -4,7 +4,9 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@workspace/ui/components/accordion";
+import { Button } from "@workspace/ui/components/button";
 import { CornerPlus } from "@workspace/ui/components/corner-plus";
+import { ArrowRight } from "lucide-react";
 import { siteConfig } from "@/lib/config";
 
 export function FAQSection() {
@@ -42,6 +44,22 @@ export function FAQSection() {
                                 </AccordionItem>
                             ))}
                         </Accordion>
+                        {faqSection.faqLink && (
+                            <div className="pt-6">
+                                <Button
+                                    render={
+                                        <a
+                                            href={faqSection.faqLink.href}
+                                        />
+                                    }
+                                    variant="outline"
+                                    size="sm"
+                                >
+                                    {faqSection.faqLink.text}
+                                    <ArrowRight className="ml-2 size-4" />
+                                </Button>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

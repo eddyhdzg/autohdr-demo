@@ -1,0 +1,119 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "maple",
+  "name": "AutoHDR",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg",
+    "href": "https://autohdr.vercel.app"
+  },
+  "favicon": "/favicon.svg",
+  "colors": {
+    "primary": "#171717",
+    "light": "#525252",
+    "dark": "#FAFAFA"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Support",
+        "href": "/support"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Get Started Free",
+      "href": "https://autohdr.vercel.app/"
+    }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Guides",
+        "icon": "book-open",
+        "groups": [
+          {
+            "group": "Welcome",
+            "pages": ["index", "quickstart"]
+          },
+          {
+            "group": "Getting Started",
+            "icon": "rocket",
+            "pages": [
+              "getting-started/create-account",
+              "getting-started/upload-photos",
+              "getting-started/download-results"
+            ]
+          },
+          {
+            "group": "Pricing",
+            "icon": "credit-card",
+            "pages": [
+              "pricing/overview",
+              "pricing/plans",
+              "pricing/credits"
+            ]
+          },
+          {
+            "group": "Account",
+            "icon": "gear",
+            "pages": ["account/settings", "account/billing"]
+          },
+          {
+            "group": "Help",
+            "icon": "circle-question",
+            "pages": ["faq", "support"]
+          }
+        ]
+      },
+      {
+        "tab": "Features",
+        "icon": "wand-magic-sparkles",
+        "groups": [
+          {
+            "group": "Editing Services",
+            "pages": [
+              "features/hdr-editing",
+              "features/flambient-editing",
+              "features/day-to-dusk",
+              "features/grass-greening",
+              "features/object-removal",
+              "features/virtual-staging",
+              "features/tv-blackout"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Integrations",
+        "icon": "puzzle-piece",
+        "groups": [
+          {
+            "group": "Integrations",
+            "pages": [
+              "integrations/overview",
+              "integrations/spiro",
+              "integrations/hd-photohub",
+              "integrations/tonomo",
+              "integrations/aryeo",
+              "integrations/dropbox"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "footer": {
+    "socials": {
+      "instagram": "https://www.instagram.com/auto.hdr/",
+      "linkedin": "https://www.linkedin.com/company/autohdr/"
+    }
+  },
+  "feedback": {
+    "thumbsRating": true,
+    "suggestEdit": true
+  },
+  "search": {
+    "prompt": "Search AutoHDR docs..."
+  }
+}
