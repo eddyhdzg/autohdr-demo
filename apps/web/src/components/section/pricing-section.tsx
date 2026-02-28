@@ -9,6 +9,7 @@ import { Slider } from "@workspace/ui/components/slider";
 import { NumberTicker } from "@workspace/ui/components/number-ticker";
 import { CornerPlus } from "@workspace/ui/components/corner-plus";
 import { Switch } from "@workspace/ui/components/switch";
+import { FlameIcon, LayersIcon, SparklesIcon } from "lucide-react";
 
 const { pricing } = siteConfig;
 
@@ -140,9 +141,12 @@ export function PricingSection() {
                             min={0}
                             max={PRICING_TIERS.length - 1}
                             step={1}
-                            tooltipRender={(val) =>
-                                `${formatPhotos(PRICING_TIERS[val].photos)} photos`
-                            }
+                            tooltipRender={(val) => {
+                                const photos = PRICING_TIERS[val].photos;
+                                return photos === 0
+                                    ? "0-10 photos"
+                                    : `${formatPhotos(photos)} photos`;
+                            }}
                         />
                         {/* Tick marks */}
                         <span
@@ -178,12 +182,23 @@ export function PricingSection() {
             </div>
 
             {/* 3 Pricing Cards */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-border">
+            <div className="grid grid-cols-1 lg:grid-cols-3">
+                {/* Mobile: Recommended label */}
+                <div className="order-1 px-8 py-4 lg:hidden">
+                    <span className="inline-flex items-center gap-1.5 border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
+                        <SparklesIcon className="size-3" />
+                        Recommended
+                    </span>
+                </div>
+
                 {/* Free */}
                 <div
                     className={cn(
                         "flex flex-col p-8 md:p-10 transition-colors",
-                        isFreeSelected && "bg-accent/50 ring-2 ring-inset ring-primary"
+                        "border-t border-border lg:border-t-0",
+                        isFreeSelected && "bg-accent/50 ring-2 ring-inset ring-primary",
+                        isFreeSelected ? "order-2" : "order-4",
+                        "lg:order-none"
                     )}
                 >
                     <h4 className="text-lg font-semibold">
@@ -220,18 +235,28 @@ export function PricingSection() {
                     </div>
                 </div>
 
+                {/* Mobile: Other Plans label */}
+                <div className="order-3 border-t border-border px-8 py-4 lg:hidden">
+                    <span className="inline-flex items-center gap-1.5 border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
+                        <LayersIcon className="size-3" />
+                        Other Plans
+                    </span>
+                </div>
+
                 {/* Pro */}
                 <div
                     className={cn(
-                        "relative flex flex-col p-8 md:p-10 transition-[colors,opacity]",
-                        isProSelected
-                            ? "bg-accent/50 ring-2 ring-inset ring-primary"
-                            : "opacity-50"
+                        "relative flex flex-col p-8 md:p-10 transition-colors",
+                        "border-t border-border lg:border-t-0 lg:border-l",
+                        isProSelected && "bg-accent/50 ring-2 ring-inset ring-primary",
+                        isProSelected ? "order-2" : "order-4",
+                        "lg:order-none"
                     )}
                 >
                     <div className="flex items-center justify-between">
                         <h4 className="text-lg font-semibold">{proTier.tier}</h4>
-                        <span className="border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary uppercase tracking-wide">
+                        <span className="inline-flex items-center gap-1.5 border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
+                            <FlameIcon className="size-3" />
                             Most Popular
                         </span>
                     </div>
@@ -300,8 +325,7 @@ export function PricingSection() {
                             size="lg"
                             render={<a href={proPlan.href} />}
                             variant={isProSelected ? "default" : "outline"}
-                            aria-disabled={!isProSelected}
-                            className={cn("w-full", !isProSelected && "pointer-events-none")}
+                            className="w-full"
                         >
                             {isYearly ? "Get Yearly" : "Get Monthly"}
                         </Button>
@@ -311,10 +335,11 @@ export function PricingSection() {
                 {/* Enterprise */}
                 <div
                     className={cn(
-                        "flex flex-col p-8 md:p-10 transition-[colors,opacity]",
-                        isEnterpriseSelected
-                            ? "bg-accent/50 ring-2 ring-inset ring-primary"
-                            : "opacity-50"
+                        "flex flex-col p-8 md:p-10 transition-colors",
+                        "border-t border-border lg:border-t-0 lg:border-l",
+                        isEnterpriseSelected && "bg-accent/50 ring-2 ring-inset ring-primary",
+                        isEnterpriseSelected ? "order-2" : "order-4",
+                        "lg:order-none"
                     )}
                 >
                     <h4 className="text-lg font-semibold">
@@ -388,8 +413,7 @@ export function PricingSection() {
                             variant={
                                 isEnterpriseSelected ? "default" : "outline"
                             }
-                            aria-disabled={!isEnterpriseSelected}
-                            className={cn("w-full", !isEnterpriseSelected && "pointer-events-none")}
+                            className="w-full"
                         >
                             {enterprisePlan.buttonText}
                         </Button>
