@@ -9,6 +9,7 @@ import { Slider } from "@workspace/ui/components/slider";
 import { NumberTicker } from "@workspace/ui/components/number-ticker";
 import { CornerPlus } from "@workspace/ui/components/corner-plus";
 import { Switch } from "@workspace/ui/components/switch";
+import { TypographyH2, TypographyMuted } from "@workspace/ui/components/typography";
 import { FlameIcon, LayersIcon, SparklesIcon } from "lucide-react";
 
 const { pricing } = siteConfig;
@@ -78,9 +79,7 @@ export function PricingSection() {
             {/* Header + Toggle + Slider */}
             <div className="border-b w-full p-8 md:p-16">
                 <div className="max-w-xl mx-auto flex flex-col items-center justify-center gap-6 text-center">
-                    <h3 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tighter text-balance">
-                        {pricing.title}
-                    </h3>
+                    <TypographyH2>{pricing.title}</TypographyH2>
                     <p className="text-lg text-muted-foreground text-balance">
                         {pricing.description}
                     </p>
@@ -201,9 +200,7 @@ export function PricingSection() {
                         "lg:order-none"
                     )}
                 >
-                    <h4 className="text-lg font-semibold">
-                        {freePlan.name}
-                    </h4>
+                    <h3 className="text-lg font-semibold">{freePlan.name}</h3>
                     <div className="mt-4 mb-6">
                         <div className="flex items-baseline gap-1">
                             <span className="text-5xl font-semibold tracking-tight">
@@ -213,9 +210,9 @@ export function PricingSection() {
                                 /month
                             </span>
                         </div>
-                        <p className="text-sm text-muted-foreground mt-1">
+                        <TypographyMuted className="mt-1">
                             10 photos / month for free
-                        </p>
+                        </TypographyMuted>
                     </div>
                     <hr className="border-border mb-6" />
                     <FeatureList features={[
@@ -254,7 +251,7 @@ export function PricingSection() {
                     )}
                 >
                     <div className="flex items-center justify-between">
-                        <h4 className="text-lg font-semibold">{proTier.tier}</h4>
+                        <h3 className="text-lg font-semibold">{proTier.tier}</h3>
                         <span className="inline-flex items-center gap-1.5 border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
                             <FlameIcon className="size-3" />
                             Most Popular
@@ -276,13 +273,13 @@ export function PricingSection() {
                             </span>
                         </div>
                         {/* Photos count */}
-                        <p className="text-sm text-muted-foreground mt-1">
+                        <TypographyMuted className="mt-1">
                             <NumberTicker
                                 value={proTier.photos}
                                 className="text-sm text-muted-foreground"
                             />{" "}
                             photos / month
-                        </p>
+                        </TypographyMuted>
                         {/* Per photo */}
                         <div className="flex items-center gap-2 mt-1">
                             {isYearly && proTier.perPhoto > 0 && (
@@ -342,18 +339,16 @@ export function PricingSection() {
                         "lg:order-none"
                     )}
                 >
-                    <h4 className="text-lg font-semibold">
-                        {enterprisePlan.name}
-                    </h4>
+                    <h3 className="text-lg font-semibold">{enterprisePlan.name}</h3>
                     <div className="mt-4 mb-6">
                         {/* Photos count */}
-                        <p className="text-sm text-muted-foreground">
+                        <TypographyMuted>
                             <NumberTicker
                                 value={enterpriseTier.photos}
                                 className="text-sm text-muted-foreground"
                             />{" "}
                             photos / month
-                        </p>
+                        </TypographyMuted>
                         {/* Price */}
                         <div className="flex items-baseline gap-0.5 mt-1">
                             <span className="text-5xl font-semibold tracking-tight">
