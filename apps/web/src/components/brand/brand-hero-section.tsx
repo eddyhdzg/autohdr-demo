@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Button } from "@workspace/ui/components/button";
+import { TypographyH1, TypographyLead } from "@workspace/ui/components/typography";
 import { Download } from "lucide-react";
 import { brandConfig } from "@/lib/brand-config";
 
@@ -16,12 +17,10 @@ export function BrandHeroSection() {
           height={64}
           className=""
         />
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tighter text-balance">
-          {hero.title}
-        </h1>
-        <p className="text-secondary-foreground/70 text-center text-balance text-lg max-w-2xl mx-auto">
+        <TypographyH1>{hero.title}</TypographyH1>
+        <TypographyLead className="text-center text-balance max-w-2xl mx-auto">
           {hero.description}
-        </p>
+        </TypographyLead>
         <Button
           render={<a href={hero.downloadAllHref} download />}
           size="lg"
