@@ -9,7 +9,7 @@ import { Slider } from "@workspace/ui/components/slider";
 import { NumberTicker } from "@workspace/ui/components/number-ticker";
 import { CornerPlus } from "@workspace/ui/components/corner-plus";
 import { Switch } from "@workspace/ui/components/switch";
-import { TypographyH2, TypographyH4, TypographyMuted } from "@workspace/ui/components/typography";
+import { TypographyH2, TypographyMuted } from "@workspace/ui/components/typography";
 import { FlameIcon, LayersIcon, SparklesIcon } from "lucide-react";
 
 const { pricing } = siteConfig;
@@ -200,7 +200,7 @@ export function PricingSection() {
                         "lg:order-none"
                     )}
                 >
-                    <TypographyH4>{freePlan.name}</TypographyH4>
+                    <h3 className="text-lg font-semibold">{freePlan.name}</h3>
                     <div className="mt-4 mb-6">
                         <div className="flex items-baseline gap-1">
                             <span className="text-5xl font-semibold tracking-tight">
@@ -251,7 +251,7 @@ export function PricingSection() {
                     )}
                 >
                     <div className="flex items-center justify-between">
-                        <TypographyH4>{proTier.tier}</TypographyH4>
+                        <h3 className="text-lg font-semibold">{proTier.tier}</h3>
                         <span className="inline-flex items-center gap-1.5 border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
                             <FlameIcon className="size-3" />
                             Most Popular
@@ -339,7 +339,7 @@ export function PricingSection() {
                         "lg:order-none"
                     )}
                 >
-                    <TypographyH4>{enterprisePlan.name}</TypographyH4>
+                    <h3 className="text-lg font-semibold">{enterprisePlan.name}</h3>
                     <div className="mt-4 mb-6">
                         {/* Photos count */}
                         <TypographyMuted>
