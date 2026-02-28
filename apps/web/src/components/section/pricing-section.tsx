@@ -185,7 +185,7 @@ export function PricingSection() {
             <div className="grid grid-cols-1 lg:grid-cols-3">
                 {/* Mobile: Recommended label */}
                 <div className="order-1 px-8 py-4 lg:hidden">
-                    <span className="inline-flex items-center gap-1.5 border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                         <SparklesIcon className="size-3" />
                         Recommended
                     </span>
@@ -237,7 +237,7 @@ export function PricingSection() {
 
                 {/* Mobile: Other Plans label */}
                 <div className="order-3 border-t border-border px-8 py-4 lg:hidden">
-                    <span className="inline-flex items-center gap-1.5 border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                         <LayersIcon className="size-3" />
                         Other Plans
                     </span>
