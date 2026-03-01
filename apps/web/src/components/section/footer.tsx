@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Button } from "@workspace/ui/components/button";
 import { cn } from "@workspace/ui/lib/utils";
 import { siteConfig } from "@/lib/config";
+import { TypographyH3, TypographyMuted } from "@workspace/ui/components/typography";
 
 export function Footer() {
     const { footerLinks, name } = siteConfig;
@@ -23,9 +24,7 @@ export function Footer() {
                         key={section.title}
                         className="flex flex-col gap-4 p-8 lg:pt-18"
                     >
-                        <h3 className="text-sm font-semibold text-foreground">
-                            {section.title}
-                        </h3>
+                        <TypographyH3>{section.title}</TypographyH3>
                         <ul className="flex flex-col gap-3">
                             {section.links.map((link) => (
                                 <li key={link.id}>
@@ -80,9 +79,9 @@ export function Footer() {
             </div>
 
             <div className="border-y border-border py-4">
-                <p className="text-sm text-muted-foreground text-center">
+                <TypographyMuted className="text-center">
                     © {new Date().getFullYear()} {name}. All rights reserved.
-                </p>
+                </TypographyMuted>
             </div>
         </footer>
     );

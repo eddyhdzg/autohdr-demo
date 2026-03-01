@@ -1,5 +1,6 @@
 import { cn } from "@workspace/ui/lib/utils";
 import { CornerPlus } from "@workspace/ui/components/corner-plus";
+import { TypographyH2, TypographyH3, TypographyP } from "@workspace/ui/components/typography";
 import { brandConfig } from "@/lib/brand-config";
 
 function NamingExample({
@@ -35,16 +36,14 @@ export function BrandNamingSection() {
       <CornerPlus position="top-right" className="text-muted-foreground/50" />
       <div className="p-8 md:p-12 space-y-8">
         <div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tighter text-balance">
-            Naming
-          </h2>
-          <p className="text-muted-foreground font-medium text-sm md:text-base text-balance mt-2">
+          <TypographyH2>Naming</TypographyH2>
+          <TypographyP className="mt-2">
             Please follow these guidelines when referencing AutoHDR.
-          </p>
+          </TypographyP>
         </div>
 
         <div className="space-y-4">
-          <h3 className="text-sm font-semibold text-foreground">Preferred</h3>
+          <TypographyH3>Preferred</TypographyH3>
           <div className="flex flex-col gap-3">
             {naming.correct.map((name) => (
               <NamingExample key={name} label={name} variant="correct" />
@@ -53,9 +52,9 @@ export function BrandNamingSection() {
         </div>
 
         <div className="space-y-4">
-          <h3 className="text-sm font-semibold text-foreground">
+          <TypographyH3>
             When constrained (all caps or all lowercase)
-          </h3>
+          </TypographyH3>
           <div className="flex flex-col gap-3">
             {naming.constrained.map((name) => (
               <NamingExample key={name} label={name} variant="warning" />
@@ -64,7 +63,7 @@ export function BrandNamingSection() {
         </div>
 
         <div className="space-y-4">
-          <h3 className="text-sm font-semibold text-foreground">Incorrect</h3>
+          <TypographyH3>Incorrect</TypographyH3>
           <div className="flex flex-col gap-3">
             {naming.incorrect.map((name) => (
               <NamingExample key={name} label={name} variant="incorrect" />

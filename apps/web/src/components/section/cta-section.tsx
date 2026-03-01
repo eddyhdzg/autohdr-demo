@@ -1,6 +1,7 @@
 import { siteConfig } from "@/lib/config";
 import { Button } from "@workspace/ui/components/button";
 import { CornerPlus } from "@workspace/ui/components/corner-plus";
+import { TypographyH2, TypographyP } from "@workspace/ui/components/typography";
 
 export function CTASection() {
     const { ctaSection } = siteConfig;
@@ -13,12 +14,10 @@ export function CTASection() {
             <CornerPlus position="top-left" className="text-muted-foreground/50" />
             <CornerPlus position="top-right" className="text-muted-foreground/50" />
             <div className="flex flex-col items-center justify-center text-center space-y-6 max-w-4xl mx-auto">
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tighter text-balance">
-                    {ctaSection.title}
-                </h2>
-                <p className="text-muted-foreground text-center text-balance font-medium text-sm md:text-base max-w-2xl mx-auto">
+                <TypographyH2>{ctaSection.title}</TypographyH2>
+                <TypographyP className="text-center max-w-2xl mx-auto">
                     {ctaSection.subtext}
-                </p>
+                </TypographyP>
 
                 <div className="flex items-center gap-3 pt-2">
                     <Button

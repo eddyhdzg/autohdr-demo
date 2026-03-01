@@ -10,6 +10,8 @@ import { NumberTicker } from "@workspace/ui/components/number-ticker";
 import { CornerPlus } from "@workspace/ui/components/corner-plus";
 import { Switch } from "@workspace/ui/components/switch";
 import { Label } from "@workspace/ui/components/label";
+import { TypographyH2, TypographyMuted } from "@workspace/ui/components/typography";
+import { FlameIcon, LayersIcon, SparklesIcon } from "lucide-react";
 import Link from "next/link";
 
 const { pricing } = siteConfig;
@@ -79,9 +81,7 @@ export function PricingSection() {
             {/* Header + Toggle + Slider */}
             <div className="border-b w-full p-8 md:p-16">
                 <div className="max-w-xl mx-auto flex flex-col items-center justify-center gap-6 text-center">
-                    <h3 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tighter text-balance">
-                        {pricing.title}
-                    </h3>
+                    <TypographyH2>{pricing.title}</TypographyH2>
                     <p className="text-lg text-muted-foreground text-balance">
                         {pricing.description}
                     </p>
@@ -142,9 +142,12 @@ export function PricingSection() {
                             min={0}
                             max={PRICING_TIERS.length - 1}
                             step={1}
-                            tooltipRender={(val) =>
-                                `${formatPhotos(PRICING_TIERS[val].photos)} photos`
-                            }
+                            tooltipRender={(val) => {
+                                const photos = PRICING_TIERS[val].photos;
+                                return photos === 0
+                                    ? "0-10 photos"
+                                    : `${formatPhotos(photos)} photos`;
+                            }}
                         />
                         {/* Tick marks */}
                         <span
@@ -180,17 +183,26 @@ export function PricingSection() {
             </div>
 
             {/* 3 Pricing Cards */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-border">
+            <div className="grid grid-cols-1 lg:grid-cols-3">
+                {/* Mobile: Recommended label */}
+                <div className="order-1 px-8 py-4 lg:hidden">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-medium text-foreground">
+                        <SparklesIcon className="size-3" />
+                        Recommended
+                    </span>
+                </div>
+
                 {/* Free */}
                 <div
                     className={cn(
                         "flex flex-col p-8 md:p-10 transition-colors",
-                        isFreeSelected && "bg-accent/50 ring-2 ring-inset ring-primary"
+                        "border-t border-border lg:border-t-0",
+                        isFreeSelected && "bg-accent/50 ring-2 ring-inset ring-primary",
+                        isFreeSelected ? "order-2" : "order-4",
+                        "lg:order-none"
                     )}
                 >
-                    <h4 className="text-lg font-semibold">
-                        {freePlan.name}
-                    </h4>
+                    <h3 className="text-lg font-semibold">{freePlan.name}</h3>
                     <div className="mt-4 mb-6">
                         <div className="flex items-baseline gap-1">
                             <span className="text-5xl font-semibold tracking-tight">
@@ -200,9 +212,9 @@ export function PricingSection() {
                                 /month
                             </span>
                         </div>
-                        <p className="text-sm text-muted-foreground mt-1">
+                        <TypographyMuted className="mt-1">
                             10 photos / month for free
-                        </p>
+                        </TypographyMuted>
                     </div>
                     <hr className="border-border mb-6" />
                     <FeatureList features={[
@@ -222,18 +234,28 @@ export function PricingSection() {
                     </div>
                 </div>
 
+                {/* Mobile: Other Plans label */}
+                <div className="order-3 border-t border-border px-8 py-4 lg:hidden">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-medium text-foreground">
+                        <LayersIcon className="size-3" />
+                        Other Plans
+                    </span>
+                </div>
+
                 {/* Pro */}
                 <div
                     className={cn(
-                        "relative flex flex-col p-8 md:p-10 transition-[colors,opacity]",
-                        isProSelected
-                            ? "bg-accent/50 ring-2 ring-inset ring-primary"
-                            : "opacity-50"
+                        "relative flex flex-col p-8 md:p-10 transition-colors",
+                        "border-t border-border lg:border-t-0 lg:border-l",
+                        isProSelected && "bg-accent/50 ring-2 ring-inset ring-primary",
+                        isProSelected ? "order-2" : "order-4",
+                        "lg:order-none"
                     )}
                 >
                     <div className="flex items-center justify-between">
-                        <h4 className="text-lg font-semibold">{proTier.tier}</h4>
-                        <span className="border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary uppercase tracking-wide">
+                        <h3 className="text-lg font-semibold">{proTier.tier}</h3>
+                        <span className="inline-flex items-center gap-1.5 border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
+                            <FlameIcon className="size-3" />
                             Most Popular
                         </span>
                     </div>
@@ -253,13 +275,13 @@ export function PricingSection() {
                             </span>
                         </div>
                         {/* Photos count */}
-                        <p className="text-sm text-muted-foreground mt-1">
+                        <TypographyMuted className="mt-1">
                             <NumberTicker
                                 value={proTier.photos}
                                 className="text-sm text-muted-foreground"
                             />{" "}
                             photos / month
-                        </p>
+                        </TypographyMuted>
                         {/* Per photo */}
                         <div className="flex items-center gap-2 mt-1">
                             {isYearly && proTier.perPhoto > 0 && (
@@ -302,8 +324,7 @@ export function PricingSection() {
                             size="lg"
                             render={<Link href={proPlan.href} />}
                             variant={isProSelected ? "default" : "outline"}
-                            aria-disabled={!isProSelected}
-                            className={cn("w-full", !isProSelected && "pointer-events-none")}
+                            className="w-full"
                         >
                             {isYearly ? "Get Yearly" : "Get Monthly"}
                         </Button>
@@ -313,24 +334,23 @@ export function PricingSection() {
                 {/* Enterprise */}
                 <div
                     className={cn(
-                        "flex flex-col p-8 md:p-10 transition-[colors,opacity]",
-                        isEnterpriseSelected
-                            ? "bg-accent/50 ring-2 ring-inset ring-primary"
-                            : "opacity-50"
+                        "flex flex-col p-8 md:p-10 transition-colors",
+                        "border-t border-border lg:border-t-0 lg:border-l",
+                        isEnterpriseSelected && "bg-accent/50 ring-2 ring-inset ring-primary",
+                        isEnterpriseSelected ? "order-2" : "order-4",
+                        "lg:order-none"
                     )}
                 >
-                    <h4 className="text-lg font-semibold">
-                        {enterprisePlan.name}
-                    </h4>
+                    <h3 className="text-lg font-semibold">{enterprisePlan.name}</h3>
                     <div className="mt-4 mb-6">
                         {/* Photos count */}
-                        <p className="text-sm text-muted-foreground">
+                        <TypographyMuted>
                             <NumberTicker
                                 value={enterpriseTier.photos}
                                 className="text-sm text-muted-foreground"
                             />{" "}
                             photos / month
-                        </p>
+                        </TypographyMuted>
                         {/* Price */}
                         <div className="flex items-baseline gap-0.5 mt-1">
                             <span className="text-5xl font-semibold tracking-tight">
@@ -390,8 +410,7 @@ export function PricingSection() {
                             variant={
                                 isEnterpriseSelected ? "default" : "outline"
                             }
-                            aria-disabled={!isEnterpriseSelected}
-                            className={cn("w-full", !isEnterpriseSelected && "pointer-events-none")}
+                            className="w-full"
                         >
                             {enterprisePlan.buttonText}
                         </Button>

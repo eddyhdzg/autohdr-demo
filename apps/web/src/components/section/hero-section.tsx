@@ -1,5 +1,6 @@
 import { siteConfig } from "@/lib/config";
 import { Button } from "@workspace/ui/components/button";
+import { TypographyH1, TypographyLead } from "@workspace/ui/components/typography";
 import { Sparkles } from "lucide-react";
 
 export function HeroSection() {
@@ -19,12 +20,10 @@ export function HeroSection() {
                     <Sparkles />
                     {hero.badge}
                 </Button>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tighter text-balance">
-                    {hero.title}
-                </h1>
-                <p className="text-secondary-foreground/70 text-base md:text-lg max-w-2xl">
+                <TypographyH1>{hero.title}</TypographyH1>
+                <TypographyLead className="max-w-2xl">
                     {hero.description}
-                </p>
+                </TypographyLead>
                 <div className="flex items-center gap-3">
                     <Button
                         render={<a href={hero.cta.secondary.href} />}
