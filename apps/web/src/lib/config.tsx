@@ -1,4 +1,23 @@
 import { BRAND, DOCS_URL, SOCIALS } from "@workspace/consts";
+import {
+    BookOpen,
+    CircleHelp,
+    Clapperboard,
+    Handshake,
+    Headset,
+    House,
+    Info,
+    Mail,
+    Newspaper,
+    Palette,
+    Phone,
+    Scale,
+    ScrollText,
+    ShieldCheck,
+    Sparkles,
+    Tag,
+    Users,
+} from "lucide-react";
 import { Icons } from "@/components/icons";
 
 export const BLUR_FADE_DELAY = 0.15;
@@ -237,33 +256,33 @@ export const siteConfig = {
         {
             title: "Pages",
             links: [
-                { id: 1, title: "Home", url: "/" },
-                { id: 2, title: "Studio", url: "/studio", disabled: true },
-                { id: 3, title: "Pricing", url: "/#pricing" },
-                { id: 4, title: "Contact", url: "/#contact" },
-                { id: 5, title: "FAQs", url: "/#faqs" },
+                { id: 1, title: "Home", url: "/", icon: <House className="size-4" /> },
+                { id: 2, title: "Studio", url: "/studio", disabled: true, icon: <Clapperboard className="size-4" /> },
+                { id: 3, title: "Pricing", url: "/#pricing", icon: <Tag className="size-4" /> },
+                { id: 4, title: "Contact", url: "/#contact", icon: <Mail className="size-4" /> },
+                { id: 5, title: "FAQs", url: "/#faqs", icon: <CircleHelp className="size-4" /> },
             ],
         },
         {
             title: "Resources",
             links: [
-                { id: 6, title: "Docs", url: DOCS_URL, external: true },
-                { id: 7, title: "Support", url: "/support", disabled: true },
-                { id: 8, title: "Changelog", url: "/changelog", disabled: true },
+                { id: 6, title: "Docs", url: DOCS_URL, external: true, icon: <BookOpen className="size-4" /> },
+                { id: 7, title: "Support", url: "/support", disabled: true, icon: <Headset className="size-4" /> },
+                { id: 8, title: "Changelog", url: "/changelog", disabled: true, icon: <ScrollText className="size-4" /> },
             ],
         },
         {
             title: "Company",
             links: [
-                { id: 9, title: "Blog", url: "/blog", disabled: true },
-                { id: 10, title: "About Us", url: "/about", disabled: true },
-                { id: 11, title: "Our Team", url: "/team", disabled: true },
-                { id: 12, title: "Brand", url: "/brand" },
-                { id: 13, title: "Terms", url: "/terms", disabled: true },
-                { id: 14, title: "Privacy", url: "/privacy", disabled: true },
-                { id: 15, title: "Request a Feature", url: "#", disabled: true },
-                { id: 16, title: "Contact Sales", url: "#", disabled: true },
-                { id: 17, title: "Partnerships", url: "#", disabled: true },
+                { id: 9, title: "Blog", url: "/blog", disabled: true, icon: <Newspaper className="size-4" /> },
+                { id: 10, title: "About Us", url: "/about", disabled: true, icon: <Info className="size-4" /> },
+                { id: 11, title: "Our Team", url: "/team", disabled: true, icon: <Users className="size-4" /> },
+                { id: 12, title: "Brand", url: "/brand", icon: <Palette className="size-4" /> },
+                { id: 13, title: "Terms", url: "/terms", disabled: true, icon: <Scale className="size-4" /> },
+                { id: 14, title: "Privacy", url: "/privacy", disabled: true, icon: <ShieldCheck className="size-4" /> },
+                { id: 15, title: "Request a Feature", url: "#", disabled: true, icon: <Sparkles className="size-4" /> },
+                { id: 16, title: "Contact Sales", url: "#", disabled: true, icon: <Phone className="size-4" /> },
+                { id: 17, title: "Partnerships", url: "#", disabled: true, icon: <Handshake className="size-4" /> },
             ],
         },
         {

@@ -1,5 +1,6 @@
 import { TestimonialCarousel } from "@/components/animations/testimonial-scroll";
 import { siteConfig } from "@/lib/config";
+import { CornerPlus } from "@workspace/ui/components/corner-plus";
 
 export function TestimonialSection() {
     const { testimonialSection } = siteConfig;
@@ -7,8 +8,10 @@ export function TestimonialSection() {
     return (
         <section
             id="testimonials"
-            className="flex flex-col items-center justify-center w-full"
+            className="relative flex flex-col items-center justify-center w-full"
         >
+            <CornerPlus position="top-left" className="text-muted-foreground/50" />
+            <CornerPlus position="top-right" className="text-muted-foreground/50" />
             <div className="w-full h-full p-6 md:px-24 md:pt-24 md:pb-8">
                 <div className="max-w-lg mx-auto flex flex-col items-center justify-center gap-4">
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tighter text-center text-balance">
