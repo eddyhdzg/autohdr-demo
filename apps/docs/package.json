@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "mintlify dev --port 3001"
+    "dev": "mintlify dev --no-open"
   },
   "devDependencies": {
     "mintlify": "^4.0.0"

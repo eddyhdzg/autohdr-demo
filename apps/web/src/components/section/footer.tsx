@@ -1,10 +1,20 @@
+"use client";
+
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Button } from "@workspace/ui/components/button";
+import { cn } from "@workspace/ui/lib/utils";
 import { siteConfig } from "@/lib/config";
 import { TypographyH3, TypographyMuted } from "@workspace/ui/components/typography";
 
 export function Footer() {
     const { footerLinks, name } = siteConfig;
+    const pathname = usePathname();
+    const isActive = (url: string) => {
+        if (url.includes("#")) return false;
+        return pathname === url;
+    };
 
     return (
         <footer className="w-full">
@@ -19,29 +29,47 @@ export function Footer() {
                             {section.links.map((link) => (
                                 <li key={link.id}>
                                     {link.disabled ? (
-                                        <span className="text-sm text-muted-foreground/50 cursor-not-allowed">
-                                            {link.title}
-                                        </span>
-                                    ) : link.external ? (
-                                        <a
-                                            href={link.url}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1.5"
+                                        <Button
+                                            variant="ghost"
+                                            size="sm"
+                                            disabled
+                                            className="justify-start gap-1.5 px-2 h-auto"
                                         >
                                             {link.icon}
                                             {link.title}
-                                            {!link.icon && (
-                                                <ArrowUpRight className="size-3" />
-                                            )}
-                                        </a>
-                                    ) : (
-                                        <Link
-                                            href={link.url}
-                                            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                                        </Button>
+                                    ) : link.external ? (
+                                        <Button
+                                            variant="ghost"
+                                            size="sm"
+                                            render={
+                                                <Link
+                                                    href={link.url}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                />
+                                            }
+                                            className="justify-start gap-1.5 px-2 h-auto text-foreground hover:bg-transparent"
                                         >
+                                            {link.icon}
                                             {link.title}
-                                        </Link>
+                                            <ArrowUpRight className="size-3" />
+                                        </Button>
+                                    ) : (
+                                        <Button
+                                            variant="ghost"
+                                            size="sm"
+                                            render={<Link href={link.url} />}
+                                            className={cn(
+                                                "justify-start gap-1.5 px-2 h-auto rounded-md",
+                                                isActive(link.url)
+                                                    ? "bg-accent text-accent-foreground"
+                                                    : "text-foreground hover:bg-transparent"
+                                            )}
+                                        >
+                                            {link.icon}
+                                            {link.title}
+                                        </Button>
                                     )}
                                 </li>
                             ))}

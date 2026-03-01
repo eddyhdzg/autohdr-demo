@@ -9,8 +9,10 @@ import { Slider } from "@workspace/ui/components/slider";
 import { NumberTicker } from "@workspace/ui/components/number-ticker";
 import { CornerPlus } from "@workspace/ui/components/corner-plus";
 import { Switch } from "@workspace/ui/components/switch";
+import { Label } from "@workspace/ui/components/label";
 import { TypographyH2, TypographyMuted } from "@workspace/ui/components/typography";
 import { FlameIcon, LayersIcon, SparklesIcon } from "lucide-react";
+import Link from "next/link";
 
 const { pricing } = siteConfig;
 
@@ -84,7 +86,7 @@ export function PricingSection() {
                         {pricing.description}
                     </p>
                     <div className="relative flex items-center gap-3">
-                        <span
+                        <Label
                             className={cn(
                                 "text-sm font-medium transition-colors cursor-pointer",
                                 !isYearly
@@ -94,12 +96,12 @@ export function PricingSection() {
                             onClick={() => setIsYearly(false)}
                         >
                             Monthly
-                        </span>
+                        </Label>
                         <Switch
                             checked={isYearly}
                             onCheckedChange={setIsYearly}
                         />
-                        <span
+                        <Label
                             className={cn(
                                 "text-sm font-medium transition-colors cursor-pointer",
                                 isYearly
@@ -109,7 +111,7 @@ export function PricingSection() {
                             onClick={() => setIsYearly(true)}
                         >
                             Yearly
-                        </span>
+                        </Label>
                         <span className="border border-primary/20 bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
                             20% off
                         </span>
@@ -223,7 +225,7 @@ export function PricingSection() {
                     <div className="mt-auto pt-8">
                         <Button
                             size="lg"
-                            render={<a href={freePlan.href} />}
+                            render={<Link href={freePlan.href} />}
                             variant={isFreeSelected ? "default" : "outline"}
                             className="w-full"
                         >
@@ -320,7 +322,7 @@ export function PricingSection() {
                     <div className="mt-auto pt-8">
                         <Button
                             size="lg"
-                            render={<a href={proPlan.href} />}
+                            render={<Link href={proPlan.href} />}
                             variant={isProSelected ? "default" : "outline"}
                             className="w-full"
                         >
@@ -404,7 +406,7 @@ export function PricingSection() {
                     <div className="mt-auto pt-8">
                         <Button
                             size="lg"
-                            render={<a href={enterprisePlan.href} />}
+                            render={<Link href={enterprisePlan.href} />}
                             variant={
                                 isEnterpriseSelected ? "default" : "outline"
                             }

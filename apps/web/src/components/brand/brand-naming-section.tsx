@@ -20,7 +20,7 @@ function NamingExample({
           variant === "incorrect" && "bg-destructive/10 text-destructive"
         )}
       >
-        {variant === "incorrect" ? "Incorrect" : "Correct"}
+        {variant === "incorrect" ? "Incorrect" : variant === "warning" ? "Accepted" : "Correct"}
       </span>
       <span className="font-mono text-sm">{label}</span>
     </div>
@@ -34,14 +34,14 @@ export function BrandNamingSection() {
     <section className="relative">
       <CornerPlus position="top-left" className="text-muted-foreground/50" />
       <CornerPlus position="top-right" className="text-muted-foreground/50" />
-      <div className="p-8 md:p-12">
-        <TypographyH2>Naming</TypographyH2>
-        <TypographyP className="mt-2">
-          Please follow these guidelines when referencing AutoHDR.
-        </TypographyP>
-      </div>
-
       <div className="p-8 md:p-12 space-y-8">
+        <div>
+          <TypographyH2>Naming</TypographyH2>
+          <TypographyP className="mt-2">
+            Please follow these guidelines when referencing AutoHDR.
+          </TypographyP>
+        </div>
+
         <div className="space-y-4">
           <TypographyH3>Preferred</TypographyH3>
           <div className="flex flex-col gap-3">

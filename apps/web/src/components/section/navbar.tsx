@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 import { siteConfig } from "@/lib/config";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -13,13 +13,8 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "@workspace/ui/components/navigation-menu";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@workspace/ui/components/accordion";
-import { ExternalLink, Copy, Palette } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Copy, Palette } from "lucide-react";
+import { cn } from "@workspace/ui/lib/utils";
 import { Icons } from "../icons";
 import { copySvgToClipboard } from "@/lib/brand-utils";
 
@@ -37,6 +32,7 @@ function HamburgerButton({
       onClick={onClick}
       className="md:hidden relative z-50 size-8"
       aria-label="Toggle menu"
+      aria-expanded={isOpen}
     >
       <div className="relative size-5 flex items-center justify-center">
         <motion.span
@@ -96,6 +92,19 @@ function MobileNav({
   isOpen: boolean;
   onClose: () => void;
 }) {
+  const pathname = usePathname();
+  const isActive = (url: string) => {
+    if (url.includes("#")) return false;
+    return pathname === url;
+  };
+
+  const sections = siteConfig.footerLinks.filter(
+    (s) => s.title !== "Social"
+  );
+  const social = siteConfig.footerLinks.find(
+    (s) => s.title === "Social"
+  );
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -116,131 +125,136 @@ function MobileNav({
             transition={{ duration: 0.2 }}
             className="fixed top-16 left-0 right-0 bottom-0 z-50 w-full bg-background md:hidden overflow-y-auto"
           >
-            <div className="flex h-full flex-col">
+            <div className="flex min-h-full flex-col">
               <nav className="flex-1 px-6 py-4 pb-32">
-                {(() => {
-                  const sections = siteConfig.footerLinks.filter(
-                    (s) => s.title !== "Social"
-                  );
-                  const social = siteConfig.footerLinks.find(
-                    (s) => s.title === "Social"
-                  );
-                  return (
-                    <>
-                      <Accordion
-                        defaultValue={[0]}
-                        multiple
-                        className="w-full"
-                      >
-                        {sections.map((section, index) => (
-                          <motion.div
-                            key={section.title}
-                            initial={{
-                              opacity: 0,
-                              y: -30,
-                              filter: "blur(10px)",
-                              clipPath: "inset(100% 0% 0% 0%)",
-                            }}
-                            animate={{
-                              opacity: 1,
-                              y: 0,
-                              filter: "blur(0px)",
-                              clipPath: "inset(0% 0% 0% 0%)",
-                            }}
-                            transition={{
-                              delay: index * 0.1,
-                              duration: 0.6,
-                              ease: [0.16, 1, 0.3, 1],
-                            }}
-                          >
-                            <AccordionItem
-                              value={index}
-                              className="border-b border-border"
+                {sections.map((section, index) => (
+                  <motion.div
+                    key={section.title}
+                    initial={{
+                      opacity: 0,
+                      y: -30,
+                      filter: "blur(10px)",
+                    }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                      filter: "blur(0px)",
+                    }}
+                    transition={{
+                      delay: index * 0.1,
+                      duration: 0.6,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                    className="border-b border-border py-4"
+                  >
+                    <p className="text-xs font-medium uppercase text-muted-foreground tracking-wider px-2 mb-2">
+                      {section.title}
+                    </p>
+                    <ul className="flex flex-col gap-1">
+                      {section.links.map((link) => (
+                        <li key={link.id}>
+                          {link.disabled ? (
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              disabled
+                              className="w-full justify-start gap-2 rounded-md"
                             >
-                              <AccordionTrigger className="text-sm font-semibold uppercase hover:no-underline">
-                                {section.title}
-                              </AccordionTrigger>
-                              <AccordionContent>
-                                <ul className="flex flex-col gap-3">
-                                  {section.links.map((link) => (
-                                    <li key={link.id}>
-                                      {link.disabled ? (
-                                        <span className="text-sm text-muted-foreground/50 cursor-not-allowed">
-                                          {link.title}
-                                        </span>
-                                      ) : link.external ? (
-                                        <a
-                                          href={link.url}
-                                          target="_blank"
-                                          rel="noopener noreferrer"
-                                          onClick={onClose}
-                                          className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                                        >
-                                          {link.title}
-                                        </a>
-                                      ) : (
-                                        <Link
-                                          href={link.url}
-                                          onClick={onClose}
-                                          className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                                        >
-                                          {link.title}
-                                        </Link>
-                                      )}
-                                    </li>
-                                  ))}
-                                </ul>
-                              </AccordionContent>
-                            </AccordionItem>
-                          </motion.div>
-                        ))}
-                      </Accordion>
-
-                      {social && (
-                        <motion.div
-                          initial={{
-                            opacity: 0,
-                            y: -30,
-                            filter: "blur(10px)",
-                            clipPath: "inset(100% 0% 0% 0%)",
-                          }}
-                          animate={{
-                            opacity: 1,
-                            y: 0,
-                            filter: "blur(0px)",
-                            clipPath: "inset(0% 0% 0% 0%)",
-                          }}
-                          transition={{
-                            delay: sections.length * 0.1,
-                            duration: 0.6,
-                            ease: [0.16, 1, 0.3, 1],
-                          }}
-                          className="py-4"
-                        >
-                          <p className="text-sm font-semibold uppercase mb-3">
-                            {social.title}
-                          </p>
-                          <ul className="flex flex-col gap-3">
-                            {social.links.map((link) => (
-                              <li key={link.id}>
-                                <a
+                              {link.icon}
+                              {link.title}
+                            </Button>
+                          ) : link.external ? (
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              render={
+                                <Link
                                   href={link.url}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   onClick={onClose}
-                                  className="text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1.5"
-                                >
-                                  {link.icon}
-                                  {link.title}
-                                </a>
-                              </li>
-                            ))}
-                          </ul>
-                        </motion.div>
-                      )}
-                    </>
-                  );
-                })()}
+                                />
+                              }
+                              className="w-full justify-start gap-2 rounded-md text-foreground"
+                            >
+                              {link.icon}
+                              {link.title}
+                              <ArrowUpRight className="size-3 ml-auto" />
+                            </Button>
+                          ) : (
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              render={
+                                <Link
+                                  href={link.url}
+                                  onClick={onClose}
+                                />
+                              }
+                              className={cn(
+                                "w-full justify-start gap-2 rounded-md",
+                                isActive(link.url)
+                                  ? "bg-accent text-accent-foreground ring-1 ring-border"
+                                  : "text-foreground"
+                              )}
+                            >
+                              {link.icon}
+                              {link.title}
+                            </Button>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                ))}
+
+                {social && (
+                  <motion.div
+                    initial={{
+                      opacity: 0,
+                      y: -30,
+                      filter: "blur(10px)",
+                    }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                      filter: "blur(0px)",
+                    }}
+                    transition={{
+                      delay: sections.length * 0.1,
+                      duration: 0.6,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                    className="py-4"
+                  >
+                    <p className="text-xs font-medium uppercase text-muted-foreground tracking-wider px-2 mb-2">
+                      {social.title}
+                    </p>
+                    <ul className="flex flex-col gap-1">
+                      {social.links.map((link) => (
+                        <li key={link.id}>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            render={
+                              <Link
+                                href={link.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={onClose}
+                              />
+                            }
+                            className="w-full justify-start gap-2 rounded-md text-foreground"
+                          >
+                            {link.icon}
+                            {link.title}
+                            <ArrowUpRight className="size-3 ml-auto" />
+                          </Button>
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                )}
               </nav>
               <div className="sticky bottom-0 w-full p-6 bg-background border-t border-border">
                 <motion.div
@@ -305,15 +319,46 @@ export function Navbar() {
   }, [lastScrollY]);
 
   useEffect(() => {
+    const main = document.querySelector("main");
+    const footer = document.querySelector("footer");
+
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden";
+      main?.setAttribute("inert", "");
+      footer?.setAttribute("inert", "");
     } else {
       document.body.style.overflow = "";
+      main?.removeAttribute("inert");
+      footer?.removeAttribute("inert");
     }
     return () => {
       document.body.style.overflow = "";
+      main?.removeAttribute("inert");
+      footer?.removeAttribute("inert");
     };
   }, [isMobileMenuOpen]);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+
+    function handleEscape(e: KeyboardEvent) {
+      if (e.key === "Escape") setIsMobileMenuOpen(false);
+    }
+
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [isMobileMenuOpen]);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(min-width: 768px)");
+
+    function handleChange(e: MediaQueryListEvent) {
+      if (e.matches) setIsMobileMenuOpen(false);
+    }
+
+    mql.addEventListener("change", handleChange);
+    return () => mql.removeEventListener("change", handleChange);
+  }, []);
 
   function handleLogoContextMenu(e: React.MouseEvent) {
     e.preventDefault();

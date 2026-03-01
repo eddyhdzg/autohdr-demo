@@ -7,7 +7,8 @@ import {
 import { Button } from "@workspace/ui/components/button";
 import { CornerPlus } from "@workspace/ui/components/corner-plus";
 import { TypographyH2, TypographyP } from "@workspace/ui/components/typography";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 import { siteConfig } from "@/lib/config";
 
 export function FAQSection() {
@@ -49,15 +50,17 @@ export function FAQSection() {
                             <div className="pt-6">
                                 <Button
                                     render={
-                                        <a
+                                        <Link
                                             href={faqSection.faqLink.href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
                                         />
                                     }
                                     variant="outline"
                                     size="sm"
                                 >
                                     {faqSection.faqLink.text}
-                                    <ArrowRight className="ml-2 size-4" />
+                                    <ArrowUpRight className="size-4" />
                                 </Button>
                             </div>
                         )}
