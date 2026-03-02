@@ -28,8 +28,14 @@ html.dark #sidebar a[aria-current="page"] {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 1.25rem;
+  padding: 0.5rem 1.25rem 0.75rem;
   margin-top: auto;
+  border-top: none !important;
+}
+
+/* Remove Mintlify's sidebar bottom divider */
+#sidebar > :last-child {
+  border-top: none !important;
 }
 
 .sidebar-footer a {
@@ -55,10 +61,11 @@ html.dark .sidebar-footer a:hover {
   height: 20px;
 }
 
-/* TikTok icon is visually thinner — render at 18px inside the 20px box */
+/* TikTok is a solid fill vs outlined icons — reduce opacity to match visual weight */
 .sidebar-footer-tiktok svg {
   width: 18px;
   height: 18px;
+  opacity: 0.72;
 }
 
 /* Hide "Powered by Mintlify" in page footer */
@@ -80,4 +87,5 @@ html.dark .sidebar-footer a:hover {
 #footer [data-tiktok-injected] svg {
   width: 18px;
   height: 18px;
+  opacity: 0.72;
 }
