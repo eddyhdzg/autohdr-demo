@@ -1,6 +1,10 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "maple",
+  "appearance": {
+    "default": "system",
+    "strict": false
+  },
   "name": "AutoHDR",
   "logo": {
     "light": "/logo/light.svg",
@@ -9,23 +13,11 @@
   },
   "favicon": "/favicon.svg",
   "colors": {
-    "primary": "#171717",
-    "light": "#525252",
-    "dark": "#FAFAFA"
+    "primary": "#404040",
+    "light": "#D4D4D4",
+    "dark": "#171717"
   },
-  "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "/support"
-      }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Get Started Free",
-      "href": "https://autohdr.vercel.app/"
-    }
-  },
+  "navbar": {},
   "navigation": {
     "tabs": [
       {

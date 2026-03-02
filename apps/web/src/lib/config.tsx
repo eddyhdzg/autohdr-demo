@@ -36,6 +36,67 @@ interface FooterSection {
     links: FooterLink[];
 }
 
+// Scatter small dots around a city center using golden angle spiral.
+// More dots = higher density = visually heavier cluster (like users/presence).
+function scatter(
+    lat: number,
+    lng: number,
+    count: number,
+    spread = 0.5,
+): { lat: number; lng: number; size: number }[] {
+    const dotSize = 0.3;
+    if (count <= 1) return [{ lat, lng, size: dotSize }];
+    const cosLat = Math.cos((lat * Math.PI) / 180);
+    return Array.from({ length: count }, (_, i) => {
+        if (i === 0) return { lat, lng, size: dotSize };
+        const angle = i * 2.39996323; // golden angle (radians)
+        const r = spread * Math.sqrt(i / count);
+        return {
+            lat: lat + r * Math.sin(angle),
+            lng: lng + (r * Math.cos(angle)) / cosLat,
+            size: dotSize,
+        };
+    });
+}
+
+const usMapMarkers = [
+    // Austin is rendered separately as a pin icon overlay
+
+    // ── Major metros (dense clusters) ──────────────
+    ...scatter(40.7128, -74.006, 14, 0.6),    // New York
+    ...scatter(34.0522, -118.2437, 12, 0.55),  // Los Angeles
+    ...scatter(41.8781, -87.6298, 10, 0.5),    // Chicago
+    ...scatter(29.7604, -95.3698, 10, 0.5),    // Houston
+    ...scatter(37.7749, -122.4194, 10, 0.5),   // San Francisco
+
+    // ── Strong markets (medium clusters) ───────────
+    ...scatter(32.7767, -96.797, 8, 0.5),      // Dallas
+    ...scatter(25.7617, -80.1918, 8, 0.5),     // Miami
+    ...scatter(38.9072, -77.0369, 7, 0.45),    // Washington DC
+    ...scatter(42.3601, -71.0589, 7, 0.45),    // Boston
+    ...scatter(33.749, -84.388, 7, 0.45),      // Atlanta
+    ...scatter(47.6062, -122.3321, 6, 0.4),    // Seattle
+    ...scatter(33.4484, -112.074, 6, 0.4),     // Phoenix
+
+    // ── Secondary cities (small clusters) ──────────
+    ...scatter(39.7392, -104.9903, 5, 0.35),   // Denver
+    ...scatter(36.1699, -115.1398, 5, 0.35),   // Las Vegas
+    ...scatter(36.1627, -86.7816, 4, 0.3),     // Nashville
+    ...scatter(44.9778, -93.265, 4, 0.3),      // Minneapolis
+    ...scatter(45.5152, -122.6784, 4, 0.3),    // Portland
+    ...scatter(32.7157, -117.1611, 4, 0.3),    // San Diego
+    ...scatter(35.2271, -80.8431, 4, 0.3),     // Charlotte
+    ...scatter(29.4241, -98.4936, 4, 0.3),     // San Antonio
+
+    // ── Tertiary cities (light presence) ───────────
+    ...scatter(39.9612, -82.9988, 3, 0.25),    // Columbus
+    ...scatter(39.7684, -86.1581, 3, 0.25),    // Indianapolis
+    ...scatter(27.9506, -82.4572, 3, 0.25),    // Tampa
+    ...scatter(28.5383, -81.3792, 3, 0.25),    // Orlando
+    ...scatter(40.7608, -111.891, 2, 0.2),     // Salt Lake City
+    ...scatter(30.3322, -81.6557, 2, 0.2),     // Jacksonville
+];
+
 export const siteConfig = {
     name: BRAND.name,
     description: BRAND.description,
@@ -294,8 +355,18 @@ export const siteConfig = {
             ],
         },
     ] as FooterSection[],
-
-
+    usMapSection: {
+        badge: "Built in Austin, TX",
+        title: "American-Made AI",
+        description: "Powering 1 in 5 real estate listings in the U.S.",
+        region: {
+            lat: { min: 21, max: 53 },
+            lng: { min: -128, max: -64 },
+        },
+        countries: ["USA"],
+        backgroundCountries: ["CAN", "MEX"],
+        markers: usMapMarkers,
+    },
 };
 
 export type SiteConfig = typeof siteConfig;
