@@ -25,3 +25,6 @@ export type PricingTier = (typeof PRICING_TIERS)[number];
  * - Enterprise: photos > 1000
  */
 export const PRO_MAX_PHOTOS = 1000;
+
+/** Pay-as-you-go rate for extra credits on the Free tier. */
+export const EXTRA_CREDIT_RATE = 0.80;

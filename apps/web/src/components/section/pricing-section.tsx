@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { siteConfig } from "@/lib/config";
-import { PRICING_TIERS } from "@/lib/consts";
+import { EXTRA_CREDIT_RATE, PRICING_TIERS } from "@/lib/consts";
 import { cn } from "@workspace/ui/lib/utils";
 import { Button } from "@workspace/ui/components/button";
 import { Slider } from "@workspace/ui/components/slider";
@@ -208,7 +208,7 @@ export function PricingSection() {
                     </div>
                     <hr className="border-border mb-6" />
                     <FeatureList features={[
-                        "Buy extra credits at $0.80 each",
+                        `Buy extra credits at $${EXTRA_CREDIT_RATE.toFixed(2)} each`,
                         "Unlimited uploads",
                         "Only pay for downloads",
                     ]} />
@@ -424,7 +424,7 @@ export function PricingSection() {
                         <span className="font-semibold tabular-nums">
                             {currentTier.photos === 0
                                 ? "$0"
-                                : `$${(isYearly ? currentTier.yearlyMonthly : currentTier.monthly).toFixed(2)}`}
+                                : `$${(isYearly ? currentTier.yearlyMonthly : currentTier.monthly).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}
                             <span className="text-muted-foreground font-normal">
                                 {" "}
                                 /mo

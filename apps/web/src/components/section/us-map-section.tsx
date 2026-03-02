@@ -41,11 +41,15 @@ export function USMapSection() {
                     preserveAspectRatio="xMidYMid meet"
                     className="text-muted-foreground/80 mask-[linear-gradient(to_top,transparent_0%,#000_15%)]"
                 />
-                <MapPin
-                    className="absolute text-foreground"
+                <div
+                    className="absolute flex flex-col items-center"
                     style={{ left: "47.3%", top: "74.7%", transform: "translate(-50%, -100%)" }}
-                    size={20}
-                />
+                >
+                    <span className="mb-1 px-2 py-0.5 bg-primary text-primary-foreground text-[10px] font-semibold leading-none whitespace-nowrap">
+                        HQ
+                    </span>
+                    <MapPin className="text-foreground" size={28} />
+                </div>
             </div>
         </section>
     );

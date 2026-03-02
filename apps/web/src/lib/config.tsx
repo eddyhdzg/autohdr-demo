@@ -60,41 +60,42 @@ function scatter(
 }
 
 const usMapMarkers = [
-    // Austin is rendered separately as a pin icon overlay
+    // ── HQ ───────────────────────────────────────────
+    ...scatter(30.2672, -97.7431, 16, 0.65),  // Austin (HQ — pin overlay rendered separately)
 
     // ── Major metros (dense clusters) ──────────────
-    ...scatter(40.7128, -74.006, 14, 0.6),    // New York
-    ...scatter(34.0522, -118.2437, 12, 0.55),  // Los Angeles
-    ...scatter(41.8781, -87.6298, 10, 0.5),    // Chicago
-    ...scatter(29.7604, -95.3698, 10, 0.5),    // Houston
-    ...scatter(37.7749, -122.4194, 10, 0.5),   // San Francisco
+    ...scatter(40.7128, -74.006, 24, 0.8),     // New York
+    ...scatter(34.0522, -118.2437, 20, 0.75),  // Los Angeles
+    ...scatter(41.8781, -87.6298, 18, 0.7),    // Chicago
+    ...scatter(29.7604, -95.3698, 16, 0.65),   // Houston
+    ...scatter(37.7749, -122.4194, 16, 0.65),  // San Francisco
 
     // ── Strong markets (medium clusters) ───────────
-    ...scatter(32.7767, -96.797, 8, 0.5),      // Dallas
-    ...scatter(25.7617, -80.1918, 8, 0.5),     // Miami
-    ...scatter(38.9072, -77.0369, 7, 0.45),    // Washington DC
-    ...scatter(42.3601, -71.0589, 7, 0.45),    // Boston
-    ...scatter(33.749, -84.388, 7, 0.45),      // Atlanta
-    ...scatter(47.6062, -122.3321, 6, 0.4),    // Seattle
-    ...scatter(33.4484, -112.074, 6, 0.4),     // Phoenix
+    ...scatter(32.7767, -96.797, 14, 0.6),     // Dallas
+    ...scatter(25.7617, -80.1918, 14, 0.6),    // Miami
+    ...scatter(38.9072, -77.0369, 12, 0.55),   // Washington DC
+    ...scatter(42.3601, -71.0589, 12, 0.55),   // Boston
+    ...scatter(33.749, -84.388, 12, 0.55),     // Atlanta
+    ...scatter(47.6062, -122.3321, 10, 0.5),   // Seattle
+    ...scatter(33.4484, -112.074, 10, 0.5),    // Phoenix
 
     // ── Secondary cities (small clusters) ──────────
-    ...scatter(39.7392, -104.9903, 5, 0.35),   // Denver
-    ...scatter(36.1699, -115.1398, 5, 0.35),   // Las Vegas
-    ...scatter(36.1627, -86.7816, 4, 0.3),     // Nashville
-    ...scatter(44.9778, -93.265, 4, 0.3),      // Minneapolis
-    ...scatter(45.5152, -122.6784, 4, 0.3),    // Portland
-    ...scatter(32.7157, -117.1611, 4, 0.3),    // San Diego
-    ...scatter(35.2271, -80.8431, 4, 0.3),     // Charlotte
-    ...scatter(29.4241, -98.4936, 4, 0.3),     // San Antonio
+    ...scatter(39.7392, -104.9903, 8, 0.45),   // Denver
+    ...scatter(36.1699, -115.1398, 8, 0.45),   // Las Vegas
+    ...scatter(36.1627, -86.7816, 7, 0.4),     // Nashville
+    ...scatter(44.9778, -93.265, 7, 0.4),      // Minneapolis
+    ...scatter(45.5152, -122.6784, 7, 0.4),    // Portland
+    ...scatter(32.7157, -117.1611, 7, 0.4),    // San Diego
+    ...scatter(35.2271, -80.8431, 7, 0.4),     // Charlotte
+    ...scatter(29.4241, -98.4936, 7, 0.4),     // San Antonio
 
     // ── Tertiary cities (light presence) ───────────
-    ...scatter(39.9612, -82.9988, 3, 0.25),    // Columbus
-    ...scatter(39.7684, -86.1581, 3, 0.25),    // Indianapolis
-    ...scatter(27.9506, -82.4572, 3, 0.25),    // Tampa
-    ...scatter(28.5383, -81.3792, 3, 0.25),    // Orlando
-    ...scatter(40.7608, -111.891, 2, 0.2),     // Salt Lake City
-    ...scatter(30.3322, -81.6557, 2, 0.2),     // Jacksonville
+    ...scatter(39.9612, -82.9988, 5, 0.35),    // Columbus
+    ...scatter(39.7684, -86.1581, 5, 0.35),    // Indianapolis
+    ...scatter(27.9506, -82.4572, 5, 0.35),    // Tampa
+    ...scatter(28.5383, -81.3792, 5, 0.35),    // Orlando
+    ...scatter(40.7608, -111.891, 4, 0.3),     // Salt Lake City
+    ...scatter(30.3322, -81.6557, 4, 0.3),     // Jacksonville
 ];
 
 export const siteConfig = {
@@ -196,15 +197,6 @@ export const siteConfig = {
     pricing: {
         title: "Pricing",
         description: "Only pay for what you download",
-        volumeTiers: [
-            { photos: 0, monthly: 0, perPhoto: 0, yearlyMonthly: 0, yearlyPerPhoto: 0, tier: "" },
-            { photos: 50, monthly: 28.50, perPhoto: 0.57, yearlyMonthly: 22.80, yearlyPerPhoto: 0.46, tier: "Basic" },
-            { photos: 500, monthly: 265.00, perPhoto: 0.53, yearlyMonthly: 225.25, yearlyPerPhoto: 0.45, tier: "Standard" },
-            { photos: 1000, monthly: 500.00, perPhoto: 0.50, yearlyMonthly: 440.00, yearlyPerPhoto: 0.44, tier: "Pro" },
-            { photos: 2000, monthly: 960.00, perPhoto: 0.48, yearlyMonthly: 864.00, yearlyPerPhoto: 0.43, tier: "" },
-            { photos: 5000, monthly: 2250.00, perPhoto: 0.45, yearlyMonthly: 2025.00, yearlyPerPhoto: 0.41, tier: "" },
-            { photos: 10000, monthly: 4000.00, perPhoto: 0.40, yearlyMonthly: 3600.00, yearlyPerPhoto: 0.36, tier: "" },
-        ],
         pricingItems: [
             {
                 name: "Free",
