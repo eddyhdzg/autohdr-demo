@@ -5,15 +5,54 @@
   width: auto;
 }
 
-/* Sidebar active page indicator (EDDY-52) */
+/* Sidebar active page indicator — pill background (EDDY-52) */
 #sidebar a[data-active="true"],
-#sidebar a.active {
+#sidebar a.active,
+#sidebar a[aria-current="page"] {
+  background-color: rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
   font-weight: 600;
-  border-left: 2px solid #404040;
-  padding-left: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
 }
 
 html.dark #sidebar a[data-active="true"],
-html.dark #sidebar a.active {
-  border-left-color: #d4d4d4;
+html.dark #sidebar a.active,
+html.dark #sidebar a[aria-current="page"] {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Sidebar footer — injected by sidebar-footer.js */
+.sidebar-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  margin-top: auto;
+}
+
+html.dark .sidebar-footer {
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+.sidebar-footer a {
+  color: #a3a3a3;
+  transition: color 0.15s ease;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-footer a:hover {
+  color: #404040;
+}
+
+html.dark .sidebar-footer a:hover {
+  color: #d4d4d4;
+}
+
+.sidebar-footer svg {
+  width: 18px;
+  height: 18px;
 }

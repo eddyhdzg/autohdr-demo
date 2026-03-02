@@ -22,24 +22,6 @@
       {
         "label": "Back to App",
         "href": "https://autohdr.vercel.app/"
-      },
-      {
-        "label": "Instagram",
-        "icon": "instagram",
-        "iconType": "brands",
-        "href": "https://www.instagram.com/auto.hdr/"
-      },
-      {
-        "label": "TikTok",
-        "icon": "tiktok",
-        "iconType": "brands",
-        "href": "https://www.tiktok.com/@auto.hdr"
-      },
-      {
-        "label": "LinkedIn",
-        "icon": "linkedin",
-        "iconType": "brands",
-        "href": "https://www.linkedin.com/company/autohdr/"
       }
     ]
   },
