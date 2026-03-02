@@ -7,7 +7,6 @@ import { cn } from "@workspace/ui/lib/utils";
 import { Button } from "@workspace/ui/components/button";
 import { Slider } from "@workspace/ui/components/slider";
 import { NumberTicker } from "@workspace/ui/components/number-ticker";
-import { CornerPlus } from "@workspace/ui/components/corner-plus";
 import { Switch } from "@workspace/ui/components/switch";
 import { Label } from "@workspace/ui/components/label";
 import { TypographyH2, TypographyMuted } from "@workspace/ui/components/typography";
@@ -69,18 +68,9 @@ export function PricingSection() {
     )!;
 
     return (
-        <section id="pricing" className="relative w-full">
-            <CornerPlus
-                position="top-left"
-                className="text-muted-foreground/50"
-            />
-            <CornerPlus
-                position="top-right"
-                className="text-muted-foreground/50"
-            />
-
+        <section id="pricing" className="relative w-full divide-y divide-border">
             {/* Header + Toggle + Slider */}
-            <div className="border-b w-full p-8 md:p-16">
+            <div className="w-full p-8 md:p-16">
                 <div className="max-w-xl mx-auto flex flex-col items-center justify-center gap-6 text-center">
                     <TypographyH2>{pricing.title}</TypographyH2>
                     <p className="text-lg text-muted-foreground text-balance">
@@ -184,12 +174,11 @@ export function PricingSection() {
             </div>
 
             {/* 3 Pricing Cards */}
-            <div className="grid grid-cols-1 lg:grid-cols-3">
+            <div className="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-border">
                 {/* Free */}
                 <div
                     className={cn(
                         "flex flex-col p-8 md:p-10 transition-colors",
-                        "border-t border-border lg:border-t-0",
                         isFreeSelected && "bg-accent/50 ring-2 ring-inset ring-primary"
                     )}
                 >
@@ -239,7 +228,6 @@ export function PricingSection() {
                 <div
                     className={cn(
                         "relative flex flex-col p-8 md:p-10 transition-colors",
-                        "border-t border-border lg:border-t-0 lg:border-l",
                         isProSelected && "bg-accent/50 ring-2 ring-inset ring-primary"
                     )}
                 >
@@ -334,7 +322,6 @@ export function PricingSection() {
                 <div
                     className={cn(
                         "flex flex-col p-8 md:p-10 transition-colors",
-                        "border-t border-border lg:border-t-0 lg:border-l",
                         isEnterpriseSelected && "bg-accent/50 ring-2 ring-inset ring-primary"
                     )}
                 >
@@ -426,7 +413,7 @@ export function PricingSection() {
             </div>
 
             {/* Mobile: Fixed bottom slider bar */}
-            <Card className="fixed bottom-0 left-0 right-0 z-40 border-x-0 border-b-0 py-4 lg:hidden">
+            <Card className="fixed bottom-0 left-0 right-0 z-40 border-x-0 border-b-0 py-4 lg:hidden select-none">
                 <CardContent className="space-y-3">
                     <div className="flex items-center justify-between text-sm">
                         <span className="font-medium">
