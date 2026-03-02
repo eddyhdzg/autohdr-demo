@@ -4,10 +4,16 @@ import { createMap } from "svg-dotted-map"
 
 import { cn } from "../lib/utils"
 
+interface Region {
+  lat: { min: number; max: number }
+  lng: { min: number; max: number }
+}
+
 interface Marker {
   lat: number
   lng: number
   size?: number
+  color?: string
 }
 
 export interface DottedMapProps extends React.SVGProps<SVGSVGElement> {
@@ -19,24 +25,49 @@ export interface DottedMapProps extends React.SVGProps<SVGSVGElement> {
   markerColor?: string
   dotRadius?: number
   stagger?: boolean
+  region?: Region
+  countries?: string[]
+  /** SVG preserveAspectRatio attribute. Default: "xMidYMid slice" */
+  preserveAspectRatio?: string
+  /** Additional countries to render as a faded background layer */
+  backgroundCountries?: string[]
+  /** Opacity for background country dots (0-1). Default: 0.15 */
+  backgroundOpacity?: number
 }
 
 export function DottedMap({
-  width = 150,
-  height = 75,
+  width = 100,
+  height = 100,
   mapSamples = 5000,
   markers = [],
   markerColor = "#FF6900",
-  dotRadius = 0.2,
+  dotRadius = 0.3,
   stagger = true,
+  region,
+  countries,
   className,
   style,
+  preserveAspectRatio = "xMidYMid slice",
+  backgroundCountries,
+  backgroundOpacity = 0.15,
 }: DottedMapProps) {
   const { points, addMarkers } = createMap({
     width,
     height,
     mapSamples,
+    region,
+    countries,
   })
+
+  const bgPoints = backgroundCountries?.length
+    ? createMap({
+        width,
+        height,
+        mapSamples,
+        region,
+        countries: backgroundCountries,
+      }).points
+    : []
 
   const processedMarkers = addMarkers(markers)
 
@@ -68,9 +99,24 @@ export function DottedMap({
   return (
     <svg
       viewBox={`0 0 ${width} ${height}`}
-      className={cn("text-gray-500 dark:text-gray-500", className)}
+      preserveAspectRatio={preserveAspectRatio}
+      className={cn("text-primary/50", className)}
       style={{ width: "100%", height: "100%", ...style }}
+      aria-hidden="true"
     >
+      {bgPoints.length > 0 && (
+        <g opacity={backgroundOpacity}>
+          {bgPoints.map((point, index) => (
+            <circle
+              cx={point.x}
+              cy={point.y}
+              r={dotRadius}
+              fill="currentColor"
+              key={`bg-${point.x}-${point.y}-${index}`}
+            />
+          ))}
+        </g>
+      )}
       {points.map((point, index) => {
         const rowIndex = yToRowIndex.get(point.y) ?? 0
         const offsetX = stagger && rowIndex % 2 === 1 ? xStep / 2 : 0
@@ -91,8 +137,8 @@ export function DottedMap({
           <circle
             cx={marker.x + offsetX}
             cy={marker.y}
-            r={marker.size ?? dotRadius}
-            fill={markerColor}
+            r={marker.size ?? dotRadius * 2}
+            fill={marker.color ?? markerColor}
             key={`${marker.x}-${marker.y}-${index}`}
           />
         )
