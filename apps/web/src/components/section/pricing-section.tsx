@@ -244,7 +244,7 @@ export function PricingSection() {
                     )}
                 >
                     <div className="flex items-center gap-3">
-                        <h3 className="text-lg font-semibold shrink-0">{proTier.tier}</h3>
+                        <h3 className="text-lg font-semibold shrink-0">{proPlan.name}</h3>
                         <div className="flex flex-wrap justify-end gap-2 ml-auto">
                             {isProSelected && (
                                 <span className="lg:hidden inline-flex items-center gap-1.5 whitespace-nowrap border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
