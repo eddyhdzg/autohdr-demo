@@ -13,7 +13,7 @@ export function TestimonialSection() {
         >
             <CornerPlus position="top-left" className="text-muted-foreground/50" />
             <CornerPlus position="top-right" className="text-muted-foreground/50" />
-            <div className="w-full h-full p-6 md:px-24 md:pt-24 md:pb-8">
+            <div className="w-full h-full px-6 py-6 md:px-24 md:pt-24 md:pb-8">
                 <div className="max-w-lg mx-auto flex flex-col items-center justify-center gap-4">
                     <TypographyH2 className="text-center">
                         {testimonialSection.title}

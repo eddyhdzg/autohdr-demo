@@ -1,4 +1,5 @@
 import { Navbar } from "@/components/section/navbar";
+import { EmojiProvider } from "@/components/emoji-provider";
 import { ThemeProvider } from "@/components/theme-provider";
 import { siteConfig } from "@/lib/site";
 import type { Metadata, Viewport } from "next";
@@ -44,10 +45,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="max-w-7xl mx-auto border-x border-border">
-            <Navbar />
-            {children}
-          </div>
+          <EmojiProvider>
+            <div className="max-w-7xl mx-auto border-x border-border">
+              <Navbar />
+              {children}
+            </div>
+          </EmojiProvider>
         </ThemeProvider>
       </body>
     </html>

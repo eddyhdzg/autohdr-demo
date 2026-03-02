@@ -9,7 +9,7 @@ export function HeroSection() {
     return (
         <section
             id="hero"
-            className="relative px-4 py-12 md:py-16 lg:py-24"
+            className="relative px-6 py-12 md:py-16 lg:py-24"
         >
             <div className="flex flex-col items-center text-center space-y-6 max-w-3xl mx-auto">
                 <Button

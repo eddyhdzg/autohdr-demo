@@ -1,5 +1,6 @@
 "use client";
 
+import { Emoji } from "react-apple-emojis";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -22,7 +23,7 @@ export function Footer() {
                 {footerLinks.map((section) => (
                     <div
                         key={section.title}
-                        className="flex flex-col gap-4 p-8 lg:pt-18"
+                        className="flex flex-col gap-4 px-6 py-8 md:px-8 lg:pt-18"
                     >
                         <TypographyH3>{section.title}</TypographyH3>
                         <ul className="flex flex-col gap-3">
@@ -78,9 +79,16 @@ export function Footer() {
                 ))}
             </div>
 
-            <div className="border-y border-border py-4">
-                <TypographyMuted className="text-center">
-                    © {new Date().getFullYear()} {name}. All rights reserved.
+            <div className="border-y border-border py-4 px-6 flex flex-wrap justify-between gap-x-4 gap-y-1">
+                <TypographyMuted className="flex items-center gap-1.5">
+                    <Emoji name="flag-united-states" width={16} />
+                    Built in Austin, TX
+                </TypographyMuted>
+                <TypographyMuted>
+                    © {new Date().getFullYear()} {name}.{" "}
+                    <span className="hidden md:inline">
+                        All rights reserved.
+                    </span>
                 </TypographyMuted>
             </div>
         </footer>

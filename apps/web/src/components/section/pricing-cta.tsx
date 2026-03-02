@@ -18,7 +18,7 @@ export function PricingCTA() {
                 position="top-right"
                 className="text-muted-foreground/50"
             />
-            <div className="px-4 py-12 md:py-16 lg:py-24">
+            <div className="px-6 py-12 md:py-16 lg:py-24">
                 <div className="flex flex-col items-center text-center space-y-6 max-w-xl mx-auto">
                     <Button
                         render={<Link href="/pricing" />}
