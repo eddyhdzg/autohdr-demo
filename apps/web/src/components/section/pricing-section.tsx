@@ -193,13 +193,15 @@ export function PricingSection() {
                         isFreeSelected && "bg-accent/50 ring-2 ring-inset ring-primary"
                     )}
                 >
-                    <div className="flex flex-wrap items-center gap-2">
-                        <h3 className="text-lg font-semibold">{freePlan.name}</h3>
+                    <div className="flex items-center gap-3">
+                        <h3 className="text-lg font-semibold shrink-0">{freePlan.name}</h3>
                         {isFreeSelected && (
-                            <span className="lg:hidden inline-flex items-center gap-1.5 whitespace-nowrap border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
-                                <SparklesIcon className="size-3" />
-                                Recommended
-                            </span>
+                            <div className="lg:hidden flex flex-wrap justify-end gap-2 ml-auto">
+                                <span className="inline-flex items-center gap-1.5 whitespace-nowrap border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
+                                    <SparklesIcon className="size-3" />
+                                    Recommended
+                                </span>
+                            </div>
                         )}
                     </div>
                     <div className="mt-4 mb-6">
@@ -241,18 +243,20 @@ export function PricingSection() {
                         isProSelected && "bg-accent/50 ring-2 ring-inset ring-primary"
                     )}
                 >
-                    <div className="flex flex-wrap items-center gap-2">
-                        <h3 className="text-lg font-semibold">{proTier.tier}</h3>
-                        {isProSelected && (
-                            <span className="lg:hidden inline-flex items-center gap-1.5 whitespace-nowrap border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
-                                <SparklesIcon className="size-3" />
-                                Recommended
+                    <div className="flex items-center gap-3">
+                        <h3 className="text-lg font-semibold shrink-0">{proTier.tier}</h3>
+                        <div className="flex flex-wrap justify-end gap-2 ml-auto">
+                            {isProSelected && (
+                                <span className="lg:hidden inline-flex items-center gap-1.5 whitespace-nowrap border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
+                                    <SparklesIcon className="size-3" />
+                                    Recommended
+                                </span>
+                            )}
+                            <span className="inline-flex items-center gap-1.5 whitespace-nowrap border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
+                                <FlameIcon className="size-3" />
+                                Most Popular
                             </span>
-                        )}
-                        <span className="inline-flex items-center gap-1.5 whitespace-nowrap border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
-                            <FlameIcon className="size-3" />
-                            Most Popular
-                        </span>
+                        </div>
                     </div>
                     <div className="mt-4 mb-6">
                         {/* Price */}
@@ -334,13 +338,15 @@ export function PricingSection() {
                         isEnterpriseSelected && "bg-accent/50 ring-2 ring-inset ring-primary"
                     )}
                 >
-                    <div className="flex flex-wrap items-center gap-2">
-                        <h3 className="text-lg font-semibold">{enterprisePlan.name}</h3>
+                    <div className="flex items-center gap-3">
+                        <h3 className="text-lg font-semibold shrink-0">{enterprisePlan.name}</h3>
                         {isEnterpriseSelected && (
-                            <span className="lg:hidden inline-flex items-center gap-1.5 whitespace-nowrap border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
-                                <SparklesIcon className="size-3" />
-                                Recommended
-                            </span>
+                            <div className="lg:hidden flex flex-wrap justify-end gap-2 ml-auto">
+                                <span className="inline-flex items-center gap-1.5 whitespace-nowrap border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
+                                    <SparklesIcon className="size-3" />
+                                    Recommended
+                                </span>
+                            </div>
                         )}
                     </div>
                     <div className="mt-4 mb-6">
