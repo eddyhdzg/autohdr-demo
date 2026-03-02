@@ -27,7 +27,7 @@
     return doc.documentElement;
   }
 
-  // --- Sidebar footer: social icons + "Back to App" ---
+  // --- Sidebar footer: social icons only ---
   function injectSidebarFooter() {
     var sidebar = document.getElementById("sidebar");
     if (!sidebar || sidebar.querySelector(".sidebar-footer")) return;
@@ -35,36 +35,21 @@
     var footer = document.createElement("div");
     footer.className = "sidebar-footer";
 
-    // Social icons row
-    var iconsRow = document.createElement("div");
-    iconsRow.className = "sidebar-footer-icons";
-
     SOCIALS.forEach(function (social) {
       var link = document.createElement("a");
       link.href = social.href;
       link.target = "_blank";
       link.rel = "noopener noreferrer";
       link.setAttribute("aria-label", social.label);
+
+      // TikTok gets a wrapper for consistent 20px box sizing
+      if (social.label === "TikTok") {
+        link.className = "sidebar-footer-tiktok";
+      }
+
       link.appendChild(parseSvg(social.svg));
-      iconsRow.appendChild(link);
+      footer.appendChild(link);
     });
-
-    footer.appendChild(iconsRow);
-
-    // "Back to App" link
-    var backLink = document.createElement("a");
-    backLink.href = "https://autohdr.vercel.app/";
-    backLink.className = "sidebar-footer-back";
-    backLink.target = "_blank";
-    backLink.rel = "noopener noreferrer";
-    backLink.textContent = "Back to App";
-
-    var arrow = document.createElement("span");
-    arrow.textContent = "\u2197";
-    arrow.className = "sidebar-footer-arrow";
-    backLink.appendChild(arrow);
-
-    footer.appendChild(backLink);
 
     sidebar.appendChild(footer);
   }
@@ -74,22 +59,27 @@
     var footer = document.getElementById("footer");
     if (!footer || footer.querySelector("[data-tiktok-injected]")) return;
 
-    // Find the social icons container in the footer
-    var socialLinks = footer.querySelectorAll("a[href*='instagram'], a[href*='linkedin']");
+    var socialLinks = footer.querySelectorAll(
+      "a[href*='instagram'], a[href*='linkedin']"
+    );
     if (socialLinks.length === 0) return;
 
     var lastSocial = socialLinks[socialLinks.length - 1];
     var container = lastSocial.parentElement;
     if (!container) return;
 
-    // Create TikTok link matching the existing social link style
+    // Clone the style from a sibling link for consistent color
+    var refLink = socialLinks[0];
+    var refStyle = window.getComputedStyle(refLink);
+
     var tiktokLink = document.createElement("a");
     tiktokLink.href = "https://www.tiktok.com/@auto.hdr";
     tiktokLink.target = "_blank";
     tiktokLink.rel = "noopener noreferrer";
     tiktokLink.setAttribute("aria-label", "TikTok");
     tiktokLink.setAttribute("data-tiktok-injected", "true");
-    tiktokLink.className = lastSocial.className;
+    tiktokLink.className = refLink.className;
+    tiktokLink.style.color = refStyle.color;
     tiktokLink.appendChild(parseSvg(TIKTOK_SVG));
 
     // Insert between Instagram and LinkedIn
@@ -106,14 +96,12 @@
     injectFooterTikTok();
   }
 
-  // Run on initial load
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", injectAll);
   } else {
     injectAll();
   }
 
-  // Re-inject on SPA navigation
   var observer = new MutationObserver(function () {
     if (!document.querySelector(".sidebar-footer")) {
       injectSidebarFooter();
@@ -129,7 +117,6 @@
   var target = document.getElementById("sidebar") || document.body;
   observer.observe(target, { childList: true, subtree: true });
 
-  // Also observe the footer for TikTok injection
   var footerTarget = document.getElementById("footer");
   if (footerTarget) {
     observer.observe(footerTarget, { childList: true, subtree: true });
