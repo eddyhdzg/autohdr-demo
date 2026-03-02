@@ -103,22 +103,20 @@
   }
 
   var observer = new MutationObserver(function () {
-    if (!document.querySelector(".sidebar-footer")) {
-      injectSidebarFooter();
-    }
+    var sidebarDone = !!document.querySelector(".sidebar-footer");
+    var footerDone = !!document.querySelector("[data-tiktok-injected]");
+
+    if (!sidebarDone) injectSidebarFooter();
+    if (document.getElementById("footer") && !footerDone) injectFooterTikTok();
+
+    // Disconnect once both injections are complete
     if (
-      document.getElementById("footer") &&
-      !document.querySelector("[data-tiktok-injected]")
+      document.querySelector(".sidebar-footer") &&
+      document.querySelector("[data-tiktok-injected]")
     ) {
-      injectFooterTikTok();
+      observer.disconnect();
     }
   });
 
-  var target = document.getElementById("sidebar") || document.body;
-  observer.observe(target, { childList: true, subtree: true });
-
-  var footerTarget = document.getElementById("footer");
-  if (footerTarget) {
-    observer.observe(footerTarget, { childList: true, subtree: true });
-  }
+  observer.observe(document.body, { childList: true, subtree: true });
 })();
