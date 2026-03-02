@@ -40,11 +40,7 @@
           {
             "group": "Pricing",
             "icon": "credit-card",
-            "pages": [
-              "pricing/overview",
-              "pricing/plans",
-              "pricing/credits"
-            ]
+            "pages": ["pricing"]
           },
           {
             "group": "Account",
