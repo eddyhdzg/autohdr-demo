@@ -1,0 +1,19 @@
+/* Logo sizing safety net (EDDY-48) */
+#navbar img[alt*="logo"],
+#navbar img[alt*="Logo"] {
+  height: 28px;
+  width: auto;
+}
+
+/* Sidebar active page indicator (EDDY-52) */
+#sidebar a[data-active="true"],
+#sidebar a.active {
+  font-weight: 600;
+  border-left: 2px solid #404040;
+  padding-left: 0.5rem;
+}
+
+html.dark #sidebar a[data-active="true"],
+html.dark #sidebar a.active {
+  border-left-color: #d4d4d4;
+}
