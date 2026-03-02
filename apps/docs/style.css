@@ -26,33 +26,69 @@ html.dark #sidebar a[aria-current="page"] {
 /* Sidebar footer — injected by sidebar-footer.js */
 .sidebar-footer {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  gap: 0.75rem;
   padding: 1rem 1.25rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
   margin-top: auto;
 }
 
-html.dark .sidebar-footer {
-  border-top-color: rgba(255, 255, 255, 0.08);
+.sidebar-footer-icons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.sidebar-footer a {
+.sidebar-footer-icons a {
   color: #a3a3a3;
   transition: color 0.15s ease;
   display: flex;
   align-items: center;
 }
 
-.sidebar-footer a:hover {
+.sidebar-footer-icons a:hover {
   color: #404040;
 }
 
-html.dark .sidebar-footer a:hover {
+html.dark .sidebar-footer-icons a:hover {
   color: #d4d4d4;
 }
 
-.sidebar-footer svg {
+.sidebar-footer-icons svg {
   width: 18px;
   height: 18px;
+}
+
+.sidebar-footer-back {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: #a3a3a3;
+  font-size: 0.8125rem;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.sidebar-footer-back:hover {
+  color: #404040;
+}
+
+html.dark .sidebar-footer-back:hover {
+  color: #d4d4d4;
+}
+
+.sidebar-footer-arrow {
+  font-size: 0.75rem;
+}
+
+/* Hide "Powered by Mintlify" in page footer */
+#footer a[href*="mintlify.com"],
+#footer span:has(a[href*="mintlify.com"]),
+#footer div:has(> a[href*="mintlify.com"]) {
+  display: none !important;
+}
+
+/* Page footer — injected TikTok icon sizing */
+#footer [data-tiktok-injected] svg {
+  width: 16px;
+  height: 16px;
 }

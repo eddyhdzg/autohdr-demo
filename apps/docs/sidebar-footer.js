@@ -1,4 +1,4 @@
-// Sidebar footer — social media icons (EDDY-51)
+// Sidebar footer + page footer enhancements
 // Mintlify auto-includes .js files in the docs root on every page.
 (function () {
   var SOCIALS = [
@@ -19,18 +19,25 @@
     },
   ];
 
+  var TIKTOK_SVG = SOCIALS[1].svg;
+
   function parseSvg(svgString) {
     var parser = new DOMParser();
     var doc = parser.parseFromString(svgString, "image/svg+xml");
     return doc.documentElement;
   }
 
-  function injectFooter() {
+  // --- Sidebar footer: social icons + "Back to App" ---
+  function injectSidebarFooter() {
     var sidebar = document.getElementById("sidebar");
     if (!sidebar || sidebar.querySelector(".sidebar-footer")) return;
 
     var footer = document.createElement("div");
     footer.className = "sidebar-footer";
+
+    // Social icons row
+    var iconsRow = document.createElement("div");
+    iconsRow.className = "sidebar-footer-icons";
 
     SOCIALS.forEach(function (social) {
       var link = document.createElement("a");
@@ -39,26 +46,92 @@
       link.rel = "noopener noreferrer";
       link.setAttribute("aria-label", social.label);
       link.appendChild(parseSvg(social.svg));
-      footer.appendChild(link);
+      iconsRow.appendChild(link);
     });
+
+    footer.appendChild(iconsRow);
+
+    // "Back to App" link
+    var backLink = document.createElement("a");
+    backLink.href = "https://autohdr.vercel.app/";
+    backLink.className = "sidebar-footer-back";
+    backLink.target = "_blank";
+    backLink.rel = "noopener noreferrer";
+    backLink.textContent = "Back to App";
+
+    var arrow = document.createElement("span");
+    arrow.textContent = "\u2197";
+    arrow.className = "sidebar-footer-arrow";
+    backLink.appendChild(arrow);
+
+    footer.appendChild(backLink);
 
     sidebar.appendChild(footer);
   }
 
-  // Run on initial load and on SPA navigations
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", injectFooter);
-  } else {
-    injectFooter();
+  // --- Page footer: inject TikTok icon ---
+  function injectFooterTikTok() {
+    var footer = document.getElementById("footer");
+    if (!footer || footer.querySelector("[data-tiktok-injected]")) return;
+
+    // Find the social icons container in the footer
+    var socialLinks = footer.querySelectorAll("a[href*='instagram'], a[href*='linkedin']");
+    if (socialLinks.length === 0) return;
+
+    var lastSocial = socialLinks[socialLinks.length - 1];
+    var container = lastSocial.parentElement;
+    if (!container) return;
+
+    // Create TikTok link matching the existing social link style
+    var tiktokLink = document.createElement("a");
+    tiktokLink.href = "https://www.tiktok.com/@auto.hdr";
+    tiktokLink.target = "_blank";
+    tiktokLink.rel = "noopener noreferrer";
+    tiktokLink.setAttribute("aria-label", "TikTok");
+    tiktokLink.setAttribute("data-tiktok-injected", "true");
+    tiktokLink.className = lastSocial.className;
+    tiktokLink.appendChild(parseSvg(TIKTOK_SVG));
+
+    // Insert between Instagram and LinkedIn
+    var instagramLink = container.querySelector("a[href*='instagram']");
+    if (instagramLink && instagramLink.nextSibling) {
+      container.insertBefore(tiktokLink, instagramLink.nextSibling);
+    } else {
+      container.appendChild(tiktokLink);
+    }
   }
 
-  // Re-inject on SPA navigation (Mintlify may re-render the sidebar)
+  function injectAll() {
+    injectSidebarFooter();
+    injectFooterTikTok();
+  }
+
+  // Run on initial load
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", injectAll);
+  } else {
+    injectAll();
+  }
+
+  // Re-inject on SPA navigation
   var observer = new MutationObserver(function () {
     if (!document.querySelector(".sidebar-footer")) {
-      injectFooter();
+      injectSidebarFooter();
+    }
+    if (
+      document.getElementById("footer") &&
+      !document.querySelector("[data-tiktok-injected]")
+    ) {
+      injectFooterTikTok();
     }
   });
 
   var target = document.getElementById("sidebar") || document.body;
   observer.observe(target, { childList: true, subtree: true });
+
+  // Also observe the footer for TikTok injection
+  var footerTarget = document.getElementById("footer");
+  if (footerTarget) {
+    observer.observe(footerTarget, { childList: true, subtree: true });
+  }
 })();
