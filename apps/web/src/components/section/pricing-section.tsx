@@ -7,11 +7,11 @@ import { cn } from "@workspace/ui/lib/utils";
 import { Button } from "@workspace/ui/components/button";
 import { Slider } from "@workspace/ui/components/slider";
 import { NumberTicker } from "@workspace/ui/components/number-ticker";
-import { CornerPlus } from "@workspace/ui/components/corner-plus";
 import { Switch } from "@workspace/ui/components/switch";
 import { Label } from "@workspace/ui/components/label";
 import { TypographyH2, TypographyMuted } from "@workspace/ui/components/typography";
-import { FlameIcon, LayersIcon, SparklesIcon } from "lucide-react";
+import { Card, CardContent } from "@workspace/ui/components/card";
+import { FlameIcon, SparklesIcon } from "lucide-react";
 import Link from "next/link";
 
 const { pricing } = siteConfig;
@@ -68,18 +68,9 @@ export function PricingSection() {
     )!;
 
     return (
-        <section id="pricing" className="relative w-full">
-            <CornerPlus
-                position="top-left"
-                className="text-muted-foreground/50"
-            />
-            <CornerPlus
-                position="top-right"
-                className="text-muted-foreground/50"
-            />
-
+        <section id="pricing" className="relative w-full divide-y divide-border">
             {/* Header + Toggle + Slider */}
-            <div className="border-b w-full p-8 md:p-16">
+            <div className="w-full p-8 md:p-16">
                 <div className="max-w-xl mx-auto flex flex-col items-center justify-center gap-6 text-center">
                     <TypographyH2>{pricing.title}</TypographyH2>
                     <p className="text-lg text-muted-foreground text-balance">
@@ -117,8 +108,8 @@ export function PricingSection() {
                         </span>
                     </div>
 
-                    {/* Slider */}
-                    <div className="w-full max-w-md space-y-3">
+                    {/* Slider (desktop only — mobile uses fixed bottom bar) */}
+                    <div className="hidden lg:block w-full max-w-md space-y-3">
                         <div className="flex items-center justify-between text-sm">
                             <span className="text-foreground">
                                 How many photos per month?
@@ -183,26 +174,25 @@ export function PricingSection() {
             </div>
 
             {/* 3 Pricing Cards */}
-            <div className="grid grid-cols-1 lg:grid-cols-3">
-                {/* Mobile: Recommended label */}
-                <div className="order-1 px-8 py-4 lg:hidden">
-                    <span className="inline-flex items-center gap-1.5 text-xs font-medium text-foreground">
-                        <SparklesIcon className="size-3" />
-                        Recommended
-                    </span>
-                </div>
-
+            <div className="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-border">
                 {/* Free */}
                 <div
                     className={cn(
                         "flex flex-col p-8 md:p-10 transition-colors",
-                        "border-t border-border lg:border-t-0",
-                        isFreeSelected && "bg-accent/50 ring-2 ring-inset ring-primary",
-                        isFreeSelected ? "order-2" : "order-4",
-                        "lg:order-none"
+                        isFreeSelected && "bg-accent/50 ring-2 ring-inset ring-primary"
                     )}
                 >
-                    <h3 className="text-lg font-semibold">{freePlan.name}</h3>
+                    <div className="flex items-center gap-3">
+                        <h3 className="text-lg font-semibold shrink-0">{freePlan.name}</h3>
+                        {isFreeSelected && (
+                            <div className="lg:hidden flex flex-wrap justify-end gap-2 ml-auto">
+                                <span className="inline-flex items-center gap-1.5 whitespace-nowrap border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
+                                    <SparklesIcon className="size-3" />
+                                    Recommended
+                                </span>
+                            </div>
+                        )}
+                    </div>
                     <div className="mt-4 mb-6">
                         <div className="flex items-baseline gap-1">
                             <span className="text-5xl font-semibold tracking-tight">
@@ -234,30 +224,27 @@ export function PricingSection() {
                     </div>
                 </div>
 
-                {/* Mobile: Other Plans label */}
-                <div className="order-3 border-t border-border px-8 py-4 lg:hidden">
-                    <span className="inline-flex items-center gap-1.5 text-xs font-medium text-foreground">
-                        <LayersIcon className="size-3" />
-                        Other Plans
-                    </span>
-                </div>
-
                 {/* Pro */}
                 <div
                     className={cn(
                         "relative flex flex-col p-8 md:p-10 transition-colors",
-                        "border-t border-border lg:border-t-0 lg:border-l",
-                        isProSelected && "bg-accent/50 ring-2 ring-inset ring-primary",
-                        isProSelected ? "order-2" : "order-4",
-                        "lg:order-none"
+                        isProSelected && "bg-accent/50 ring-2 ring-inset ring-primary"
                     )}
                 >
-                    <div className="flex items-center justify-between">
-                        <h3 className="text-lg font-semibold">{proTier.tier}</h3>
-                        <span className="inline-flex items-center gap-1.5 border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
-                            <FlameIcon className="size-3" />
-                            Most Popular
-                        </span>
+                    <div className="flex items-center gap-3">
+                        <h3 className="text-lg font-semibold shrink-0">{proPlan.name}</h3>
+                        <div className="flex flex-wrap justify-end gap-2 ml-auto">
+                            {isProSelected && (
+                                <span className="lg:hidden inline-flex items-center gap-1.5 whitespace-nowrap border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
+                                    <SparklesIcon className="size-3" />
+                                    Recommended
+                                </span>
+                            )}
+                            <span className="inline-flex items-center gap-1.5 whitespace-nowrap border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
+                                <FlameIcon className="size-3" />
+                                Most Popular
+                            </span>
+                        </div>
                     </div>
                     <div className="mt-4 mb-6">
                         {/* Price */}
@@ -335,13 +322,20 @@ export function PricingSection() {
                 <div
                     className={cn(
                         "flex flex-col p-8 md:p-10 transition-colors",
-                        "border-t border-border lg:border-t-0 lg:border-l",
-                        isEnterpriseSelected && "bg-accent/50 ring-2 ring-inset ring-primary",
-                        isEnterpriseSelected ? "order-2" : "order-4",
-                        "lg:order-none"
+                        isEnterpriseSelected && "bg-accent/50 ring-2 ring-inset ring-primary"
                     )}
                 >
-                    <h3 className="text-lg font-semibold">{enterprisePlan.name}</h3>
+                    <div className="flex items-center gap-3">
+                        <h3 className="text-lg font-semibold shrink-0">{enterprisePlan.name}</h3>
+                        {isEnterpriseSelected && (
+                            <div className="lg:hidden flex flex-wrap justify-end gap-2 ml-auto">
+                                <span className="inline-flex items-center gap-1.5 whitespace-nowrap border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
+                                    <SparklesIcon className="size-3" />
+                                    Recommended
+                                </span>
+                            </div>
+                        )}
+                    </div>
                     <div className="mt-4 mb-6">
                         {/* Photos count */}
                         <TypographyMuted>
@@ -417,6 +411,75 @@ export function PricingSection() {
                     </div>
                 </div>
             </div>
+
+            {/* Mobile: Fixed bottom slider bar */}
+            <Card className="fixed bottom-0 left-0 right-0 z-40 border-x-0 border-b-0 py-4 lg:hidden select-none">
+                <CardContent className="space-y-3">
+                    <div className="flex items-center justify-between text-sm">
+                        <span className="font-medium">
+                            {currentTier.photos === 0
+                                ? "Free · 10 photos"
+                                : `${formatPhotos(currentTier.photos)} photos / mo`}
+                        </span>
+                        <span className="font-semibold tabular-nums">
+                            {currentTier.photos === 0
+                                ? "$0"
+                                : `$${(isYearly ? currentTier.yearlyMonthly : currentTier.monthly).toFixed(2)}`}
+                            <span className="text-muted-foreground font-normal">
+                                {" "}
+                                /mo
+                            </span>
+                        </span>
+                    </div>
+                    <Slider
+                        value={[sliderIndex]}
+                        onValueChange={(val) => {
+                            const v = Array.isArray(val)
+                                ? val[0]
+                                : val;
+                            setSliderIndex(v);
+                        }}
+                        min={0}
+                        max={PRICING_TIERS.length - 1}
+                        step={1}
+                        tooltipRender={(val) => {
+                            const photos = PRICING_TIERS[val].photos;
+                            return photos === 0
+                                ? "0-10 photos"
+                                : `${formatPhotos(photos)} photos`;
+                        }}
+                    />
+                    {/* Tick marks */}
+                    <span
+                        aria-hidden="true"
+                        className="flex w-full items-center justify-between gap-1 px-2.5 text-xs text-muted-foreground tabular-nums"
+                    >
+                        {PRICING_TIERS.map((tier, i) => (
+                            <span
+                                key={i}
+                                className="flex w-0 flex-col items-center justify-center gap-2"
+                            >
+                                <span
+                                    className={cn(
+                                        "h-1 w-px",
+                                        i === sliderIndex
+                                            ? "bg-foreground"
+                                            : "bg-muted-foreground/70"
+                                    )}
+                                />
+                                <span
+                                    className={cn(
+                                        i === sliderIndex &&
+                                            "text-foreground font-medium"
+                                    )}
+                                >
+                                    {formatTickLabel(tier.photos)}
+                                </span>
+                            </span>
+                        ))}
+                    </span>
+                </CardContent>
+            </Card>
         </section>
     );
 }

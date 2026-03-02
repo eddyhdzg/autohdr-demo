@@ -3,7 +3,7 @@ import { CTASection } from "@/components/section/cta-section";
 import { FAQSection } from "@/components/section/faq-section";
 import { Footer } from "@/components/section/footer";
 import { HeroSection } from "@/components/section/hero-section";
-import { PricingSection } from "@/components/section/pricing-section";
+import { PricingCTA } from "@/components/section/pricing-cta";
 import { TestimonialSection } from "@/components/section/testimonial-section";
 import { USMapSection } from "@/components/section/us-map-section";
 
@@ -13,7 +13,7 @@ export default function Home() {
       <HeroSection />
       <CompanyShowcase />
       <USMapSection />
-      <PricingSection />
+      <PricingCTA />
       <TestimonialSection />
       <FAQSection />
       <CTASection />
