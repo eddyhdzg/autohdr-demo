@@ -184,7 +184,7 @@ export function PricingSection() {
             </div>
 
             {/* 3 Pricing Cards */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 pb-24 lg:pb-0">
+            <div className="grid grid-cols-1 lg:grid-cols-3">
                 {/* Mobile: Recommended label */}
                 <div className="order-1 px-8 py-4 lg:hidden">
                     <span className="inline-flex items-center gap-1.5 text-xs font-medium text-foreground">
