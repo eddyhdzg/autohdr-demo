@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function PricingPage() {
   return (
-    <main className="flex flex-col divide-y divide-border pt-16 pb-24 lg:pb-0">
+    <main className="flex flex-col divide-y divide-border pt-16 pb-40 lg:pb-0">
       <PricingSection />
       <Footer />
     </main>
