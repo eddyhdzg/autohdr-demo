@@ -70,7 +70,7 @@ export function PricingSection() {
     return (
         <section id="pricing" className="relative w-full divide-y divide-border">
             {/* Header + Toggle + Slider */}
-            <div className="w-full p-8 md:p-16">
+            <div className="w-full px-6 py-8 md:p-16">
                 <div className="max-w-xl mx-auto flex flex-col items-center justify-center gap-6 text-center">
                     <TypographyH2>{pricing.title}</TypographyH2>
                     <p className="text-lg text-muted-foreground text-balance">
@@ -178,7 +178,7 @@ export function PricingSection() {
                 {/* Free */}
                 <div
                     className={cn(
-                        "flex flex-col p-8 md:p-10 transition-colors",
+                        "flex flex-col px-6 py-8 md:p-10 transition-colors",
                         isFreeSelected && "bg-accent/50 ring-2 ring-inset ring-primary"
                     )}
                 >
@@ -227,7 +227,7 @@ export function PricingSection() {
                 {/* Pro */}
                 <div
                     className={cn(
-                        "relative flex flex-col p-8 md:p-10 transition-colors",
+                        "relative flex flex-col px-6 py-8 md:p-10 transition-colors",
                         isProSelected && "bg-accent/50 ring-2 ring-inset ring-primary"
                     )}
                 >
@@ -321,7 +321,7 @@ export function PricingSection() {
                 {/* Enterprise */}
                 <div
                     className={cn(
-                        "flex flex-col p-8 md:p-10 transition-colors",
+                        "flex flex-col px-6 py-8 md:p-10 transition-colors",
                         isEnterpriseSelected && "bg-accent/50 ring-2 ring-inset ring-primary"
                     )}
                 >

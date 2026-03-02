@@ -9,7 +9,7 @@ export function CTASection() {
     return (
         <section
             id={ctaSection.id}
-            className="relative flex flex-col items-center justify-center px-4 py-12 md:py-20 lg:py-32"
+            className="relative flex flex-col items-center justify-center px-6 py-12 md:py-20 lg:py-32"
         >
             <CornerPlus position="top-left" className="text-muted-foreground/50" />
             <CornerPlus position="top-right" className="text-muted-foreground/50" />

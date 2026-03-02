@@ -8,7 +8,7 @@ export function BrandHeroSection() {
   const { hero } = brandConfig;
 
   return (
-    <section className="relative flex flex-col items-center justify-center px-4 py-16 md:py-24">
+    <section className="relative flex flex-col items-center justify-center px-6 py-16 md:py-24">
       <div className="relative z-10 flex flex-col items-center justify-center text-center space-y-6 max-w-4xl mx-auto">
         <Image
           src="/brand/symbol.svg"

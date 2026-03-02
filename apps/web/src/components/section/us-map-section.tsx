@@ -10,7 +10,7 @@ export function USMapSection() {
     return (
         <section
             id="us-map"
-            className="relative px-4 py-12 md:py-16 lg:py-24"
+            className="relative px-6 py-12 md:py-16 lg:py-24"
         >
             <CornerPlus position="top-left" className="text-muted-foreground/50" />
             <CornerPlus position="top-right" className="text-muted-foreground/50" />

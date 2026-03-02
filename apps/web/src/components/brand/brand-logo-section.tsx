@@ -8,7 +8,7 @@ export function BrandLogoSection() {
     <section className="relative">
       <CornerPlus position="top-left" className="text-muted-foreground/50" />
       <CornerPlus position="top-right" className="text-muted-foreground/50" />
-      <div className="p-8 md:p-12">
+      <div className="px-6 py-8 md:p-12">
         <TypographyH2>Logo</TypographyH2>
         <TypographyP className="mt-2">
           The AutoHDR logo combines the symbol and wordmark.

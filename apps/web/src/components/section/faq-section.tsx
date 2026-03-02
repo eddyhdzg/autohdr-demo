@@ -20,7 +20,7 @@ export function FAQSection() {
             <CornerPlus position="top-right" className="text-muted-foreground/50" />
             <div className="mx-auto">
                 <div className="grid md:grid-cols-6 md:divide-x divide-border">
-                    <div className="md:col-span-2 flex flex-col gap-4 p-8 md:p-12">
+                    <div className="md:col-span-2 flex flex-col gap-4 px-6 py-8 md:p-12">
                         <TypographyH2 className="text-left">
                             {faqSection.title}
                         </TypographyH2>
@@ -29,7 +29,7 @@ export function FAQSection() {
                         </TypographyP>
                     </div>
 
-                    <div className="md:col-span-4 w-full p-8 md:p-12">
+                    <div className="md:col-span-4 w-full px-6 py-8 md:p-12">
                         <Accordion className="w-full">
                             {faqSection.faQitems.map((faq, index) => (
                                 <AccordionItem
