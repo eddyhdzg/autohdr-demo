@@ -243,7 +243,7 @@ export function PricingSection() {
                 >
                     <div className="flex items-center justify-between">
                         <h3 className="text-lg font-semibold">{proTier.tier}</h3>
-                        <div className="flex flex-wrap items-center gap-2">
+                        <div className="flex flex-wrap items-center justify-end gap-2">
                             {isProSelected && (
                                 <span className="lg:hidden inline-flex items-center gap-1.5 whitespace-nowrap border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
                                     <SparklesIcon className="size-3" />
