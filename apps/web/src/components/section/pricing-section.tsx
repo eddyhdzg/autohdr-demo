@@ -11,6 +11,7 @@ import { CornerPlus } from "@workspace/ui/components/corner-plus";
 import { Switch } from "@workspace/ui/components/switch";
 import { Label } from "@workspace/ui/components/label";
 import { TypographyH2, TypographyMuted } from "@workspace/ui/components/typography";
+import { Card, CardContent } from "@workspace/ui/components/card";
 import { FlameIcon, LayersIcon, SparklesIcon } from "lucide-react";
 import Link from "next/link";
 
@@ -117,8 +118,8 @@ export function PricingSection() {
                         </span>
                     </div>
 
-                    {/* Slider */}
-                    <div className="w-full max-w-md space-y-3">
+                    {/* Slider (desktop only — mobile uses fixed bottom bar) */}
+                    <div className="hidden lg:block w-full max-w-md space-y-3">
                         <div className="flex items-center justify-between text-sm">
                             <span className="text-foreground">
                                 How many photos per month?
@@ -183,7 +184,7 @@ export function PricingSection() {
             </div>
 
             {/* 3 Pricing Cards */}
-            <div className="grid grid-cols-1 lg:grid-cols-3">
+            <div className="grid grid-cols-1 lg:grid-cols-3 pb-24 lg:pb-0">
                 {/* Mobile: Recommended label */}
                 <div className="order-1 px-8 py-4 lg:hidden">
                     <span className="inline-flex items-center gap-1.5 text-xs font-medium text-foreground">
@@ -417,6 +418,44 @@ export function PricingSection() {
                     </div>
                 </div>
             </div>
+
+            {/* Mobile: Fixed bottom slider bar */}
+            <Card className="fixed bottom-0 left-0 right-0 z-50 border-x-0 border-b-0 py-4 lg:hidden">
+                <CardContent className="space-y-3">
+                    <div className="flex items-center justify-between text-sm">
+                        <span className="font-medium">
+                            {currentTier.photos === 0
+                                ? "Free · 10 photos"
+                                : `${formatPhotos(currentTier.photos)} photos / mo`}
+                        </span>
+                        <span className="font-semibold tabular-nums">
+                            {currentTier.photos === 0
+                                ? "$0"
+                                : `$${(isYearly ? currentTier.yearlyMonthly : currentTier.monthly).toFixed(2)}`}
+                            <span className="text-muted-foreground font-normal">
+                                {" "}
+                                /mo
+                            </span>
+                        </span>
+                    </div>
+                    <Slider
+                        value={[sliderIndex]}
+                        onValueChange={(val) => {
+                            const v = Array.isArray(val)
+                                ? val[0]
+                                : val;
+                            setSliderIndex(v);
+                        }}
+                        min={0}
+                        max={PRICING_TIERS.length - 1}
+                        step={1}
+                    />
+                    <div className="flex items-center justify-between text-xs text-muted-foreground tabular-nums">
+                        <span>Free</span>
+                        <span>10K</span>
+                    </div>
+                </CardContent>
+            </Card>
         </section>
     );
 }
