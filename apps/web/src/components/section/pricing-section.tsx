@@ -193,13 +193,15 @@ export function PricingSection() {
                         isFreeSelected && "bg-accent/50 ring-2 ring-inset ring-primary"
                     )}
                 >
-                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                    <div className="flex flex-col gap-2">
                         <h3 className="text-lg font-semibold">{freePlan.name}</h3>
                         {isFreeSelected && (
-                            <span className="lg:hidden ml-auto inline-flex items-center gap-1.5 whitespace-nowrap border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
-                                <SparklesIcon className="size-3" />
-                                Recommended
-                            </span>
+                            <div className="flex lg:hidden">
+                                <span className="inline-flex items-center gap-1.5 whitespace-nowrap border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
+                                    <SparklesIcon className="size-3" />
+                                    Recommended
+                                </span>
+                            </div>
                         )}
                     </div>
                     <div className="mt-4 mb-6">
@@ -241,9 +243,9 @@ export function PricingSection() {
                         isProSelected && "bg-accent/50 ring-2 ring-inset ring-primary"
                     )}
                 >
-                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                    <div className="flex flex-col gap-2">
                         <h3 className="text-lg font-semibold">{proTier.tier}</h3>
-                        <div className="flex flex-wrap items-center gap-2 ml-auto">
+                        <div className="flex flex-wrap items-center gap-2">
                             {isProSelected && (
                                 <span className="lg:hidden inline-flex items-center gap-1.5 whitespace-nowrap border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
                                     <SparklesIcon className="size-3" />
@@ -336,13 +338,15 @@ export function PricingSection() {
                         isEnterpriseSelected && "bg-accent/50 ring-2 ring-inset ring-primary"
                     )}
                 >
-                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                    <div className="flex flex-col gap-2">
                         <h3 className="text-lg font-semibold">{enterprisePlan.name}</h3>
                         {isEnterpriseSelected && (
-                            <span className="lg:hidden ml-auto inline-flex items-center gap-1.5 whitespace-nowrap border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
-                                <SparklesIcon className="size-3" />
-                                Recommended
-                            </span>
+                            <div className="flex lg:hidden">
+                                <span className="inline-flex items-center gap-1.5 whitespace-nowrap border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
+                                    <SparklesIcon className="size-3" />
+                                    Recommended
+                                </span>
+                            </div>
                         )}
                     </div>
                     <div className="mt-4 mb-6">
