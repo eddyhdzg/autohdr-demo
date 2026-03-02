@@ -56,7 +56,7 @@ export const siteConfig = {
     nav: {
         links: [
             { id: 1, name: "Studio", href: "/studio", disabled: true },
-            { id: 2, name: "Pricing", href: "/#pricing" },
+            { id: 2, name: "Pricing", href: "/pricing" },
             { id: 3, name: "Contact", href: "/#contact" },
             { id: 4, name: "FAQs", href: "/#faqs" },
         ],
@@ -258,7 +258,7 @@ export const siteConfig = {
             links: [
                 { id: 1, title: "Home", url: "/", icon: <House className="size-4" /> },
                 { id: 2, title: "Studio", url: "/studio", disabled: true, icon: <Clapperboard className="size-4" /> },
-                { id: 3, title: "Pricing", url: "/#pricing", icon: <Tag className="size-4" /> },
+                { id: 3, title: "Pricing", url: "/pricing", icon: <Tag className="size-4" /> },
                 { id: 4, title: "Contact", url: "/#contact", icon: <Mail className="size-4" /> },
                 { id: 5, title: "FAQs", url: "/#faqs", icon: <CircleHelp className="size-4" /> },
             ],
