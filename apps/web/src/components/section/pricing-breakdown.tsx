@@ -47,7 +47,7 @@ function hasFeature(tier: PricingTier, key: string): boolean {
 }
 
 const stickyLabelCell =
-    "sticky left-0 z-10 bg-background group-hover:bg-muted transition-colors font-medium text-sm whitespace-nowrap min-w-[180px]";
+    "sticky left-0 z-auto bg-background group-hover:bg-muted transition-colors font-medium text-sm whitespace-nowrap min-w-[180px]";
 
 const groupHeaderCell =
     "bg-muted text-xs font-semibold uppercase tracking-wider text-muted-foreground";
