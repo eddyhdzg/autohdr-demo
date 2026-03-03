@@ -1,6 +1,7 @@
 "use client";
 
 import { useQueryStates } from "nuqs";
+import { useTranslations } from "next-intl";
 import { pricingSearchParams } from "@/lib/pricing-searchparams";
 import { EXTRA_CREDIT_RATE, PRICING_TIERS, type PricingTier } from "@/lib/consts";
 import { cn } from "@workspace/ui/lib/utils";
@@ -17,16 +18,16 @@ import { TypographyH2, TypographyP } from "@workspace/ui/components/typography";
 import { Check } from "lucide-react";
 
 const FEATURE_ROWS = [
-    { label: "Priority processing", key: "priority" },
-    { label: "Credits roll over", key: "Unused credits roll over" },
-    { label: "Auto TV Blackout", key: "Auto TV Blackout" },
-    { label: "Auto Add Fire", key: "Auto Add Fire" },
-    { label: "Walkthrough re-ordering", key: "Walkthrough Re-ordering" },
-    { label: "Dedicated Slack channel", key: "Dedicated Slack Channel" },
+    { labelKey: "priorityProcessing", key: "priority" },
+    { labelKey: "creditsRollOver", key: "Unused credits roll over" },
+    { labelKey: "autoTvBlackout", key: "Auto TV Blackout" },
+    { labelKey: "autoAddFire", key: "Auto Add Fire" },
+    { labelKey: "walkthroughReordering", key: "Walkthrough Re-ordering" },
+    { labelKey: "dedicatedSlack", key: "Dedicated Slack Channel" },
 ] as const;
 
-function formatColumnHeader(tier: PricingTier): string {
-    if (tier.photos === 0) return "Free";
+function formatColumnHeader(tier: PricingTier, freeLabel: string): string {
+    if (tier.photos === 0) return freeLabel;
     const photosLabel =
         tier.photos >= 1000
             ? `${(tier.photos / 1000).toLocaleString("en-US")}K`
@@ -65,6 +66,8 @@ const selectedBottom =
 
 export function PricingBreakdownTable() {
     const [{ billing, tier }] = useQueryStates(pricingSearchParams);
+    const t = useTranslations("PricingBreakdown");
+    const tCommon = useTranslations("Common");
     const isYearly = billing === "yearly";
 
     return (
@@ -79,9 +82,9 @@ export function PricingBreakdownTable() {
             />
             <div className="px-4 py-8 lg:p-16">
                 <div className="max-w-xl mx-auto flex flex-col items-center text-center gap-4 mb-8 md:mb-12">
-                    <TypographyH2>Compare Plans</TypographyH2>
+                    <TypographyH2>{t("title")}</TypographyH2>
                     <TypographyP>
-                        All the details, side by side.
+                        {t("description")}
                     </TypographyP>
                 </div>
 
@@ -92,15 +95,15 @@ export function PricingBreakdownTable() {
                             <TableHead
                                 className={`${stickyLabelCell} bg-background`}
                             />
-                            {PRICING_TIERS.map((t, i) => (
+                            {PRICING_TIERS.map((tierData, i) => (
                                 <TableHead
-                                    key={t.photos}
+                                    key={tierData.photos}
                                     className={cn(
                                         "text-center min-w-[100px] font-semibold text-foreground",
                                         i === tier && `${selectedTop} text-primary`
                                     )}
                                 >
-                                    {formatColumnHeader(t)}
+                                    {formatColumnHeader(tierData, t("columnFree"))}
                                 </TableHead>
                             ))}
                         </TableRow>
@@ -112,11 +115,11 @@ export function PricingBreakdownTable() {
                             <TableCell
                                 className={cn(stickyLabelCell, groupHeaderCell)}
                             >
-                                Pricing
+                                {tCommon("pricing")}
                             </TableCell>
-                            {PRICING_TIERS.map((t, i) => (
+                            {PRICING_TIERS.map((tierData, i) => (
                                 <TableCell
-                                    key={t.photos}
+                                    key={tierData.photos}
                                     className={cn(
                                         "bg-neutral-100 dark:bg-neutral-800",
                                         i === tier && selectedSides
@@ -128,27 +131,27 @@ export function PricingBreakdownTable() {
                         {/* Price */}
                         <TableRow className={dataRow}>
                             <TableCell className={cn(stickyLabelCell, "bg-background")}>
-                                Price
+                                {t("price")}
                             </TableCell>
-                            {PRICING_TIERS.map((t, i) => (
+                            {PRICING_TIERS.map((tierData, i) => (
                                 <TableCell
-                                    key={t.photos}
+                                    key={tierData.photos}
                                     className={cn(
                                         "text-center tabular-nums",
                                         i === tier && selectedSides
                                     )}
                                 >
-                                    {t.photos === 0 ? (
+                                    {tierData.photos === 0 ? (
                                         isYearly ? "—" : "$0"
                                     ) : (
                                         <>
                                             {formatPrice(
                                                 isYearly
-                                                    ? t.yearlyMonthly
-                                                    : t.monthly
+                                                    ? tierData.yearlyMonthly
+                                                    : tierData.monthly
                                             )}
                                             <span className="text-muted-foreground text-xs">
-                                                {" "}/mo
+                                                {" "}{tCommon("perMo")}
                                             </span>
                                         </>
                                     )}
@@ -159,17 +162,17 @@ export function PricingBreakdownTable() {
                         {/* Per photo */}
                         <TableRow className={dataRowStriped}>
                             <TableCell className={cn(stickyLabelCell, stripe)}>
-                                Per photo
+                                {t("perPhoto")}
                             </TableCell>
-                            {PRICING_TIERS.map((t, i) => (
+                            {PRICING_TIERS.map((tierData, i) => (
                                 <TableCell
-                                    key={t.photos}
+                                    key={tierData.photos}
                                     className={cn(
                                         "text-center tabular-nums",
                                         i === tier && selectedSides
                                     )}
                                 >
-                                    {t.photos === 0 ? (
+                                    {tierData.photos === 0 ? (
                                         <span>
                                             ${EXTRA_CREDIT_RATE.toFixed(2)}
                                             <sup>*</sup>
@@ -177,14 +180,14 @@ export function PricingBreakdownTable() {
                                     ) : isYearly ? (
                                         <span className="flex flex-col items-center gap-0.5">
                                             <span className="text-muted-foreground line-through text-xs">
-                                                ${t.perPhoto.toFixed(2)}
+                                                ${tierData.perPhoto.toFixed(2)}
                                             </span>
                                             <span className="text-green-700 dark:text-green-400">
-                                                ${t.yearlyPerPhoto.toFixed(2)}
+                                                ${tierData.yearlyPerPhoto.toFixed(2)}
                                             </span>
                                         </span>
                                     ) : (
-                                        `$${t.perPhoto.toFixed(2)}`
+                                        `$${tierData.perPhoto.toFixed(2)}`
                                     )}
                                 </TableCell>
                             ))}
@@ -195,11 +198,11 @@ export function PricingBreakdownTable() {
                             <TableCell
                                 className={cn(stickyLabelCell, groupHeaderCell)}
                             >
-                                Features
+                                {tCommon("features")}
                             </TableCell>
-                            {PRICING_TIERS.map((t, i) => (
+                            {PRICING_TIERS.map((tierData, i) => (
                                 <TableCell
-                                    key={t.photos}
+                                    key={tierData.photos}
                                     className={cn(
                                         "bg-neutral-100 dark:bg-neutral-800",
                                         i === tier && selectedSides
@@ -213,17 +216,17 @@ export function PricingBreakdownTable() {
                             return (
                             <TableRow key={row.key} className={isStriped ? dataRowStriped : dataRow}>
                                 <TableCell className={cn(stickyLabelCell, isStriped ? stripe : "bg-background")}>
-                                    {row.label}
+                                    {t(row.labelKey)}
                                 </TableCell>
-                                {PRICING_TIERS.map((t, i) => (
+                                {PRICING_TIERS.map((tierData, i) => (
                                     <TableCell
-                                        key={t.photos}
+                                        key={tierData.photos}
                                         className={cn(
                                             "text-center",
                                             i === tier && (rowIdx === FEATURE_ROWS.length - 1 ? selectedBottom : selectedSides)
                                         )}
                                     >
-                                        {hasFeature(t, row.key) ? (
+                                        {hasFeature(tierData, row.key) ? (
                                             <Check className="mx-auto size-4 text-green-700 dark:text-green-400" />
                                         ) : (
                                             <span className="text-muted-foreground">
@@ -240,8 +243,7 @@ export function PricingBreakdownTable() {
                 </ScrollArea>
 
                 <p className="text-xs text-muted-foreground mt-4">
-                    * Pay-as-you-go rate. Additional photos on the Free plan
-                    cost ${EXTRA_CREDIT_RATE.toFixed(2)} each.
+                    {t("payAsYouGoNote", { rate: EXTRA_CREDIT_RATE.toFixed(2) })}
                 </p>
             </div>
         </section>

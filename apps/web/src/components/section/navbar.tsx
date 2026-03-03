@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "motion/react";
 import { siteConfig } from "@/lib/config";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -21,9 +21,11 @@ import { copySvgToClipboard } from "@/lib/brand-utils";
 function HamburgerButton({
   isOpen,
   onClick,
+  label,
 }: {
   isOpen: boolean;
   onClick: () => void;
+  label: string;
 }) {
   return (
     <Button
@@ -31,7 +33,7 @@ function HamburgerButton({
       size="icon"
       onClick={onClick}
       className="md:hidden relative z-50 size-8"
-      aria-label="Toggle menu"
+      aria-label={label}
       aria-expanded={isOpen}
     >
       <div className="relative size-5 flex items-center justify-center">
@@ -61,6 +63,8 @@ function HamburgerButton({
 }
 
 function DesktopNav() {
+  const tNav = useTranslations("Nav");
+
   return (
     <NavigationMenu className="hidden md:flex">
       <NavigationMenuList className="gap-1">
@@ -68,14 +72,14 @@ function DesktopNav() {
           <NavigationMenuItem key={link.id}>
             {link.disabled ? (
               <span className="border border-transparent text-muted-foreground/50 cursor-not-allowed rounded-none h-8 w-fit inline-flex items-center justify-center px-4 py-2 text-sm font-medium">
-                {link.name}
+                {tNav(link.translationKey)}
               </span>
             ) : (
               <NavigationMenuLink
                 render={<Link href={link.href} />}
                 className="border border-transparent hover:border-border text-foreground rounded-none h-8 w-fit px-2 bg-transparent group inline-flex items-center justify-center px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none"
               >
-                {link.name}
+                {tNav(link.translationKey)}
               </NavigationMenuLink>
             )}
           </NavigationMenuItem>
@@ -93,16 +97,18 @@ function MobileNav({
   onClose: () => void;
 }) {
   const pathname = usePathname();
+  const tFooter = useTranslations("Footer");
+  const tCommon = useTranslations("Common");
   const isActive = (url: string) => {
     if (url.includes("#")) return false;
     return pathname === url;
   };
 
   const sections = siteConfig.footerLinks.filter(
-    (s) => s.title !== "Social"
+    (s) => s.titleKey !== "social"
   );
   const social = siteConfig.footerLinks.find(
-    (s) => s.title === "Social"
+    (s) => s.titleKey === "social"
   );
 
   return (
@@ -129,7 +135,7 @@ function MobileNav({
               <nav className="flex-1 px-6 py-4 pb-32">
                 {sections.map((section, index) => (
                   <motion.div
-                    key={section.title}
+                    key={section.titleKey}
                     initial={{
                       opacity: 0,
                       y: -30,
@@ -148,7 +154,7 @@ function MobileNav({
                     className="border-b border-border py-4"
                   >
                     <p className="text-xs font-medium uppercase text-muted-foreground tracking-wider px-2 mb-2">
-                      {section.title}
+                      {tFooter(`sections.${section.titleKey}`)}
                     </p>
                     <ul className="flex flex-col gap-1">
                       {section.links.map((link) => (
@@ -161,7 +167,7 @@ function MobileNav({
                               className="w-full justify-start gap-2 rounded-md"
                             >
                               {link.icon}
-                              {link.title}
+                              {tFooter(`links.${link.translationKey}`)}
                             </Button>
                           ) : link.external ? (
                             <Button
@@ -178,7 +184,7 @@ function MobileNav({
                               className="w-full justify-start gap-2 rounded-md text-foreground"
                             >
                               {link.icon}
-                              {link.title}
+                              {tFooter(`links.${link.translationKey}`)}
                               <ArrowUpRight className="size-3 ml-auto" />
                             </Button>
                           ) : (
@@ -199,7 +205,7 @@ function MobileNav({
                               )}
                             >
                               {link.icon}
-                              {link.title}
+                              {tFooter(`links.${link.translationKey}`)}
                             </Button>
                           )}
                         </li>
@@ -228,7 +234,7 @@ function MobileNav({
                     className="py-4"
                   >
                     <p className="text-xs font-medium uppercase text-muted-foreground tracking-wider px-2 mb-2">
-                      {social.title}
+                      {tFooter(`sections.${social.titleKey}`)}
                     </p>
                     <ul className="flex flex-col gap-1">
                       {social.links.map((link) => (
@@ -247,7 +253,7 @@ function MobileNav({
                             className="w-full justify-start gap-2 rounded-md text-foreground"
                           >
                             {link.icon}
-                            {link.title}
+                            {tFooter(`links.${link.translationKey}`)}
                             <ArrowUpRight className="size-3 ml-auto" />
                           </Button>
                         </li>
@@ -278,7 +284,7 @@ function MobileNav({
                     onClick={onClose}
                     className="w-full px-5 py-3 text-sm font-medium"
                   >
-                    {siteConfig.cta}
+                    {tCommon("getStarted")}
                   </Button>
                 </motion.div>
               </div>
@@ -292,6 +298,8 @@ function MobileNav({
 
 export function Navbar() {
   const router = useRouter();
+  const tNav = useTranslations("Nav");
+  const tCommon = useTranslations("Common");
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollYRef = useRef(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -414,11 +422,12 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <Button size="sm" className="hidden md:flex px-5 text-sm font-medium">
-            {siteConfig.cta}
+            {tCommon("getStarted")}
           </Button>
           <HamburgerButton
             isOpen={isMobileMenuOpen}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            label={tNav("toggleMenu")}
           />
         </div>
       </div>
@@ -432,7 +441,7 @@ export function Navbar() {
         <div
           ref={contextMenuRef}
           role="menu"
-          aria-label="Logo options"
+          aria-label={tNav("logoOptions")}
           className="fixed z-[100] border border-border bg-popover shadow-md py-1"
           style={{ top: contextMenuPos.y, left: contextMenuPos.x }}
         >
@@ -446,7 +455,7 @@ export function Navbar() {
             }}
           >
             <ExternalLink className="size-4 text-muted-foreground" />
-            Open Link in New Tab
+            {tNav("openLinkInNewTab")}
           </button>
           <button
             type="button"
@@ -463,7 +472,7 @@ export function Navbar() {
             }}
           >
             <Copy className="size-4 text-muted-foreground" />
-            Copy Logo as SVG
+            {tNav("copyLogoAsSvg")}
           </button>
           <button
             type="button"
@@ -475,7 +484,7 @@ export function Navbar() {
             }}
           >
             <Palette className="size-4 text-muted-foreground" />
-            Go to Brand Kit
+            {tNav("goToBrandKit")}
           </button>
         </div>
       )}

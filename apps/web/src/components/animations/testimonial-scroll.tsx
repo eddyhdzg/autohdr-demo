@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { X } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Marquee } from "@workspace/ui/components/marquee";
 import {
     Card,
@@ -22,9 +23,7 @@ import {
 export interface Testimonial {
     id: string;
     name: string;
-    role: string;
     img: string;
-    description: string;
     videoUrl: string;
 }
 
@@ -50,6 +49,10 @@ function PlayIcon({ className }: { className?: string }) {
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
     const videoId = getYouTubeId(testimonial.videoUrl);
     const [isOpen, setIsOpen] = useState(false);
+    const t = useTranslations("Testimonials");
+
+    const role = t(`items.${testimonial.id}.role`);
+    const description = t(`items.${testimonial.id}.description`);
 
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -57,11 +60,11 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
                 <DialogTrigger
                     tabIndex={-1}
                     className="relative aspect-video w-full cursor-pointer overflow-hidden -mt-3"
-                    aria-label={`Play video testimonial from ${testimonial.name}`}
+                    aria-label={t("playVideo", { name: testimonial.name })}
                 >
                     <Image
                         src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
-                        alt={`${testimonial.name} video testimonial`}
+                        alt={t("videoAlt", { name: testimonial.name })}
                         fill
                         sizes="400px"
                         className="object-cover transition-transform duration-300 group-hover/card:scale-105"
@@ -73,7 +76,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
 
                 <CardContent className="flex-1">
                     <p className="select-none leading-relaxed font-normal text-muted-foreground">
-                        &ldquo;{testimonial.description}&rdquo;
+                        &ldquo;{description}&rdquo;
                     </p>
                 </CardContent>
 
@@ -91,7 +94,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
                                 {testimonial.name}
                             </p>
                             <p className="text-sm font-normal text-muted-foreground">
-                                {testimonial.role}
+                                {role}
                             </p>
                         </div>
                     </div>
@@ -102,16 +105,16 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
                 <DialogBackdrop />
                 <DialogPopup className="w-[90vw] max-w-4xl">
                     <DialogTitle className="sr-only">
-                        {testimonial.name} — Video Testimonial
+                        {t("videoTitle", { name: testimonial.name })}
                     </DialogTitle>
-                    <DialogClose aria-label="Close video">
+                    <DialogClose aria-label={t("closeVideo")}>
                         <X className="size-5 text-white" />
                     </DialogClose>
                     {isOpen && (
                         <div className="relative aspect-video w-full">
                             <iframe
                                 src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`}
-                                title={`${testimonial.name} testimonial video`}
+                                title={t("videoTitle", { name: testimonial.name })}
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowFullScreen
                                 className="h-full w-full"

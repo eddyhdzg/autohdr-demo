@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import { siteConfig } from "@/lib/config";
 import { Button } from "@workspace/ui/components/button";
 import {
@@ -13,9 +14,10 @@ import {
 } from "@workspace/ui/components/typography";
 import { ArrowUpRight, MessageSquarePlus, Puzzle } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
-export function IntegrationsSection() {
+export async function IntegrationsSection() {
+    const t = await getTranslations("Integrations");
     const { integrationsSection } = siteConfig;
 
     return (
@@ -35,11 +37,11 @@ export function IntegrationsSection() {
             <div className="flex flex-col items-center text-center space-y-6 max-w-3xl mx-auto">
                 <div className="inline-flex items-center gap-1.5 border bg-background px-3 h-8 text-sm font-medium dark:bg-input/30 dark:border-input [&_svg]:size-4">
                     <Puzzle />
-                    {integrationsSection.badge}
+                    {t("badge")}
                 </div>
-                <TypographyH2>{integrationsSection.title}</TypographyH2>
+                <TypographyH2>{t("title")}</TypographyH2>
                 <TypographyP className="max-w-2xl">
-                    {integrationsSection.description}
+                    {t("description")}
                 </TypographyP>
             </div>
 
@@ -68,7 +70,7 @@ export function IntegrationsSection() {
                                     {integration.name}
                                 </CardTitle>
                                 <CardDescription>
-                                    {integration.description}
+                                    {t(`items.${integration.translationKey}`)}
                                 </CardDescription>
                             </CardHeader>
                         </Card>
@@ -82,10 +84,10 @@ export function IntegrationsSection() {
                         <CardHeader>
                             <MessageSquarePlus className="size-6 text-muted-foreground" />
                             <CardTitle className="text-base">
-                                {integrationsSection.requestIntegration.text}
+                                {t("requestIntegration")}
                             </CardTitle>
                             <CardDescription>
-                                Don&apos;t see your platform? Let us know.
+                                {t("requestDescription")}
                             </CardDescription>
                         </CardHeader>
                     </Card>
@@ -104,7 +106,7 @@ export function IntegrationsSection() {
                     variant="outline"
                     size="sm"
                 >
-                    {integrationsSection.link.text}
+                    {t("viewAll")}
                     <ArrowUpRight className="size-4" />
                 </Button>
             </div>

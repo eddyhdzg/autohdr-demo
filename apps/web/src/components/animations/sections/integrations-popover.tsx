@@ -2,6 +2,7 @@
 
 import { Search } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import { useTranslations } from "next-intl";
 import { Icons } from "@/components/icons";
 
 const integrations = [
@@ -12,6 +13,8 @@ const integrations = [
 ];
 
 export function IntegrationsPopover({ open, position = "bottom" }: { open: boolean; position?: "top" | "bottom" }) {
+    const t = useTranslations("Animations");
+
     const positionClasses = position === "top"
         ? "bottom-full mb-2"
         : "top-full mt-2";
@@ -31,7 +34,7 @@ export function IntegrationsPopover({ open, position = "bottom" }: { open: boole
                             <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
                             <input
                                 type="text"
-                                placeholder="Search for servers"
+                                placeholder={t("searchServers")}
                                 className="w-full pl-10 pr-4 py-2.5 bg-transparent border-none text-sm text-foreground placeholder:text-muted-foreground pointer-events-none h-14"
                             />
                         </div>
@@ -54,7 +57,7 @@ export function IntegrationsPopover({ open, position = "bottom" }: { open: boole
                                     </span>
                                     {integration.installed && (
                                         <span className="text-xs text-primary font-medium bg-primary/10 rounded-none px-2 py-1">
-                                            Installed
+                                            {t("installed")}
                                         </span>
                                     )}
                                 </div>
@@ -66,4 +69,3 @@ export function IntegrationsPopover({ open, position = "bottom" }: { open: boole
         </AnimatePresence>
     );
 }
-
