@@ -25,6 +25,63 @@ function formatTickLabel(photos: number): string {
     return String(photos);
 }
 
+function PricingSlider({
+    sliderIndex,
+    onValueChange,
+}: {
+    sliderIndex: number;
+    onValueChange: (value: number) => void;
+}) {
+    return (
+        <>
+            <Slider
+                value={[sliderIndex]}
+                onValueChange={(val) => {
+                    const v = Array.isArray(val) ? val[0] : val;
+                    onValueChange(v);
+                }}
+                min={0}
+                max={PRICING_TIERS.length - 1}
+                step={1}
+                tooltipRender={(val) => {
+                    const photos = PRICING_TIERS[val].photos;
+                    return photos === 0
+                        ? "0-10 photos"
+                        : `${formatPhotos(photos)} photos`;
+                }}
+            />
+            {/* Tick labels */}
+            <span className="flex w-full items-center justify-between gap-1 px-2.5 text-xs text-muted-foreground tabular-nums">
+                {PRICING_TIERS.map((tier, i) => (
+                    <button
+                        key={i}
+                        type="button"
+                        onClick={() => onValueChange(i)}
+                        className={cn(
+                            "flex w-0 flex-col items-center justify-center gap-2 cursor-pointer",
+                            i === sliderIndex
+                                ? "text-foreground font-medium"
+                                : "hover:text-foreground/70"
+                        )}
+                    >
+                        <span
+                            className={cn(
+                                "h-1 w-px",
+                                i === sliderIndex
+                                    ? "bg-foreground"
+                                    : "bg-muted-foreground/70"
+                            )}
+                        />
+                        <span>
+                            {formatTickLabel(tier.photos)}
+                        </span>
+                    </button>
+                ))}
+            </span>
+        </>
+    );
+}
+
 export function PricingSection() {
     const [{ billing, tier }, setPricingParams] = useQueryStates(pricingSearchParams);
     const isYearly = billing === "yearly";
@@ -114,52 +171,10 @@ export function PricingSection() {
                                 photos / mo
                             </span>
                         </div>
-                        <Slider
-                            value={[sliderIndex]}
-                            onValueChange={(val) => {
-                                const v = Array.isArray(val)
-                                    ? val[0]
-                                    : val;
-                                setPricingParams({ tier: v });
-                            }}
-                            min={0}
-                            max={PRICING_TIERS.length - 1}
-                            step={1}
-                            tooltipRender={(val) => {
-                                const photos = PRICING_TIERS[val].photos;
-                                return photos === 0
-                                    ? "0-10 photos"
-                                    : `${formatPhotos(photos)} photos`;
-                            }}
+                        <PricingSlider
+                            sliderIndex={sliderIndex}
+                            onValueChange={(v) => setPricingParams({ tier: v })}
                         />
-                        {/* Tick labels */}
-                        <span className="flex w-full items-center justify-between gap-1 px-2.5 text-xs text-muted-foreground tabular-nums">
-                            {PRICING_TIERS.map((tier, i) => (
-                                <button
-                                    key={i}
-                                    type="button"
-                                    onClick={() => setPricingParams({ tier: i })}
-                                    className={cn(
-                                        "flex w-0 flex-col items-center justify-center gap-2 cursor-pointer",
-                                        i === sliderIndex
-                                            ? "text-foreground font-medium"
-                                            : "hover:text-foreground/70"
-                                    )}
-                                >
-                                    <span
-                                        className={cn(
-                                            "h-1 w-px",
-                                            i === sliderIndex
-                                                ? "bg-foreground"
-                                                : "bg-muted-foreground/70"
-                                        )}
-                                    />
-                                    <span>
-                                        {formatTickLabel(tier.photos)}
-                                    </span>
-                                </button>
-                            ))}
-                        </span>
                     </div>
                 </div>
             </div>
@@ -457,52 +472,10 @@ export function PricingSection() {
                             </TabsTrigger>
                         </TabsList>
                     </Tabs>
-                    <Slider
-                        value={[sliderIndex]}
-                        onValueChange={(val) => {
-                            const v = Array.isArray(val)
-                                ? val[0]
-                                : val;
-                            setPricingParams({ tier: v });
-                        }}
-                        min={0}
-                        max={PRICING_TIERS.length - 1}
-                        step={1}
-                        tooltipRender={(val) => {
-                            const photos = PRICING_TIERS[val].photos;
-                            return photos === 0
-                                ? "0-10 photos"
-                                : `${formatPhotos(photos)} photos`;
-                        }}
+                    <PricingSlider
+                        sliderIndex={sliderIndex}
+                        onValueChange={(v) => setPricingParams({ tier: v })}
                     />
-                    {/* Tick labels */}
-                    <span className="flex w-full items-center justify-between gap-1 px-2.5 text-xs text-muted-foreground tabular-nums">
-                        {PRICING_TIERS.map((tier, i) => (
-                            <button
-                                key={i}
-                                type="button"
-                                onClick={() => setPricingParams({ tier: i })}
-                                className={cn(
-                                    "flex w-0 flex-col items-center justify-center gap-2 cursor-pointer",
-                                    i === sliderIndex
-                                        ? "text-foreground font-medium"
-                                        : "hover:text-foreground/70"
-                                )}
-                            >
-                                <span
-                                    className={cn(
-                                        "h-1 w-px",
-                                        i === sliderIndex
-                                            ? "bg-foreground"
-                                            : "bg-muted-foreground/70"
-                                    )}
-                                />
-                                <span>
-                                    {formatTickLabel(tier.photos)}
-                                </span>
-                            </button>
-                        ))}
-                    </span>
                 </CardContent>
             </Card>
         </section>
