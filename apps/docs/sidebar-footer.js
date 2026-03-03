@@ -27,7 +27,6 @@
     return doc.documentElement;
   }
 
-  // --- Sidebar footer: social icons only ---
   function injectSidebarFooter() {
     var sidebar = document.getElementById("sidebar");
     if (!sidebar || sidebar.querySelector(".sidebar-footer")) return;
@@ -42,7 +41,6 @@
       link.rel = "noopener noreferrer";
       link.setAttribute("aria-label", social.label);
 
-      // TikTok gets a wrapper for consistent 20px box sizing
       if (social.label === "TikTok") {
         link.className = "sidebar-footer-tiktok";
       }
@@ -54,7 +52,6 @@
     sidebar.appendChild(footer);
   }
 
-  // --- Page footer: inject TikTok icon ---
   function injectFooterTikTok() {
     var footer = document.getElementById("footer");
     if (!footer || footer.querySelector("[data-tiktok-injected]")) return;
@@ -68,7 +65,6 @@
     var container = lastSocial.parentElement;
     if (!container) return;
 
-    // Clone the style from a sibling link for consistent color
     var refLink = socialLinks[0];
     var refStyle = window.getComputedStyle(refLink);
 
@@ -82,7 +78,6 @@
     tiktokLink.style.color = refStyle.color;
     tiktokLink.appendChild(parseSvg(TIKTOK_SVG));
 
-    // Insert between Instagram and LinkedIn
     var instagramLink = container.querySelector("a[href*='instagram']");
     if (instagramLink && instagramLink.nextSibling) {
       container.insertBefore(tiktokLink, instagramLink.nextSibling);
@@ -102,21 +97,14 @@
     injectAll();
   }
 
-  var observer = new MutationObserver(function () {
-    var sidebarDone = !!document.querySelector(".sidebar-footer");
-    var footerDone = !!document.querySelector("[data-tiktok-injected]");
-
-    if (!sidebarDone) injectSidebarFooter();
-    if (document.getElementById("footer") && !footerDone) injectFooterTikTok();
-
-    // Disconnect once both injections are complete
+  // Never disconnect — Mintlify SPA navigation may remove/re-render the DOM
+  new MutationObserver(function () {
+    if (!document.querySelector(".sidebar-footer")) injectSidebarFooter();
     if (
-      document.querySelector(".sidebar-footer") &&
-      document.querySelector("[data-tiktok-injected]")
+      document.getElementById("footer") &&
+      !document.querySelector("[data-tiktok-injected]")
     ) {
-      observer.disconnect();
+      injectFooterTikTok();
     }
-  });
-
-  observer.observe(document.body, { childList: true, subtree: true });
+  }).observe(document.body, { childList: true, subtree: true });
 })();
