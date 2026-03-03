@@ -5,7 +5,6 @@ import { pricingSearchParams } from "@/lib/pricing-searchparams";
 import { EXTRA_CREDIT_RATE, PRICING_TIERS, type PricingTier } from "@/lib/consts";
 import { cn } from "@workspace/ui/lib/utils";
 import { CornerPlus } from "@workspace/ui/components/corner-plus";
-import { ScrollArea } from "@workspace/ui/components/scroll-area";
 import {
     TableBody,
     TableCell,
@@ -13,6 +12,7 @@ import {
     TableHeader,
     TableRow,
 } from "@workspace/ui/components/table";
+import { ScrollArea } from "@workspace/ui/components/scroll-area";
 import { TypographyH2, TypographyP } from "@workspace/ui/components/typography";
 import { Check } from "lucide-react";
 
@@ -47,10 +47,21 @@ function hasFeature(tier: PricingTier, key: string): boolean {
 }
 
 const stickyLabelCell =
-    "sticky left-0 z-[1] bg-background group-hover:bg-muted transition-colors font-medium text-sm whitespace-nowrap min-w-[180px]";
+    "sticky left-0 z-[1] group-hover:bg-neutral-200 dark:group-hover:bg-neutral-800 transition-colors font-medium text-sm whitespace-nowrap min-w-[180px]";
 
 const groupHeaderCell =
-    "bg-muted text-xs font-semibold uppercase tracking-wider text-muted-foreground";
+    "bg-neutral-100 dark:bg-neutral-800 text-xs font-semibold uppercase tracking-wider text-muted-foreground";
+
+const stripe = "bg-neutral-50 dark:bg-[#101010]";
+const dataRow = "group border-0 hover:bg-neutral-200 dark:hover:bg-neutral-800";
+const dataRowStriped = `${dataRow} ${stripe}`;
+
+const selectedSides =
+    "shadow-[inset_2px_0_var(--color-primary),inset_-2px_0_var(--color-primary)]";
+const selectedTop =
+    "shadow-[inset_2px_0_var(--color-primary),inset_-2px_0_var(--color-primary),inset_0_2px_var(--color-primary)]";
+const selectedBottom =
+    "shadow-[inset_2px_0_var(--color-primary),inset_-2px_0_var(--color-primary),inset_0_-2px_var(--color-primary)]";
 
 export function PricingBreakdownTable() {
     const [{ billing, tier }] = useQueryStates(pricingSearchParams);
@@ -75,9 +86,9 @@ export function PricingBreakdownTable() {
                 </div>
 
                 <ScrollArea className="w-full" orientation="horizontal">
-                    <table className="w-full caption-bottom text-sm [&_tr]:border-0">
-                    <TableHeader className="[&_tr]:border-b-0">
-                        <TableRow className="hover:bg-transparent">
+                    <table className="w-full caption-bottom text-sm">
+                    <TableHeader className="[&_tr]:border-0">
+                        <TableRow className="hover:bg-transparent border-0">
                             <TableHead
                                 className={`${stickyLabelCell} bg-background`}
                             />
@@ -86,7 +97,7 @@ export function PricingBreakdownTable() {
                                     key={t.photos}
                                     className={cn(
                                         "text-center min-w-[100px] font-semibold text-foreground",
-                                        i === tier && "bg-accent text-primary"
+                                        i === tier && `${selectedTop} text-primary`
                                     )}
                                 >
                                     {formatColumnHeader(t)}
@@ -97,23 +108,26 @@ export function PricingBreakdownTable() {
 
                     <TableBody>
                         {/* ── Pricing group ── */}
-                        <TableRow className="hover:bg-transparent">
+                        <TableRow className="hover:bg-transparent border-0">
                             <TableCell
                                 className={cn(stickyLabelCell, groupHeaderCell)}
                             >
                                 Pricing
                             </TableCell>
-                            {PRICING_TIERS.map((t) => (
+                            {PRICING_TIERS.map((t, i) => (
                                 <TableCell
                                     key={t.photos}
-                                    className="bg-muted"
+                                    className={cn(
+                                        "bg-neutral-100 dark:bg-neutral-800",
+                                        i === tier && selectedSides
+                                    )}
                                 />
                             ))}
                         </TableRow>
 
                         {/* Price */}
-                        <TableRow className="group">
-                            <TableCell className={stickyLabelCell}>
+                        <TableRow className={dataRow}>
+                            <TableCell className={cn(stickyLabelCell, "bg-background")}>
                                 Price
                             </TableCell>
                             {PRICING_TIERS.map((t, i) => (
@@ -121,7 +135,7 @@ export function PricingBreakdownTable() {
                                     key={t.photos}
                                     className={cn(
                                         "text-center tabular-nums",
-                                        i === tier && "bg-accent"
+                                        i === tier && selectedSides
                                     )}
                                 >
                                     {t.photos === 0 ? (
@@ -143,8 +157,8 @@ export function PricingBreakdownTable() {
                         </TableRow>
 
                         {/* Per photo */}
-                        <TableRow className="group">
-                            <TableCell className={stickyLabelCell}>
+                        <TableRow className={dataRowStriped}>
+                            <TableCell className={cn(stickyLabelCell, stripe)}>
                                 Per photo
                             </TableCell>
                             {PRICING_TIERS.map((t, i) => (
@@ -152,7 +166,7 @@ export function PricingBreakdownTable() {
                                     key={t.photos}
                                     className={cn(
                                         "text-center tabular-nums",
-                                        i === tier && "bg-accent"
+                                        i === tier && selectedSides
                                     )}
                                 >
                                     {t.photos === 0 ? (
@@ -165,7 +179,7 @@ export function PricingBreakdownTable() {
                                             <span className="text-muted-foreground line-through text-xs">
                                                 ${t.perPhoto.toFixed(2)}
                                             </span>
-                                            <span className="text-green-700 dark:text-green-500">
+                                            <span className="text-green-700 dark:text-green-400">
                                                 ${t.yearlyPerPhoto.toFixed(2)}
                                             </span>
                                         </span>
@@ -177,23 +191,28 @@ export function PricingBreakdownTable() {
                         </TableRow>
 
                         {/* ── Features group ── */}
-                        <TableRow className="hover:bg-transparent">
+                        <TableRow className="hover:bg-transparent border-0">
                             <TableCell
                                 className={cn(stickyLabelCell, groupHeaderCell)}
                             >
                                 Features
                             </TableCell>
-                            {PRICING_TIERS.map((t) => (
+                            {PRICING_TIERS.map((t, i) => (
                                 <TableCell
                                     key={t.photos}
-                                    className="bg-muted"
+                                    className={cn(
+                                        "bg-neutral-100 dark:bg-neutral-800",
+                                        i === tier && selectedSides
+                                    )}
                                 />
                             ))}
                         </TableRow>
 
-                        {FEATURE_ROWS.map((row) => (
-                            <TableRow key={row.key} className="group">
-                                <TableCell className={stickyLabelCell}>
+                        {FEATURE_ROWS.map((row, rowIdx) => {
+                            const isStriped = rowIdx % 2 !== 0;
+                            return (
+                            <TableRow key={row.key} className={isStriped ? dataRowStriped : dataRow}>
+                                <TableCell className={cn(stickyLabelCell, isStriped ? stripe : "bg-background")}>
                                     {row.label}
                                 </TableCell>
                                 {PRICING_TIERS.map((t, i) => (
@@ -201,11 +220,11 @@ export function PricingBreakdownTable() {
                                         key={t.photos}
                                         className={cn(
                                             "text-center",
-                                            i === tier && "bg-accent"
+                                            i === tier && (rowIdx === FEATURE_ROWS.length - 1 ? selectedBottom : selectedSides)
                                         )}
                                     >
                                         {hasFeature(t, row.key) ? (
-                                            <Check className="mx-auto size-4 text-green-700 dark:text-green-500" />
+                                            <Check className="mx-auto size-4 text-green-700 dark:text-green-400" />
                                         ) : (
                                             <span className="text-muted-foreground">
                                                 —
@@ -214,7 +233,8 @@ export function PricingBreakdownTable() {
                                     </TableCell>
                                 ))}
                             </TableRow>
-                        ))}
+                            );
+                        })}
                     </TableBody>
                     </table>
                 </ScrollArea>

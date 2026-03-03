@@ -23,10 +23,11 @@ html.dark #sidebar a[aria-current="page"] {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Sidebar footer — 3 social icons with justify-between */
+/* Sidebar footer — 3 social icons centered with gap */
 .sidebar-footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 1rem;
   align-items: center;
   padding: 0.5rem 1.25rem 0.75rem;
   margin-top: auto;
@@ -68,13 +69,6 @@ html.dark .sidebar-footer a:hover {
   opacity: 0.72;
 }
 
-/* Hide "Powered by Mintlify" in page footer */
-#footer a[href*="mintlify.com"],
-#footer span:has(a[href*="mintlify.com"]),
-#footer div:has(> a[href*="mintlify.com"]) {
-  display: none !important;
-}
-
 /* Page footer — TikTok icon: 18px SVG in 20px box, match sibling color */
 #footer [data-tiktok-injected] {
   display: inline-flex;
@@ -89,3 +83,11 @@ html.dark .sidebar-footer a:hover {
   height: 18px;
   opacity: 0.72;
 }
+
+/* Hide "Powered by Mintlify" in page footer */
+#footer a[href*="mintlify.com"],
+#footer span:has(a[href*="mintlify.com"]),
+#footer div:has(> a[href*="mintlify.com"]) {
+  display: none !important;
+}
+

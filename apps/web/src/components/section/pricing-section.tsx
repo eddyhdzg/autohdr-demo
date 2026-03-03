@@ -306,7 +306,7 @@ export function PricingSection() {
                                 className={cn(
                                     "text-sm",
                                     isYearly
-                                        ? "text-green-700 dark:text-green-500"
+                                        ? "text-green-700 dark:text-green-400"
                                         : "text-muted-foreground"
                                 )}
                             >
@@ -317,7 +317,7 @@ export function PricingSection() {
                                     className={cn(
                                         "text-sm",
                                         isYearly
-                                            ? "text-green-700 dark:text-green-500"
+                                            ? "text-green-700 dark:text-green-400"
                                             : "text-muted-foreground"
                                     )}
                                 />{" "}
@@ -397,7 +397,7 @@ export function PricingSection() {
                                 className={cn(
                                     "text-sm",
                                     isYearly
-                                        ? "text-green-700 dark:text-green-500"
+                                        ? "text-green-700 dark:text-green-400"
                                         : "text-muted-foreground"
                                 )}
                             >
@@ -408,7 +408,7 @@ export function PricingSection() {
                                     className={cn(
                                         "text-sm",
                                         isYearly
-                                            ? "text-green-700 dark:text-green-500"
+                                            ? "text-green-700 dark:text-green-400"
                                             : "text-muted-foreground"
                                     )}
                                 />{" "}
@@ -464,7 +464,7 @@ export function PricingSection() {
                                             ${currentTier.perPhoto.toFixed(2)}
                                         </span>
                                     )}
-                                    <span className={cn(isYearly ? "text-green-700 dark:text-green-500" : "text-muted-foreground")}>
+                                    <span className={cn(isYearly ? "text-green-700 dark:text-green-400" : "text-muted-foreground")}>
                                         ${(isYearly ? currentTier.yearlyPerPhoto : currentTier.perPhoto).toFixed(2)} / photo
                                     </span>
                                 </span>
