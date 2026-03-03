@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import { useQueryStates } from "nuqs";
 import { pricingSearchParams, type BillingPeriod } from "@/lib/pricing-searchparams";
 import { siteConfig } from "@/lib/config";
@@ -91,7 +91,7 @@ export function PricingSection() {
     // Track lg breakpoint so only the visible slider mounts.
     // undefined = SSR (both render, CSS handles visibility).
     const [isLg, setIsLg] = useState<boolean | undefined>(undefined);
-    useEffect(() => {
+    useLayoutEffect(() => {
         const mql = window.matchMedia("(min-width: 1024px)");
         setIsLg(mql.matches);
         const handler = (e: MediaQueryListEvent) => setIsLg(e.matches);
