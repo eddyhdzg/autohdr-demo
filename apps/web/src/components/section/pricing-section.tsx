@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useQueryStates } from "nuqs";
 import { pricingSearchParams, type BillingPeriod } from "@/lib/pricing-searchparams";
 import { siteConfig } from "@/lib/config";
@@ -87,6 +88,17 @@ export function PricingSection() {
     const isYearly = billing === "yearly";
     const sliderIndex = tier;
 
+    // Track lg breakpoint so only the visible slider mounts.
+    // undefined = SSR (both render, CSS handles visibility).
+    const [isLg, setIsLg] = useState<boolean | undefined>(undefined);
+    useEffect(() => {
+        const mql = window.matchMedia("(min-width: 1024px)");
+        setIsLg(mql.matches);
+        const handler = (e: MediaQueryListEvent) => setIsLg(e.matches);
+        mql.addEventListener("change", handler);
+        return () => mql.removeEventListener("change", handler);
+    }, []);
+
     const currentTier = PRICING_TIERS[sliderIndex];
 
     // Derive selected card from slider position
@@ -171,10 +183,12 @@ export function PricingSection() {
                                 photos / mo
                             </span>
                         </div>
-                        <PricingSlider
-                            sliderIndex={sliderIndex}
-                            onValueChange={(v) => setPricingParams({ tier: v })}
-                        />
+                        {isLg !== false && (
+                            <PricingSlider
+                                sliderIndex={sliderIndex}
+                                onValueChange={(v) => setPricingParams({ tier: v })}
+                            />
+                        )}
                     </div>
                 </div>
             </div>
@@ -472,10 +486,12 @@ export function PricingSection() {
                             </TabsTrigger>
                         </TabsList>
                     </Tabs>
-                    <PricingSlider
-                        sliderIndex={sliderIndex}
-                        onValueChange={(v) => setPricingParams({ tier: v })}
-                    />
+                    {isLg !== true && (
+                        <PricingSlider
+                            sliderIndex={sliderIndex}
+                            onValueChange={(v) => setPricingParams({ tier: v })}
+                        />
+                    )}
                 </CardContent>
             </Card>
         </section>

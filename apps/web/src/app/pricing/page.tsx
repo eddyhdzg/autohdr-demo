@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import type { SearchParams } from "nuqs/server";
 import { Suspense } from "react";
+import { pricingSearchParamsCache } from "@/lib/pricing-searchparams-cache";
 import { PricingSection } from "@/components/section/pricing-section";
 import { PricingBreakdownTable } from "@/components/section/pricing-breakdown";
 import { FAQSection } from "@/components/section/faq-section";
@@ -63,7 +65,13 @@ export const metadata: Metadata = {
     "Only pay for what you download. Simple, transparent pricing for real estate photo editing.",
 };
 
-export default function PricingPage() {
+type PageProps = {
+  searchParams: Promise<SearchParams>;
+};
+
+export default async function PricingPage({ searchParams }: PageProps) {
+  await pricingSearchParamsCache.parse(searchParams);
+
   return (
     <main className="flex flex-col divide-y divide-border pt-16 pb-40 lg:pb-0">
       <Suspense>
