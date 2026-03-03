@@ -17,6 +17,15 @@ import Link from "next/link";
 
 const { pricing } = siteConfig;
 
+const LG_QUERY = "(min-width: 1024px)";
+const subscribeLg = (callback: () => void) => {
+    const mql = window.matchMedia(LG_QUERY);
+    mql.addEventListener("change", callback);
+    return () => mql.removeEventListener("change", callback);
+};
+const getLgSnapshot = () => window.matchMedia(LG_QUERY).matches;
+const getLgServerSnapshot = () => undefined;
+
 function formatPhotos(photos: number): string {
     return photos.toLocaleString("en-US");
 }
@@ -91,13 +100,9 @@ export function PricingSection() {
     // Track lg breakpoint so only the visible slider mounts.
     // undefined = SSR (both render, CSS handles visibility).
     const isLg = useSyncExternalStore<boolean | undefined>(
-        (callback) => {
-            const mql = window.matchMedia("(min-width: 1024px)");
-            mql.addEventListener("change", callback);
-            return () => mql.removeEventListener("change", callback);
-        },
-        () => window.matchMedia("(min-width: 1024px)").matches,
-        () => undefined,
+        subscribeLg,
+        getLgSnapshot,
+        getLgServerSnapshot,
     );
 
     const currentTier = PRICING_TIERS[sliderIndex];
