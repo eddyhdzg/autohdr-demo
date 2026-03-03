@@ -114,35 +114,6 @@ export function PricingSection() {
                                 photos / mo
                             </span>
                         </div>
-                        {/* Tick marks */}
-                        <span
-                            aria-hidden="true"
-                            className="flex w-full items-center justify-between gap-1 px-2.5 text-xs text-muted-foreground tabular-nums"
-                        >
-                            {PRICING_TIERS.map((tier, i) => (
-                                <span
-                                    key={i}
-                                    className="flex w-0 flex-col items-center justify-center gap-2"
-                                >
-                                    <span
-                                        className={cn(
-                                            i === sliderIndex &&
-                                                "text-foreground font-medium"
-                                        )}
-                                    >
-                                        {formatTickLabel(tier.photos)}
-                                    </span>
-                                    <span
-                                        className={cn(
-                                            "h-1 w-px",
-                                            i === sliderIndex
-                                                ? "bg-foreground"
-                                                : "bg-muted-foreground/70"
-                                        )}
-                                    />
-                                </span>
-                            ))}
-                        </span>
                         <Slider
                             value={[sliderIndex]}
                             onValueChange={(val) => {
@@ -161,6 +132,34 @@ export function PricingSection() {
                                     : `${formatPhotos(photos)} photos`;
                             }}
                         />
+                        {/* Tick labels */}
+                        <span className="flex w-full items-center justify-between gap-1 px-2.5 text-xs text-muted-foreground tabular-nums">
+                            {PRICING_TIERS.map((tier, i) => (
+                                <button
+                                    key={i}
+                                    type="button"
+                                    onClick={() => setPricingParams({ tier: i })}
+                                    className={cn(
+                                        "flex w-0 flex-col items-center justify-center gap-2 cursor-pointer",
+                                        i === sliderIndex
+                                            ? "text-foreground font-medium"
+                                            : "hover:text-foreground/70"
+                                    )}
+                                >
+                                    <span
+                                        className={cn(
+                                            "h-1 w-px",
+                                            i === sliderIndex
+                                                ? "bg-foreground"
+                                                : "bg-muted-foreground/70"
+                                        )}
+                                    />
+                                    <span>
+                                        {formatTickLabel(tier.photos)}
+                                    </span>
+                                </button>
+                            ))}
+                        </span>
                     </div>
                 </div>
             </div>
@@ -458,35 +457,6 @@ export function PricingSection() {
                             </TabsTrigger>
                         </TabsList>
                     </Tabs>
-                    {/* Tick marks */}
-                    <span
-                        aria-hidden="true"
-                        className="flex w-full items-center justify-between gap-1 px-2.5 text-xs text-muted-foreground tabular-nums"
-                    >
-                        {PRICING_TIERS.map((tier, i) => (
-                            <span
-                                key={i}
-                                className="flex w-0 flex-col items-center justify-center gap-2"
-                            >
-                                <span
-                                    className={cn(
-                                        i === sliderIndex &&
-                                            "text-foreground font-medium"
-                                    )}
-                                >
-                                    {formatTickLabel(tier.photos)}
-                                </span>
-                                <span
-                                    className={cn(
-                                        "h-1 w-px",
-                                        i === sliderIndex
-                                            ? "bg-foreground"
-                                            : "bg-muted-foreground/70"
-                                    )}
-                                />
-                            </span>
-                        ))}
-                    </span>
                     <Slider
                         value={[sliderIndex]}
                         onValueChange={(val) => {
@@ -505,6 +475,34 @@ export function PricingSection() {
                                 : `${formatPhotos(photos)} photos`;
                         }}
                     />
+                    {/* Tick labels */}
+                    <span className="flex w-full items-center justify-between gap-1 px-2.5 text-xs text-muted-foreground tabular-nums">
+                        {PRICING_TIERS.map((tier, i) => (
+                            <button
+                                key={i}
+                                type="button"
+                                onClick={() => setPricingParams({ tier: i })}
+                                className={cn(
+                                    "flex w-0 flex-col items-center justify-center gap-2 cursor-pointer",
+                                    i === sliderIndex
+                                        ? "text-foreground font-medium"
+                                        : "hover:text-foreground/70"
+                                )}
+                            >
+                                <span
+                                    className={cn(
+                                        "h-1 w-px",
+                                        i === sliderIndex
+                                            ? "bg-foreground"
+                                            : "bg-muted-foreground/70"
+                                    )}
+                                />
+                                <span>
+                                    {formatTickLabel(tier.photos)}
+                                </span>
+                            </button>
+                        ))}
+                    </span>
                 </CardContent>
             </Card>
         </section>

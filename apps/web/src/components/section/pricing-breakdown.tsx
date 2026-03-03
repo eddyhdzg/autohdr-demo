@@ -47,7 +47,7 @@ function hasFeature(tier: PricingTier, key: string): boolean {
 }
 
 const stickyLabelCell =
-    "sticky left-0 z-10 bg-background font-medium text-sm whitespace-nowrap min-w-[180px]";
+    "sticky left-0 z-10 bg-background group-hover:bg-muted/50 transition-colors font-medium text-sm whitespace-nowrap min-w-[180px]";
 
 const groupHeaderCell =
     "bg-muted text-xs font-semibold uppercase tracking-wider text-muted-foreground";
@@ -112,7 +112,7 @@ export function PricingBreakdownTable() {
                         </TableRow>
 
                         {/* Price */}
-                        <TableRow>
+                        <TableRow className="group">
                             <TableCell className={stickyLabelCell}>
                                 Price
                             </TableCell>
@@ -143,7 +143,7 @@ export function PricingBreakdownTable() {
                         </TableRow>
 
                         {/* Per photo */}
-                        <TableRow>
+                        <TableRow className="group">
                             <TableCell className={stickyLabelCell}>
                                 Per photo
                             </TableCell>
@@ -192,7 +192,7 @@ export function PricingBreakdownTable() {
                         </TableRow>
 
                         {FEATURE_ROWS.map((row) => (
-                            <TableRow key={row.key}>
+                            <TableRow key={row.key} className="group">
                                 <TableCell className={stickyLabelCell}>
                                     {row.label}
                                 </TableCell>
