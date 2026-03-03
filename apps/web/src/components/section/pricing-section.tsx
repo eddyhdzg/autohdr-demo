@@ -82,6 +82,7 @@ export function PricingSection() {
                         onValueChange={(v) =>
                             setPricingParams({ billing: v as BillingPeriod })
                         }
+                        className="hidden lg:flex"
                     >
                         <TabsList>
                             <TabsTrigger value="monthly">Monthly</TabsTrigger>
