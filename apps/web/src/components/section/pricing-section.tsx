@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useSyncExternalStore } from "react";
 import { useQueryStates } from "nuqs";
 import { pricingSearchParams, type BillingPeriod } from "@/lib/pricing-searchparams";
 import { siteConfig } from "@/lib/config";
@@ -16,6 +16,15 @@ import { FlameIcon, SparklesIcon } from "lucide-react";
 import Link from "next/link";
 
 const { pricing } = siteConfig;
+
+const LG_QUERY = "(min-width: 1024px)";
+const subscribeLg = (callback: () => void) => {
+    const mql = window.matchMedia(LG_QUERY);
+    mql.addEventListener("change", callback);
+    return () => mql.removeEventListener("change", callback);
+};
+const getLgSnapshot = () => window.matchMedia(LG_QUERY).matches;
+const getLgServerSnapshot = () => undefined;
 
 function formatPhotos(photos: number): string {
     return photos.toLocaleString("en-US");
@@ -55,7 +64,7 @@ function PricingSlider({
             <span className="flex w-full items-center justify-between gap-1 px-2.5 text-xs text-muted-foreground tabular-nums">
                 {PRICING_TIERS.map((tier, i) => (
                     <button
-                        key={i}
+                        key={tier.photos}
                         type="button"
                         onClick={() => onValueChange(i)}
                         className={cn(
@@ -90,14 +99,11 @@ export function PricingSection() {
 
     // Track lg breakpoint so only the visible slider mounts.
     // undefined = SSR (both render, CSS handles visibility).
-    const [isLg, setIsLg] = useState<boolean | undefined>(undefined);
-    useLayoutEffect(() => {
-        const mql = window.matchMedia("(min-width: 1024px)");
-        setIsLg(mql.matches);
-        const handler = (e: MediaQueryListEvent) => setIsLg(e.matches);
-        mql.addEventListener("change", handler);
-        return () => mql.removeEventListener("change", handler);
-    }, []);
+    const isLg = useSyncExternalStore<boolean | undefined>(
+        subscribeLg,
+        getLgSnapshot,
+        getLgServerSnapshot,
+    );
 
     const currentTier = PRICING_TIERS[sliderIndex];
 
@@ -513,8 +519,8 @@ function FeatureList({
                 </p>
             )}
             <ul className="space-y-2.5">
-                {features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center gap-2">
+                {features.map((feature) => (
+                    <li key={feature} className="flex items-center gap-2">
                         <svg
                             className="h-4 w-4 shrink-0 text-primary"
                             fill="none"

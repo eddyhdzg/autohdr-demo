@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/section/navbar";
 import { EmojiProvider } from "@/components/emoji-provider";
 import { ThemeProvider } from "@/components/theme-provider";
-import { siteConfig } from "@/lib/site";
+import { siteConfig } from "@/lib/config";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";

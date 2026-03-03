@@ -1,14 +1,14 @@
 {
   "name": "autohdr",
   "private": true,
-  "packageManager": "pnpm@10.27.0",
+  "packageManager": "pnpm@10.30.3",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint"
   },
   "devDependencies": {
-    "turbo": "^2.5.0",
-    "typescript": "^5.9.3"
+    "turbo": "^2.8.12",
+    "typescript": "catalog:"
   }
 }

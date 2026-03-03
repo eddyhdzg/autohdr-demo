@@ -1,7 +1,7 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
+import Image from "next/image";
 import { X } from "lucide-react";
 import { Marquee } from "@workspace/ui/components/marquee";
 import {
@@ -59,10 +59,12 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
                     className="relative aspect-video w-full cursor-pointer overflow-hidden -mt-3"
                     aria-label={`Play video testimonial from ${testimonial.name}`}
                 >
-                    <img
+                    <Image
                         src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
                         alt={`${testimonial.name} video testimonial`}
-                        className="h-full w-full object-cover transition-transform duration-300 group-hover/card:scale-105"
+                        fill
+                        sizes="400px"
+                        className="object-cover transition-transform duration-300 group-hover/card:scale-105"
                     />
                     <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors duration-300 group-hover/card:bg-black/40">
                         <PlayIcon className="size-12 text-white opacity-50 transition-opacity duration-300 drop-shadow-lg group-hover/card:opacity-100" />
@@ -77,9 +79,11 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
 
                 <CardFooter>
                     <div className="flex w-full select-none items-center justify-start gap-3.5">
-                        <img
+                        <Image
                             src={testimonial.img}
                             alt={testimonial.name}
+                            width={40}
+                            height={40}
                             className="size-10 rounded-full object-cover"
                         />
                         <div>
