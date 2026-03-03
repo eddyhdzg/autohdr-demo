@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "skills": {
+    "adversarial-review": {
+      "source": "poteto/noodle",
+      "sourceType": "github",
+      "computedHash": "fddcd0f2b627a81216e908dc6d1d597641b5e852d6cce7d66960fef5d50b0225",
+      "_note": "Locally adapted for Conductor. Do not run `npx skills update` on this skill — it will overwrite the Conductor adaptations."
+    },
+    "vercel-cli": {
+      "source": "vercel/vercel",
+      "sourceType": "github",
+      "computedHash": "b030d91f22bb7665a4871649ad52d3918db93273e339ba92d90a67ed00de465a"
+    }
+  }
+}
