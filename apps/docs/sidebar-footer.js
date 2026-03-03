@@ -99,12 +99,12 @@
 
   // Never disconnect — Mintlify SPA navigation may remove/re-render the DOM
   new MutationObserver(function () {
-    if (!document.querySelector(".sidebar-footer")) injectSidebarFooter();
-    if (
+    var needsSidebar = !document.querySelector(".sidebar-footer");
+    var needsTikTok =
       document.getElementById("footer") &&
-      !document.querySelector("[data-tiktok-injected]")
-    ) {
-      injectFooterTikTok();
-    }
+      !document.querySelector("[data-tiktok-injected]");
+    if (!needsSidebar && !needsTikTok) return;
+    if (needsSidebar) injectSidebarFooter();
+    if (needsTikTok) injectFooterTikTok();
   }).observe(document.body, { childList: true, subtree: true });
 })();
