@@ -2,6 +2,7 @@ import { Navbar } from "@/components/section/navbar";
 import { EmojiProvider } from "@/components/emoji-provider";
 import { ThemeProvider } from "@/components/theme-provider";
 import { siteConfig } from "@/lib/site";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -45,12 +46,14 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <EmojiProvider>
-            <div className="max-w-7xl mx-auto border-x border-border">
-              <Navbar />
-              {children}
-            </div>
-          </EmojiProvider>
+          <NuqsAdapter>
+            <EmojiProvider>
+              <div className="max-w-7xl mx-auto border-x border-border">
+                <Navbar />
+                {children}
+              </div>
+            </EmojiProvider>
+          </NuqsAdapter>
         </ThemeProvider>
       </body>
     </html>
