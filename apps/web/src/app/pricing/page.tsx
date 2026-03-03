@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import type { SearchParams } from "nuqs/server";
-import { Suspense } from "react";
 import { pricingSearchParamsCache } from "@/lib/pricing-searchparams-cache";
 import { PricingSection } from "@/components/section/pricing-section";
 import { PricingBreakdownTable } from "@/components/section/pricing-breakdown";
@@ -74,10 +73,8 @@ export default async function PricingPage({ searchParams }: PageProps) {
 
   return (
     <main className="flex flex-col divide-y divide-border pt-16 pb-40 lg:pb-0">
-      <Suspense>
-        <PricingSection />
-        <PricingBreakdownTable />
-      </Suspense>
+      <PricingSection />
+      <PricingBreakdownTable />
       <FAQSection
         title="Pricing FAQs"
         description="Common questions about plans, credits, and billing."
