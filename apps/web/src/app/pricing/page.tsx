@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { PricingSection } from "@/components/section/pricing-section";
 import { PricingBreakdownTable } from "@/components/section/pricing-breakdown";
 import { FAQSection } from "@/components/section/faq-section";
@@ -65,8 +66,10 @@ export const metadata: Metadata = {
 export default function PricingPage() {
   return (
     <main className="flex flex-col divide-y divide-border pt-16 pb-40 lg:pb-0">
-      <PricingSection />
-      <PricingBreakdownTable />
+      <Suspense>
+        <PricingSection />
+        <PricingBreakdownTable />
+      </Suspense>
       <FAQSection
         title="Pricing FAQs"
         description="Common questions about plans, credits, and billing."
