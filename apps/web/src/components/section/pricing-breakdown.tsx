@@ -165,7 +165,7 @@ export function PricingBreakdownTable() {
                                             <span className="text-muted-foreground line-through text-xs">
                                                 ${t.perPhoto.toFixed(2)}
                                             </span>
-                                            <span className="text-green-700">
+                                            <span className="text-green-700 dark:text-green-500">
                                                 ${t.yearlyPerPhoto.toFixed(2)}
                                             </span>
                                         </span>
@@ -205,7 +205,7 @@ export function PricingBreakdownTable() {
                                         )}
                                     >
                                         {hasFeature(t, row.key) ? (
-                                            <Check className="mx-auto size-4 text-green-700" />
+                                            <Check className="mx-auto size-4 text-green-700 dark:text-green-500" />
                                         ) : (
                                             <span className="text-muted-foreground">
                                                 —
