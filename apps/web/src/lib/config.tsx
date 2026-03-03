@@ -359,6 +359,27 @@ export const siteConfig = {
         backgroundCountries: ["CAN", "MEX"],
         markers: usMapMarkers,
     },
+    integrationsSection: {
+        badge: "Integrations",
+        title: "Works with your favorite tools",
+        description:
+            "AutoHDR integrates seamlessly with the platforms you already use to manage your real estate media business.",
+        link: {
+            text: "View all integrations",
+            href: `${DOCS_URL}/integrations/overview`,
+        },
+        integrations: [
+            { id: 1, name: "Spiro", description: "Automated photo delivery for Spiro Media workflows.", logo: "/integrations/spiro.svg", href: `${DOCS_URL}/integrations/spiro` },
+            { id: 2, name: "HD PhotoHub", description: "Direct integration with HD PhotoHub's scheduling platform.", logo: "/integrations/hdphotohub.svg", href: `${DOCS_URL}/integrations/hd-photohub` },
+            { id: 3, name: "Tonomo", description: "Sync orders and deliver edits through Tonomo.", logo: "/integrations/tonomo.svg", href: `${DOCS_URL}/integrations/tonomo` },
+            { id: 4, name: "Aryeo", description: "Seamless HDR processing for Aryeo-managed listings.", logo: "/integrations/aryeo.svg", href: `${DOCS_URL}/integrations/aryeo` },
+            { id: 5, name: "Dropbox", description: "Auto-upload and organize edited photos in Dropbox.", logo: "/integrations/dropbox.svg", href: `${DOCS_URL}/integrations/dropbox` },
+        ],
+        requestIntegration: {
+            text: "Request an Integration",
+            href: "#",
+        },
+    },
 };
 
 export type SiteConfig = typeof siteConfig;
