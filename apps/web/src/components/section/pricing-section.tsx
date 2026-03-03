@@ -91,7 +91,7 @@ export function PricingSection() {
                                 <span className={cn(
                                     "border px-2 py-0.5 text-xs font-medium",
                                     isYearly
-                                        ? "border-green-700 bg-green-700/8 text-green-700 dark:border-green-500 dark:bg-green-500/8 dark:text-green-500"
+                                        ? "border-green-700 bg-green-700/8 text-green-700"
                                         : "border-green-600 bg-green-600/8 text-green-600 dark:border-green-400 dark:bg-green-400/8 dark:text-green-400"
                                 )}>
                                     ~20% off
@@ -449,7 +449,7 @@ export function PricingSection() {
                                 <span className={cn(
                                     "border px-1.5 py-0.5 text-[10px] font-medium",
                                     isYearly
-                                        ? "border-green-700 bg-green-700/8 text-green-700 dark:border-green-500 dark:bg-green-500/8 dark:text-green-500"
+                                        ? "border-green-700 bg-green-700/8 text-green-700"
                                         : "border-green-600 bg-green-600/8 text-green-600 dark:border-green-400 dark:bg-green-400/8 dark:text-green-400"
                                 )}>
                                     ~20% off
