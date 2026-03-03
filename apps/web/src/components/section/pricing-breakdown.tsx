@@ -66,7 +66,7 @@ export function PricingBreakdownTable() {
                 position="top-right"
                 className="text-muted-foreground/50"
             />
-            <div className="px-6 py-8 md:p-16">
+            <div className="px-2 py-8 md:p-16">
                 <div className="max-w-xl mx-auto flex flex-col items-center text-center gap-4 mb-8 md:mb-12">
                     <TypographyH2>Compare Plans</TypographyH2>
                     <TypographyP>
