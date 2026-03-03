@@ -1,14 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
+import { useQueryStates } from "nuqs";
+import { pricingSearchParams, type BillingPeriod } from "@/lib/pricing-searchparams";
 import { siteConfig } from "@/lib/config";
 import { EXTRA_CREDIT_RATE, PRICING_TIERS } from "@/lib/consts";
 import { cn } from "@workspace/ui/lib/utils";
 import { Button } from "@workspace/ui/components/button";
 import { Slider } from "@workspace/ui/components/slider";
 import { NumberTicker } from "@workspace/ui/components/number-ticker";
-import { Switch } from "@workspace/ui/components/switch";
-import { Label } from "@workspace/ui/components/label";
+import { Tabs, TabsList, TabsTrigger } from "@workspace/ui/components/tabs";
 import { TypographyH2, TypographyMuted } from "@workspace/ui/components/typography";
 import { Card, CardContent } from "@workspace/ui/components/card";
 import { FlameIcon, SparklesIcon } from "lucide-react";
@@ -25,9 +26,78 @@ function formatTickLabel(photos: number): string {
     return String(photos);
 }
 
+function PricingSlider({
+    sliderIndex,
+    onValueChange,
+}: {
+    sliderIndex: number;
+    onValueChange: (value: number) => void;
+}) {
+    return (
+        <>
+            <Slider
+                value={[sliderIndex]}
+                onValueChange={(val) => {
+                    const v = Array.isArray(val) ? val[0] : val;
+                    onValueChange(v);
+                }}
+                min={0}
+                max={PRICING_TIERS.length - 1}
+                step={1}
+                tooltipRender={(val) => {
+                    const photos = PRICING_TIERS[val].photos;
+                    return photos === 0
+                        ? "0-10 photos"
+                        : `${formatPhotos(photos)} photos`;
+                }}
+            />
+            {/* Tick labels */}
+            <span className="flex w-full items-center justify-between gap-1 px-2.5 text-xs text-muted-foreground tabular-nums">
+                {PRICING_TIERS.map((tier, i) => (
+                    <button
+                        key={i}
+                        type="button"
+                        onClick={() => onValueChange(i)}
+                        className={cn(
+                            "flex w-0 flex-col items-center justify-center gap-2 cursor-pointer",
+                            i === sliderIndex
+                                ? "text-foreground font-medium"
+                                : "hover:text-foreground/70"
+                        )}
+                    >
+                        <span
+                            className={cn(
+                                "h-1 w-px",
+                                i === sliderIndex
+                                    ? "bg-foreground"
+                                    : "bg-muted-foreground/70"
+                            )}
+                        />
+                        <span>
+                            {formatTickLabel(tier.photos)}
+                        </span>
+                    </button>
+                ))}
+            </span>
+        </>
+    );
+}
+
 export function PricingSection() {
-    const [isYearly, setIsYearly] = useState(false);
-    const [sliderIndex, setSliderIndex] = useState(1);
+    const [{ billing, tier }, setPricingParams] = useQueryStates(pricingSearchParams);
+    const isYearly = billing === "yearly";
+    const sliderIndex = tier;
+
+    // Track lg breakpoint so only the visible slider mounts.
+    // undefined = SSR (both render, CSS handles visibility).
+    const [isLg, setIsLg] = useState<boolean | undefined>(undefined);
+    useLayoutEffect(() => {
+        const mql = window.matchMedia("(min-width: 1024px)");
+        setIsLg(mql.matches);
+        const handler = (e: MediaQueryListEvent) => setIsLg(e.matches);
+        mql.addEventListener("change", handler);
+        return () => mql.removeEventListener("change", handler);
+    }, []);
 
     const currentTier = PRICING_TIERS[sliderIndex];
 
@@ -76,37 +146,28 @@ export function PricingSection() {
                     <p className="text-lg text-muted-foreground text-balance">
                         {pricing.description}
                     </p>
-                    <div className="relative flex items-center gap-3">
-                        <Label
-                            className={cn(
-                                "text-sm font-medium transition-colors cursor-pointer",
-                                !isYearly
-                                    ? "text-foreground"
-                                    : "text-muted-foreground"
-                            )}
-                            onClick={() => setIsYearly(false)}
-                        >
-                            Monthly
-                        </Label>
-                        <Switch
-                            checked={isYearly}
-                            onCheckedChange={setIsYearly}
-                        />
-                        <Label
-                            className={cn(
-                                "text-sm font-medium transition-colors cursor-pointer",
-                                isYearly
-                                    ? "text-foreground"
-                                    : "text-muted-foreground"
-                            )}
-                            onClick={() => setIsYearly(true)}
-                        >
-                            Yearly
-                        </Label>
-                        <span className="border border-primary/20 bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
-                            20% off
-                        </span>
-                    </div>
+                    <Tabs
+                        value={billing}
+                        onValueChange={(v) =>
+                            setPricingParams({ billing: v as BillingPeriod })
+                        }
+                        className="hidden lg:flex"
+                    >
+                        <TabsList>
+                            <TabsTrigger value="monthly">Monthly</TabsTrigger>
+                            <TabsTrigger value="yearly" className="gap-1.5">
+                                Yearly
+                                <span className={cn(
+                                    "border px-2 py-0.5 text-xs font-medium",
+                                    isYearly
+                                        ? "border-green-700 bg-green-700/8 text-green-700"
+                                        : "border-green-600 bg-green-600/8 text-green-600 dark:border-green-400 dark:bg-green-400/8 dark:text-green-400"
+                                )}>
+                                    ~20% off
+                                </span>
+                            </TabsTrigger>
+                        </TabsList>
+                    </Tabs>
 
                     {/* Slider (desktop only — mobile uses fixed bottom bar) */}
                     <div className="hidden lg:block w-full max-w-md space-y-3">
@@ -122,53 +183,12 @@ export function PricingSection() {
                                 photos / mo
                             </span>
                         </div>
-                        <Slider
-                            value={[sliderIndex]}
-                            onValueChange={(val) => {
-                                const v = Array.isArray(val)
-                                    ? val[0]
-                                    : val;
-                                setSliderIndex(v);
-                            }}
-                            min={0}
-                            max={PRICING_TIERS.length - 1}
-                            step={1}
-                            tooltipRender={(val) => {
-                                const photos = PRICING_TIERS[val].photos;
-                                return photos === 0
-                                    ? "0-10 photos"
-                                    : `${formatPhotos(photos)} photos`;
-                            }}
-                        />
-                        {/* Tick marks */}
-                        <span
-                            aria-hidden="true"
-                            className="flex w-full items-center justify-between gap-1 px-2.5 text-xs text-muted-foreground tabular-nums"
-                        >
-                            {PRICING_TIERS.map((tier, i) => (
-                                <span
-                                    key={i}
-                                    className="flex w-0 flex-col items-center justify-center gap-2"
-                                >
-                                    <span
-                                        className={cn(
-                                            "h-1 w-px",
-                                            i === sliderIndex
-                                                ? "bg-foreground"
-                                                : "bg-muted-foreground/70"
-                                        )}
-                                    />
-                                    <span
-                                        className={cn(
-                                            i === sliderIndex &&
-                                                "text-foreground font-medium"
-                                        )}
-                                    >
-                                        {formatTickLabel(tier.photos)}
-                                    </span>
-                                </span>
-                            ))}
-                        </span>
+                        {isLg !== false && (
+                            <PricingSlider
+                                sliderIndex={sliderIndex}
+                                onValueChange={(v) => setPricingParams({ tier: v })}
+                            />
+                        )}
                     </div>
                 </div>
             </div>
@@ -280,7 +300,7 @@ export function PricingSection() {
                                 className={cn(
                                     "text-sm",
                                     isYearly
-                                        ? "text-green-600"
+                                        ? "text-green-700 dark:text-green-500"
                                         : "text-muted-foreground"
                                 )}
                             >
@@ -291,7 +311,7 @@ export function PricingSection() {
                                     className={cn(
                                         "text-sm",
                                         isYearly
-                                            ? "text-green-600"
+                                            ? "text-green-700 dark:text-green-500"
                                             : "text-muted-foreground"
                                     )}
                                 />{" "}
@@ -371,7 +391,7 @@ export function PricingSection() {
                                 className={cn(
                                     "text-sm",
                                     isYearly
-                                        ? "text-green-600"
+                                        ? "text-green-700 dark:text-green-500"
                                         : "text-muted-foreground"
                                 )}
                             >
@@ -382,7 +402,7 @@ export function PricingSection() {
                                     className={cn(
                                         "text-sm",
                                         isYearly
-                                            ? "text-green-600"
+                                            ? "text-green-700 dark:text-green-500"
                                             : "text-muted-foreground"
                                     )}
                                 />{" "}
@@ -412,7 +432,7 @@ export function PricingSection() {
                 </div>
             </div>
 
-            {/* Mobile: Fixed bottom slider bar */}
+            {/* Mobile: Fixed bottom bar */}
             <Card className="fixed bottom-0 left-0 right-0 z-40 border-x-0 border-b-0 py-4 lg:hidden select-none">
                 <CardContent className="space-y-3">
                     <div className="flex items-center justify-between text-sm">
@@ -421,63 +441,57 @@ export function PricingSection() {
                                 ? "Free · 10 photos"
                                 : `${formatPhotos(currentTier.photos)} photos / mo`}
                         </span>
-                        <span className="font-semibold tabular-nums">
-                            {currentTier.photos === 0
-                                ? "$0"
-                                : `$${(isYearly ? currentTier.yearlyMonthly : currentTier.monthly).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}
-                            <span className="text-muted-foreground font-normal">
-                                {" "}
-                                /mo
-                            </span>
-                        </span>
-                    </div>
-                    <Slider
-                        value={[sliderIndex]}
-                        onValueChange={(val) => {
-                            const v = Array.isArray(val)
-                                ? val[0]
-                                : val;
-                            setSliderIndex(v);
-                        }}
-                        min={0}
-                        max={PRICING_TIERS.length - 1}
-                        step={1}
-                        tooltipRender={(val) => {
-                            const photos = PRICING_TIERS[val].photos;
-                            return photos === 0
-                                ? "0-10 photos"
-                                : `${formatPhotos(photos)} photos`;
-                        }}
-                    />
-                    {/* Tick marks */}
-                    <span
-                        aria-hidden="true"
-                        className="flex w-full items-center justify-between gap-1 px-2.5 text-xs text-muted-foreground tabular-nums"
-                    >
-                        {PRICING_TIERS.map((tier, i) => (
-                            <span
-                                key={i}
-                                className="flex w-0 flex-col items-center justify-center gap-2"
-                            >
-                                <span
-                                    className={cn(
-                                        "h-1 w-px",
-                                        i === sliderIndex
-                                            ? "bg-foreground"
-                                            : "bg-muted-foreground/70"
-                                    )}
-                                />
-                                <span
-                                    className={cn(
-                                        i === sliderIndex &&
-                                            "text-foreground font-medium"
-                                    )}
-                                >
-                                    {formatTickLabel(tier.photos)}
+                        <div className="flex flex-col items-end gap-0.5">
+                            <span className="font-semibold tabular-nums">
+                                {currentTier.photos === 0
+                                    ? "$0"
+                                    : `$${(isYearly ? currentTier.yearlyMonthly : currentTier.monthly).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}
+                                <span className="text-muted-foreground font-normal">
+                                    {" "}
+                                    /mo
                                 </span>
                             </span>
-                        ))}
-                    </span>
+                            {currentTier.photos > 0 && (
+                                <span className="flex items-center gap-1 text-xs tabular-nums">
+                                    {isYearly && (
+                                        <span className="text-muted-foreground line-through">
+                                            ${currentTier.perPhoto.toFixed(2)}
+                                        </span>
+                                    )}
+                                    <span className={cn(isYearly ? "text-green-700 dark:text-green-500" : "text-muted-foreground")}>
+                                        ${(isYearly ? currentTier.yearlyPerPhoto : currentTier.perPhoto).toFixed(2)} / photo
+                                    </span>
+                                </span>
+                            )}
+                        </div>
+                    </div>
+                    <Tabs
+                        value={billing}
+                        onValueChange={(v) =>
+                            setPricingParams({ billing: v as BillingPeriod })
+                        }
+                    >
+                        <TabsList className="w-full">
+                            <TabsTrigger value="monthly">Monthly</TabsTrigger>
+                            <TabsTrigger value="yearly" className="gap-1.5">
+                                Yearly
+                                <span className={cn(
+                                    "border px-1.5 py-0.5 text-[10px] font-medium",
+                                    isYearly
+                                        ? "border-green-700 bg-green-700/8 text-green-700"
+                                        : "border-green-600 bg-green-600/8 text-green-600 dark:border-green-400 dark:bg-green-400/8 dark:text-green-400"
+                                )}>
+                                    ~20% off
+                                </span>
+                            </TabsTrigger>
+                        </TabsList>
+                    </Tabs>
+                    {isLg !== true && (
+                        <PricingSlider
+                            sliderIndex={sliderIndex}
+                            onValueChange={(v) => setPricingParams({ tier: v })}
+                        />
+                    )}
                 </CardContent>
             </Card>
         </section>

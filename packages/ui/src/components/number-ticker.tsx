@@ -15,13 +15,14 @@ interface NumberTickerProps extends ComponentPropsWithoutRef<"span"> {
 
 export function NumberTicker({
   value,
-  startValue = 0,
+  startValue: startValueProp,
   direction = "up",
   delay = 0,
   className,
   decimalPlaces = 0,
   ...props
 }: NumberTickerProps) {
+  const startValue = startValueProp ?? value
   const ref = useRef<HTMLSpanElement>(null)
   const motionValue = useMotionValue(direction === "down" ? value : startValue)
   const springValue = useSpring(motionValue, {
@@ -61,7 +62,10 @@ export function NumberTicker({
       )}
       {...props}
     >
-      {startValue}
+      {Intl.NumberFormat("en-US", {
+        minimumFractionDigits: decimalPlaces,
+        maximumFractionDigits: decimalPlaces,
+      }).format(startValue)}
     </span>
   )
 }

@@ -11,8 +11,20 @@ import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { siteConfig } from "@/lib/config";
 
-export function FAQSection() {
+interface FAQSectionProps {
+    title?: string;
+    description?: string;
+    items?: Array<{ id: number; question: string; answer: string }>;
+    link?: { text: string; href: string } | null;
+}
+
+export function FAQSection({ title, description, items, link }: FAQSectionProps = {}) {
     const { faqSection } = siteConfig;
+
+    const resolvedTitle = title ?? faqSection.title;
+    const resolvedDescription = description ?? faqSection.description;
+    const resolvedItems = items ?? faqSection.faQitems;
+    const resolvedLink = link === undefined ? faqSection.faqLink : link;
 
     return (
         <section id="faqs" className="w-full relative">
@@ -22,16 +34,16 @@ export function FAQSection() {
                 <div className="grid md:grid-cols-6 md:divide-x divide-border">
                     <div className="md:col-span-2 flex flex-col gap-4 px-6 py-8 md:p-12">
                         <TypographyH2 className="text-left">
-                            {faqSection.title}
+                            {resolvedTitle}
                         </TypographyH2>
                         <TypographyP className="text-left">
-                            {faqSection.description}
+                            {resolvedDescription}
                         </TypographyP>
                     </div>
 
                     <div className="md:col-span-4 w-full px-6 py-8 md:p-12">
                         <Accordion className="w-full">
-                            {faqSection.faQitems.map((faq, index) => (
+                            {resolvedItems.map((faq, index) => (
                                 <AccordionItem
                                     key={faq.id}
                                     value={index.toString()}
@@ -46,12 +58,12 @@ export function FAQSection() {
                                 </AccordionItem>
                             ))}
                         </Accordion>
-                        {faqSection.faqLink && (
+                        {resolvedLink && (
                             <div className="pt-6">
                                 <Button
                                     render={
                                         <Link
-                                            href={faqSection.faqLink.href}
+                                            href={resolvedLink.href}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                         />
@@ -59,7 +71,7 @@ export function FAQSection() {
                                     variant="outline"
                                     size="sm"
                                 >
-                                    {faqSection.faqLink.text}
+                                    {resolvedLink.text}
                                     <ArrowUpRight className="size-4" />
                                 </Button>
                             </div>

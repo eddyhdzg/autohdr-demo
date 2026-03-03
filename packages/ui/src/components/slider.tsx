@@ -28,41 +28,43 @@ function Slider({
 
   return (
     <SliderPrimitive.Root
-      className={cn("w-full", className)}
       data-slot="slider"
+      className={cn("data-horizontal:w-full data-vertical:h-full", className)}
       defaultValue={defaultValue}
       value={value}
       min={min}
       max={max}
+      thumbAlignment="edge"
       {...props}
     >
-      <SliderPrimitive.Control className="relative flex w-full touch-none items-center select-none data-[disabled]:opacity-50 py-3">
+      <SliderPrimitive.Control className="relative flex w-full touch-none items-center select-none data-disabled:opacity-50 data-vertical:h-full data-vertical:w-auto data-vertical:flex-col py-3">
         <SliderPrimitive.Track
           data-slot="slider-track"
-          className="h-1 w-full rounded-none bg-muted-foreground/20 relative grow select-none"
+          className="relative h-1.5 w-full grow overflow-hidden rounded-none bg-muted-foreground/20 select-none"
         >
           <SliderPrimitive.Indicator
             data-slot="slider-range"
-            className="rounded-none bg-primary select-none"
+            className="rounded-none bg-primary select-none data-horizontal:h-full data-vertical:w-full"
           />
-          {Array.from({ length: _values.length }, (_, index) => (
-            <SliderPrimitive.Thumb
-              data-slot="slider-thumb"
-              key={index}
-              index={index}
-              className={cn(
-                "size-5 rounded-none bg-primary transition-[color,box-shadow] ring-ring/50 hover:ring-2 focus-visible:ring-2 focus-visible:outline-hidden active:ring-2 select-none disabled:pointer-events-none disabled:opacity-50 has-[:focus-visible]:ring-2",
-                tooltipRender && "group"
-              )}
-            >
-              {tooltipRender && (
-                <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 whitespace-nowrap bg-primary text-primary-foreground text-xs px-2 py-1 rounded-none opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 group-active:opacity-100 transition-opacity pointer-events-none">
-                  {tooltipRender(_values[index])}
-                </span>
-              )}
-            </SliderPrimitive.Thumb>
-          ))}
         </SliderPrimitive.Track>
+        {Array.from({ length: _values.length }, (_, index) => (
+          <SliderPrimitive.Thumb
+            data-slot="slider-thumb"
+            key={index}
+            className={cn(
+              "block size-5 shrink-0 rounded-none border-2 border-primary bg-background shadow-sm transition-[color,box-shadow] select-none",
+              "ring-ring/50 hover:ring-2 focus-visible:ring-2 focus-visible:outline-hidden active:ring-2",
+              "disabled:pointer-events-none disabled:opacity-50",
+              tooltipRender && "group"
+            )}
+          >
+            {tooltipRender && (
+              <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 whitespace-nowrap rounded-none bg-primary text-primary-foreground text-xs px-2 py-1 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 group-active:opacity-100 transition-opacity pointer-events-none">
+                {tooltipRender(_values[index])}
+              </span>
+            )}
+          </SliderPrimitive.Thumb>
+        ))}
       </SliderPrimitive.Control>
     </SliderPrimitive.Root>
   )
