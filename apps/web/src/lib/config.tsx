@@ -19,8 +19,7 @@ import {
     Users,
 } from "lucide-react";
 import { Icons } from "@/components/icons";
-
-export const BLUR_FADE_DELAY = 0.15;
+import Image from "next/image";
 
 interface FooterLink {
     id: number;
@@ -141,11 +140,11 @@ export const siteConfig = {
     },
     companyShowcase: {
         companyLogos: [
-            { id: 1, name: "Spiro", logo: <img src="/integrations/spiro.svg" alt="Spiro" className="max-h-10 max-w-28 w-auto h-auto object-contain brightness-0 dark:invert" /> },
-            { id: 2, name: "HD PhotoHub", logo: <img src="/integrations/hdphotohub.svg" alt="HD PhotoHub" className="max-h-10 max-w-28 w-auto h-auto object-contain brightness-0 dark:invert" /> },
-            { id: 3, name: "Tonomo", logo: <img src="/integrations/tonomo.svg" alt="Tonomo" className="max-h-10 max-w-28 w-auto h-auto object-contain brightness-0 dark:invert" /> },
-            { id: 4, name: "Aryeo", logo: <img src="/integrations/aryeo.svg" alt="Aryeo" className="max-h-10 max-w-28 w-auto h-auto object-contain brightness-0 dark:invert" /> },
-            { id: 5, name: "Dropbox", logo: <img src="/integrations/dropbox.svg" alt="Dropbox" className="max-h-10 max-w-28 w-auto h-auto object-contain brightness-0 dark:invert" /> },
+            { id: 1, name: "Spiro", logo: <Image src="/integrations/spiro.svg" alt="Spiro" width={112} height={40} className="max-h-10 max-w-28 w-auto h-auto object-contain brightness-0 dark:invert" /> },
+            { id: 2, name: "HD PhotoHub", logo: <Image src="/integrations/hdphotohub.svg" alt="HD PhotoHub" width={112} height={40} className="max-h-10 max-w-28 w-auto h-auto object-contain brightness-0 dark:invert" /> },
+            { id: 3, name: "Tonomo", logo: <Image src="/integrations/tonomo.svg" alt="Tonomo" width={112} height={40} className="max-h-10 max-w-28 w-auto h-auto object-contain brightness-0 dark:invert" /> },
+            { id: 4, name: "Aryeo", logo: <Image src="/integrations/aryeo.svg" alt="Aryeo" width={112} height={40} className="max-h-10 max-w-28 w-auto h-auto object-contain brightness-0 dark:invert" /> },
+            { id: 5, name: "Dropbox", logo: <Image src="/integrations/dropbox.svg" alt="Dropbox" width={112} height={40} className="max-h-10 max-w-28 w-auto h-auto object-contain brightness-0 dark:invert" /> },
         ],
     },
     testimonialSection: {

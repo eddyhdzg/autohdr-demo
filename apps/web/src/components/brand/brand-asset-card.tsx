@@ -71,6 +71,7 @@ export function BrandAssetCard({
             src={svgPath}
             alt={alt}
             fill
+            sizes="(max-width: 768px) 100vw, 50vw"
             className="object-contain"
           />
         </div>

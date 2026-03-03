@@ -12,6 +12,7 @@ import {
     TypographyP,
 } from "@workspace/ui/components/typography";
 import { ArrowUpRight, MessageSquarePlus, Puzzle } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 export function IntegrationsSection() {
@@ -54,9 +55,11 @@ export function IntegrationsSection() {
                         <Card className="border-0 bg-background h-full transition-colors group-hover:bg-accent/50">
                             <CardHeader>
                                 <div className="flex items-center justify-between">
-                                    <img
+                                    <Image
                                         src={integration.logo}
                                         alt={integration.name}
+                                        width={96}
+                                        height={32}
                                         className="max-h-8 max-w-24 w-auto h-auto object-contain brightness-0 dark:invert"
                                     />
                                     <ArrowUpRight className="size-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
