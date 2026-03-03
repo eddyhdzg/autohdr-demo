@@ -74,7 +74,7 @@ export function PricingBreakdownTable() {
                     </TypographyP>
                 </div>
 
-                <ScrollArea className="w-full">
+                <ScrollArea className="w-full" orientation="horizontal">
                     <table className="w-full caption-bottom text-sm [&_tr]:border-0">
                     <TableHeader className="[&_tr]:border-b-0">
                         <TableRow className="hover:bg-transparent">
