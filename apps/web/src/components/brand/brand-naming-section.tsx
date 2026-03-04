@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 import { cn } from "@workspace/ui/lib/utils";
 import { CornerPlus } from "@workspace/ui/components/corner-plus";
 import { TypographyH2, TypographyH3, TypographyP } from "@workspace/ui/components/typography";
@@ -30,8 +30,8 @@ function NamingExample({
   );
 }
 
-export async function BrandNamingSection() {
-  const t = await getTranslations("Brand");
+export function BrandNamingSection() {
+  const t = useTranslations("Brand");
   const { naming } = brandConfig;
 
   return (

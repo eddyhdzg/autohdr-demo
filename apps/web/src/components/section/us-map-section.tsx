@@ -1,12 +1,12 @@
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 import { siteConfig } from "@/lib/config";
 import { CornerPlus } from "@workspace/ui/components/corner-plus";
 import { DottedMap } from "@workspace/ui/components/dotted-map";
 import { TypographyH2, TypographyP } from "@workspace/ui/components/typography";
 import { MapPin } from "lucide-react";
 
-export async function USMapSection() {
-    const t = await getTranslations("USMap");
+export function USMapSection() {
+    const t = useTranslations("USMap");
     const { usMapSection } = siteConfig;
 
     return (

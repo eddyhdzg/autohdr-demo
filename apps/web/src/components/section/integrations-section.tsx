@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 import { siteConfig } from "@/lib/config";
 import { Button } from "@workspace/ui/components/button";
 import {
@@ -16,8 +16,8 @@ import { ArrowUpRight, MessageSquarePlus, Puzzle } from "lucide-react";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 
-export async function IntegrationsSection() {
-    const t = await getTranslations("Integrations");
+export function IntegrationsSection() {
+    const t = useTranslations("Integrations");
     const { integrationsSection } = siteConfig;
 
     return (

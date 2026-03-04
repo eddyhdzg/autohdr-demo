@@ -1,12 +1,12 @@
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 import { siteConfig } from "@/lib/config";
 import { Button } from "@workspace/ui/components/button";
 import { CornerPlus } from "@workspace/ui/components/corner-plus";
 import { TypographyH2, TypographyP } from "@workspace/ui/components/typography";
 
-export async function CTASection() {
-    const t = await getTranslations("CTA");
-    const tCommon = await getTranslations("Common");
+export function CTASection() {
+    const t = useTranslations("CTA");
+    const tCommon = useTranslations("Common");
     const { ctaSection } = siteConfig;
 
     return (

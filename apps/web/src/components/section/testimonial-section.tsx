@@ -1,11 +1,11 @@
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 import { TestimonialCarousel } from "@/components/animations/testimonial-scroll";
 import { siteConfig } from "@/lib/config";
 import { CornerPlus } from "@workspace/ui/components/corner-plus";
 import { TypographyH2, TypographyP } from "@workspace/ui/components/typography";
 
-export async function TestimonialSection() {
-    const t = await getTranslations("Testimonials");
+export function TestimonialSection() {
+    const t = useTranslations("Testimonials");
     const { testimonialSection } = siteConfig;
 
     return (

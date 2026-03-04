@@ -1,11 +1,11 @@
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 import { CornerPlus } from "@workspace/ui/components/corner-plus";
 import { TypographyH2, TypographyP } from "@workspace/ui/components/typography";
 import { BrandAssetCard } from "./brand-asset-card";
 import { brandConfig } from "@/lib/brand-config";
 
-export async function BrandLogoSection() {
-  const t = await getTranslations("Brand");
+export function BrandLogoSection() {
+  const t = useTranslations("Brand");
 
   return (
     <section className="relative">

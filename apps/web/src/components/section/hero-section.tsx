@@ -1,12 +1,12 @@
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 import { siteConfig } from "@/lib/config";
 import { Button } from "@workspace/ui/components/button";
 import { TypographyH1, TypographyLead } from "@workspace/ui/components/typography";
 import { Sparkles } from "lucide-react";
 
-export async function HeroSection() {
-    const t = await getTranslations("Hero");
-    const tCommon = await getTranslations("Common");
+export function HeroSection() {
+    const t = useTranslations("Hero");
+    const tCommon = useTranslations("Common");
     const { hero } = siteConfig;
 
     return (

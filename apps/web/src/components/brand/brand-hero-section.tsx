@@ -1,12 +1,12 @@
 import Image from "next/image";
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 import { Button } from "@workspace/ui/components/button";
 import { TypographyH1, TypographyLead } from "@workspace/ui/components/typography";
 import { Download } from "lucide-react";
 import { brandConfig } from "@/lib/brand-config";
 
-export async function BrandHeroSection() {
-  const t = await getTranslations("Brand");
+export function BrandHeroSection() {
+  const t = useTranslations("Brand");
   const { hero } = brandConfig;
 
   return (
