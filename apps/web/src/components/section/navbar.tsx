@@ -2,8 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
+import { routing } from "@/i18n/routing";
+import { useLocale, useTranslations } from "next-intl";
+import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "motion/react";
+import { Emoji } from "react-apple-emojis";
 import { siteConfig } from "@/lib/config";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LanguageSwitcher } from "@/components/language-switcher";
@@ -15,15 +18,35 @@ import {
   NavigationMenuList,
 } from "@workspace/ui/components/navigation-menu";
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+} from "@workspace/ui/components/select";
+import {
   ArrowUpRight,
   CircleUserRound,
   ExternalLink,
   Copy,
+  Languages,
+  Moon,
   Palette,
+  Sun,
 } from "lucide-react";
 import { cn } from "@workspace/ui/lib/utils";
 import { Icons } from "../icons";
 import { copySvgToClipboard } from "@/lib/brand-utils";
+
+type AppLocale = (typeof routing.locales)[number];
+
+const localeOptions: {
+  locale: AppLocale;
+  labelKey: "english" | "spanish";
+  emoji: "flag-united-states" | "flag-spain";
+}[] = [
+  { locale: "en", labelKey: "english", emoji: "flag-united-states" },
+  { locale: "es", labelKey: "spanish", emoji: "flag-spain" },
+];
 
 function HamburgerButton({
   isOpen,
@@ -104,8 +127,32 @@ function MobileNav({
   onClose: () => void;
 }) {
   const pathname = usePathname();
+  const router = useRouter();
+  const locale = useLocale() as AppLocale;
+  const { resolvedTheme, setTheme } = useTheme();
   const tFooter = useTranslations("Footer");
   const tCommon = useTranslations("Common");
+  const isDarkTheme = resolvedTheme === "dark";
+  const selectedLocale =
+    localeOptions.find((option) => option.locale === locale) ?? localeOptions[0];
+  const studioLink = siteConfig.nav.links.find(
+    (link) => link.translationKey === "studio"
+  );
+  const studioDisabled = Boolean(studioLink?.disabled);
+
+  function handleLocaleChange(nextLocale: string) {
+    const targetLocale = nextLocale as AppLocale;
+    if (targetLocale === locale) return;
+
+    document.cookie = `NEXT_LOCALE=${targetLocale}; path=/; max-age=31536000`;
+    router.replace(pathname, { locale: targetLocale });
+    router.refresh();
+  }
+
+  function handleThemeToggle() {
+    setTheme(isDarkTheme ? "light" : "dark");
+  }
+
   const isActive = (url: string) => {
     if (url.includes("#")) return false;
     return pathname === url;
@@ -139,7 +186,7 @@ function MobileNav({
             className="fixed top-16 left-0 right-0 bottom-0 z-50 w-full bg-background md:hidden overflow-y-auto"
           >
             <div className="flex min-h-full flex-col">
-              <nav className="flex-1 px-6 py-4 pb-32">
+              <nav className="flex-1 px-6 py-4 pb-6">
                 {sections.map((section, index) => (
                   <motion.div
                     key={section.titleKey}
@@ -286,13 +333,73 @@ function MobileNav({
                     duration: 0.6,
                     ease: [0.16, 1, 0.3, 1],
                   }}
+                  className="space-y-2"
                 >
-                  <Button
-                    onClick={onClose}
-                    className="w-full px-5 py-3 text-sm font-medium"
+                  <Select
+                    value={locale}
+                    onValueChange={(value) => {
+                      if (value) handleLocaleChange(value as string);
+                    }}
+                    modal={false}
                   >
-                    {tCommon("getStarted")}
+                    <SelectTrigger
+                      aria-label={tCommon("language")}
+                      className="h-auto w-full justify-start gap-2 rounded-md border-0 bg-transparent dark:bg-transparent px-2 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 data-[popup-open]:bg-accent dark:data-[popup-open]:bg-accent/50"
+                    >
+                      <Languages className="size-4 shrink-0" />
+                      <Emoji name={selectedLocale.emoji} width={16} />
+                      <span className="flex-1 text-left">
+                        {tCommon(selectedLocale.labelKey)}
+                      </span>
+                    </SelectTrigger>
+                    <SelectContent className="w-[var(--anchor-width)] rounded-md">
+                      {localeOptions.map((option) => (
+                        <SelectItem
+                          key={option.locale}
+                          value={option.locale}
+                          className="rounded-md focus:bg-primary/12 focus:text-primary data-[selected]:bg-primary/8 data-[selected]:text-primary [&_svg]:text-primary"
+                        >
+                          <span className="inline-flex items-center gap-2">
+                            <Emoji name={option.emoji} width={16} />
+                            <span>{tCommon(option.labelKey)}</span>
+                          </span>
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleThemeToggle}
+                    className="flex h-auto w-full items-center justify-start gap-2 rounded-md bg-transparent px-2 py-2 text-sm text-foreground hover:bg-accent"
+                  >
+                    {isDarkTheme ? (
+                      <Moon className="size-4" />
+                    ) : (
+                      <Sun className="size-4" />
+                    )}
+                    <span>
+                      {isDarkTheme ? tCommon("darkMode") : tCommon("lightMode")}
+                    </span>
                   </Button>
+
+                  {studioDisabled ? (
+                    <Button
+                      disabled
+                      className="w-full px-5 py-3 text-sm font-medium"
+                    >
+                      {tCommon("goToStudio")}
+                    </Button>
+                  ) : (
+                    <Button
+                      render={<Link href="/studio" onClick={onClose} />}
+                      className="w-full px-5 py-3 text-sm font-medium"
+                    >
+                      {tCommon("goToStudio")}
+                    </Button>
+                  )}
                 </motion.div>
               </div>
             </div>
@@ -427,7 +534,9 @@ export function Navbar() {
         <DesktopNav />
 
         <div className="flex items-center gap-2">
-          <ThemeToggle />
+          <div className="hidden md:inline-flex">
+            <ThemeToggle />
+          </div>
           <LanguageSwitcher className="hidden md:inline-flex" />
           <Button
             variant="ghost"
