@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "motion/react";
 import { siteConfig } from "@/lib/config";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { LanguageSwitcher } from "@/components/language-switcher";
 import { Button } from "@workspace/ui/components/button";
 import {
   NavigationMenu,
@@ -13,7 +14,15 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "@workspace/ui/components/navigation-menu";
-import { ArrowUpRight, ExternalLink, Copy, Palette } from "lucide-react";
+import {
+  ArrowUpRight,
+  CircleUserRound,
+  ExternalLink,
+  Copy,
+  Palette,
+  Menu as MenuIcon,
+  X,
+} from "lucide-react";
 import { cn } from "@workspace/ui/lib/utils";
 import { Icons } from "../icons";
 import { copySvgToClipboard } from "@/lib/brand-utils";
@@ -29,33 +38,21 @@ function HamburgerButton({
 }) {
   return (
     <Button
-      variant="outline"
+      variant="ghost"
       size="icon"
       onClick={onClick}
       className="md:hidden relative z-50 size-8"
       aria-label={label}
       aria-expanded={isOpen}
     >
-      <div className="relative size-5 flex items-center justify-center">
-        <motion.span
-          className="absolute h-0.5 w-4 bg-foreground"
-          initial={false}
-          animate={
-            isOpen
-              ? { rotate: 45, y: 0 }
-              : { rotate: 0, y: -4 }
-          }
-          transition={{ duration: 0.25, ease: "easeInOut" }}
+      <div className="relative size-6 flex items-center justify-center">
+        <MenuIcon
+          className="absolute size-5 text-foreground rotate-0 scale-100 transition-all data-[open=true]:rotate-90 data-[open=true]:scale-0"
+          data-open={isOpen}
         />
-        <motion.span
-          className="absolute h-0.5 w-4 bg-foreground"
-          initial={false}
-          animate={
-            isOpen
-              ? { rotate: -45, y: 0 }
-              : { rotate: 0, y: 4 }
-          }
-          transition={{ duration: 0.25, ease: "easeInOut" }}
+        <X
+          className="absolute size-5 text-foreground -rotate-90 scale-0 transition-all data-[open=true]:rotate-0 data-[open=true]:scale-100"
+          data-open={isOpen}
         />
       </div>
     </Button>
@@ -421,8 +418,15 @@ export function Navbar() {
 
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <Button size="sm" className="hidden md:flex px-5 text-sm font-medium">
-            {tCommon("getStarted")}
+          <LanguageSwitcher className="hidden md:inline-flex" />
+          <Button
+            variant="ghost"
+            size="icon"
+            className="hidden md:inline-flex cursor-pointer h-8 w-8"
+            type="button"
+          >
+            <CircleUserRound className="size-5 text-primary" />
+            <span className="sr-only">{tCommon("user")}</span>
           </Button>
           <HamburgerButton
             isOpen={isMobileMenuOpen}
