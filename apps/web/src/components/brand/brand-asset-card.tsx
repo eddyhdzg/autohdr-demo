@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { cn } from "@workspace/ui/lib/utils";
 import { Button } from "@workspace/ui/components/button";
 import {
@@ -11,22 +12,28 @@ import {
 } from "@/lib/brand-utils";
 
 type BrandAssetCardProps = {
-  label: string;
+  labelKey: string;
   variant: "light" | "dark";
   svgPath: string;
   pngPath: string;
-  alt: string;
+  altKey: string;
+  namespace: "logo" | "symbol";
 };
 
 export function BrandAssetCard({
-  label,
+  labelKey,
   variant,
   svgPath,
   pngPath,
-  alt,
+  altKey,
+  namespace,
 }: BrandAssetCardProps) {
+  const t = useTranslations("Brand");
   const [feedback, setFeedback] = useState<string | null>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const label = t(`${namespace}.assets.${labelKey}`);
+  const alt = t(`${namespace}.assets.${altKey}`);
 
   useEffect(() => {
     return () => {
@@ -43,18 +50,18 @@ export function BrandAssetCard({
   async function handleCopySvg() {
     try {
       await copySvgToClipboard(svgPath);
-      showFeedback("SVG copied!");
+      showFeedback(t("svgCopied"));
     } catch {
-      showFeedback("Copy failed");
+      showFeedback(t("copyFailed"));
     }
   }
 
   async function handleCopyPng() {
     try {
       await copyPngToClipboard(pngPath);
-      showFeedback("PNG copied!");
+      showFeedback(t("pngCopied"));
     } catch {
-      showFeedback("Copy failed");
+      showFeedback(t("copyFailed"));
     }
   }
 
@@ -105,7 +112,7 @@ export function BrandAssetCard({
                 className="text-xs w-full md:w-auto"
                 onClick={() => downloadFile(svgPath)}
               >
-                Download SVG
+                {t("downloadSvg")}
               </Button>
               <Button
                 variant={variant === "dark" ? "on-dark" : "on-light"}
@@ -113,7 +120,7 @@ export function BrandAssetCard({
                 className="text-xs w-full md:w-auto"
                 onClick={() => downloadFile(pngPath)}
               >
-                Download PNG
+                {t("downloadPng")}
               </Button>
               <Button
                 variant={variant === "dark" ? "on-dark" : "on-light"}
@@ -121,7 +128,7 @@ export function BrandAssetCard({
                 className="text-xs w-full md:w-auto"
                 onClick={handleCopySvg}
               >
-                Copy SVG
+                {t("copySvg")}
               </Button>
               <Button
                 variant={variant === "dark" ? "on-dark" : "on-light"}
@@ -129,7 +136,7 @@ export function BrandAssetCard({
                 className="text-xs w-full md:w-auto"
                 onClick={handleCopyPng}
               >
-                Copy PNG
+                {t("copyPng")}
               </Button>
             </>
           )}

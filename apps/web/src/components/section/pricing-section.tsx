@@ -2,6 +2,7 @@
 
 import { useSyncExternalStore } from "react";
 import { useQueryStates } from "nuqs";
+import { useTranslations } from "next-intl";
 import { pricingSearchParams, type BillingPeriod } from "@/lib/pricing-searchparams";
 import { siteConfig } from "@/lib/config";
 import { EXTRA_CREDIT_RATE, PRICING_TIERS } from "@/lib/consts";
@@ -13,7 +14,7 @@ import { Tabs, TabsList, TabsTrigger } from "@workspace/ui/components/tabs";
 import { TypographyH2, TypographyMuted } from "@workspace/ui/components/typography";
 import { Card, CardContent } from "@workspace/ui/components/card";
 import { FlameIcon, SparklesIcon } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 const { pricing } = siteConfig;
 
@@ -35,12 +36,23 @@ function formatTickLabel(photos: number): string {
     return String(photos);
 }
 
+const FEATURE_TRANSLATION_MAP: Record<string, string> = {
+    "Unused credits roll over": "creditsRollOver",
+    "Auto TV Blackout": "autoTvBlackout",
+    "Auto Add Fire": "autoAddFire",
+    "Walkthrough Re-ordering": "walkthroughReordering",
+    "Dedicated Slack Channel": "dedicatedSlack",
+    "Up to 10 photos / month": "upTo10Photos",
+};
+
 function PricingSlider({
     sliderIndex,
     onValueChange,
+    tooltipRender,
 }: {
     sliderIndex: number;
     onValueChange: (value: number) => void;
+    tooltipRender: (val: number) => string;
 }) {
     return (
         <>
@@ -53,12 +65,7 @@ function PricingSlider({
                 min={0}
                 max={PRICING_TIERS.length - 1}
                 step={1}
-                tooltipRender={(val) => {
-                    const photos = PRICING_TIERS[val].photos;
-                    return photos === 0
-                        ? "0-10 photos"
-                        : `${formatPhotos(photos)} photos`;
-                }}
+                tooltipRender={tooltipRender}
             />
             {/* Tick labels */}
             <span className="flex w-full items-center justify-between gap-1 px-2.5 text-xs text-muted-foreground tabular-nums">
@@ -94,6 +101,8 @@ function PricingSlider({
 
 export function PricingSection() {
     const [{ billing, tier }, setPricingParams] = useQueryStates(pricingSearchParams);
+    const t = useTranslations("PricingSection");
+    const tCommon = useTranslations("Common");
     const isYearly = billing === "yearly";
     const sliderIndex = tier;
 
@@ -137,20 +146,31 @@ export function PricingSection() {
         ? enterpriseTier.yearlyPerPhoto
         : enterpriseTier.perPhoto;
 
-    const freePlan = pricing.pricingItems.find((p) => p.name === "Free")!;
-    const proPlan = pricing.pricingItems.find((p) => p.name === "Pro")!;
+    const freePlan = pricing.pricingItems.find((p) => p.planKey === "free")!;
+    const proPlan = pricing.pricingItems.find((p) => p.planKey === "pro")!;
     const enterprisePlan = pricing.pricingItems.find(
-        (p) => p.name === "Enterprise"
+        (p) => p.planKey === "enterprise"
     )!;
+
+    function translateFeature(feature: string): string {
+        const key = FEATURE_TRANSLATION_MAP[feature];
+        if (key) return t(`features.${key}`);
+        return feature;
+    }
+
+    function tooltipRender(val: number): string {
+        const photos = PRICING_TIERS[val].photos;
+        return t("photosSliderTooltip", { count: photos });
+    }
 
     return (
         <section id="pricing" className="relative w-full divide-y divide-border">
             {/* Header + Toggle + Slider */}
             <div className="w-full px-6 py-8 md:p-16">
                 <div className="max-w-xl mx-auto flex flex-col items-center justify-center gap-6 text-center">
-                    <TypographyH2>{pricing.title}</TypographyH2>
+                    <TypographyH2>{t("title")}</TypographyH2>
                     <p className="text-lg text-muted-foreground text-balance">
-                        {pricing.description}
+                        {t("description")}
                     </p>
                     <Tabs
                         value={billing}
@@ -160,16 +180,16 @@ export function PricingSection() {
                         className="hidden lg:flex"
                     >
                         <TabsList>
-                            <TabsTrigger value="monthly">Monthly</TabsTrigger>
+                            <TabsTrigger value="monthly">{tCommon("monthly")}</TabsTrigger>
                             <TabsTrigger value="yearly" className="gap-1.5">
-                                Yearly
+                                {tCommon("yearly")}
                                 <span className={cn(
                                     "border px-2 py-0.5 text-xs font-medium",
                                     isYearly
                                         ? "border-green-700 bg-green-700/8 text-green-700"
                                         : "border-green-600 bg-green-600/8 text-green-600 dark:border-green-400 dark:bg-green-400/8 dark:text-green-400"
                                 )}>
-                                    ~20% off
+                                    {tCommon("yearlyDiscount")}
                                 </span>
                             </TabsTrigger>
                         </TabsList>
@@ -179,20 +199,21 @@ export function PricingSection() {
                     <div className="hidden lg:block w-full max-w-md space-y-3">
                         <div className="flex items-center justify-between text-sm">
                             <span className="text-foreground">
-                                How many photos per month?
+                                {t("howManyPhotos")}
                             </span>
                             <span className="font-medium tabular-nums">
                                 <NumberTicker
                                     value={currentTier.photos}
                                     className="font-medium"
                                 />{" "}
-                                photos / mo
+                                {t("photosPerMoUnit")}
                             </span>
                         </div>
                         {isLg !== false && (
                             <PricingSlider
                                 sliderIndex={sliderIndex}
                                 onValueChange={(v) => setPricingParams({ tier: v })}
+                                tooltipRender={tooltipRender}
                             />
                         )}
                     </div>
@@ -209,12 +230,12 @@ export function PricingSection() {
                     )}
                 >
                     <div className="flex items-center gap-3">
-                        <h3 className="text-lg font-semibold shrink-0">{freePlan.name}</h3>
+                        <h3 className="text-lg font-semibold shrink-0">{t("plans.free.name")}</h3>
                         {isFreeSelected && (
                             <div className="lg:hidden flex flex-wrap justify-end gap-2 ml-auto">
                                 <span className="inline-flex items-center gap-1.5 whitespace-nowrap border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
                                     <SparklesIcon className="size-3" />
-                                    Recommended
+                                    {tCommon("recommended")}
                                 </span>
                             </div>
                         )}
@@ -225,18 +246,18 @@ export function PricingSection() {
                                 $0
                             </span>
                             <span className="text-sm text-muted-foreground">
-                                /month
+                                {tCommon("perMonth")}
                             </span>
                         </div>
                         <TypographyMuted className="mt-1">
-                            10 photos / month for free
+                            {t("freePhotosLabel")}
                         </TypographyMuted>
                     </div>
                     <hr className="border-border mb-6" />
                     <FeatureList features={[
-                        `Buy extra credits at $${EXTRA_CREDIT_RATE.toFixed(2)} each`,
-                        "Unlimited uploads",
-                        "Only pay for downloads",
+                        t("buyExtraCredits", { rate: EXTRA_CREDIT_RATE.toFixed(2) }),
+                        t("unlimitedUploads"),
+                        t("onlyPayDownloads"),
                     ]} />
                     <div className="mt-auto pt-8">
                         <Button
@@ -245,7 +266,7 @@ export function PricingSection() {
                             variant={isFreeSelected ? "default" : "outline"}
                             className="w-full"
                         >
-                            {freePlan.buttonText}
+                            {t("plans.free.buttonText")}
                         </Button>
                     </div>
                 </div>
@@ -258,17 +279,17 @@ export function PricingSection() {
                     )}
                 >
                     <div className="flex items-center gap-3">
-                        <h3 className="text-lg font-semibold shrink-0">{proPlan.name}</h3>
+                        <h3 className="text-lg font-semibold shrink-0">{t("plans.pro.name")}</h3>
                         <div className="flex flex-wrap justify-end gap-2 ml-auto">
                             {isProSelected && (
                                 <span className="lg:hidden inline-flex items-center gap-1.5 whitespace-nowrap border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
                                     <SparklesIcon className="size-3" />
-                                    Recommended
+                                    {tCommon("recommended")}
                                 </span>
                             )}
                             <span className="inline-flex items-center gap-1.5 whitespace-nowrap border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
                                 <FlameIcon className="size-3" />
-                                Most Popular
+                                {tCommon("mostPopular")}
                             </span>
                         </div>
                     </div>
@@ -284,7 +305,7 @@ export function PricingSection() {
                                 className="text-5xl font-semibold tracking-tight"
                             />
                             <span className="text-sm text-muted-foreground ml-1">
-                                /month
+                                {tCommon("perMonth")}
                             </span>
                         </div>
                         {/* Photos count */}
@@ -293,7 +314,7 @@ export function PricingSection() {
                                 value={proTier.photos}
                                 className="text-sm text-muted-foreground"
                             />{" "}
-                            photos / month
+                            {t("photosPerMonthUnit")}
                         </TypographyMuted>
                         {/* Per photo */}
                         <div className="flex items-center gap-2 mt-1">
@@ -321,16 +342,16 @@ export function PricingSection() {
                                             : "text-muted-foreground"
                                     )}
                                 />{" "}
-                                / photo
+                                {tCommon("perPhoto")}
                             </span>
                         </div>
                     </div>
                     <hr className="border-border mb-6" />
                     <FeatureList features={[
-                        `Buy extra credits at $${proPerPhoto.toFixed(2)} each`,
-                        "Unlimited uploads",
-                        "Only pay for downloads",
-                        ...proTier.features,
+                        t("buyExtraCredits", { rate: proPerPhoto.toFixed(2) }),
+                        t("unlimitedUploads"),
+                        t("onlyPayDownloads"),
+                        ...proTier.features.map(translateFeature),
                     ]} />
                     <div className="mt-auto pt-8">
                         <Button
@@ -339,7 +360,7 @@ export function PricingSection() {
                             variant={isProSelected ? "default" : "outline"}
                             className="w-full"
                         >
-                            {isYearly ? "Get Yearly" : "Get Monthly"}
+                            {isYearly ? t("getYearly") : t("getMonthly")}
                         </Button>
                     </div>
                 </div>
@@ -352,12 +373,12 @@ export function PricingSection() {
                     )}
                 >
                     <div className="flex items-center gap-3">
-                        <h3 className="text-lg font-semibold shrink-0">{enterprisePlan.name}</h3>
+                        <h3 className="text-lg font-semibold shrink-0">{t("plans.enterprise.name")}</h3>
                         {isEnterpriseSelected && (
                             <div className="lg:hidden flex flex-wrap justify-end gap-2 ml-auto">
                                 <span className="inline-flex items-center gap-1.5 whitespace-nowrap border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
                                     <SparklesIcon className="size-3" />
-                                    Recommended
+                                    {tCommon("recommended")}
                                 </span>
                             </div>
                         )}
@@ -369,7 +390,7 @@ export function PricingSection() {
                                 value={enterpriseTier.photos}
                                 className="text-sm text-muted-foreground"
                             />{" "}
-                            photos / month
+                            {t("photosPerMonthUnit")}
                         </TypographyMuted>
                         {/* Price */}
                         <div className="flex items-baseline gap-0.5 mt-1">
@@ -382,7 +403,7 @@ export function PricingSection() {
                                 className="text-5xl font-semibold tracking-tight"
                             />
                             <span className="text-sm text-muted-foreground ml-1">
-                                / month
+                                {tCommon("perMonth")}
                             </span>
                         </div>
                         {/* Per photo */}
@@ -412,16 +433,16 @@ export function PricingSection() {
                                             : "text-muted-foreground"
                                     )}
                                 />{" "}
-                                / photo
+                                {tCommon("perPhoto")}
                             </span>
                         </div>
                     </div>
                     <hr className="border-border mb-6" />
                     <FeatureList features={[
-                        `Buy extra credits at $${entPerPhoto.toFixed(2)} each`,
-                        "Unlimited uploads",
-                        "Only pay for downloads",
-                        ...enterpriseTier.features,
+                        t("buyExtraCredits", { rate: entPerPhoto.toFixed(2) }),
+                        t("unlimitedUploads"),
+                        t("onlyPayDownloads"),
+                        ...enterpriseTier.features.map(translateFeature),
                     ]} />
                     <div className="mt-auto pt-8">
                         <Button
@@ -432,7 +453,7 @@ export function PricingSection() {
                             }
                             className="w-full"
                         >
-                            {enterprisePlan.buttonText}
+                            {t("plans.enterprise.buttonText")}
                         </Button>
                     </div>
                 </div>
@@ -444,8 +465,8 @@ export function PricingSection() {
                     <div className="flex items-center justify-between text-sm">
                         <span className="font-medium">
                             {currentTier.photos === 0
-                                ? "Free · 10 photos"
-                                : `${formatPhotos(currentTier.photos)} photos / mo`}
+                                ? t("freeTierLabel")
+                                : t("photosPerMo", { count: formatPhotos(currentTier.photos) })}
                         </span>
                         <div className="flex flex-col items-end gap-0.5">
                             <span className="font-semibold tabular-nums">
@@ -454,7 +475,7 @@ export function PricingSection() {
                                     : `$${(isYearly ? currentTier.yearlyMonthly : currentTier.monthly).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}
                                 <span className="text-muted-foreground font-normal">
                                     {" "}
-                                    /mo
+                                    {tCommon("perMo")}
                                 </span>
                             </span>
                             {currentTier.photos > 0 && (
@@ -465,7 +486,7 @@ export function PricingSection() {
                                         </span>
                                     )}
                                     <span className={cn(isYearly ? "text-green-700 dark:text-green-400" : "text-muted-foreground")}>
-                                        ${(isYearly ? currentTier.yearlyPerPhoto : currentTier.perPhoto).toFixed(2)} / photo
+                                        ${(isYearly ? currentTier.yearlyPerPhoto : currentTier.perPhoto).toFixed(2)} {tCommon("perPhoto")}
                                     </span>
                                 </span>
                             )}
@@ -478,16 +499,16 @@ export function PricingSection() {
                         }
                     >
                         <TabsList className="w-full">
-                            <TabsTrigger value="monthly">Monthly</TabsTrigger>
+                            <TabsTrigger value="monthly">{tCommon("monthly")}</TabsTrigger>
                             <TabsTrigger value="yearly" className="gap-1.5">
-                                Yearly
+                                {tCommon("yearly")}
                                 <span className={cn(
                                     "border px-1.5 py-0.5 text-[10px] font-medium",
                                     isYearly
                                         ? "border-green-700 bg-green-700/8 text-green-700"
                                         : "border-green-600 bg-green-600/8 text-green-600 dark:border-green-400 dark:bg-green-400/8 dark:text-green-400"
                                 )}>
-                                    ~20% off
+                                    {tCommon("yearlyDiscount")}
                                 </span>
                             </TabsTrigger>
                         </TabsList>
@@ -496,6 +517,7 @@ export function PricingSection() {
                         <PricingSlider
                             sliderIndex={sliderIndex}
                             onValueChange={(v) => setPricingParams({ tier: v })}
+                            tooltipRender={tooltipRender}
                         />
                     )}
                 </CardContent>

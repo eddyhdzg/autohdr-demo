@@ -1,0 +1,306 @@
+{
+  "Metadata": {
+    "siteName": "AutoHDR",
+    "siteDescription": "AI-powered HDR image processing."
+  },
+  "Common": {
+    "getStarted": "Get Started",
+    "bookDemo": "Book a Demo",
+    "contactSales": "Contact Sales",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "yearlyDiscount": "~20% off",
+    "perMonth": "/month",
+    "perMo": "/mo",
+    "perPhoto": "/ photo",
+    "recommended": "Recommended",
+    "mostPopular": "Most Popular",
+    "free": "Free",
+    "price": "Price",
+    "features": "Features",
+    "pricing": "Pricing",
+    "builtInAustinTx": "Built in Austin, TX",
+    "allRightsReserved": "All rights reserved.",
+    "toggleTheme": "Toggle theme"
+  },
+  "Nav": {
+    "studio": "Studio",
+    "pricing": "Pricing",
+    "contact": "Contact",
+    "faqs": "FAQs",
+    "toggleMenu": "Toggle menu",
+    "openLinkInNewTab": "Open Link in New Tab",
+    "copyLogoAsSvg": "Copy Logo as SVG",
+    "goToBrandKit": "Go to Brand Kit",
+    "logoOptions": "Logo options"
+  },
+  "Hero": {
+    "badge": "Start for FREE \u2022 No credit card needed",
+    "title": "AI Photo Editing for Real Estate",
+    "description": "Powering 1 in 5 real estate listings in the U.S."
+  },
+  "Testimonials": {
+    "title": "Trusted by industry leaders",
+    "description": "Trusted to edit 20% of US listings",
+    "playVideo": "Play video testimonial from {name}",
+    "videoTitle": "{name} testimonial video",
+    "videoAlt": "{name} video testimonial",
+    "closeVideo": "Close video",
+    "items": {
+      "1": {
+        "description": "I can\u2019t tell the difference",
+        "role": "#1 real estate photography coach in the world"
+      },
+      "2": {
+        "description": "We switched 90 shoots per day overnight",
+        "role": "Owner of Spiro Media and Wow Video Tours"
+      },
+      "3": {
+        "description": "We cut our bill in half this year",
+        "role": "Scaled from $0 \u2192 $7M in two years"
+      },
+      "4": {
+        "description": "We tried several AI Editors... nobody was even close",
+        "role": "Owner at one of Canada\u2019s biggest real estate media companies"
+      },
+      "5": {
+        "description": "I\u2019m shooting handheld and it edits damn seamlessly",
+        "role": "Industry expert trusted for critical reviews"
+      }
+    }
+  },
+  "USMap": {
+    "badge": "Built in Austin, TX",
+    "title": "American-Made AI",
+    "description": "Powering 1 in 5 real estate listings in the U.S.",
+    "hqLabel": "HQ"
+  },
+  "Integrations": {
+    "badge": "Integrations",
+    "title": "Works with your favorite tools",
+    "description": "AutoHDR integrates seamlessly with the platforms you already use to manage your real estate media business.",
+    "viewAll": "View all integrations",
+    "requestIntegration": "Request an Integration",
+    "requestDescription": "Don\u2019t see your platform? Let us know.",
+    "items": {
+      "spiro": "Automated photo delivery for Spiro Media workflows.",
+      "hdphotohub": "Direct integration with HD PhotoHub\u2019s scheduling platform.",
+      "tonomo": "Sync orders and deliver edits through Tonomo.",
+      "aryeo": "Seamless HDR processing for Aryeo-managed listings.",
+      "dropbox": "Auto-upload and organize edited photos in Dropbox."
+    }
+  },
+  "FAQ": {
+    "title": "Frequently Asked Questions",
+    "description": "Answers to common questions about AutoHDR and its features. If you have any other questions, please don\u2019t hesitate to contact us.",
+    "seeAll": "See all FAQs",
+    "items": {
+      "1": {
+        "question": "What is AutoHDR and how does it work?",
+        "answer": "With 30-minute turnaround times, AutoHDR provides a faster, more reliable, and scalable alternative to human editors."
+      },
+      "2": {
+        "question": "How does AutoHDR compare to traditional human editing?",
+        "answer": "Speed: 30 minutes vs. 8-12 hours. Consistency: AI ensures uniform, high-quality edits every time. Affordability: pricing is lower than most human editors. Reliability: AI runs 24/7 with hundreds of GPUs. Flexibility: you only pay for what you download."
+      },
+      "3": {
+        "question": "How much does AutoHDR cost?",
+        "answer": "$0.40-$0.57 per edit, depending on volume. Significantly cheaper than most human editors charging $0.70-$1.00+ per edit."
+      },
+      "4": {
+        "question": "Do you offer a free trial?",
+        "answer": "Yes! 10 free downloads per month, no credit card required."
+      },
+      "5": {
+        "question": "Does AutoHDR integrate with real estate booking platforms?",
+        "answer": "Yes! We have fully automated workflows possible for all platforms."
+      }
+    }
+  },
+  "PricingSection": {
+    "title": "Pricing",
+    "description": "Only pay for what you download",
+    "howManyPhotos": "How many photos per month?",
+    "freePhotosLabel": "10 photos / month for free",
+    "photosSliderTooltip": "{count, plural, =0 {0-10 photos} other {{count} photos}}",
+    "freeTierLabel": "Free \u00b7 10 photos",
+    "photosPerMo": "{count} photos / mo",
+    "photosPerMonth": "{count} photos / month",
+    "photosPerMoUnit": "photos / mo",
+    "photosPerMonthUnit": "photos / month",
+    "getYearly": "Get Yearly",
+    "getMonthly": "Get Monthly",
+    "buyExtraCredits": "Buy extra credits at ${rate} each",
+    "unlimitedUploads": "Unlimited uploads",
+    "onlyPayDownloads": "Only pay for downloads",
+    "plans": {
+      "free": {
+        "name": "Free",
+        "description": "Try AutoHDR with no commitment",
+        "buttonText": "Get Started"
+      },
+      "pro": {
+        "name": "Pro",
+        "description": "For teams that need volume",
+        "buttonText": "Get Started"
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "description": "For brokerages and large teams",
+        "buttonText": "Contact Sales"
+      }
+    },
+    "features": {
+      "upTo10Photos": "Up to 10 photos / month",
+      "creditsRollOver": "Unused credits roll over",
+      "autoTvBlackout": "Auto TV Blackout",
+      "autoAddFire": "Auto Add Fire",
+      "walkthroughReordering": "Walkthrough Re-ordering",
+      "dedicatedSlack": "Dedicated Slack Channel"
+    }
+  },
+  "PricingBreakdown": {
+    "title": "Compare Plans",
+    "description": "All the details, side by side.",
+    "columnFree": "Free",
+    "price": "Price",
+    "perPhoto": "Per photo",
+    "priorityProcessing": "Priority processing",
+    "creditsRollOver": "Credits roll over",
+    "autoTvBlackout": "Auto TV Blackout",
+    "autoAddFire": "Auto Add Fire",
+    "walkthroughReordering": "Walkthrough re-ordering",
+    "dedicatedSlack": "Dedicated Slack channel",
+    "payAsYouGoNote": "* Pay-as-you-go rate. Additional photos on the Free plan cost ${rate} each."
+  },
+  "PricingFAQ": {
+    "title": "Pricing FAQs",
+    "description": "Common questions about plans, credits, and billing.",
+    "items": {
+      "1": {
+        "question": "How much does AutoHDR cost?",
+        "answer": "$0.40\u20130.57 per photo, depending on volume. You only pay for photos you download \u2014 uploading and previewing are always free."
+      },
+      "2": {
+        "question": "How does billing work?",
+        "answer": "Monthly subscriptions include a set number of credits. One credit = one downloaded photo. On paid plans, unused credits roll over month-to-month. You can also pay yearly and save on every tier."
+      },
+      "3": {
+        "question": "When am I charged a credit?",
+        "answer": "Only when you click Download. Uploading and previewing are always free."
+      },
+      "4": {
+        "question": "What happens if I exceed my plan\u2019s credits?",
+        "answer": "You can buy extra credits at your plan\u2019s per-photo rate at any time. There\u2019s no need to upgrade to a higher plan \u2014 just top up and keep going."
+      },
+      "5": {
+        "question": "Do unused credits expire?",
+        "answer": "On paid plans, unused credits roll over month-to-month \u2014 they never expire as long as you stay on a paid plan. Free plan credits reset each month."
+      },
+      "6": {
+        "question": "Can I downgrade and keep my credits?",
+        "answer": "If you downgrade to a lower paid plan, your rollover credits carry over. However, if you cancel or downgrade to the Free plan, credits expire at the end of your current billing cycle."
+      },
+      "7": {
+        "question": "Do you offer a free trial?",
+        "answer": "Yes! 10 free photo downloads per month, no credit card required."
+      },
+      "8": {
+        "question": "How does yearly billing work?",
+        "answer": "Pay upfront for 12 months and save on every tier. For example, the Basic plan drops from $28.50/mo to $22.80/mo (a $5.70/mo savings). Higher tiers save even more."
+      }
+    }
+  },
+  "PricingPage": {
+    "metaTitle": "Pricing",
+    "metaDescription": "Only pay for what you download. Simple, transparent pricing for real estate photo editing."
+  },
+  "CTA": {
+    "title": "Transform your photos with AutoHDR",
+    "subtext": "Enhance your real estate photos with AutoHDR. Studio-quality results in seconds, start for free."
+  },
+  "Footer": {
+    "sections": {
+      "pages": "Pages",
+      "resources": "Resources",
+      "company": "Company",
+      "social": "Social"
+    },
+    "links": {
+      "home": "Home",
+      "studio": "Studio",
+      "pricing": "Pricing",
+      "contact": "Contact",
+      "faqs": "FAQs",
+      "docs": "Docs",
+      "support": "Support",
+      "changelog": "Changelog",
+      "blog": "Blog",
+      "aboutUs": "About Us",
+      "ourTeam": "Our Team",
+      "brand": "Brand",
+      "terms": "Terms",
+      "privacy": "Privacy",
+      "requestFeature": "Request a Feature",
+      "contactSales": "Contact Sales",
+      "partnerships": "Partnerships",
+      "instagram": "Instagram",
+      "tiktok": "TikTok",
+      "linkedin": "LinkedIn"
+    },
+    "copyright": "\u00a9 {year} {name}."
+  },
+  "Brand": {
+    "metaTitle": "Brand Kit",
+    "metaDescription": "Guidelines and assets for presenting the AutoHDR brand consistently.",
+    "hero": {
+      "title": "Brand Kit",
+      "description": "Guidelines and assets for presenting the AutoHDR brand consistently.",
+      "symbolAlt": "AutoHDR symbol",
+      "downloadAll": "Download all assets"
+    },
+    "naming": {
+      "title": "Naming",
+      "description": "Please follow these guidelines when referencing AutoHDR.",
+      "preferred": "Preferred",
+      "constrained": "When constrained (all caps or all lowercase)",
+      "incorrect": "Incorrect",
+      "variantCorrect": "Correct",
+      "variantAccepted": "Accepted",
+      "variantIncorrect": "Incorrect"
+    },
+    "logo": {
+      "title": "Logo",
+      "description": "The AutoHDR logo combines the symbol and wordmark.",
+      "assets": {
+        "logoLight": "Logo - Light",
+        "logoDark": "Logo - Dark",
+        "logoLightAlt": "AutoHDR logo in black",
+        "logoDarkAlt": "AutoHDR logo in white"
+      }
+    },
+    "symbol": {
+      "title": "Symbol",
+      "description": "The AutoHDR symbol is the isometric mark used as a standalone icon.",
+      "assets": {
+        "symbolLight": "Symbol - Light",
+        "symbolDark": "Symbol - Dark",
+        "symbolLightAlt": "AutoHDR symbol on light background",
+        "symbolDarkAlt": "AutoHDR symbol on dark background"
+      }
+    },
+    "downloadSvg": "Download SVG",
+    "downloadPng": "Download PNG",
+    "copySvg": "Copy SVG",
+    "copyPng": "Copy PNG",
+    "svgCopied": "SVG copied!",
+    "pngCopied": "PNG copied!",
+    "copyFailed": "Copy failed"
+  },
+  "Animations": {
+    "connecting": "Connecting",
+    "connected": "Connected",
+    "installed": "Installed",
+    "searchServers": "Search for servers"
+  }
+}

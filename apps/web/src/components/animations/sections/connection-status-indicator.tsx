@@ -2,11 +2,14 @@
 
 import { Loader2, Check } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import { useTranslations } from "next-intl";
 import { Button } from "@workspace/ui/components/button";
 import { cn } from "@workspace/ui/lib/utils";
 import { type ConnectionStatus } from "@workspace/ui/hooks/use-connection-status";
 
 export function ConnectionStatusIndicator({ status }: { status: ConnectionStatus }) {
+    const t = useTranslations("Animations");
+
     return (
         <AnimatePresence mode="wait">
             {(status === "connecting" || status === "connected") && (
@@ -36,7 +39,7 @@ export function ConnectionStatusIndicator({ status }: { status: ConnectionStatus
                             )}
                         </div>
                         <span className="text-sm font-semibold whitespace-nowrap">
-                            {status === "connecting" ? "Connecting" : "Connected"}
+                            {status === "connecting" ? t("connecting") : t("connected")}
                         </span>
                     </Button>
                 </motion.div>
@@ -44,4 +47,3 @@ export function ConnectionStatusIndicator({ status }: { status: ConnectionStatus
         </AnimatePresence>
     );
 }
-

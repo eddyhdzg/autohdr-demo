@@ -1,16 +1,13 @@
 export type BrandAsset = {
-  label: string;
+  labelKey: string;
   variant: "light" | "dark";
   svgPath: string;
   pngPath: string;
-  alt: string;
+  altKey: string;
 };
 
 export const brandConfig = {
   hero: {
-    title: "Brand Kit",
-    description:
-      "Guidelines and assets for presenting the AutoHDR brand consistently.",
     downloadAllHref: "/brand.zip",
   },
   naming: {
@@ -20,34 +17,34 @@ export const brandConfig = {
   },
   logoAssets: [
     {
-      label: "Logo - Light",
+      labelKey: "logoLight",
       variant: "light" as const,
       svgPath: "/brand/logo-black.svg",
       pngPath: "/brand/logo-black.png",
-      alt: "AutoHDR logo in black",
+      altKey: "logoLightAlt",
     },
     {
-      label: "Logo - Dark",
+      labelKey: "logoDark",
       variant: "dark" as const,
       svgPath: "/brand/logo-white.svg",
       pngPath: "/brand/logo-white.png",
-      alt: "AutoHDR logo in white",
+      altKey: "logoDarkAlt",
     },
   ],
   symbolAssets: [
     {
-      label: "Symbol - Light",
+      labelKey: "symbolLight",
       variant: "light" as const,
       svgPath: "/brand/symbol.svg",
       pngPath: "/brand/symbol.png",
-      alt: "AutoHDR symbol on light background",
+      altKey: "symbolLightAlt",
     },
     {
-      label: "Symbol - Dark",
+      labelKey: "symbolDark",
       variant: "dark" as const,
       svgPath: "/brand/symbol.svg",
       pngPath: "/brand/symbol.png",
-      alt: "AutoHDR symbol on dark background",
+      altKey: "symbolDarkAlt",
     },
   ],
 } as const;

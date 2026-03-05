@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { cn } from "@workspace/ui/lib/utils";
 import { CornerPlus } from "@workspace/ui/components/corner-plus";
 import { TypographyH2, TypographyH3, TypographyP } from "@workspace/ui/components/typography";
@@ -6,9 +7,11 @@ import { brandConfig } from "@/lib/brand-config";
 function NamingExample({
   label,
   variant,
+  variantLabel,
 }: {
   label: string;
   variant: "correct" | "incorrect" | "warning";
+  variantLabel: string;
 }) {
   return (
     <div className="flex items-center gap-3">
@@ -20,7 +23,7 @@ function NamingExample({
           variant === "incorrect" && "bg-destructive/10 text-destructive"
         )}
       >
-        {variant === "incorrect" ? "Incorrect" : variant === "warning" ? "Accepted" : "Correct"}
+        {variantLabel}
       </span>
       <span className="font-mono text-sm">{label}</span>
     </div>
@@ -28,6 +31,7 @@ function NamingExample({
 }
 
 export function BrandNamingSection() {
+  const t = useTranslations("Brand");
   const { naming } = brandConfig;
 
   return (
@@ -36,37 +40,37 @@ export function BrandNamingSection() {
       <CornerPlus position="top-right" className="text-muted-foreground/50" />
       <div className="px-6 py-8 md:p-12 space-y-8">
         <div>
-          <TypographyH2>Naming</TypographyH2>
+          <TypographyH2>{t("naming.title")}</TypographyH2>
           <TypographyP className="mt-2">
-            Please follow these guidelines when referencing AutoHDR.
+            {t("naming.description")}
           </TypographyP>
         </div>
 
         <div className="space-y-4">
-          <TypographyH3>Preferred</TypographyH3>
+          <TypographyH3>{t("naming.preferred")}</TypographyH3>
           <div className="flex flex-col gap-3">
             {naming.correct.map((name) => (
-              <NamingExample key={name} label={name} variant="correct" />
+              <NamingExample key={name} label={name} variant="correct" variantLabel={t("naming.variantCorrect")} />
             ))}
           </div>
         </div>
 
         <div className="space-y-4">
           <TypographyH3>
-            When constrained (all caps or all lowercase)
+            {t("naming.constrained")}
           </TypographyH3>
           <div className="flex flex-col gap-3">
             {naming.constrained.map((name) => (
-              <NamingExample key={name} label={name} variant="warning" />
+              <NamingExample key={name} label={name} variant="warning" variantLabel={t("naming.variantAccepted")} />
             ))}
           </div>
         </div>
 
         <div className="space-y-4">
-          <TypographyH3>Incorrect</TypographyH3>
+          <TypographyH3>{t("naming.incorrect")}</TypographyH3>
           <div className="flex flex-col gap-3">
             {naming.incorrect.map((name) => (
-              <NamingExample key={name} label={name} variant="incorrect" />
+              <NamingExample key={name} label={name} variant="incorrect" variantLabel={t("naming.variantIncorrect")} />
             ))}
           </div>
         </div>

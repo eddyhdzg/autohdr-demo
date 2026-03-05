@@ -1,10 +1,12 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { Button } from "@workspace/ui/components/button";
 import { TypographyH1, TypographyLead } from "@workspace/ui/components/typography";
 import { Download } from "lucide-react";
 import { brandConfig } from "@/lib/brand-config";
 
 export function BrandHeroSection() {
+  const t = useTranslations("Brand");
   const { hero } = brandConfig;
 
   return (
@@ -12,14 +14,14 @@ export function BrandHeroSection() {
       <div className="relative z-10 flex flex-col items-center justify-center text-center space-y-6 max-w-4xl mx-auto">
         <Image
           src="/brand/symbol.svg"
-          alt="AutoHDR symbol"
+          alt={t("hero.symbolAlt")}
           width={64}
           height={64}
           className=""
         />
-        <TypographyH1>{hero.title}</TypographyH1>
+        <TypographyH1>{t("hero.title")}</TypographyH1>
         <TypographyLead className="text-center text-balance max-w-2xl mx-auto">
-          {hero.description}
+          {t("hero.description")}
         </TypographyLead>
         <Button
           render={<a href={hero.downloadAllHref} download />}
@@ -27,7 +29,7 @@ export function BrandHeroSection() {
           className="px-8 text-base"
         >
           <Download className="size-4" />
-          Download all assets
+          {t("hero.downloadAll")}
         </Button>
       </div>
     </section>

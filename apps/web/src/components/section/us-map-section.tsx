@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { siteConfig } from "@/lib/config";
 import { CornerPlus } from "@workspace/ui/components/corner-plus";
 import { DottedMap } from "@workspace/ui/components/dotted-map";
@@ -5,6 +6,7 @@ import { TypographyH2, TypographyP } from "@workspace/ui/components/typography";
 import { MapPin } from "lucide-react";
 
 export function USMapSection() {
+    const t = useTranslations("USMap");
     const { usMapSection } = siteConfig;
 
     return (
@@ -18,11 +20,11 @@ export function USMapSection() {
             <div className="flex flex-col items-center text-center space-y-6 max-w-3xl mx-auto">
                 <div className="inline-flex items-center gap-1.5 border bg-background px-3 h-8 text-sm font-medium dark:bg-input/30 dark:border-input [&_svg]:size-4">
                     <MapPin />
-                    {usMapSection.badge}
+                    {t("badge")}
                 </div>
-                <TypographyH2>{usMapSection.title}</TypographyH2>
+                <TypographyH2>{t("title")}</TypographyH2>
                 <TypographyP className="max-w-2xl">
-                    {usMapSection.description}
+                    {t("description")}
                 </TypographyP>
             </div>
 
@@ -46,7 +48,7 @@ export function USMapSection() {
                     style={{ left: "47.3%", top: "74.7%", transform: "translate(-50%, -100%)" }}
                 >
                     <span className="mb-1 px-2 py-0.5 bg-primary text-primary-foreground text-[10px] font-semibold leading-none whitespace-nowrap">
-                        HQ
+                        {t("hqLabel")}
                     </span>
                     <MapPin className="text-foreground" size={28} />
                 </div>

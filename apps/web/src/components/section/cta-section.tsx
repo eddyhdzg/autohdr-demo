@@ -1,9 +1,12 @@
+import { useTranslations } from "next-intl";
 import { siteConfig } from "@/lib/config";
 import { Button } from "@workspace/ui/components/button";
 import { CornerPlus } from "@workspace/ui/components/corner-plus";
 import { TypographyH2, TypographyP } from "@workspace/ui/components/typography";
 
 export function CTASection() {
+    const t = useTranslations("CTA");
+    const tCommon = useTranslations("Common");
     const { ctaSection } = siteConfig;
 
     return (
@@ -14,9 +17,9 @@ export function CTASection() {
             <CornerPlus position="top-left" className="text-muted-foreground/50" />
             <CornerPlus position="top-right" className="text-muted-foreground/50" />
             <div className="flex flex-col items-center justify-center text-center space-y-6 max-w-4xl mx-auto">
-                <TypographyH2>{ctaSection.title}</TypographyH2>
+                <TypographyH2>{t("title")}</TypographyH2>
                 <TypographyP className="text-center max-w-2xl mx-auto">
-                    {ctaSection.subtext}
+                    {t("subtext")}
                 </TypographyP>
 
                 <div className="flex items-center gap-3 pt-2">
@@ -26,14 +29,14 @@ export function CTASection() {
                         size="lg"
                         className="px-6 py-4 text-sm md:px-8 md:py-6 md:text-base font-medium"
                     >
-                        {ctaSection.cta.secondary.text}
+                        {tCommon("bookDemo")}
                     </Button>
                     <Button
                         render={<a href={ctaSection.cta.primary.href} />}
                         size="lg"
                         className="px-6 py-4 text-sm md:px-8 md:py-6 md:text-base font-medium"
                     >
-                        {ctaSection.cta.primary.text}
+                        {tCommon("getStarted")}
                     </Button>
                 </div>
             </div>

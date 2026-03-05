@@ -1,9 +1,11 @@
+import { useTranslations } from "next-intl";
 import { TestimonialCarousel } from "@/components/animations/testimonial-scroll";
 import { siteConfig } from "@/lib/config";
 import { CornerPlus } from "@workspace/ui/components/corner-plus";
 import { TypographyH2, TypographyP } from "@workspace/ui/components/typography";
 
 export function TestimonialSection() {
+    const t = useTranslations("Testimonials");
     const { testimonialSection } = siteConfig;
 
     return (
@@ -16,10 +18,10 @@ export function TestimonialSection() {
             <div className="w-full h-full px-6 py-6 md:px-24 md:pt-24 md:pb-8">
                 <div className="max-w-lg mx-auto flex flex-col items-center justify-center gap-4">
                     <TypographyH2 className="text-center">
-                        {testimonialSection.title}
+                        {t("title")}
                     </TypographyH2>
                     <TypographyP className="text-center mx-auto">
-                        {testimonialSection.description}
+                        {t("description")}
                     </TypographyP>
                 </div>
             </div>

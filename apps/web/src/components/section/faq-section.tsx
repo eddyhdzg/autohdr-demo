@@ -8,24 +8,16 @@ import { Button } from "@workspace/ui/components/button";
 import { CornerPlus } from "@workspace/ui/components/corner-plus";
 import { TypographyH2, TypographyP } from "@workspace/ui/components/typography";
 import { ArrowUpRight } from "lucide-react";
-import Link from "next/link";
-import { siteConfig } from "@/lib/config";
+import { Link } from "@/i18n/navigation";
 
 interface FAQSectionProps {
-    title?: string;
-    description?: string;
-    items?: Array<{ id: number; question: string; answer: string }>;
+    title: string;
+    description: string;
+    items: Array<{ id: number; question: string; answer: string }>;
     link?: { text: string; href: string } | null;
 }
 
-export function FAQSection({ title, description, items, link }: FAQSectionProps = {}) {
-    const { faqSection } = siteConfig;
-
-    const resolvedTitle = title ?? faqSection.title;
-    const resolvedDescription = description ?? faqSection.description;
-    const resolvedItems = items ?? faqSection.faQitems;
-    const resolvedLink = link === undefined ? faqSection.faqLink : link;
-
+export function FAQSection({ title, description, items, link }: FAQSectionProps) {
     return (
         <section id="faqs" className="w-full relative">
             <CornerPlus position="top-left" className="text-muted-foreground/50" />
@@ -34,16 +26,16 @@ export function FAQSection({ title, description, items, link }: FAQSectionProps 
                 <div className="grid md:grid-cols-6 md:divide-x divide-border">
                     <div className="md:col-span-2 flex flex-col gap-4 px-6 py-8 md:p-12">
                         <TypographyH2 className="text-left">
-                            {resolvedTitle}
+                            {title}
                         </TypographyH2>
                         <TypographyP className="text-left">
-                            {resolvedDescription}
+                            {description}
                         </TypographyP>
                     </div>
 
                     <div className="md:col-span-4 w-full px-6 py-8 md:p-12">
                         <Accordion className="w-full">
-                            {resolvedItems.map((faq, index) => (
+                            {items.map((faq, index) => (
                                 <AccordionItem
                                     key={faq.id}
                                     value={index.toString()}
@@ -58,12 +50,12 @@ export function FAQSection({ title, description, items, link }: FAQSectionProps 
                                 </AccordionItem>
                             ))}
                         </Accordion>
-                        {resolvedLink && (
+                        {link && (
                             <div className="pt-6">
                                 <Button
                                     render={
                                         <Link
-                                            href={resolvedLink.href}
+                                            href={link.href}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                         />
@@ -71,7 +63,7 @@ export function FAQSection({ title, description, items, link }: FAQSectionProps 
                                     variant="outline"
                                     size="sm"
                                 >
-                                    {resolvedLink.text}
+                                    {link.text}
                                     <ArrowUpRight className="size-4" />
                                 </Button>
                             </div>

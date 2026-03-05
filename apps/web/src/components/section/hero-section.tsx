@@ -1,9 +1,12 @@
+import { useTranslations } from "next-intl";
 import { siteConfig } from "@/lib/config";
 import { Button } from "@workspace/ui/components/button";
 import { TypographyH1, TypographyLead } from "@workspace/ui/components/typography";
 import { Sparkles } from "lucide-react";
 
 export function HeroSection() {
+    const t = useTranslations("Hero");
+    const tCommon = useTranslations("Common");
     const { hero } = siteConfig;
 
     return (
@@ -18,11 +21,11 @@ export function HeroSection() {
                     size="sm"
                 >
                     <Sparkles />
-                    {hero.badge}
+                    {t("badge")}
                 </Button>
-                <TypographyH1>{hero.title}</TypographyH1>
+                <TypographyH1>{t("title")}</TypographyH1>
                 <TypographyLead className="max-w-2xl">
-                    {hero.description}
+                    {t("description")}
                 </TypographyLead>
                 <div className="flex items-center gap-3">
                     <Button
@@ -31,14 +34,14 @@ export function HeroSection() {
                         size="lg"
                         className="px-6 py-4 text-sm md:px-8 md:py-6 md:text-base font-medium"
                     >
-                        {hero.cta.secondary.text}
+                        {tCommon("bookDemo")}
                     </Button>
                     <Button
                         render={<a href={hero.cta.primary.href} />}
                         size="lg"
                         className="px-6 py-4 text-sm md:px-8 md:py-6 md:text-base font-medium"
                     >
-                        {hero.cta.primary.text}
+                        {tCommon("getStarted")}
                     </Button>
                 </div>
             </div>
