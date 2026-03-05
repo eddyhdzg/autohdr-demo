@@ -8,8 +8,6 @@ import { Button } from "@workspace/ui/components/button";
 import { CornerPlus } from "@workspace/ui/components/corner-plus";
 import { TypographyH2, TypographyP } from "@workspace/ui/components/typography";
 import { ArrowUpRight } from "lucide-react";
-import { Link } from "@/i18n/navigation";
-
 interface FAQSectionProps {
     title: string;
     description: string;
@@ -54,7 +52,7 @@ export function FAQSection({ title, description, items, link }: FAQSectionProps)
                             <div className="pt-6">
                                 <Button
                                     render={
-                                        <Link
+                                        <a
                                             href={link.href}
                                             target="_blank"
                                             rel="noopener noreferrer"

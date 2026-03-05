@@ -174,7 +174,7 @@ function MobileNav({
                               variant="ghost"
                               size="sm"
                               render={
-                                <Link
+                                <a
                                   href={link.url}
                                   target="_blank"
                                   rel="noopener noreferrer"
@@ -243,7 +243,7 @@ function MobileNav({
                             variant="ghost"
                             size="sm"
                             render={
-                              <Link
+                              <a
                                 href={link.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
