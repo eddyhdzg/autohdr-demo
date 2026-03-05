@@ -21,7 +21,11 @@
     "pricing": "Pricing",
     "builtInAustinTx": "Built in Austin, TX",
     "allRightsReserved": "All rights reserved.",
-    "toggleTheme": "Toggle theme"
+    "toggleTheme": "Toggle theme",
+    "user": "User",
+    "language": "Language",
+    "english": "English",
+    "spanish": "Español"
   },
   "Nav": {
     "studio": "Studio",

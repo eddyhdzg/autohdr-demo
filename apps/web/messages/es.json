@@ -1,0 +1,310 @@
+{
+  "Metadata": {
+    "siteName": "AutoHDR",
+    "siteDescription": "Procesamiento de imágenes HDR impulsado por IA."
+  },
+  "Common": {
+    "getStarted": "Comenzar",
+    "bookDemo": "Reservar una demo",
+    "contactSales": "Contactar ventas",
+    "monthly": "Mensual",
+    "yearly": "Anual",
+    "yearlyDiscount": "~20% de descuento",
+    "perMonth": "/mes",
+    "perMo": "/mes",
+    "perPhoto": "/ foto",
+    "recommended": "Recomendado",
+    "mostPopular": "Más popular",
+    "free": "Gratis",
+    "price": "Precio",
+    "features": "Funciones",
+    "pricing": "Precios",
+    "builtInAustinTx": "Hecho en Austin, TX",
+    "allRightsReserved": "Todos los derechos reservados.",
+    "toggleTheme": "Cambiar tema",
+    "user": "Usuario",
+    "language": "Idioma",
+    "english": "English",
+    "spanish": "Español"
+  },
+  "Nav": {
+    "studio": "Estudio",
+    "pricing": "Precios",
+    "contact": "Contacto",
+    "faqs": "Preguntas frecuentes",
+    "toggleMenu": "Alternar menú",
+    "openLinkInNewTab": "Abrir enlace en una nueva pestaña",
+    "copyLogoAsSvg": "Copiar logo como SVG",
+    "goToBrandKit": "Ir al kit de marca",
+    "logoOptions": "Opciones del logo"
+  },
+  "Hero": {
+    "badge": "Empieza GRATIS • No se requiere tarjeta de crédito",
+    "title": "Edición de fotos con IA para bienes raíces",
+    "description": "Impulsando 1 de cada 5 listados inmobiliarios en EE. UU."
+  },
+  "Testimonials": {
+    "title": "Con la confianza de líderes de la industria",
+    "description": "Con la confianza para editar el 20% de los listados en EE. UU.",
+    "playVideo": "Reproducir video testimonial de {name}",
+    "videoTitle": "Video testimonial de {name}",
+    "videoAlt": "Video testimonial de {name}",
+    "closeVideo": "Cerrar video",
+    "items": {
+      "1": {
+        "description": "No puedo notar la diferencia",
+        "role": "#1 entrenador de fotografía inmobiliaria del mundo"
+      },
+      "2": {
+        "description": "Cambiamos 90 sesiones por día de la noche a la mañana",
+        "role": "Propietario de Spiro Media y Wow Video Tours"
+      },
+      "3": {
+        "description": "Reducimos nuestra factura a la mitad este año",
+        "role": "Escaló de $0 → $7M en dos años"
+      },
+      "4": {
+        "description": "Probamos varios editores con IA... nadie se acercó",
+        "role": "Propietario de una de las empresas de medios inmobiliarios más grandes de Canadá"
+      },
+      "5": {
+        "description": "Estoy fotografiando cámara en mano y la edición sale impecable",
+        "role": "Experto de la industria reconocido por sus reseñas críticas"
+      }
+    }
+  },
+  "USMap": {
+    "badge": "Hecho en Austin, TX",
+    "title": "IA hecha en Estados Unidos",
+    "description": "Impulsando 1 de cada 5 listados inmobiliarios en EE. UU.",
+    "hqLabel": "Sede"
+  },
+  "Integrations": {
+    "badge": "Integraciones",
+    "title": "Funciona con tus herramientas favoritas",
+    "description": "AutoHDR se integra de forma fluida con las plataformas que ya usas para gestionar tu negocio de medios inmobiliarios.",
+    "viewAll": "Ver todas las integraciones",
+    "requestIntegration": "Solicitar una integración",
+    "requestDescription": "¿No ves tu plataforma? Avísanos.",
+    "items": {
+      "spiro": "Entrega automática de fotos para flujos de trabajo de Spiro Media.",
+      "hdphotohub": "Integración directa con la plataforma de programación de HD PhotoHub.",
+      "tonomo": "Sincroniza pedidos y entrega ediciones a través de Tonomo.",
+      "aryeo": "Procesamiento HDR sin fricciones para listados gestionados en Aryeo.",
+      "dropbox": "Carga automática y organización de fotos editadas en Dropbox."
+    }
+  },
+  "FAQ": {
+    "title": "Preguntas frecuentes",
+    "description": "Respuestas a preguntas comunes sobre AutoHDR y sus funciones. Si tienes cualquier otra pregunta, no dudes en contactarnos.",
+    "seeAll": "Ver todas las preguntas frecuentes",
+    "items": {
+      "1": {
+        "question": "¿Qué es AutoHDR y cómo funciona?",
+        "answer": "Con tiempos de entrega de 30 minutos, AutoHDR ofrece una alternativa más rápida, confiable y escalable que los editores humanos."
+      },
+      "2": {
+        "question": "¿Cómo se compara AutoHDR con la edición humana tradicional?",
+        "answer": "Velocidad: 30 minutos vs. 8-12 horas. Consistencia: la IA asegura ediciones uniformes y de alta calidad cada vez. Asequibilidad: los precios son más bajos que la mayoría de editores humanos. Confiabilidad: la IA funciona 24/7 con cientos de GPUs. Flexibilidad: pagas solo por lo que descargas."
+      },
+      "3": {
+        "question": "¿Cuánto cuesta AutoHDR?",
+        "answer": "$0.40-$0.57 por edición, según el volumen. Mucho más barato que la mayoría de editores humanos que cobran $0.70-$1.00+ por edición."
+      },
+      "4": {
+        "question": "¿Ofrecen una prueba gratis?",
+        "answer": "¡Sí! 10 descargas gratis al mes, sin tarjeta de crédito."
+      },
+      "5": {
+        "question": "¿AutoHDR se integra con plataformas de reservas inmobiliarias?",
+        "answer": "¡Sí! Tenemos flujos de trabajo completamente automatizados para todas las plataformas."
+      }
+    }
+  },
+  "PricingSection": {
+    "title": "Precios",
+    "description": "Paga solo por lo que descargas",
+    "howManyPhotos": "¿Cuántas fotos por mes?",
+    "freePhotosLabel": "10 fotos / mes gratis",
+    "photosSliderTooltip": "{count, plural, =0 {0-10 fotos} one {{count} foto} other {{count} fotos}}",
+    "freeTierLabel": "Gratis · 10 fotos",
+    "photosPerMo": "{count} fotos / mes",
+    "photosPerMonth": "{count} fotos / mes",
+    "photosPerMoUnit": "fotos / mes",
+    "photosPerMonthUnit": "fotos / mes",
+    "getYearly": "Elegir anual",
+    "getMonthly": "Elegir mensual",
+    "buyExtraCredits": "Compra créditos extra a ${rate} cada uno",
+    "unlimitedUploads": "Subidas ilimitadas",
+    "onlyPayDownloads": "Paga solo por descargas",
+    "plans": {
+      "free": {
+        "name": "Gratis",
+        "description": "Prueba AutoHDR sin compromiso",
+        "buttonText": "Comenzar"
+      },
+      "pro": {
+        "name": "Pro",
+        "description": "Para equipos que necesitan volumen",
+        "buttonText": "Comenzar"
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "description": "Para brokerages y equipos grandes",
+        "buttonText": "Contactar ventas"
+      }
+    },
+    "features": {
+      "upTo10Photos": "Hasta 10 fotos / mes",
+      "creditsRollOver": "Los créditos no usados se acumulan",
+      "autoTvBlackout": "Bloqueo automático de TV",
+      "autoAddFire": "Añadir fuego automáticamente",
+      "walkthroughReordering": "Reordenamiento del recorrido",
+      "dedicatedSlack": "Canal dedicado de Slack"
+    }
+  },
+  "PricingBreakdown": {
+    "title": "Comparar planes",
+    "description": "Todos los detalles, lado a lado.",
+    "columnFree": "Gratis",
+    "price": "Precio",
+    "perPhoto": "Por foto",
+    "priorityProcessing": "Procesamiento prioritario",
+    "creditsRollOver": "Los créditos se acumulan",
+    "autoTvBlackout": "Bloqueo automático de TV",
+    "autoAddFire": "Añadir fuego automáticamente",
+    "walkthroughReordering": "Reordenamiento del recorrido",
+    "dedicatedSlack": "Canal dedicado de Slack",
+    "payAsYouGoNote": "* Tarifa de pago por uso. Las fotos adicionales del plan Gratis cuestan ${rate} cada una."
+  },
+  "PricingFAQ": {
+    "title": "Preguntas frecuentes de precios",
+    "description": "Preguntas comunes sobre planes, créditos y facturación.",
+    "items": {
+      "1": {
+        "question": "¿Cuánto cuesta AutoHDR?",
+        "answer": "$0.40-0.57 por foto, según el volumen. Solo pagas por las fotos que descargas: subir y previsualizar siempre es gratis."
+      },
+      "2": {
+        "question": "¿Cómo funciona la facturación?",
+        "answer": "Las suscripciones mensuales incluyen una cantidad fija de créditos. Un crédito = una foto descargada. En planes de pago, los créditos no usados se acumulan mes a mes. También puedes pagar anual y ahorrar en todos los planes."
+      },
+      "3": {
+        "question": "¿Cuándo se me cobra un crédito?",
+        "answer": "Solo cuando haces clic en Descargar. Subir y previsualizar siempre es gratis."
+      },
+      "4": {
+        "question": "¿Qué pasa si supero los créditos de mi plan?",
+        "answer": "Puedes comprar créditos extra al precio por foto de tu plan en cualquier momento. No necesitas subir a un plan superior: solo recarga y continúa."
+      },
+      "5": {
+        "question": "¿Los créditos no usados vencen?",
+        "answer": "En planes de pago, los créditos no usados se acumulan mes a mes y no vencen mientras mantengas un plan de pago. En el plan Gratis, los créditos se reinician cada mes."
+      },
+      "6": {
+        "question": "¿Puedo bajar de plan y conservar mis créditos?",
+        "answer": "Si bajas a un plan de pago inferior, tus créditos acumulados se conservan. Sin embargo, si cancelas o bajas al plan Gratis, los créditos vencen al final de tu ciclo de facturación actual."
+      },
+      "7": {
+        "question": "¿Ofrecen una prueba gratis?",
+        "answer": "¡Sí! 10 descargas de fotos gratis al mes, sin tarjeta de crédito."
+      },
+      "8": {
+        "question": "¿Cómo funciona la facturación anual?",
+        "answer": "Paga 12 meses por adelantado y ahorra en todos los planes. Por ejemplo, el plan Basic baja de $28.50/mes a $22.80/mes (un ahorro de $5.70/mes). Los planes superiores ahorran aún más."
+      }
+    }
+  },
+  "PricingPage": {
+    "metaTitle": "Precios",
+    "metaDescription": "Paga solo por lo que descargas. Precios simples y transparentes para edición de fotos inmobiliarias."
+  },
+  "CTA": {
+    "title": "Transforma tus fotos con AutoHDR",
+    "subtext": "Mejora tus fotos inmobiliarias con AutoHDR. Resultados con calidad de estudio en segundos; empieza gratis."
+  },
+  "Footer": {
+    "sections": {
+      "pages": "Páginas",
+      "resources": "Recursos",
+      "company": "Empresa",
+      "social": "Redes sociales"
+    },
+    "links": {
+      "home": "Inicio",
+      "studio": "Estudio",
+      "pricing": "Precios",
+      "contact": "Contacto",
+      "faqs": "Preguntas frecuentes",
+      "docs": "Documentación",
+      "support": "Soporte",
+      "changelog": "Registro de cambios",
+      "blog": "Blog",
+      "aboutUs": "Sobre nosotros",
+      "ourTeam": "Nuestro equipo",
+      "brand": "Marca",
+      "terms": "Términos",
+      "privacy": "Privacidad",
+      "requestFeature": "Solicitar una función",
+      "contactSales": "Contactar ventas",
+      "partnerships": "Alianzas",
+      "instagram": "Instagram",
+      "tiktok": "TikTok",
+      "linkedin": "LinkedIn"
+    },
+    "copyright": "© {year} {name}."
+  },
+  "Brand": {
+    "metaTitle": "Kit de marca",
+    "metaDescription": "Guías y recursos para presentar la marca AutoHDR de forma consistente.",
+    "hero": {
+      "title": "Kit de marca",
+      "description": "Guías y recursos para presentar la marca AutoHDR de forma consistente.",
+      "symbolAlt": "Símbolo de AutoHDR",
+      "downloadAll": "Descargar todos los recursos"
+    },
+    "naming": {
+      "title": "Nomenclatura",
+      "description": "Sigue estas pautas cuando hagas referencia a AutoHDR.",
+      "preferred": "Preferido",
+      "constrained": "Cuando haya restricciones (todo en mayúsculas o todo en minúsculas)",
+      "incorrect": "Incorrecto",
+      "variantCorrect": "Correcto",
+      "variantAccepted": "Aceptado",
+      "variantIncorrect": "Incorrecto"
+    },
+    "logo": {
+      "title": "Logotipo",
+      "description": "El logotipo de AutoHDR combina el símbolo y la marca denominativa.",
+      "assets": {
+        "logoLight": "Logotipo - Claro",
+        "logoDark": "Logotipo - Oscuro",
+        "logoLightAlt": "Logotipo de AutoHDR en negro",
+        "logoDarkAlt": "Logotipo de AutoHDR en blanco"
+      }
+    },
+    "symbol": {
+      "title": "Símbolo",
+      "description": "El símbolo de AutoHDR es la marca isométrica usada como ícono independiente.",
+      "assets": {
+        "symbolLight": "Símbolo - Claro",
+        "symbolDark": "Símbolo - Oscuro",
+        "symbolLightAlt": "Símbolo de AutoHDR en fondo claro",
+        "symbolDarkAlt": "Símbolo de AutoHDR en fondo oscuro"
+      }
+    },
+    "downloadSvg": "Descargar SVG",
+    "downloadPng": "Descargar PNG",
+    "copySvg": "Copiar SVG",
+    "copyPng": "Copiar PNG",
+    "svgCopied": "¡SVG copiado!",
+    "pngCopied": "¡PNG copiado!",
+    "copyFailed": "Error al copiar"
+  },
+  "Animations": {
+    "connecting": "Conectando",
+    "connected": "Conectado",
+    "installed": "Instalado",
+    "searchServers": "Buscar servidores"
+  }
+}

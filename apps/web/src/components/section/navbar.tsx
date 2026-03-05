@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "motion/react";
 import { siteConfig } from "@/lib/config";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { LanguageSwitcher } from "@/components/language-switcher";
 import { Button } from "@workspace/ui/components/button";
 import {
   NavigationMenu,
@@ -13,7 +14,13 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "@workspace/ui/components/navigation-menu";
-import { ArrowUpRight, ExternalLink, Copy, Palette } from "lucide-react";
+import {
+  ArrowUpRight,
+  CircleUserRound,
+  ExternalLink,
+  Copy,
+  Palette,
+} from "lucide-react";
 import { cn } from "@workspace/ui/lib/utils";
 import { Icons } from "../icons";
 import { copySvgToClipboard } from "@/lib/brand-utils";
@@ -29,7 +36,7 @@ function HamburgerButton({
 }) {
   return (
     <Button
-      variant="outline"
+      variant="ghost"
       size="icon"
       onClick={onClick}
       className="md:hidden relative z-50 size-8"
@@ -421,8 +428,15 @@ export function Navbar() {
 
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <Button size="sm" className="hidden md:flex px-5 text-sm font-medium">
-            {tCommon("getStarted")}
+          <LanguageSwitcher className="hidden md:inline-flex" />
+          <Button
+            variant="ghost"
+            size="icon"
+            className="hidden md:inline-flex cursor-pointer h-8 w-8"
+            type="button"
+          >
+            <CircleUserRound className="size-5 text-primary" />
+            <span className="sr-only">{tCommon("user")}</span>
           </Button>
           <HamburgerButton
             isOpen={isMobileMenuOpen}
