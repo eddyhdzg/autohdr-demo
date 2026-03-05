@@ -5,6 +5,7 @@
   },
   "Common": {
     "getStarted": "Comenzar",
+    "goToStudio": "Ir a Estudio",
     "bookDemo": "Reservar una demo",
     "contactSales": "Contactar ventas",
     "monthly": "Mensual",
@@ -22,6 +23,8 @@
     "builtInAustinTx": "Hecho en Austin, TX",
     "allRightsReserved": "Todos los derechos reservados.",
     "toggleTheme": "Cambiar tema",
+    "darkMode": "Modo oscuro",
+    "lightMode": "Modo claro",
     "user": "Usuario",
     "language": "Idioma",
     "english": "English",
