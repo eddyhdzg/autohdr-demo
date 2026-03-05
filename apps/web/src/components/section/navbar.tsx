@@ -20,8 +20,6 @@ import {
   ExternalLink,
   Copy,
   Palette,
-  Menu as MenuIcon,
-  X,
 } from "lucide-react";
 import { cn } from "@workspace/ui/lib/utils";
 import { Icons } from "../icons";
@@ -45,14 +43,26 @@ function HamburgerButton({
       aria-label={label}
       aria-expanded={isOpen}
     >
-      <div className="relative size-6 flex items-center justify-center">
-        <MenuIcon
-          className="absolute size-5 text-foreground rotate-0 scale-100 transition-all data-[open=true]:rotate-90 data-[open=true]:scale-0"
-          data-open={isOpen}
+      <div className="relative size-5 flex items-center justify-center">
+        <motion.span
+          className="absolute h-0.5 w-4 bg-foreground"
+          initial={false}
+          animate={
+            isOpen
+              ? { rotate: 45, y: 0 }
+              : { rotate: 0, y: -4 }
+          }
+          transition={{ duration: 0.25, ease: "easeInOut" }}
         />
-        <X
-          className="absolute size-5 text-foreground -rotate-90 scale-0 transition-all data-[open=true]:rotate-0 data-[open=true]:scale-100"
-          data-open={isOpen}
+        <motion.span
+          className="absolute h-0.5 w-4 bg-foreground"
+          initial={false}
+          animate={
+            isOpen
+              ? { rotate: -45, y: 0 }
+              : { rotate: 0, y: 4 }
+          }
+          transition={{ duration: 0.25, ease: "easeInOut" }}
         />
       </div>
     </Button>
