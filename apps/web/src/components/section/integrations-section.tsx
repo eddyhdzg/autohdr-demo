@@ -14,8 +14,6 @@ import {
 } from "@workspace/ui/components/typography";
 import { ArrowUpRight, MessageSquarePlus, Puzzle } from "lucide-react";
 import Image from "next/image";
-import { Link } from "@/i18n/navigation";
-
 export function IntegrationsSection() {
     const t = useTranslations("Integrations");
     const { integrationsSection } = siteConfig;
@@ -47,7 +45,7 @@ export function IntegrationsSection() {
 
             <div className="mt-8 md:mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border max-w-5xl mx-auto">
                 {integrationsSection.integrations.map((integration) => (
-                    <Link
+                    <a
                         key={integration.id}
                         href={integration.href}
                         target="_blank"
@@ -74,9 +72,9 @@ export function IntegrationsSection() {
                                 </CardDescription>
                             </CardHeader>
                         </Card>
-                    </Link>
+                    </a>
                 ))}
-                <Link
+                <a
                     href={integrationsSection.requestIntegration.href}
                     className="group"
                 >
@@ -91,13 +89,13 @@ export function IntegrationsSection() {
                             </CardDescription>
                         </CardHeader>
                     </Card>
-                </Link>
+                </a>
             </div>
 
             <div className="flex justify-center pt-8">
                 <Button
                     render={
-                        <Link
+                        <a
                             href={integrationsSection.link.href}
                             target="_blank"
                             rel="noopener noreferrer"
