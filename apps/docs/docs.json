@@ -80,14 +80,19 @@
             "icon": "puzzle-piece",
             "groups": [
               {
-                "group": "Integrations",
+                "group": "Photography",
                 "pages": [
                   "integrations/overview",
                   "integrations/spiro",
                   "integrations/hd-photohub",
                   "integrations/tonomo",
                   "integrations/aryeo",
-                  "integrations/dropbox",
+                  "integrations/dropbox"
+                ]
+              },
+              {
+                "group": "Documentation",
+                "pages": [
                   "integrations/slack"
                 ]
               }
@@ -155,14 +160,19 @@
             "icon": "puzzle-piece",
             "groups": [
               {
-                "group": "Integraciones",
+                "group": "Fotografía",
                 "pages": [
                   "es/integrations/overview",
                   "es/integrations/spiro",
                   "es/integrations/hd-photohub",
                   "es/integrations/tonomo",
                   "es/integrations/aryeo",
-                  "es/integrations/dropbox",
+                  "es/integrations/dropbox"
+                ]
+              },
+              {
+                "group": "Documentación",
+                "pages": [
                   "es/integrations/slack"
                 ]
               }
