@@ -48,7 +48,7 @@ function hasFeature(tier: PricingTier, key: string): boolean {
 }
 
 const stickyLabelCell =
-    "sticky left-0 z-[1] group-hover:bg-neutral-200 dark:group-hover:bg-neutral-800 transition-colors font-medium text-sm whitespace-nowrap min-w-[180px]";
+    "sticky left-0 z-10 group-hover:bg-neutral-200 dark:group-hover:bg-neutral-800 transition-colors font-medium text-sm whitespace-nowrap min-w-[180px]";
 
 const groupHeaderCell =
     "bg-neutral-100 dark:bg-neutral-800 text-xs font-semibold uppercase tracking-wider text-muted-foreground";
@@ -71,7 +71,7 @@ export function PricingBreakdownTable() {
     const isYearly = billing === "yearly";
 
     return (
-        <section id="pricing-breakdown" className="relative w-full">
+        <section id="pricing-breakdown" className="isolate relative w-full">
             <CornerPlus
                 position="top-left"
                 className="text-muted-foreground/50"
@@ -89,7 +89,7 @@ export function PricingBreakdownTable() {
                 </div>
 
                 <ScrollArea className="w-full" orientation="horizontal">
-                    <table className="w-full caption-bottom text-sm">
+                    <table className="isolate w-full caption-bottom text-sm">
                     <TableHeader className="[&_tr]:border-0">
                         <TableRow className="hover:bg-transparent border-0">
                             <TableHead

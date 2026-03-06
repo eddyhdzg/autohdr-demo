@@ -19,7 +19,7 @@ export function ConnectionStatusIndicator({ status }: { status: ConnectionStatus
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.3 }}
-                    className="absolute -top-3.5 left-1/2 -translate-x-1/2 flex items-center justify-center z-10"
+                    className="absolute -top-3.5 left-1/2 -translate-x-1/2 flex items-center justify-center"
                 >
                     <Button
                         size="sm"
