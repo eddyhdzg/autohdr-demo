@@ -80,7 +80,7 @@
             "icon": "puzzle-piece",
             "groups": [
               {
-                "group": "Photography",
+                "group": "Studio",
                 "pages": [
                   "integrations/overview",
                   "integrations/spiro",
@@ -160,7 +160,7 @@
             "icon": "puzzle-piece",
             "groups": [
               {
-                "group": "Fotografía",
+                "group": "Estudio",
                 "pages": [
                   "es/integrations/overview",
                   "es/integrations/spiro",
