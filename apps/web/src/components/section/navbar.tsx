@@ -8,6 +8,7 @@ import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "motion/react";
 import { Emoji } from "react-apple-emojis";
 import { siteConfig } from "@/lib/config";
+import { localizeDocsUrl } from "@/lib/localize-docs-url";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { Button } from "@workspace/ui/components/button";
@@ -94,6 +95,7 @@ function HamburgerButton({
 
 function DesktopNav() {
   const tNav = useTranslations("Nav");
+  const locale = useLocale();
 
   return (
     <NavigationMenu className="hidden md:flex">
@@ -104,6 +106,13 @@ function DesktopNav() {
               <span className="border border-transparent text-muted-foreground/50 cursor-not-allowed rounded-none h-8 w-fit inline-flex items-center justify-center px-4 py-2 text-sm font-medium">
                 {tNav(link.translationKey)}
               </span>
+            ) : link.external ? (
+              <NavigationMenuLink
+                render={<a href={localizeDocsUrl(link.href, locale)} />}
+                className="border border-transparent hover:border-border text-foreground rounded-none h-8 w-fit px-2 bg-transparent group inline-flex items-center justify-center px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none"
+              >
+                {tNav(link.translationKey)}
+              </NavigationMenuLink>
             ) : (
               <NavigationMenuLink
                 render={<Link href={link.href} />}
@@ -229,7 +238,7 @@ function MobileNav({
                               size="sm"
                               render={
                                 <a
-                                  href={link.url}
+                                  href={localizeDocsUrl(link.url, locale)}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   onClick={onClose}

@@ -5,12 +5,11 @@
   width: auto;
 }
 
-/* Sidebar active page indicator — pill background (EDDY-52) */
+/* Sidebar active page indicator (EDDY-52) */
 #sidebar a[data-active="true"],
 #sidebar a.active,
 #sidebar a[aria-current="page"] {
   background-color: rgba(0, 0, 0, 0.08);
-  border-radius: 8px;
   font-weight: 600;
   padding: 0.25rem 0.5rem;
   margin-left: -0.5rem;
@@ -23,53 +22,7 @@ html.dark #sidebar a[aria-current="page"] {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Sidebar footer — 3 social icons centered with gap */
-.sidebar-footer {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  align-items: center;
-  padding: 0.5rem 1.25rem 0.75rem;
-  margin-top: auto;
-  border-top: none !important;
-}
-
-/* Remove Mintlify's sidebar bottom divider */
-#sidebar > :last-child {
-  border-top: none !important;
-}
-
-.sidebar-footer a {
-  color: #a3a3a3;
-  transition: color 0.15s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-}
-
-.sidebar-footer a:hover {
-  color: #404040;
-}
-
-html.dark .sidebar-footer a:hover {
-  color: #d4d4d4;
-}
-
-.sidebar-footer svg {
-  width: 20px;
-  height: 20px;
-}
-
-/* TikTok is a solid fill vs outlined icons — reduce opacity to match visual weight */
-.sidebar-footer-tiktok svg {
-  width: 18px;
-  height: 18px;
-  opacity: 0.72;
-}
-
-/* Page footer — TikTok icon: 18px SVG in 20px box, match sibling color */
+/* Page footer — TikTok icon sizing (injected by footer-tiktok.js) */
 #footer [data-tiktok-injected] {
   display: inline-flex;
   align-items: center;
@@ -90,4 +43,3 @@ html.dark .sidebar-footer a:hover {
 #footer div:has(> a[href*="mintlify.com"]) {
   display: none !important;
 }
-

@@ -1,5 +1,6 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { DOCS_URL } from "@workspace/consts";
+import { localizeDocsUrl } from "@/lib/localize-docs-url";
 import { CTASection } from "@/components/section/cta-section";
 import { FAQSection } from "@/components/section/faq-section";
 import { Footer } from "@/components/section/footer";
@@ -33,7 +34,7 @@ export default async function Home({ params }: Props) {
         title={t("title")}
         description={t("description")}
         items={faqItems}
-        link={{ text: t("seeAll"), href: `${DOCS_URL}/faq` }}
+        link={{ text: t("seeAll"), href: localizeDocsUrl(`${DOCS_URL}/faq`, locale) }}
       />
       <CTASection />
       <Footer />

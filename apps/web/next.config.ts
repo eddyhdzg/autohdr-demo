@@ -14,14 +14,17 @@ const nextConfig: NextConfig = {
     ],
   },
   async rewrites() {
+    const mintlifyBaseUrl =
+      process.env.MINTLIFY_BASE_URL ||
+      "https://hubble-cc00cf1e.mintlify.dev/docs";
     return [
       {
         source: "/docs",
-        destination: "https://hubble-cc00cf1e.mintlify.dev/docs",
+        destination: mintlifyBaseUrl,
       },
       {
         source: "/docs/:match*",
-        destination: "https://hubble-cc00cf1e.mintlify.dev/docs/:match*",
+        destination: `${mintlifyBaseUrl}/:match*`,
       },
     ];
   },

@@ -7,7 +7,6 @@ import {
     Headset,
     House,
     Info,
-    Mail,
     Newspaper,
     Palette,
     Phone,
@@ -117,7 +116,7 @@ export const siteConfig = {
         links: [
             { id: 1, translationKey: "studio", href: "/studio", disabled: true },
             { id: 2, translationKey: "pricing", href: "/pricing" },
-            { id: 3, translationKey: "contact", href: "/#contact" },
+            { id: 3, translationKey: "docs", href: DOCS_URL, external: true },
             { id: 4, translationKey: "faqs", href: "/#faqs" },
         ],
     },
@@ -167,16 +166,15 @@ export const siteConfig = {
                 { id: 1, translationKey: "home", url: "/", icon: <House className="size-4" /> },
                 { id: 2, translationKey: "studio", url: "/studio", disabled: true, icon: <Clapperboard className="size-4" /> },
                 { id: 3, translationKey: "pricing", url: "/pricing", icon: <Tag className="size-4" /> },
-                { id: 4, translationKey: "contact", url: "/#contact", icon: <Mail className="size-4" /> },
+                { id: 4, translationKey: "docs", url: DOCS_URL, external: true, icon: <BookOpen className="size-4" /> },
                 { id: 5, translationKey: "faqs", url: "/#faqs", icon: <CircleHelp className="size-4" /> },
             ],
         },
         {
             titleKey: "resources",
             links: [
-                { id: 6, translationKey: "docs", url: DOCS_URL, external: true, icon: <BookOpen className="size-4" /> },
-                { id: 7, translationKey: "support", url: "/support", disabled: true, icon: <Headset className="size-4" /> },
-                { id: 8, translationKey: "changelog", url: "/changelog", disabled: true, icon: <ScrollText className="size-4" /> },
+                { id: 6, translationKey: "support", url: "/support", disabled: true, icon: <Headset className="size-4" /> },
+                { id: 7, translationKey: "changelog", url: "/changelog", disabled: true, icon: <ScrollText className="size-4" /> },
             ],
         },
         {
