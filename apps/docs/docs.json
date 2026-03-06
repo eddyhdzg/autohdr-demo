@@ -87,7 +87,8 @@
                   "integrations/hd-photohub",
                   "integrations/tonomo",
                   "integrations/aryeo",
-                  "integrations/dropbox"
+                  "integrations/dropbox",
+                  "integrations/slack"
                 ]
               }
             ]
@@ -161,7 +162,8 @@
                   "es/integrations/hd-photohub",
                   "es/integrations/tonomo",
                   "es/integrations/aryeo",
-                  "es/integrations/dropbox"
+                  "es/integrations/dropbox",
+                  "es/integrations/slack"
                 ]
               }
             ]

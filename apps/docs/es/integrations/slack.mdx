@@ -1,0 +1,65 @@
+---
+title: "Integración con Slack"
+description: "Genera actualizaciones de documentación y PRs directamente desde Slack usando el bot @mintlify."
+icon: "slack"
+---
+
+# Integración con Slack
+
+Menciona `@mintlify` en Slack para solicitar cambios en la documentación.
+El bot investiga tu solicitud, redacta la actualización y abre un pull
+request para revisión. Nunca hace commits directamente a main.
+
+## Cómo funciona
+
+Cuando mencionas `@mintlify` con una solicitud, el bot sigue un flujo de
+trabajo estructurado:
+
+1. **Investigar** — lee la documentación existente para entender el contexto
+2. **Planificar** — describe qué cambios se necesitan
+3. **Escribir** — redacta el contenido nuevo o actualizado
+4. **Validar** — verifica la consistencia y precisión
+5. **Abrir PR** — crea un pull request para que tu equipo lo revise
+
+## Configuración
+
+<Steps>
+  <Step title="Instalar la app de Slack">
+    Ve al [Panel de Mintlify](https://dashboard.mintlify.com) →
+    Integraciones → Slack e instala la app en tu workspace.
+  </Step>
+  <Step title="Invitar al bot">
+    Invita a `@mintlify` a los canales donde tu equipo discute la
+    documentación (por ejemplo, `#docs` o `#engineering`).
+  </Step>
+  <Step title="Enviar tu primera solicitud">
+    Menciona `@mintlify` con una solicitud clara, como "actualiza la
+    página de precios para reflejar los nuevos niveles de créditos."
+  </Step>
+</Steps>
+
+## Casos de uso
+
+- **Lanzamiento de funciones** — un ingeniero lanza un nuevo servicio de
+  edición y le pide al bot que redacte la página de documentación.
+- **Actualización de capturas** — envía una captura de pantalla
+  actualizada y pide al bot que la agregue a la página correcta.
+- **Reportes de errores** — "La página de precios dice $0.57 para Basic
+  pero debería ser $0.55" y el bot abre un PR con la corrección.
+- **Solicitudes de contenido** — "Agrega una sección sobre la
+  transferencia de créditos al FAQ" y el bot la redacta.
+
+## Capacidades
+
+- **Archivos adjuntos** — envía fotos, capturas de pantalla o diagramas
+  junto con tu solicitud.
+- **Actualizaciones de múltiples páginas** — el bot maneja cambios que
+  abarcan varias páginas a la vez.
+- **Retroalimentación en PRs** — si alguien deja comentarios en el PR,
+  el bot los atiende directamente.
+
+<Tip>
+  Sé específico con tus solicitudes. En lugar de "actualiza los docs,"
+  intenta "agrega un paso sobre subidas masivas a la guía de primeros
+  pasos."
+</Tip>
