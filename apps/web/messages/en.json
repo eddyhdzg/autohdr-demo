@@ -253,7 +253,8 @@
       "partnerships": "Partnerships",
       "instagram": "Instagram",
       "tiktok": "TikTok",
-      "linkedin": "LinkedIn"
+      "linkedin": "LinkedIn",
+      "designSystem": "Design System"
     },
     "copyright": "\u00a9 {year} {name}."
   },
@@ -303,6 +304,27 @@
     "svgCopied": "SVG copied!",
     "pngCopied": "PNG copied!",
     "copyFailed": "Copy failed"
+  },
+  "DesignSystem": {
+    "metaTitle": "Design System",
+    "metaDescription": "Colors, buttons, and design tokens used across AutoHDR.",
+    "hero": {
+      "title": "Design System",
+      "description": "Colors, buttons, and design tokens used across AutoHDR."
+    },
+    "colors": {
+      "title": "Colors",
+      "description": "The core color palette used across AutoHDR.",
+      "neutral": "Neutral",
+      "semantic": "Semantic",
+      "base": "Base"
+    },
+    "buttons": {
+      "title": "Buttons",
+      "description": "All button variants and sizes from the component library.",
+      "variants": "Variants",
+      "sizes": "Sizes"
+    }
   },
   "Animations": {
     "connecting": "Connecting",
