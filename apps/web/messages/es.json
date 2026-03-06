@@ -331,5 +331,167 @@
     "connected": "Conectado",
     "installed": "Instalado",
     "searchServers": "Buscar servidores"
+  },
+  "FAQsPage": {
+    "metaTitle": "Preguntas frecuentes",
+    "metaDescription": "Preguntas frecuentes sobre la edición de fotos inmobiliarias con IA de AutoHDR.",
+    "hero": {
+      "title": "Preguntas frecuentes",
+      "description": "Preguntas frecuentes sobre la edici\u00f3n de fotos inmobiliarias con IA de AutoHDR."
+    },
+    "general": {
+      "title": "Preguntas generales",
+      "description": "Aprende lo b\u00e1sico sobre AutoHDR y c\u00f3mo se compara con la edici\u00f3n tradicional.",
+      "items": {
+        "1": {
+          "question": "\u00bfQu\u00e9 es AutoHDR y c\u00f3mo funciona?",
+          "answer": "Con tiempos de entrega de 30 minutos, AutoHDR ofrece una alternativa m\u00e1s r\u00e1pida, confiable y escalable que los editores humanos."
+        },
+        "2": {
+          "question": "\u00bfC\u00f3mo se compara AutoHDR con la edici\u00f3n humana tradicional?",
+          "answer": "Velocidad: 30 minutos vs. 8-12 horas (norma de la industria). Consistencia: la IA asegura ediciones uniformes y de alta calidad cada vez. Asequibilidad: los precios son m\u00e1s bajos que la mayor\u00eda de editores humanos. Confiabilidad: la IA funciona 24/7 con cientos de GPUs. Flexibilidad: solo pagas por lo que descargas."
+        },
+        "3": {
+          "question": "\u00bfCu\u00e1les son los beneficios de AutoHDR sobre subcontratar editores?",
+          "answer": "Entrega m\u00e1s r\u00e1pida (30 minutos). Sin depender de la disponibilidad humana \u2014 sin retrasos, vacaciones ni d\u00edas por enfermedad. Previsualizas antes de pagar \u2014 si no est\u00e1s satisfecho, no descargues. Funci\u00f3n \u201cHumano en el ciclo\u201d con un clic \u2014 puedes agregar tu propio editor gratis. Flujos de trabajo completamente automatizados."
+        },
+        "4": {
+          "question": "\u00bfAutoHDR es adecuado para fotograf\u00eda inmobiliaria de lujo de alta gama?",
+          "answer": "A\u00fan no. Si est\u00e1s pagando $1-$3 por edici\u00f3n para retoque manual de alta gama, AutoHDR no igualar\u00e1 completamente ese nivel. Sin embargo, funciona muy bien para listados inmobiliarios est\u00e1ndar."
+        },
+        "5": {
+          "question": "\u00bfPuedo probar AutoHDR antes de comprometerme con una suscripci\u00f3n?",
+          "answer": "\u00a1S\u00ed! Puedes subir fotos ilimitadas, previsualizar ediciones gratis y solo pagar cuando descargues. Obt\u00e9n 10 descargas gratis cada mes \u2014 sin tarjeta de cr\u00e9dito."
+        }
+      }
+    },
+    "uploading": {
+      "title": "Subida y procesamiento de fotos",
+      "description": "C\u00f3mo subir tus fotos a AutoHDR y qu\u00e9 esperar.",
+      "items": {
+        "1": {
+          "question": "\u00bfC\u00f3mo subo fotos a AutoHDR?",
+          "answer": "Ve a AutoHDR, arrastra y suelta tus archivos o s\u00fabelos desde tu computadora, Dropbox o Drive. AutoHDR detecta y procesa autom\u00e1ticamente tus im\u00e1genes."
+        },
+        "2": {
+          "question": "\u00bfQu\u00e9 formatos de archivo acepta AutoHDR?",
+          "answer": "JPEG (recomendado para la mejor velocidad y rendimiento) y RAW (compatible, pero m\u00e1s lento de procesar)."
+        },
+        "3": {
+          "question": "\u00bfQu\u00e9 pasa si subo un archivo no compatible?",
+          "answer": "Convierte a JPEG antes de procesar para obtener los mejores resultados."
+        },
+        "4": {
+          "question": "\u00bfAutoHDR automatiza las subidas y la entrega?",
+          "answer": "\u00a1S\u00ed! AutoHDR puede detectar, editar y subir fotos autom\u00e1ticamente a tu plataforma de entrega. Disponible mediante varias automatizaciones con un clic."
+        }
+      }
+    },
+    "shootingSettings": {
+      "title": "Ajustes de disparo recomendados",
+      "description": "Ajustes de c\u00e1mara que producen los mejores resultados con AutoHDR.",
+      "items": {
+        "1": {
+          "question": "\u00bfCu\u00e1les son los mejores ajustes para AutoHDR?",
+          "answer": "3 o 5 exposiciones con horquillado a +/-2 EV. Formato JPEG recomendado (subidas m\u00e1s r\u00e1pidas, sin p\u00e9rdida de calidad en la mayor\u00eda de los casos). NO se requiere tr\u00edpode. Se admiten tomas con flash (\u201cFlambient\u201d) pero no son necesarias."
+        }
+      }
+    },
+    "team": {
+      "title": "Funciones de equipo y colaboraci\u00f3n",
+      "description": "Configura tu equipo y colabora en las ediciones.",
+      "items": {
+        "1": {
+          "question": "\u00bfLos equipos pueden usar AutoHDR juntos?",
+          "answer": "\u00a1S\u00ed! Puedes colaborar con tu equipo agregando fot\u00f3grafos y editores a tu cuenta."
+        },
+        "2": {
+          "question": "\u00bfC\u00f3mo configuro mi equipo?",
+          "answer": "Ve a Configuraci\u00f3n de cuenta \u2192 Equipo. Invita a tus fot\u00f3grafos y VAs de Control de Calidad (QC). Necesitan unirse a tu organizaci\u00f3n en su cuenta de AutoHDR (agreg\u00e1ndote como \u201cCuenta a acceder\u201d). Sus subidas aparecer\u00e1n en tu cuenta para revisi\u00f3n."
+        },
+        "3": {
+          "question": "\u00bfQu\u00e9 pueden hacer los VAs de Control de Calidad (QC)?",
+          "answer": "Revisar, ajustar, descargar y entregar im\u00e1genes. AutoHDR admite flujos de trabajo en equipo para negocios de medios inmobiliarios m\u00e1s grandes."
+        }
+      }
+    },
+    "editing": {
+      "title": "Herramientas de edici\u00f3n y personalizaci\u00f3n",
+      "description": "Ajusta tus fotos despu\u00e9s de que AutoHDR las procese.",
+      "items": {
+        "1": {
+          "question": "\u00bfC\u00f3mo ajusto mis im\u00e1genes despu\u00e9s de que AutoHDR las procese?",
+          "answer": "Una vez que tus im\u00e1genes est\u00e9n listas, puedes usar: AutoRemove \u2014 eliminaci\u00f3n de objetos con un clic (sin necesidad de Photoshop). AutoFill \u2014 agrega llamas de chimenea, flores o ediciones menores de staging. Virtual Twilight \u2014 convierte fotos diurnas en im\u00e1genes crepusculares. Controles deslizantes \u2014 ajusta brillo, contraste, balance de blancos, vibraci\u00f3n, etc. Herramienta de recorte \u2014 ajusta el encuadre si es necesario. Interruptor de cielo \u2014 activa/desactiva las nubes. C\u00e9sped verde \u2014 reemplaza el c\u00e9sped con hierba generada por IA."
+        },
+        "2": {
+          "question": "\u00bfPuedo agregar mi propio editor humano?",
+          "answer": "\u00a1S\u00ed! AutoHDR tiene una funci\u00f3n \u201cHumano en el ciclo\u201d con un clic. Puedes agregar tu propio editor gratis \u2014 sin costo extra. Pueden ajustar las im\u00e1genes antes de descargarlas. Todas las im\u00e1genes para las que solicites una edici\u00f3n humana se enviar\u00e1n a tu editor. Con un clic, pueden descargar los RAWs, colocar la imagen de reemplazo en un cuadro de subida, y se reemplazar\u00e1 autom\u00e1ticamente la imagen original en tu galer\u00eda."
+        }
+      }
+    },
+    "style": {
+      "title": "Preferencias de estilo y ajustes globales",
+      "description": "Configura tus preferencias de edici\u00f3n predeterminadas.",
+      "items": {
+        "1": {
+          "question": "\u00bfC\u00f3mo personalizo mi estilo de edici\u00f3n?",
+          "answer": "Ve a Configuraci\u00f3n de cuenta \u2192 Preferencias de estilo. Ajusta brillo, contraste, balance de color, etc. Estos ajustes se aplicar\u00e1n a todas las ediciones futuras."
+        }
+      }
+    },
+    "pricing": {
+      "title": "Precios y planes de suscripci\u00f3n",
+      "description": "Planes, cr\u00e9ditos y detalles de facturaci\u00f3n.",
+      "items": {
+        "1": {
+          "question": "\u00bfCu\u00e1nto cuesta AutoHDR?",
+          "answer": "$0.40-$0.57 por edici\u00f3n, seg\u00fan el volumen. Mucho m\u00e1s barato que la mayor\u00eda de editores humanos que cobran $0.70-$1.00+ por edici\u00f3n."
+        },
+        "2": {
+          "question": "\u00bfC\u00f3mo funciona la facturaci\u00f3n de AutoHDR?",
+          "answer": "Solo pagas por las im\u00e1genes que descargas. Las suscripciones mensuales incluyen una cantidad fija de cr\u00e9ditos. Los cr\u00e9ditos se acumulan cada mes \u2014 sin p\u00e9rdida si bajas de plan."
+        },
+        "3": {
+          "question": "\u00bfQu\u00e9 pasa si supero los cr\u00e9ditos de mi plan?",
+          "answer": "Puedes recargar en cualquier momento \u2014 no necesitas subir de plan."
+        },
+        "4": {
+          "question": "\u00bfOfrecen una prueba gratis?",
+          "answer": "\u00a1S\u00ed! 10 descargas gratis al mes (sin tarjeta de cr\u00e9dito)."
+        },
+        "5": {
+          "question": "\u00bfPuedo cancelar mi suscripci\u00f3n en cualquier momento?",
+          "answer": "\u00a1S\u00ed! Las suscripciones de AutoHDR son mes a mes y puedes cancelar en cualquier momento."
+        }
+      }
+    },
+    "integration": {
+      "title": "Integraci\u00f3n y automatizaci\u00f3n",
+      "description": "Conecta AutoHDR con tus herramientas existentes.",
+      "items": {
+        "1": {
+          "question": "\u00bfAutoHDR se integra con plataformas de reservas inmobiliarias?",
+          "answer": "\u00a1S\u00ed! Tenemos flujos de trabajo completamente automatizados para todas las plataformas."
+        },
+        "2": {
+          "question": "\u00bfOfrecen una API para automatizaci\u00f3n?",
+          "answer": "\u00a1S\u00ed! AutoHDR tiene una API para usuarios empresariales para integrar AutoHDR en su flujo de trabajo. Env\u00edanos un correo con tu caso de uso para obtener una clave de API."
+        },
+        "3": {
+          "question": "\u00bfAutoHDR se integra con Dropbox o Google Drive?",
+          "answer": "La integraci\u00f3n con Dropbox est\u00e1 disponible ahora. Puedes subir im\u00e1genes directamente desde Google Drive a nuestro sitio web \u2014 pero no hay una automatizaci\u00f3n completa."
+        }
+      }
+    },
+    "support": {
+      "title": "Soporte al cliente y actualizaciones futuras",
+      "description": "C\u00f3mo obtener ayuda cuando la necesites.",
+      "items": {
+        "1": {
+          "question": "\u00bfQu\u00e9 tipo de soporte ofrece AutoHDR?",
+          "answer": "Chat en vivo y soporte por correo electr\u00f3nico para ayuda r\u00e1pida. Tutoriales en video y gu\u00edas de mejores pr\u00e1cticas. Canal dedicado de Slack y gerente de cuenta para usuarios empresariales."
+        }
+      }
+    }
   }
 }

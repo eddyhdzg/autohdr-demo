@@ -118,7 +118,7 @@ export const siteConfig = {
             { id: 1, translationKey: "studio", href: "/studio", disabled: true },
             { id: 2, translationKey: "pricing", href: "/pricing" },
             { id: 3, translationKey: "docs", href: DOCS_URL, external: true },
-            { id: 4, translationKey: "faqs", href: "/#faqs" },
+            { id: 4, translationKey: "faqs", href: "/faqs" },
         ],
     },
     hero: {
@@ -168,7 +168,7 @@ export const siteConfig = {
                 { id: 2, translationKey: "studio", url: "/studio", disabled: true, icon: <Clapperboard className="size-4" /> },
                 { id: 3, translationKey: "pricing", url: "/pricing", icon: <Tag className="size-4" /> },
                 { id: 4, translationKey: "docs", url: DOCS_URL, external: true, icon: <BookOpen className="size-4" /> },
-                { id: 5, translationKey: "faqs", url: "/#faqs", icon: <CircleHelp className="size-4" /> },
+                { id: 5, translationKey: "faqs", url: "/faqs", icon: <CircleHelp className="size-4" /> },
             ],
         },
         {

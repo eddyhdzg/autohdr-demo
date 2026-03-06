@@ -331,5 +331,167 @@
     "connected": "Connected",
     "installed": "Installed",
     "searchServers": "Search for servers"
+  },
+  "FAQsPage": {
+    "metaTitle": "FAQs",
+    "metaDescription": "Frequently asked questions about AutoHDR's AI real estate photo editing.",
+    "hero": {
+      "title": "Frequently Asked Questions",
+      "description": "Frequently asked questions about AutoHDR's AI real estate photo editing."
+    },
+    "general": {
+      "title": "General Questions",
+      "description": "Learn the basics about AutoHDR and how it compares to traditional editing.",
+      "items": {
+        "1": {
+          "question": "What is AutoHDR and how does it work?",
+          "answer": "With 30-minute turnaround times, AutoHDR provides a faster, more reliable, and scalable alternative to human editors."
+        },
+        "2": {
+          "question": "How does AutoHDR compare to traditional human editing?",
+          "answer": "Speed: 30 minutes vs. 8-12 hours (industry norm). Consistency: AI ensures uniform, high-quality edits every time. Affordability: pricing is lower than most human editors. Reliability: AI runs 24/7 with hundreds of GPUs. Flexibility: you only pay for what you download."
+        },
+        "3": {
+          "question": "What are the benefits of AutoHDR over outsourcing editors?",
+          "answer": "Faster turnaround (30 minutes). No reliance on human availability \u2014 no delays, vacations, or sick days. Preview before paying \u2014 if you\u2019re not satisfied, don\u2019t download. One-click \u201cHuman-in-the-Loop\u201d feature \u2014 you can add your own editor for free. Fully automated workflows."
+        },
+        "4": {
+          "question": "Is AutoHDR suitable for high-end luxury real estate photography?",
+          "answer": "Not yet. If you\u2019re paying $1-$3 per edit for manual, high-end retouching, AutoHDR won\u2019t fully match that level. However, it works great for standard real estate listings."
+        },
+        "5": {
+          "question": "Can I test AutoHDR before committing to a subscription?",
+          "answer": "Yes! You can upload unlimited photos, preview edits for free, and only pay when you download. Get 10 free downloads every month \u2014 no credit card required."
+        }
+      }
+    },
+    "uploading": {
+      "title": "Uploading & Processing Photos",
+      "description": "How to get your photos into AutoHDR and what to expect.",
+      "items": {
+        "1": {
+          "question": "How do I upload photos to AutoHDR?",
+          "answer": "Go to AutoHDR, drag and drop your files or upload from your computer, Dropbox, or Drive. AutoHDR automatically detects and processes your images."
+        },
+        "2": {
+          "question": "What file formats does AutoHDR accept?",
+          "answer": "JPEG (recommended for the best speed and performance) and RAW (supported, but slower to process)."
+        },
+        "3": {
+          "question": "What happens if I upload an unsupported file?",
+          "answer": "Convert to JPEG before processing for the best results."
+        },
+        "4": {
+          "question": "Does AutoHDR automate uploads and delivery?",
+          "answer": "Yes! AutoHDR can automatically detect, edit, and upload photos to your delivery platform. Available via several one-click automations."
+        }
+      }
+    },
+    "shootingSettings": {
+      "title": "Recommended Shooting Settings",
+      "description": "Camera settings that produce the best results with AutoHDR.",
+      "items": {
+        "1": {
+          "question": "What are the best settings for AutoHDR?",
+          "answer": "3 or 5 bracketed exposures at +/-2 EV. JPEG format recommended (faster uploads, no quality loss in most cases). Tripod is NOT required. Including flash shots (\u201cFlambient\u201d) is supported but not needed."
+        }
+      }
+    },
+    "team": {
+      "title": "Team & Collaboration Features",
+      "description": "Set up your team and collaborate on edits.",
+      "items": {
+        "1": {
+          "question": "Can teams use AutoHDR together?",
+          "answer": "Yes! You can collaborate with your team by adding photographers and editors to your account."
+        },
+        "2": {
+          "question": "How do I set up my team?",
+          "answer": "Go to Account Settings \u2192 Team. Invite your photographers and Quality Control (QC) VAs. They need to join your organization in their AutoHDR account (add you as \u201cAccount to Access\u201d). Their uploads will appear in your account for review."
+        },
+        "3": {
+          "question": "What can Quality Control (QC) VAs do?",
+          "answer": "Review, tweak, download, and deliver images. AutoHDR supports team-based workflows for larger real estate media businesses."
+        }
+      }
+    },
+    "editing": {
+      "title": "Editing & Customization Tools",
+      "description": "Fine-tune your photos after AutoHDR processes them.",
+      "items": {
+        "1": {
+          "question": "How do I adjust my images after AutoHDR processes them?",
+          "answer": "Once your images are ready, you can use: AutoRemove \u2014 one-click object removal (no Photoshop needed). AutoFill \u2014 add fireplace flames, flowers, or minor staging edits. Virtual Twilight \u2014 converts daytime shots into twilight images. Adjust Sliders \u2014 fine-tune brightness, contrast, white balance, vibrance, etc. Crop Tool \u2014 adjust framing if needed. Sky Toggle \u2014 turn clouds on/off. Green Grass \u2014 replace the lawn with AI generated grass."
+        },
+        "2": {
+          "question": "Can I add my own human editor?",
+          "answer": "Yes! AutoHDR has a one-click \u201cHuman-in-the-Loop\u201d feature. You can add your own editor for free \u2014 no extra cost. They can tweak images before downloading. All images you request a human edit for will be sent to your editor. In one click, they can download the RAWs, drop the replacement image into an upload box, and it will swap the original image automatically in your gallery."
+        }
+      }
+    },
+    "style": {
+      "title": "Style Preferences & Global Settings",
+      "description": "Set your default editing preferences.",
+      "items": {
+        "1": {
+          "question": "How do I customize my editing style?",
+          "answer": "Go to your Account Settings \u2192 Style Preferences. Adjust brightness, contrast, color balance, etc. These settings will apply to all future edits."
+        }
+      }
+    },
+    "pricing": {
+      "title": "Pricing & Subscription Plans",
+      "description": "Plans, credits, and billing details.",
+      "items": {
+        "1": {
+          "question": "How much does AutoHDR cost?",
+          "answer": "$0.40-$0.57 per edit, depending on volume. Significantly cheaper than most human editors charging $0.70-$1.00+ per edit."
+        },
+        "2": {
+          "question": "How does AutoHDR billing work?",
+          "answer": "You only pay for images you download. Monthly subscriptions include a set number of credits. Credits roll over each month \u2014 no loss if you downgrade."
+        },
+        "3": {
+          "question": "What happens if I exceed my plan\u2019s credits?",
+          "answer": "You can top up at any time \u2014 no need to upgrade plans."
+        },
+        "4": {
+          "question": "Do you offer a free trial?",
+          "answer": "Yes! 10 free downloads per month (no credit card required)."
+        },
+        "5": {
+          "question": "Can I cancel my subscription at any time?",
+          "answer": "Yes! AutoHDR subscriptions are month-to-month, and you can cancel anytime."
+        }
+      }
+    },
+    "integration": {
+      "title": "Integration & Automation",
+      "description": "Connect AutoHDR with your existing tools.",
+      "items": {
+        "1": {
+          "question": "Does AutoHDR integrate with real estate booking platforms?",
+          "answer": "Yes! We have fully automated workflows possible for all platforms."
+        },
+        "2": {
+          "question": "Do you offer an API for automation?",
+          "answer": "Yes! AutoHDR has an API for enterprise users to integrate AutoHDR into their workflow. Email us with your use case to get an API key."
+        },
+        "3": {
+          "question": "Does AutoHDR integrate with Dropbox or Google Drive?",
+          "answer": "Dropbox integration is available now. You can upload images directly from Google Drive to our website \u2014 but there is not a full-on automation."
+        }
+      }
+    },
+    "support": {
+      "title": "Customer Support & Future Updates",
+      "description": "How to get help when you need it.",
+      "items": {
+        "1": {
+          "question": "What kind of support does AutoHDR offer?",
+          "answer": "Live chat and email support for quick help. Video tutorials and guides for best practices. Dedicated Slack channel and account manager for enterprise users."
+        }
+      }
+    }
   }
 }

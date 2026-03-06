@@ -7,7 +7,7 @@ import {
 import { Button } from "@workspace/ui/components/button";
 import { CornerPlus } from "@workspace/ui/components/corner-plus";
 import { TypographyH2, TypographyP } from "@workspace/ui/components/typography";
-import { ArrowUpRight } from "lucide-react";
+import { Link } from "@/i18n/navigation";
 interface FAQSectionProps {
     title: string;
     description: string;
@@ -17,7 +17,7 @@ interface FAQSectionProps {
 
 export function FAQSection({ title, description, items, link }: FAQSectionProps) {
     return (
-        <section id="faqs" className="w-full relative">
+        <section className="w-full relative">
             <CornerPlus position="top-left" className="text-muted-foreground/50" />
             <CornerPlus position="top-right" className="text-muted-foreground/50" />
             <div className="mx-auto">
@@ -51,18 +51,11 @@ export function FAQSection({ title, description, items, link }: FAQSectionProps)
                         {link && (
                             <div className="pt-6">
                                 <Button
-                                    render={
-                                        <a
-                                            href={link.href}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        />
-                                    }
+                                    render={<Link href={link.href} />}
                                     variant="outline"
                                     size="sm"
                                 >
                                     {link.text}
-                                    <ArrowUpRight className="size-4" />
                                 </Button>
                             </div>
                         )}
