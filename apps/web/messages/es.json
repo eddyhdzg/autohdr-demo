@@ -253,7 +253,8 @@
       "partnerships": "Alianzas",
       "instagram": "Instagram",
       "tiktok": "TikTok",
-      "linkedin": "LinkedIn"
+      "linkedin": "LinkedIn",
+      "designSystem": "Sistema de diseño"
     },
     "copyright": "© {year} {name}."
   },
@@ -303,6 +304,27 @@
     "svgCopied": "¡SVG copiado!",
     "pngCopied": "¡PNG copiado!",
     "copyFailed": "Error al copiar"
+  },
+  "DesignSystem": {
+    "metaTitle": "Sistema de diseño",
+    "metaDescription": "Colores, botones y tokens de diseño utilizados en AutoHDR.",
+    "hero": {
+      "title": "Sistema de diseño",
+      "description": "Colores, botones y tokens de diseño utilizados en AutoHDR."
+    },
+    "colors": {
+      "title": "Colores",
+      "description": "La paleta de colores principal utilizada en AutoHDR.",
+      "neutral": "Neutro",
+      "semantic": "Semántico",
+      "base": "Base"
+    },
+    "buttons": {
+      "title": "Botones",
+      "description": "Todas las variantes y tamaños de botones de la biblioteca de componentes.",
+      "variants": "Variantes",
+      "sizes": "Tamaños"
+    }
   },
   "Animations": {
     "connecting": "Conectando",
