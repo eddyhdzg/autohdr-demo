@@ -1,6 +1,5 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
 import { useQueryStates } from "nuqs";
 import { useTranslations } from "next-intl";
 import { pricingSearchParams, type BillingPeriod } from "@/lib/pricing-searchparams";
@@ -13,19 +12,10 @@ import { NumberTicker } from "@workspace/ui/components/number-ticker";
 import { Tabs, TabsList, TabsTrigger } from "@workspace/ui/components/tabs";
 import { TypographyH2, TypographyMuted } from "@workspace/ui/components/typography";
 import { Card, CardContent } from "@workspace/ui/components/card";
-import { FlameIcon, SparklesIcon } from "lucide-react";
+import { SparklesIcon } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 
 const { pricing } = siteConfig;
-
-const LG_QUERY = "(min-width: 1024px)";
-const subscribeLg = (callback: () => void) => {
-    const mql = window.matchMedia(LG_QUERY);
-    mql.addEventListener("change", callback);
-    return () => mql.removeEventListener("change", callback);
-};
-const getLgSnapshot = () => window.matchMedia(LG_QUERY).matches;
-const getLgServerSnapshot = () => undefined;
 
 function formatPhotos(photos: number): string {
     return photos.toLocaleString("en-US");
@@ -106,14 +96,6 @@ export function PricingSection() {
     const isYearly = billing === "yearly";
     const sliderIndex = tier;
 
-    // Track lg breakpoint so only the visible slider mounts.
-    // undefined = SSR (both render, CSS handles visibility).
-    const isLg = useSyncExternalStore<boolean | undefined>(
-        subscribeLg,
-        getLgSnapshot,
-        getLgServerSnapshot,
-    );
-
     const currentTier = PRICING_TIERS[sliderIndex];
 
     // Derive selected card from slider position
@@ -160,63 +142,18 @@ export function PricingSection() {
 
     function tooltipRender(val: number): string {
         const photos = PRICING_TIERS[val].photos;
-        return t("photosSliderTooltip", { count: photos });
+        return t("photosSliderTooltip", { count: formatPhotos(photos) });
     }
 
     return (
         <section id="pricing" className="relative w-full divide-y divide-border">
-            {/* Header + Toggle + Slider */}
+            {/* Header */}
             <div className="w-full px-6 py-8 md:p-16">
                 <div className="max-w-xl mx-auto flex flex-col items-center justify-center gap-6 text-center">
                     <TypographyH2>{t("title")}</TypographyH2>
                     <p className="text-lg text-muted-foreground text-balance">
                         {t("description")}
                     </p>
-                    <Tabs
-                        value={billing}
-                        onValueChange={(v) =>
-                            setPricingParams({ billing: v as BillingPeriod })
-                        }
-                        className="hidden lg:flex"
-                    >
-                        <TabsList>
-                            <TabsTrigger value="monthly">{tCommon("monthly")}</TabsTrigger>
-                            <TabsTrigger value="yearly" className="gap-1.5">
-                                {tCommon("yearly")}
-                                <span className={cn(
-                                    "border px-2 py-0.5 text-xs font-medium",
-                                    isYearly
-                                        ? "border-green-700 bg-green-700/8 text-green-700"
-                                        : "border-green-600 bg-green-600/8 text-green-600 dark:border-green-400 dark:bg-green-400/8 dark:text-green-400"
-                                )}>
-                                    {tCommon("yearlyDiscount")}
-                                </span>
-                            </TabsTrigger>
-                        </TabsList>
-                    </Tabs>
-
-                    {/* Slider (desktop only — mobile uses fixed bottom bar) */}
-                    <div className="hidden lg:block w-full max-w-md space-y-3">
-                        <div className="flex items-center justify-between text-sm">
-                            <span className="text-foreground">
-                                {t("howManyPhotos")}
-                            </span>
-                            <span className="font-medium tabular-nums">
-                                <NumberTicker
-                                    value={currentTier.photos}
-                                    className="font-medium"
-                                />{" "}
-                                {t("photosPerMoUnit")}
-                            </span>
-                        </div>
-                        {isLg !== false && (
-                            <PricingSlider
-                                sliderIndex={sliderIndex}
-                                onValueChange={(v) => setPricingParams({ tier: v })}
-                                tooltipRender={tooltipRender}
-                            />
-                        )}
-                    </div>
                 </div>
             </div>
 
@@ -232,7 +169,7 @@ export function PricingSection() {
                     <div className="flex items-center gap-3">
                         <h3 className="text-lg font-semibold shrink-0">{t("plans.free.name")}</h3>
                         {isFreeSelected && (
-                            <div className="lg:hidden flex flex-wrap justify-end gap-2 ml-auto">
+                            <div className="flex flex-wrap justify-end gap-2 ml-auto">
                                 <span className="inline-flex items-center gap-1.5 whitespace-nowrap border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
                                     <SparklesIcon className="size-3" />
                                     {tCommon("recommended")}
@@ -280,18 +217,14 @@ export function PricingSection() {
                 >
                     <div className="flex items-center gap-3">
                         <h3 className="text-lg font-semibold shrink-0">{t("plans.pro.name")}</h3>
-                        <div className="flex flex-wrap justify-end gap-2 ml-auto">
-                            {isProSelected && (
-                                <span className="lg:hidden inline-flex items-center gap-1.5 whitespace-nowrap border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
+                        {isProSelected && (
+                            <div className="flex flex-wrap justify-end gap-2 ml-auto">
+                                <span className="inline-flex items-center gap-1.5 whitespace-nowrap border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
                                     <SparklesIcon className="size-3" />
                                     {tCommon("recommended")}
                                 </span>
-                            )}
-                            <span className="inline-flex items-center gap-1.5 whitespace-nowrap border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
-                                <FlameIcon className="size-3" />
-                                {tCommon("mostPopular")}
-                            </span>
-                        </div>
+                            </div>
+                        )}
                     </div>
                     <div className="mt-4 mb-6">
                         {/* Price */}
@@ -318,11 +251,6 @@ export function PricingSection() {
                         </TypographyMuted>
                         {/* Per photo */}
                         <div className="flex items-center gap-2 mt-1">
-                            {isYearly && proTier.perPhoto > 0 && (
-                                <span className="text-sm text-muted-foreground line-through">
-                                    ${proTier.perPhoto.toFixed(2)}
-                                </span>
-                            )}
                             <span
                                 className={cn(
                                     "text-sm",
@@ -344,6 +272,11 @@ export function PricingSection() {
                                 />{" "}
                                 {tCommon("perPhoto")}
                             </span>
+                            {isYearly && proTier.perPhoto > 0 && (
+                                <span className="text-sm text-muted-foreground line-through">
+                                    ${proTier.perPhoto.toFixed(2)}
+                                </span>
+                            )}
                         </div>
                     </div>
                     <hr className="border-border mb-6" />
@@ -375,7 +308,7 @@ export function PricingSection() {
                     <div className="flex items-center gap-3">
                         <h3 className="text-lg font-semibold shrink-0">{t("plans.enterprise.name")}</h3>
                         {isEnterpriseSelected && (
-                            <div className="lg:hidden flex flex-wrap justify-end gap-2 ml-auto">
+                            <div className="flex flex-wrap justify-end gap-2 ml-auto">
                                 <span className="inline-flex items-center gap-1.5 whitespace-nowrap border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
                                     <SparklesIcon className="size-3" />
                                     {tCommon("recommended")}
@@ -408,12 +341,6 @@ export function PricingSection() {
                         </div>
                         {/* Per photo */}
                         <div className="flex items-center gap-2 mt-1">
-                            {isYearly && enterpriseTier.perPhoto > 0 && (
-                                <span className="text-sm text-muted-foreground line-through">
-                                    $
-                                    {enterpriseTier.perPhoto.toFixed(2)}
-                                </span>
-                            )}
                             <span
                                 className={cn(
                                     "text-sm",
@@ -435,6 +362,11 @@ export function PricingSection() {
                                 />{" "}
                                 {tCommon("perPhoto")}
                             </span>
+                            {isYearly && enterpriseTier.perPhoto > 0 && (
+                                <span className="text-sm text-muted-foreground line-through">
+                                    ${enterpriseTier.perPhoto.toFixed(2)}
+                                </span>
+                            )}
                         </div>
                     </div>
                     <hr className="border-border mb-6" />
@@ -459,70 +391,84 @@ export function PricingSection() {
                 </div>
             </div>
 
-            {/* Mobile: Fixed bottom bar */}
-            <Card className="fixed bottom-0 left-0 right-0 z-40 border-x-0 border-b-0 py-4 lg:hidden select-none">
-                <CardContent className="space-y-3">
-                    <div className="flex items-center justify-between text-sm">
-                        <span className="font-medium">
-                            {currentTier.photos === 0
-                                ? t("freeTierLabel")
-                                : t("photosPerMo", { count: formatPhotos(currentTier.photos) })}
-                        </span>
-                        <div className="flex flex-col items-end gap-0.5">
-                            <span className="font-semibold tabular-nums">
-                                {currentTier.photos === 0
-                                    ? "$0"
-                                    : `$${(isYearly ? currentTier.yearlyMonthly : currentTier.monthly).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}
-                                <span className="text-muted-foreground font-normal">
-                                    {" "}
-                                    {tCommon("perMo")}
-                                </span>
-                            </span>
-                            {currentTier.photos > 0 && (
-                                <span className="flex items-center gap-1 text-xs tabular-nums">
-                                    {isYearly && (
-                                        <span className="text-muted-foreground line-through">
-                                            ${currentTier.perPhoto.toFixed(2)}
-                                        </span>
-                                    )}
-                                    <span className={cn(isYearly ? "text-green-700 dark:text-green-400" : "text-muted-foreground")}>
-                                        ${(isYearly ? currentTier.yearlyPerPhoto : currentTier.perPhoto).toFixed(2)} {tCommon("perPhoto")}
-                                    </span>
-                                </span>
-                            )}
-                        </div>
-                    </div>
-                    <Tabs
-                        value={billing}
-                        onValueChange={(v) =>
-                            setPricingParams({ billing: v as BillingPeriod })
-                        }
-                    >
-                        <TabsList className="w-full">
-                            <TabsTrigger value="monthly">{tCommon("monthly")}</TabsTrigger>
-                            <TabsTrigger value="yearly" className="gap-1.5">
-                                {tCommon("yearly")}
-                                <span className={cn(
-                                    "border px-1.5 py-0.5 text-[10px] font-medium",
-                                    isYearly
-                                        ? "border-green-700 bg-green-700/8 text-green-700"
-                                        : "border-green-600 bg-green-600/8 text-green-600 dark:border-green-400 dark:bg-green-400/8 dark:text-green-400"
-                                )}>
-                                    {tCommon("yearlyDiscount")}
-                                </span>
-                            </TabsTrigger>
-                        </TabsList>
-                    </Tabs>
-                    {isLg !== true && (
-                        <PricingSlider
-                            sliderIndex={sliderIndex}
-                            onValueChange={(v) => setPricingParams({ tier: v })}
-                            tooltipRender={tooltipRender}
-                        />
-                    )}
-                </CardContent>
-            </Card>
         </section>
+    );
+}
+
+export function PricingController() {
+    const [{ billing, tier }, setPricingParams] = useQueryStates(pricingSearchParams);
+    const t = useTranslations("PricingSection");
+    const tCommon = useTranslations("Common");
+    const isYearly = billing === "yearly";
+    const sliderIndex = tier;
+    const currentTier = PRICING_TIERS[sliderIndex];
+
+    function tooltipRender(val: number): string {
+        const photos = PRICING_TIERS[val].photos;
+        return t("photosSliderTooltip", { count: formatPhotos(photos) });
+    }
+
+    return (
+        <Card className="sticky bottom-2 z-40 py-4 my-8 select-none shadow-lg bg-card/40 backdrop-blur-3xl backdrop-saturate-200 max-w-lg w-[calc(100dvw-1rem)] ml-[50%] -translate-x-1/2">
+            <CardContent className="space-y-3">
+                <div className="flex items-center justify-between text-sm">
+                    <span className="font-medium">
+                        {currentTier.photos === 0
+                            ? t("freeTierLabel")
+                            : t("photosPerMo", { count: formatPhotos(currentTier.photos) })}
+                    </span>
+                    <div className="flex flex-col items-end gap-0.5">
+                        <span className="font-semibold tabular-nums">
+                            {currentTier.photos === 0
+                                ? "$0"
+                                : `$${(isYearly ? currentTier.yearlyMonthly : currentTier.monthly).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}
+                            <span className="text-muted-foreground font-normal">
+                                {" "}
+                                {tCommon("perMo")}
+                            </span>
+                        </span>
+                        {currentTier.photos > 0 && (
+                            <span className="flex items-center gap-1 text-xs tabular-nums">
+                                <span className={cn(isYearly ? "text-green-700 dark:text-green-400" : "text-muted-foreground")}>
+                                    ${(isYearly ? currentTier.yearlyPerPhoto : currentTier.perPhoto).toFixed(2)} {tCommon("perPhoto")}
+                                </span>
+                                {isYearly && (
+                                    <span className="text-muted-foreground line-through">
+                                        ${currentTier.perPhoto.toFixed(2)}
+                                    </span>
+                                )}
+                            </span>
+                        )}
+                    </div>
+                </div>
+                <Tabs
+                    value={billing}
+                    onValueChange={(v) =>
+                        setPricingParams({ billing: v as BillingPeriod })
+                    }
+                >
+                    <TabsList className="w-full">
+                        <TabsTrigger value="monthly">{tCommon("monthly")}</TabsTrigger>
+                        <TabsTrigger value="yearly" className="gap-1.5">
+                            {tCommon("yearly")}
+                            <span className={cn(
+                                "border px-1.5 py-0.5 text-[10px] font-medium",
+                                isYearly
+                                    ? "border-green-700 bg-green-700/8 text-green-700"
+                                    : "border-green-600 bg-green-600/8 text-green-600 dark:border-green-400 dark:bg-green-400/8 dark:text-green-400"
+                            )}>
+                                {tCommon("yearlyDiscount")}
+                            </span>
+                        </TabsTrigger>
+                    </TabsList>
+                </Tabs>
+                <PricingSlider
+                    sliderIndex={sliderIndex}
+                    onValueChange={(v) => setPricingParams({ tier: v })}
+                    tooltipRender={tooltipRender}
+                />
+            </CardContent>
+        </Card>
     );
 }
 
