@@ -63,7 +63,7 @@ function HamburgerButton({
       variant="ghost"
       size="icon"
       onClick={onClick}
-      className="md:hidden relative z-50 size-8"
+      className="md:hidden relative size-8"
       aria-label={label}
       aria-expanded={isOpen}
     >
@@ -184,7 +184,7 @@ function MobileNav({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={onClose}
-            className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm md:hidden"
+            className="fixed inset-0 bg-background/80 backdrop-blur-sm md:hidden"
             style={{ top: "64px" }}
           />
           <motion.div
@@ -192,7 +192,7 @@ function MobileNav({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-16 left-0 right-0 bottom-0 z-50 w-full bg-background md:hidden overflow-y-auto"
+            className="fixed top-16 left-0 right-0 bottom-0 w-full bg-background md:hidden overflow-y-auto"
           >
             <div className="flex min-h-full flex-col">
               <nav className="flex-1 px-6 py-4 pb-6">
@@ -528,7 +528,7 @@ export function Navbar() {
       initial={{ y: 0 }}
       animate={{ y: isVisible ? 0 : -100 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="fixed top-0 left-0 right-0 z-50 border-b bg-background"
+      className="fixed top-0 left-0 right-0 isolate z-10 border-b bg-background"
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 xl:px-0">
         <Button
@@ -574,7 +574,7 @@ export function Navbar() {
           ref={contextMenuRef}
           role="menu"
           aria-label={tNav("logoOptions")}
-          className="fixed z-[100] border border-border bg-popover shadow-md py-1"
+          className="fixed border border-border bg-popover shadow-md py-1"
           style={{ top: contextMenuPos.y, left: contextMenuPos.x }}
         >
           <button

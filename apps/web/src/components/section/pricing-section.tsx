@@ -409,7 +409,7 @@ export function PricingController() {
     }
 
     return (
-        <Card className="sticky bottom-2 z-40 py-4 my-8 select-none shadow-lg bg-card/40 backdrop-blur-3xl backdrop-saturate-200 max-w-lg w-[calc(100dvw-1rem)] ml-[50%] -translate-x-1/2">
+        <Card className="sticky bottom-2 isolate py-4 my-8 select-none shadow-lg bg-card/40 backdrop-blur-3xl backdrop-saturate-200 max-w-lg w-[calc(100dvw-1rem)] ml-[50%] -translate-x-1/2">
             <CardContent className="space-y-3">
                 <div className="flex items-center justify-between text-sm">
                     <span className="font-medium">
