@@ -9,7 +9,7 @@
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg",
-    "href": "https://autohdr.vercel.app"
+    "href": "/"
   },
   "favicon": "/favicon.svg",
   "colors": {
@@ -19,72 +19,151 @@
   },
   "navbar": {},
   "navigation": {
-    "tabs": [
+    "languages": [
       {
-        "tab": "Guides",
-        "icon": "book-open",
-        "groups": [
+        "language": "en",
+        "tabs": [
           {
-            "group": "Welcome",
-            "pages": ["index", "quickstart"]
-          },
-          {
-            "group": "Getting Started",
-            "icon": "rocket",
-            "pages": [
-              "getting-started/create-account",
-              "getting-started/upload-photos",
-              "getting-started/download-results"
+            "tab": "Guides",
+            "icon": "book-open",
+            "groups": [
+              {
+                "group": "Welcome",
+                "pages": ["index", "quickstart"]
+              },
+              {
+                "group": "Getting Started",
+                "icon": "rocket",
+                "pages": [
+                  "getting-started/create-account",
+                  "getting-started/upload-photos",
+                  "getting-started/download-results"
+                ]
+              },
+              {
+                "group": "Pricing",
+                "icon": "credit-card",
+                "pages": ["pricing"]
+              },
+              {
+                "group": "Account",
+                "icon": "gear",
+                "pages": ["account/settings", "account/billing"]
+              },
+              {
+                "group": "Help",
+                "icon": "circle-question",
+                "pages": ["faq", "support"]
+              }
             ]
           },
           {
-            "group": "Pricing",
-            "icon": "credit-card",
-            "pages": ["pricing"]
+            "tab": "Features",
+            "icon": "wand-magic-sparkles",
+            "groups": [
+              {
+                "group": "Editing Services",
+                "pages": [
+                  "features/hdr-editing",
+                  "features/flambient-editing",
+                  "features/day-to-dusk",
+                  "features/grass-greening",
+                  "features/object-removal",
+                  "features/virtual-staging",
+                  "features/tv-blackout"
+                ]
+              }
+            ]
           },
           {
-            "group": "Account",
-            "icon": "gear",
-            "pages": ["account/settings", "account/billing"]
-          },
-          {
-            "group": "Help",
-            "icon": "circle-question",
-            "pages": ["faq", "support"]
+            "tab": "Integrations",
+            "icon": "puzzle-piece",
+            "groups": [
+              {
+                "group": "Integrations",
+                "pages": [
+                  "integrations/overview",
+                  "integrations/spiro",
+                  "integrations/hd-photohub",
+                  "integrations/tonomo",
+                  "integrations/aryeo",
+                  "integrations/dropbox"
+                ]
+              }
+            ]
           }
         ]
       },
       {
-        "tab": "Features",
-        "icon": "wand-magic-sparkles",
-        "groups": [
+        "language": "es",
+        "tabs": [
           {
-            "group": "Editing Services",
-            "pages": [
-              "features/hdr-editing",
-              "features/flambient-editing",
-              "features/day-to-dusk",
-              "features/grass-greening",
-              "features/object-removal",
-              "features/virtual-staging",
-              "features/tv-blackout"
+            "tab": "Guías",
+            "icon": "book-open",
+            "groups": [
+              {
+                "group": "Bienvenida",
+                "pages": ["es/index", "es/quickstart"]
+              },
+              {
+                "group": "Primeros Pasos",
+                "icon": "rocket",
+                "pages": [
+                  "es/getting-started/create-account",
+                  "es/getting-started/upload-photos",
+                  "es/getting-started/download-results"
+                ]
+              },
+              {
+                "group": "Precios",
+                "icon": "credit-card",
+                "pages": ["es/pricing"]
+              },
+              {
+                "group": "Cuenta",
+                "icon": "gear",
+                "pages": ["es/account/settings", "es/account/billing"]
+              },
+              {
+                "group": "Ayuda",
+                "icon": "circle-question",
+                "pages": ["es/faq", "es/support"]
+              }
             ]
-          }
-        ]
-      },
-      {
-        "tab": "Integrations",
-        "icon": "puzzle-piece",
-        "groups": [
+          },
           {
-            "group": "Integrations",
-            "pages": [
-              "integrations/overview",
-              "integrations/spiro",
-              "integrations/hd-photohub",
-              "integrations/tonomo",
-              "integrations/aryeo",
-              "integrations/dropbox"
+            "tab": "Funciones",
+            "icon": "wand-magic-sparkles",
+            "groups": [
+              {
+                "group": "Servicios de Edición",
+                "pages": [
+                  "es/features/hdr-editing",
+                  "es/features/flambient-editing",
+                  "es/features/day-to-dusk",
+                  "es/features/grass-greening",
+                  "es/features/object-removal",
+                  "es/features/virtual-staging",
+                  "es/features/tv-blackout"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Integraciones",
+            "icon": "puzzle-piece",
+            "groups": [
+              {
+                "group": "Integraciones",
+                "pages": [
+                  "es/integrations/overview",
+                  "es/integrations/spiro",
+                  "es/integrations/hd-photohub",
+                  "es/integrations/tonomo",
+                  "es/integrations/aryeo",
+                  "es/integrations/dropbox"
+                ]
+              }
             ]
           }
         ]

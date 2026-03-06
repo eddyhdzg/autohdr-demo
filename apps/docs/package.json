@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "predev": "rm -rf ~/.mintlify",
-    "dev": "mintlify dev --no-open"
+    "dev": "mintlify dev --no-open --port 3001"
   },
   "devDependencies": {
     "mintlify": "^4.2.397"

@@ -1,5 +1,6 @@
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { siteConfig } from "@/lib/config";
+import { localizeDocsUrl } from "@/lib/localize-docs-url";
 import { Button } from "@workspace/ui/components/button";
 import {
     Card,
@@ -16,6 +17,7 @@ import { ArrowUpRight, MessageSquarePlus, Puzzle } from "lucide-react";
 import Image from "next/image";
 export function IntegrationsSection() {
     const t = useTranslations("Integrations");
+    const locale = useLocale();
     const { integrationsSection } = siteConfig;
 
     return (
@@ -47,7 +49,7 @@ export function IntegrationsSection() {
                 {integrationsSection.integrations.map((integration) => (
                     <a
                         key={integration.id}
-                        href={integration.href}
+                        href={localizeDocsUrl(integration.href, locale)}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="group"
@@ -96,7 +98,7 @@ export function IntegrationsSection() {
                 <Button
                     render={
                         <a
-                            href={integrationsSection.link.href}
+                            href={localizeDocsUrl(integrationsSection.link.href, locale)}
                             target="_blank"
                             rel="noopener noreferrer"
                         />

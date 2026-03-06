@@ -3,7 +3,8 @@
 import { Emoji } from "react-apple-emojis";
 import { ArrowUpRight } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
+import { localizeDocsUrl } from "@/lib/localize-docs-url";
+import { useLocale, useTranslations } from "next-intl";
 import { Button } from "@workspace/ui/components/button";
 import { cn } from "@workspace/ui/lib/utils";
 import { siteConfig } from "@/lib/config";
@@ -12,6 +13,7 @@ import { TypographyH3, TypographyMuted } from "@workspace/ui/components/typograp
 export function Footer() {
     const { footerLinks, name } = siteConfig;
     const pathname = usePathname();
+    const locale = useLocale();
     const tFooter = useTranslations("Footer");
     const tCommon = useTranslations("Common");
     const isActive = (url: string) => {
@@ -47,7 +49,7 @@ export function Footer() {
                                             size="sm"
                                             render={
                                                 <a
-                                                    href={link.url}
+                                                    href={localizeDocsUrl(link.url, locale)}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                 />
