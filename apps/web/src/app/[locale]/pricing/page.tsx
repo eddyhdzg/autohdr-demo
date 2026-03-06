@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { SearchParams } from "nuqs/server";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { pricingSearchParamsCache } from "@/lib/pricing-searchparams-cache";
-import { PricingSection } from "@/components/section/pricing-section";
+import { PricingSection, PricingController } from "@/components/section/pricing-section";
 import { PricingBreakdownTable } from "@/components/section/pricing-breakdown";
 import { FAQSection } from "@/components/section/faq-section";
 import { CTASection } from "@/components/section/cta-section";
@@ -39,9 +39,12 @@ export default async function PricingPage({ params, searchParams }: PageProps) {
   }));
 
   return (
-    <main className="flex flex-col divide-y divide-border pt-16 pb-40 lg:pb-0">
-      <PricingSection />
-      <PricingBreakdownTable />
+    <main className="flex flex-col divide-y divide-border pt-16">
+      <div className="relative">
+        <PricingSection />
+        <PricingBreakdownTable />
+        <PricingController />
+      </div>
       <FAQSection
         title={t("title")}
         description={t("description")}

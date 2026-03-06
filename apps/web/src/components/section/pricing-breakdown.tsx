@@ -80,7 +80,7 @@ export function PricingBreakdownTable() {
                 position="top-right"
                 className="text-muted-foreground/50"
             />
-            <div className="px-4 py-8 lg:p-16">
+            <div className="px-4 pt-8 lg:px-16 lg:pt-16">
                 <div className="max-w-xl mx-auto flex flex-col items-center text-center gap-4 mb-8 md:mb-12">
                     <TypographyH2>{t("title")}</TypographyH2>
                     <TypographyP>
@@ -179,11 +179,11 @@ export function PricingBreakdownTable() {
                                         </span>
                                     ) : isYearly ? (
                                         <span className="flex flex-col items-center gap-0.5">
-                                            <span className="text-muted-foreground line-through text-xs">
-                                                ${tierData.perPhoto.toFixed(2)}
-                                            </span>
                                             <span className="text-green-700 dark:text-green-400">
                                                 ${tierData.yearlyPerPhoto.toFixed(2)}
+                                            </span>
+                                            <span className="text-muted-foreground line-through text-xs">
+                                                ${tierData.perPhoto.toFixed(2)}
                                             </span>
                                         </span>
                                     ) : (
