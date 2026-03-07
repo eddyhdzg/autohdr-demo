@@ -17,7 +17,13 @@
     "light": "#D4D4D4",
     "dark": "#171717"
   },
-  "navbar": {},
+  "navbar": {
+    "primary": {
+      "type": "button",
+      "label": "Back to App",
+      "href": "https://autohdr.vercel.app/"
+    }
+  },
   "navigation": {
     "languages": [
       {
