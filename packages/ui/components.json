@@ -19,6 +19,7 @@
     "hooks": "@workspace/ui/hooks"
   },
   "registries": {
-    "@magicui": "https://magicui.design/r/{name}.json"
+    "@magicui": "https://magicui.design/r/{name}.json",
+    "@elements": "https://www.tryelements.dev/r/{name}.json"
   }
 }

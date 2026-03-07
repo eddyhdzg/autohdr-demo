@@ -496,6 +496,21 @@
   },
   "Studio": {
     "metaTitle": "Studio",
-    "metaDescription": "AutoHDR Studio"
+    "metaDescription": "Upload and manage your real estate photos locally. No account required.",
+    "hero": {
+      "title": "Studio",
+      "description": "Upload, preview, and manage your real estate photos. All images are stored locally on your device."
+    },
+    "upload": {
+      "acceptedTypes": "Supports JPEG, PNG, and WebP up to 25 MB"
+    },
+    "gallery": {
+      "title": "Your Photos",
+      "empty": "No photos yet. Upload some images to get started.",
+      "deleteAll": "Delete All"
+    },
+    "imageCard": {
+      "delete": "Delete"
+    }
   }
 }

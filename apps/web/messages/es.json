@@ -495,7 +495,22 @@
     }
   },
   "Studio": {
-    "metaTitle": "Studio",
-    "metaDescription": "AutoHDR Studio"
+    "metaTitle": "Estudio",
+    "metaDescription": "Sube y administra tus fotos de bienes raíces localmente. Sin cuenta requerida.",
+    "hero": {
+      "title": "Estudio",
+      "description": "Sube, previsualiza y administra tus fotos de bienes raíces. Todas las imágenes se almacenan localmente en tu dispositivo."
+    },
+    "upload": {
+      "acceptedTypes": "Compatible con JPEG, PNG y WebP hasta 25 MB"
+    },
+    "gallery": {
+      "title": "Tus Fotos",
+      "empty": "Aún no hay fotos. Sube algunas imágenes para comenzar.",
+      "deleteAll": "Eliminar Todo"
+    },
+    "imageCard": {
+      "delete": "Eliminar"
+    }
   }
 }
