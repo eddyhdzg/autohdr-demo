@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { UploadThingDropzone } from "@workspace/ui/components/elements/uploadthing-dropzone";
 
 interface StudioUploadZoneProps {
-  onFilesSelected: (files: File[]) => Promise<void>;
+  onFilesSelected: (files: File[]) => Promise<unknown>;
   disabled?: boolean;
 }
 
