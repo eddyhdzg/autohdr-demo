@@ -103,6 +103,16 @@
                 ]
               }
             ]
+          },
+          {
+            "tab": "Changelog",
+            "icon": "clock-rotate-left",
+            "groups": [
+              {
+                "group": "Changelog",
+                "pages": ["changelog/index"]
+              }
+            ]
           }
         ]
       },
@@ -181,6 +191,16 @@
                 "pages": [
                   "es/integrations/slack"
                 ]
+              }
+            ]
+          },
+          {
+            "tab": "Changelog",
+            "icon": "clock-rotate-left",
+            "groups": [
+              {
+                "group": "Changelog",
+                "pages": ["es/changelog/index"]
               }
             ]
           }
