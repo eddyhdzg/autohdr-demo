@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "uploadthing-elements": {
+      "source": "crafter-station/elements",
+      "sourceType": "github",
+      "computedHash": "f9b202f1b7a260273eae8e66089f27ab73f2b291e3bb2172959d52379a966fff"
+    }
+  }
+}

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
+import { StudioHeroSection } from "@/components/studio/studio-hero-section";
+import { StudioContent } from "@/components/studio/studio-content";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -23,8 +25,9 @@ export default async function StudioPage({ params }: Props) {
   setRequestLocale(locale);
 
   return (
-    <main className="flex min-h-svh items-center justify-center">
-      <p className="text-muted-foreground">Studio — WIP</p>
+    <main className="mx-auto max-w-5xl min-h-svh">
+      <StudioHeroSection />
+      <StudioContent />
     </main>
   );
 }
