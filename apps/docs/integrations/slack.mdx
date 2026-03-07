@@ -1,0 +1,64 @@
+---
+title: "Slack Integration"
+description: "Generate documentation updates and PRs directly from Slack using the @mintlify-assistant bot."
+icon: "slack"
+---
+
+# Slack Integration
+
+Mention `@mintlify-assistant` in Slack to request documentation changes. The bot
+researches your request, drafts the update, and opens a pull request for
+review. It never commits directly to main.
+
+## How it works
+
+When you mention `@mintlify-assistant` with a request, the bot follows a structured
+workflow:
+
+1. **Research** — reads the existing docs to understand context
+2. **Plan** — outlines what changes are needed
+3. **Write** — drafts the new or updated content
+4. **Validate** — checks for consistency and accuracy
+5. **Open PR** — creates a pull request for your team to review
+
+## Setup
+
+<Steps>
+  <Step title="Install the Slack app">
+    Go to the [Mintlify Dashboard](https://dashboard.mintlify.com) →
+    Integrations → Slack and install the app to your workspace.
+  </Step>
+  <Step title="Invite the bot">
+    Invite `@mintlify-assistant` to the channels where your team discusses
+    documentation (e.g. `#docs` or `#engineering`).
+  </Step>
+  <Step title="Send your first request">
+    Mention `@mintlify-assistant` with a clear request, like "update the pricing
+    page to reflect the new credit tiers."
+  </Step>
+</Steps>
+
+## Use cases
+
+- **Feature launches** — an engineer ships a new editing service and asks
+  the bot to draft the feature doc page.
+- **Screenshot updates** — send an updated UI screenshot and ask the bot
+  to add it to the right page.
+- **Bug reports** — "The pricing page says $0.57 for Basic but it should
+  be $0.55" and the bot opens a fix PR.
+- **Content requests** — "Add a section about credit rollover to the FAQ"
+  and the bot drafts it.
+
+## Capabilities
+
+- **Attachments** — send photos, screenshots, or diagrams along with your
+  request.
+- **Multi-page updates** — the bot handles changes that span several
+  pages at once.
+- **PR feedback** — if someone leaves comments on the PR, the bot
+  addresses them directly.
+
+<Tip>
+  Keep your requests specific. Instead of "update the docs," try "add a
+  step about bulk uploads to the getting started guide."
+</Tip>

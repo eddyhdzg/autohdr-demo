@@ -80,7 +80,7 @@
             "icon": "puzzle-piece",
             "groups": [
               {
-                "group": "Integrations",
+                "group": "Studio",
                 "pages": [
                   "integrations/overview",
                   "integrations/spiro",
@@ -88,6 +88,12 @@
                   "integrations/tonomo",
                   "integrations/aryeo",
                   "integrations/dropbox"
+                ]
+              },
+              {
+                "group": "Documentation",
+                "pages": [
+                  "integrations/slack"
                 ]
               }
             ]
@@ -154,7 +160,7 @@
             "icon": "puzzle-piece",
             "groups": [
               {
-                "group": "Integraciones",
+                "group": "Estudio",
                 "pages": [
                   "es/integrations/overview",
                   "es/integrations/spiro",
@@ -162,6 +168,12 @@
                   "es/integrations/tonomo",
                   "es/integrations/aryeo",
                   "es/integrations/dropbox"
+                ]
+              },
+              {
+                "group": "Documentación",
+                "pages": [
+                  "es/integrations/slack"
                 ]
               }
             ]
