@@ -140,10 +140,6 @@ function MobileNav({
   const isDarkTheme = resolvedTheme === "dark";
   const selectedLocale =
     localeOptions.find((option) => option.locale === locale) ?? localeOptions[0];
-  const studioLink = siteConfig.nav.links.find(
-    (link) => link.translationKey === "studio"
-  );
-
   function handleLocaleChange(nextLocale: string) {
     const targetLocale = nextLocale as AppLocale;
     if (targetLocale === locale) return;

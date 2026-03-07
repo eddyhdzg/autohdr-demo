@@ -90,7 +90,7 @@ function PricingSlider({
 }
 
 export function PricingSection() {
-    const [{ billing, tier }, setPricingParams] = useQueryStates(pricingSearchParams);
+    const [{ billing, tier }] = useQueryStates(pricingSearchParams);
     const t = useTranslations("PricingSection");
     const tCommon = useTranslations("Common");
     const isYearly = billing === "yearly";
@@ -138,11 +138,6 @@ export function PricingSection() {
         const key = FEATURE_TRANSLATION_MAP[feature];
         if (key) return t(`features.${key}`);
         return feature;
-    }
-
-    function tooltipRender(val: number): string {
-        const photos = PRICING_TIERS[val].photos;
-        return t("photosSliderTooltip", { count: formatPhotos(photos) });
     }
 
     return (

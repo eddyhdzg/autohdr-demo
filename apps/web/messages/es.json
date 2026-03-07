@@ -3,6 +3,10 @@
     "siteName": "AutoHDR",
     "siteDescription": "Procesamiento de imágenes HDR impulsado por IA."
   },
+  "HomePage": {
+    "metaTitle": "AutoHDR — Edición de Fotos Inmobiliarias con IA",
+    "metaDescription": "Transforma tus fotos inmobiliarias con procesamiento HDR impulsado por IA. Sube, mejora y descarga — sin necesidad de cuenta."
+  },
   "Common": {
     "getStarted": "Comenzar",
     "goToStudio": "Ir a Estudio",
