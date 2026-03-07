@@ -174,8 +174,8 @@ export const siteConfig = {
         {
             titleKey: "resources",
             links: [
-                { id: 6, translationKey: "support", url: "https://autohdr.vercel.app/docs/support", external: true, icon: <Headset className="size-4" /> },
-                { id: 7, translationKey: "changelog", url: "https://autohdr.vercel.app/docs/changelog", external: true, icon: <ScrollText className="size-4" /> },
+                { id: 6, translationKey: "support", url: `${DOCS_URL}/support`, external: true, icon: <Headset className="size-4" /> },
+                { id: 7, translationKey: "changelog", url: `${DOCS_URL}/changelog`, external: true, icon: <ScrollText className="size-4" /> },
             ],
         },
         {
