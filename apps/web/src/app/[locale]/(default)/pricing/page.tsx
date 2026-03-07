@@ -6,7 +6,7 @@ import { PricingSection, PricingController } from "@/components/section/pricing-
 import { PricingBreakdownTable } from "@/components/section/pricing-breakdown";
 import { FAQSection } from "@/components/section/faq-section";
 import { CTASection } from "@/components/section/cta-section";
-import { Footer } from "@/components/section/footer";
+
 
 type PageProps = {
   params: Promise<{ locale: string }>;
@@ -51,7 +51,6 @@ export default async function PricingPage({ params, searchParams }: PageProps) {
         items={pricingFaqItems}
       />
       <CTASection />
-      <Footer />
     </main>
   );
 }

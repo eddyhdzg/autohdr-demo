@@ -3,7 +3,7 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { DesignSystemHeroSection } from "@/components/design-system/design-system-hero-section";
 import { DesignSystemColorsSection } from "@/components/design-system/design-system-colors-section";
 import { DesignSystemButtonsSection } from "@/components/design-system/design-system-buttons-section";
-import { Footer } from "@/components/section/footer";
+
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -31,7 +31,6 @@ export default async function DesignPage({ params }: Props) {
       <DesignSystemHeroSection />
       <DesignSystemColorsSection />
       <DesignSystemButtonsSection />
-      <Footer />
     </main>
   );
 }

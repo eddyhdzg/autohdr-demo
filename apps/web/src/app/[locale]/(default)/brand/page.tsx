@@ -4,7 +4,7 @@ import { BrandHeroSection } from "@/components/brand/brand-hero-section";
 import { BrandNamingSection } from "@/components/brand/brand-naming-section";
 import { BrandLogoSection } from "@/components/brand/brand-logo-section";
 import { BrandSymbolSection } from "@/components/brand/brand-symbol-section";
-import { Footer } from "@/components/section/footer";
+
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -33,7 +33,6 @@ export default async function BrandPage({ params }: Props) {
       <BrandNamingSection />
       <BrandLogoSection />
       <BrandSymbolSection />
-      <Footer />
     </main>
   );
 }

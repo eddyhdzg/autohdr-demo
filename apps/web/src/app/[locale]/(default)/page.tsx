@@ -1,7 +1,7 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { CTASection } from "@/components/section/cta-section";
 import { FAQSection } from "@/components/section/faq-section";
-import { Footer } from "@/components/section/footer";
+
 import { HeroSection } from "@/components/section/hero-section";
 import { IntegrationsSection } from "@/components/section/integrations-section";
 import { TestimonialSection } from "@/components/section/testimonial-section";
@@ -35,7 +35,6 @@ export default async function Home({ params }: Props) {
         link={{ text: t("seeAll"), href: "/faqs" }}
       />
       <CTASection />
-      <Footer />
     </main>
   );
 }
