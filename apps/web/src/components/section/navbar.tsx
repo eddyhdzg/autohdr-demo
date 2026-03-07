@@ -102,11 +102,7 @@ function DesktopNav() {
       <NavigationMenuList className="gap-1">
         {siteConfig.nav.links.map((link) => (
           <NavigationMenuItem key={link.id}>
-            {link.disabled ? (
-              <span className="border border-transparent text-muted-foreground/50 cursor-not-allowed rounded-none h-8 w-fit inline-flex items-center justify-center px-4 py-2 text-sm font-medium">
-                {tNav(link.translationKey)}
-              </span>
-            ) : link.external ? (
+            {link.external ? (
               <NavigationMenuLink
                 render={<a href={localizeDocsUrl(link.href, locale)} />}
                 className="border border-transparent hover:border-border text-foreground rounded-none h-8 w-fit px-2 bg-transparent group inline-flex items-center justify-center px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none"
@@ -147,7 +143,6 @@ function MobileNav({
   const studioLink = siteConfig.nav.links.find(
     (link) => link.translationKey === "studio"
   );
-  const studioDisabled = Boolean(studioLink?.disabled);
 
   function handleLocaleChange(nextLocale: string) {
     const targetLocale = nextLocale as AppLocale;
@@ -394,21 +389,12 @@ function MobileNav({
                     </span>
                   </Button>
 
-                  {studioDisabled ? (
-                    <Button
-                      disabled
-                      className="w-full px-5 py-3 text-sm font-medium"
-                    >
-                      {tCommon("goToStudio")}
-                    </Button>
-                  ) : (
-                    <Button
-                      render={<Link href="/studio" onClick={onClose} />}
-                      className="w-full px-5 py-3 text-sm font-medium"
-                    >
-                      {tCommon("goToStudio")}
-                    </Button>
-                  )}
+                  <Button
+                    render={<Link href="/studio" onClick={onClose} />}
+                    className="w-full px-5 py-3 text-sm font-medium"
+                  >
+                    {tCommon("goToStudio")}
+                  </Button>
                 </motion.div>
               </div>
             </div>
