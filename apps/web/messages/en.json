@@ -3,6 +3,10 @@
     "siteName": "AutoHDR",
     "siteDescription": "AI-powered HDR image processing."
   },
+  "HomePage": {
+    "metaTitle": "AutoHDR — AI-Powered Real Estate Photo Editing",
+    "metaDescription": "Transform your real estate photos with AI-powered HDR processing. Upload, enhance, and download — no account required."
+  },
   "Common": {
     "getStarted": "Get Started",
     "goToStudio": "Go to Studio",

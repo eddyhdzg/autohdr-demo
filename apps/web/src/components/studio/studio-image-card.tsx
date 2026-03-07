@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { AspectRatio } from "@workspace/ui/components/aspect-ratio";
 import { Trash2 } from "lucide-react";
@@ -25,10 +26,13 @@ export function StudioImageCard({ image, url, onDelete }: StudioImageCardProps) 
   return (
     <div className="group relative overflow-hidden rounded-lg border border-border bg-card">
       <AspectRatio ratio={3 / 2}>
-        <img
+        <Image
           src={url}
           alt={image.name}
-          className="absolute inset-0 h-full w-full object-cover"
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover"
+          unoptimized
         />
       </AspectRatio>
       <div className="flex items-center justify-between gap-2 p-3">
