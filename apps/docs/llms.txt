@@ -1,0 +1,32 @@
+# AutoHDR Documentation
+
+> AutoHDR is an AI-powered photo editing service for real estate professionals. Upload photos, get studio-quality results in minutes, pay only for downloads.
+
+## Getting Started
+- [Quickstart](/quickstart): Edit your first photos in under 5 minutes
+- [Create Account](/getting-started/create-account): Sign up and get 10 free photos
+- [Upload Photos](/getting-started/upload-photos): Photo requirements and upload methods
+- [Download Results](/getting-started/download-results): Preview, compare, and download
+
+## Editing Services
+- [HDR Editing](/features/hdr-editing): Standard real estate photo enhancement
+- [Flambient Editing](/features/flambient-editing): Flash + ambient blend
+- [Day to Dusk](/features/day-to-dusk): Transform daytime exteriors to twilight
+- [Virtual Staging](/features/virtual-staging): AI-furnished empty rooms
+- [Object Removal](/features/object-removal): Remove unwanted items
+- [Grass Greening](/features/grass-greening): Enhance lawn appearance
+- [TV Blackout](/features/tv-blackout): Black out TV screens
+
+## Pricing & Billing
+- [Pricing](/pricing): Credit-based pricing, only pay for downloads
+- [Billing](/account/billing): Manage subscription and payment methods
+
+## Integrations
+- [Overview](/integrations/overview): All supported integrations
+- [Spiro](/integrations/spiro): Spiro connection setup
+- [Dropbox](/integrations/dropbox): Dropbox sync setup
+- [Slack](/integrations/slack): Documentation updates via Slack bot
+
+## Help
+- [FAQ](/faq): Common questions answered
+- [Support](/support): Contact email, phone, Slack
