@@ -40,13 +40,13 @@ function CornerPlusSingle({ position, className }: { position: Exclude<CornerPos
     return (
         <>
             {/* Horizontal line 1 */}
-            <div className={cn("h-px absolute w-3 bg-current z-40", classes.h1, className)}></div>
+            <div className={cn("h-px absolute w-3 bg-current", classes.h1, className)}></div>
             {/* Horizontal line 2 */}
-            <div className={cn("h-px absolute w-3 bg-current z-40", classes.h2, className)}></div>
+            <div className={cn("h-px absolute w-3 bg-current", classes.h2, className)}></div>
             {/* Vertical line 1 */}
-            <div className={cn("w-px absolute h-3 bg-current z-40", classes.v1, className)}></div>
+            <div className={cn("w-px absolute h-3 bg-current", classes.v1, className)}></div>
             {/* Vertical line 2 */}
-            <div className={cn("w-px absolute h-3 bg-current z-40", classes.v2, className)}></div>
+            <div className={cn("w-px absolute h-3 bg-current", classes.v2, className)}></div>
         </>
     );
 }
