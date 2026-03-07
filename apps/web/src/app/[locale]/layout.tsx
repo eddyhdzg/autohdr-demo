@@ -2,7 +2,7 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import { Navbar } from "@/components/section/navbar";
+
 import { EmojiProvider } from "@/components/emoji-provider";
 import { ThemeProvider } from "@/components/theme-provider";
 import { siteConfig } from "@/lib/config";
@@ -54,10 +54,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       <NuqsAdapter>
         <EmojiProvider>
           <NextIntlClientProvider>
-            <div className="max-w-7xl mx-auto border-x border-border">
-              <Navbar />
-              {children}
-            </div>
+            {children}
           </NextIntlClientProvider>
         </EmojiProvider>
       </NuqsAdapter>

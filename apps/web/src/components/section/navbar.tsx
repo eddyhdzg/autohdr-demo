@@ -550,8 +550,9 @@ export function Navbar() {
           <Button
             variant="ghost"
             size="icon"
-            className="hidden md:inline-flex cursor-pointer h-8 w-8"
+            className="hidden md:inline-flex h-8 w-8"
             type="button"
+            disabled
           >
             <CircleUserRound className="size-5 text-primary" />
             <span className="sr-only">{tCommon("user")}</span>

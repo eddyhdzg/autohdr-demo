@@ -493,5 +493,9 @@
         }
       }
     }
+  },
+  "Studio": {
+    "metaTitle": "Studio",
+    "metaDescription": "AutoHDR Studio"
   }
 }

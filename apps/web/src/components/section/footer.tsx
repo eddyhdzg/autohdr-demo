@@ -22,7 +22,7 @@ export function Footer() {
     };
 
     return (
-        <footer className="w-full">
+        <footer className="w-full border-t border-border">
             <div className="grid grid-cols-1 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-border">
                 {footerLinks.map((section) => (
                     <div

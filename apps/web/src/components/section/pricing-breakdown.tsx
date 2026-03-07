@@ -15,7 +15,7 @@ import {
 } from "@workspace/ui/components/table";
 import { ScrollArea } from "@workspace/ui/components/scroll-area";
 import { TypographyH2, TypographyP } from "@workspace/ui/components/typography";
-import { Check } from "lucide-react";
+import { Check, SparklesIcon } from "lucide-react";
 
 const FEATURE_ROWS = [
     { labelKey: "priorityProcessing", key: "priority" },
@@ -71,7 +71,7 @@ export function PricingBreakdownTable() {
     const isYearly = billing === "yearly";
 
     return (
-        <section id="pricing-breakdown" className="isolate relative w-full">
+        <section id="pricing-breakdown" className="isolate relative w-full border-t border-border">
             <CornerPlus
                 position="top-left"
                 className="text-muted-foreground/50"
@@ -89,7 +89,7 @@ export function PricingBreakdownTable() {
                 </div>
 
                 <ScrollArea className="w-full" orientation="horizontal">
-                    <table className="isolate w-full caption-bottom text-sm">
+                    <table className="isolate w-full caption-bottom text-sm mt-7">
                     <TableHeader className="[&_tr]:border-0">
                         <TableRow className="hover:bg-transparent border-0">
                             <TableHead
@@ -99,10 +99,16 @@ export function PricingBreakdownTable() {
                                 <TableHead
                                     key={tierData.photos}
                                     className={cn(
-                                        "text-center min-w-[100px] font-semibold text-foreground",
+                                        "text-center min-w-[100px] font-semibold text-foreground relative",
                                         i === tier && `${selectedTop} text-primary`
                                     )}
                                 >
+                                    {i === tier && (
+                                        <span className="absolute inset-x-0 bottom-full mb-1 mx-auto inline-flex items-center justify-center gap-1.5 whitespace-nowrap border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary w-fit">
+                                            <SparklesIcon className="size-3" />
+                                            {tCommon("recommended")}
+                                        </span>
+                                    )}
                                     {formatColumnHeader(tierData, t("columnFree"))}
                                 </TableHead>
                             ))}

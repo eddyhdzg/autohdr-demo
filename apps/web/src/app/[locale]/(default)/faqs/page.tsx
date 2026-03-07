@@ -9,7 +9,7 @@ import {
 import { CornerPlus } from "@workspace/ui/components/corner-plus";
 import { TypographyH2 } from "@workspace/ui/components/typography";
 import { FAQsHeroSection } from "@/components/faqs/faqs-hero-section";
-import { Footer } from "@/components/section/footer";
+
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -88,7 +88,6 @@ export default async function FAQsPage({ params }: Props) {
           ))}
         </div>
       </section>
-      <Footer />
     </main>
   );
 }

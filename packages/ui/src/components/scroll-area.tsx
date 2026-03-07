@@ -46,7 +46,6 @@ function ScrollBar({
       data-slot="scroll-area-scrollbar"
       data-orientation={orientation}
       orientation={orientation}
-      keepMounted
       className={cn(
         "z-[2] flex touch-none p-px transition-colors select-none",
         orientation === "vertical"
