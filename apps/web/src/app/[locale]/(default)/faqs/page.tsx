@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import {
   Accordion,
@@ -63,13 +64,15 @@ export default async function FAQsPage({ params }: Props) {
       <section className="w-full relative">
         <CornerPlus position="top-left" className="text-muted-foreground/50" />
         <CornerPlus position="top-right" className="text-muted-foreground/50" />
-        <div className="max-w-6xl mx-auto px-6 py-8 md:py-12 grid grid-cols-1 xl:grid-cols-[1fr_200px] gap-12">
-          <div className="space-y-12">
+        <div className="max-w-4xl mx-auto px-6 py-8 md:py-12 xl:max-w-6xl grid grid-cols-1 xl:grid-cols-[1fr_220px] gap-12">
+          <div className="space-y-16 max-w-4xl">
             {sections.map((section, sectionIndex) => (
               <div key={section.key} id={section.key}>
-                <TypographyH2 className="text-left mb-6">
-                  {sectionIndex + 1}. {section.title}
-                </TypographyH2>
+                <Link href={`#${section.key}`} className="no-underline hover:no-underline">
+                  <TypographyH2 className="text-left mb-6 text-2xl md:text-3xl lg:text-4xl">
+                    {sectionIndex + 1}. {section.title}
+                  </TypographyH2>
+                </Link>
                 <Accordion className="w-full" multiple defaultValue={[`${section.key}-0`]}>
                   {section.items.map((faq, index) => (
                     <AccordionItem
